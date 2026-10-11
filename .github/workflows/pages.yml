@@ -1,0 +1,57 @@
+# Publish the board viewers to GitHub Pages: the landing page, the 2D photo viewer (flip.html) and the 3D
+# viewer (kicad/viewer3d.html), with the data files they load. Nothing is built here; the KiCad exports
+# (kicad/overlay.js, kicad/scene.js) are committed after running kicad/regenerate.sh.
+name: Deploy viewers to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# one deployment at a time; let a running one finish
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect the site
+        run: |
+          mkdir -p _site/kicad
+          cp index.html flip.html pads.js traces.js components.js passives.js _site/
+          cp -r img _site/
+          cp kicad/viewer3d.html kicad/scene.js kicad/overlay.js _site/kicad/
+          # fail early if a viewer refers to a file that was not copied
+          for page in _site/flip.html _site/kicad/viewer3d.html; do
+            dir=$(dirname "$page")
+            for src in $(grep -o 'src="[^"]*"' "$page" | sed 's/src="//; s/"$//' | grep -v '^https\?:'); do
+              test -f "$dir/$src" || { echo "missing $dir/$src (from $page)"; exit 1; }
+            done
+          done
+          touch _site/.nojekyll
+          du -sh _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

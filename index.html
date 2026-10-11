@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger Nano X board map</title>
+<style>
+  :root {
+    --bg: #f6f6f3; --fg: #1d1f22; --muted: #5d636b; --card: #ffffff; --line: #dcdcd6; --accent: #1f7a46; --chip: #eef3ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #15171b; --fg: #e8e8e8; --muted: #a0a4ab; --card: #1e2126; --line: #31353c; --accent: #5ecf8a; --chip: #1f2a23; }
+  }
+  html { background: var(--bg); }
+  body { margin: 0 auto; max-width: 920px; padding: 32px 16px 64px; color: var(--fg); background: var(--bg);
+         font: 16px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 21px; margin: 40px 0 8px; }
+  h3 { font-size: 17px; margin: 0 0 4px; }
+  p, li { color: var(--fg); }
+  .lead { font-size: 18px; color: var(--muted); margin-top: 0; }
+  a { color: var(--accent); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; }
+  .card p { margin: 6px 0 12px; color: var(--muted); font-size: 15px; flex: 1; }
+  .card a.go { align-self: flex-start; padding: 8px 14px; border-radius: 6px; background: var(--accent); color: var(--bg);
+               text-decoration: none; font-weight: 600; }
+  kbd { font: 12px ui-monospace, monospace; padding: 1px 5px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+  .tag { display: inline-block; font-size: 12px; padding: 0 6px; border-radius: 4px; background: var(--chip); color: var(--muted); }
+  .note { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--muted); }
+  ul { padding-left: 20px; }
+</style>
+</head>
+<body>
+<h1>Ledger Nano X board map</h1>
+<p class="lead">An interactive map of the Ledger Nano X main board: its 40 test pads, the copper traces between
+them and the chips, and a KiCad reconstruction of the whole board you can explore in 3D.</p>
+
+<div class="cards">
+  <div class="card">
+    <h3>Photo viewer (2D)</h3>
+    <p>High-resolution photos of both sides of the board, with and without components, overlaid with every traced
+      net, test pad and part. Hover anything to see what it is and what it connects to.</p>
+    <a class="go" href="flip.html">Open the photo viewer</a>
+  </div>
+  <div class="card">
+    <h3>3D viewer</h3>
+    <p>The KiCad reconstruction: board, copper, ground pours and every part with its marking. Rotate it, and hover
+      a track, pad or chip to light up its whole net on both sides.</p>
+    <a class="go" href="kicad/viewer3d.html">Open the 3D viewer</a>
+  </div>
+</div>
+
+<h2>What is on the board</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>Part</th><th>What it is</th></tr>
+  <tr><td>STM32WB35CCU6A</td><td>Main microcontroller with the Bluetooth LE radio (UFQFPN48). Drives USB, the
+    buttons, the power circuitry and the clock and reset of the secure element. Pin names come from ST's pin data.</td></tr>
+  <tr><td>ST33 secure element</td><td>Ledger's secure element (QFN20, marked "Ledger"). It talks to the MCU over a
+    single-wire UART (SEPROXYHAL) and drives the OLED display's SPI bus. No public datasheet, so its pins are only
+    named from what they connect to.</td></tr>
+  <tr><td>STUSB4500L</td><td>USB-C power delivery controller on the CC lines. Pin names from its datasheet.</td></tr>
+  <tr><td>Chip antenna and RF filter</td><td>2.4 GHz Bluetooth path: MCU RF output, a blue ceramic filter, a matching
+    network and the chip antenna, with no copper fill under the antenna.</td></tr>
+  <tr><td>Power section</td><td>Battery contacts, a likely switching regulator for the 3.3 V rail (marked 1C4F) with its
+    inductor, a likely power switch (P8W) and three power ICs not yet identified (PWR1&ndash;PWR3).</td></tr>
+  <tr><td>Connectors and buttons</td><td>USB-C receptacle with ESD diodes on every line, a Hirose BM20B 16-pin
+    board-to-board connector to the display and button board, and the two push buttons.</td></tr>
+</table>
+</div>
+
+<h2>Test pads</h2>
+<p>The 40 numbered test pads on the back of the board, as labelled in the photos. Names ending in "?" are likely
+but not confirmed; the others were measured or follow from what the pad connects to.</p>
+<div class="tablewrap"><table id="pads"><tr><th>Pad</th><th>Signal</th><th>Notes</th></tr></table></div>
+
+<h2>Using the photo viewer</h2>
+<ul>
+  <li><b>Switch photos:</b> click or <kbd>Space</kbd> for front and back, middle-click or <kbd>E</kbd> for the board with
+    or without components (the bare board shows copper hidden under parts), right-click or <kbd>F</kbd> to mirror.
+    The checkboxes in the panel do the same, for touch screens and Macs.</li>
+  <li><b>Hover</b> (or tap) a trace, test pad or part to see its name, purpose and connections; the whole net lights up,
+    and a trace also shows its route on the other side, dashed.</li>
+  <li><b>Overlays:</b> <kbd>T</kbd> shows or hides the traced nets, <kbd>K</kbd> the KiCad reconstruction, to compare it
+    with the photos.</li>
+  <li>Scroll to zoom, drag to pan, <kbd>0</kbd> to reset.</li>
+</ul>
+
+<h2>Using the 3D viewer</h2>
+<ul>
+  <li>Drag to rotate, right-drag to pan, scroll to zoom; the Top, Bottom and Angle buttons reset the camera.</li>
+  <li>Hover a track, via or pad to light up its net on both sides, with its purpose and every pad on it. Hover a
+    chip for its description and the net on each of its pins.</li>
+  <li>Hide the components, pours or tracks from the panel to see what is underneath.</li>
+</ul>
+
+<h2>How the map was made</h2>
+<ul>
+  <li><b>Photos:</b> both sides of one board, with components and with them removed, aligned to the same pixel grid
+    so a point on one photo is the same point on the others (the front photos are mirrored for this).</li>
+  <li><b>Traces:</b> drawn by hand over the photos in the viewer's editor, segment by segment through every via,
+    and named from datasheets, from what they connect to, and from measurements on the real device.</li>
+  <li><b>Parts:</b> chip pins are computed from each package outline; resistors and capacitors were found
+    automatically from their colour and end caps, then checked by eye; markings were read off the photos.</li>
+  <li><b>Ground:</b> marked as connection points and stitching vias rather than drawn copper, as it is mostly a fill.</li>
+  <li><b>KiCad:</b> a generator turns all of this into a KiCad board and schematic and checks that both carry the same
+    connections. The 3D view and the KiCad overlay are exported from that board.</li>
+</ul>
+
+<h2>Caveats</h2>
+<p class="note">This is a reconstruction from photos, not the manufacturer's design. Positions are accurate to a few
+  tenths of a millimetre; inner copper layers cannot be seen, so the inner ground plane is assumed; footprints are
+  approximate; several parts are not identified yet, and some signal names are inferences, marked with "?" or
+  described as likely. Corrections are welcome.</p>
+
+<script src="pads.js"></script>
+<script>
+  // the test pad table, from the same data as the viewers
+  const table = document.getElementById('pads');
+  for (const p of (window.PADS || []).slice().sort((a, b) => a.id.localeCompare(b.id))) {
+    const tr = table.insertRow();
+    tr.insertCell().textContent = p.id;
+    const name = tr.insertCell();
+    if (p.name) name.textContent = p.name;
+    else {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = 'not identified';
+      name.append(tag);
+    }
+    tr.insertCell().textContent = p.notes || '';
+  }
+</script>
+</body>
+</html>
