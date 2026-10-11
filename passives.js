@@ -16,7 +16,7 @@ window.PASSIVES = [
   {"id":"R9","kind":"R","side":"front","box":[1463,1612,98,48],"axis":"h"},
   {"id":"R10","kind":"R","side":"front","box":[1486,1466,60,100],"axis":"v"},
   {"id":"X4","kind":"X","side":"front","box":[1517,1760,50,97],"axis":"v","notes":"Two-terminal part left of PWR2 with a white body, unlike the brown capacitors on this board; was C4. Could be an inductor, ferrite bead or white capacitor"},
-  {"id":"R11","kind":"R","side":"front","box":[1593,1216,46,24],"axis":"h"},
+  {"id":"R11","kind":"R","side":"front","box":[1584,1213,86,32],"axis":"h"},
   {"id":"R12","kind":"R","side":"front","box":[1625,1589,46,78],"axis":"v"},
   {"id":"C5","kind":"C","side":"front","box":[1772,1587,48,98],"axis":"v"},
   {"id":"R13","kind":"R","side":"front","box":[1870,1694,60,100],"axis":"v"},
@@ -60,7 +60,7 @@ window.PASSIVES = [
   {"id":"R27","kind":"R","side":"back","box":[684,803,48,98],"axis":"v"},
   {"id":"R28","kind":"R","side":"back","box":[799,812,98,48],"axis":"h"},
   {"id":"R29","kind":"R","side":"back","box":[1027,820,98,48],"axis":"h"},
-  {"id":"R30","kind":"R","side":"back","box":[1067,1832,66,32],"axis":"h"},
+  {"id":"R30","kind":"R","side":"back","box":[1045,1805,117,65],"axis":"h"},
   {"id":"R31","kind":"R","side":"back","box":[1217,949,46,91],"axis":"v"},
   {"id":"R32","kind":"R","side":"back","box":[1218,810,60,100],"axis":"v"},
   {"id":"C30","kind":"C","side":"back","box":[4200,1113,56,118],"axis":"v"},
@@ -75,5 +75,6 @@ window.PASSIVES = [
   {"id":"R37","kind":"R","side":"front","box":[2977,955,90,53],"axis":"h","notes":"Resistor below R18; added by hand after the automatic pass missed it"},
   {"id":"X7","kind":"X","side":"front","box":[3040,1892,55,100],"axis":"v","notes":"Grey two-terminal part at the end of HSE crystal OUT, past Y1; most likely that crystal's load capacitor (C0G types are grey), not confirmed. Added by hand"},
   {"id":"X8","kind":"X","side":"front","box":[2706,1905,62,98],"axis":"v","notes":"Grey two-terminal part on HSE crystal IN, left of Y1, mirroring X7; most likely the crystal's other load capacitor (C0G types are grey), not confirmed. Added by hand"},
-  {"id":"C36","kind":"C","side":"front","box":[1166,1595,84,36],"axis":"h","notes":"0201 capacitor below the STUSB4500L; added by hand"}
+  {"id":"C36","kind":"C","side":"front","box":[1166,1595,84,36],"axis":"h","notes":"0201 capacitor below the STUSB4500L; added by hand"},
+  {"id":"C37","kind":"C","side":"front","box":[1447,975,44,64],"axis":"v","notes":"0201 capacitor; added by hand"}
 ];

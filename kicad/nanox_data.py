@@ -113,7 +113,9 @@ def on_pad(p, x, y):
 def connected(t, p):
     """A trace connects to a pad when one of its points or pins on the pad's side lies on the pad."""
     return (any(q["side"] == p["side"] and any(on_pad(p, x, y) for x, y in q["points"]) for q in t["paths"]) or
-            any(q["side"] == p["side"] and on_pad(p, q["x"], q["y"]) for q in t.get("pins", [])))
+            any(q["side"] == p["side"] and on_pad(p, q["x"], q["y"]) for q in t.get("pins", [])) or
+            # a via goes through the board, so it connects pads on either side
+            any(on_pad(p, x, y) for x, y in t.get("vias", [])))
 
 
 def load():

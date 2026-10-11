@@ -26,6 +26,7 @@
   .k-track { fill: none; stroke: #fb923c; stroke-linecap: round; opacity: .75; pointer-events: stroke; }
   .k-pad, .k-via { fill: rgba(251, 146, 60, .35); stroke: #fb923c; stroke-width: calc(var(--px) * 1.5); }
   .k-pad.nonet { fill: rgba(148, 163, 184, .3); stroke: #94a3b8; }
+  .k-fill { fill: rgba(251, 146, 60, .18); fill-rule: evenodd; stroke: rgba(251, 146, 60, .5); stroke-width: calc(var(--px) * 1); pointer-events: none; }
   .k-edge { fill: none; stroke: #facc15; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 8); pointer-events: none; }
   .k-item.hover { opacity: 1; stroke: #fff; }
   .k-track.hover { stroke: #fff; }
@@ -393,7 +394,9 @@
   // a trace connects to a pad when one of its points on the pad's side lies within the pad
   function connected(t, p) {
     return t.paths.some(q => q.side === p.side && q.points.some(([x, y]) => onPad(p, x, y))) ||
-      (t.pins || []).some(q => q.side === p.side && onPad(p, q.x, q.y));
+      (t.pins || []).some(q => q.side === p.side && onPad(p, q.x, q.y)) ||
+      // a via goes through the board, so it connects pads on either side
+      (t.vias || []).some(([x, y]) => onPad(p, x, y));
   }
 
   // highlight the hovered item along with the pads or traces it connects to
@@ -524,6 +527,8 @@
   function renderKicad() {
     klayer.replaceChildren();
     if (!window.KICAD || !optKicad.checked) return;
+    // copper pours first, so tracks and pads draw over them
+    for (const d of KICAD.fill?.[side()] || []) klayer.append(el('path', { class: 'k-fill', d }));
     for (const [a, b] of KICAD.outline) klayer.append(el('line', { class: 'k-edge', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
     for (const k of KICAD[side()]) {
       let e;

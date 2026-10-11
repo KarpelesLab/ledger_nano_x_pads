@@ -52,6 +52,22 @@ def main():
                 corners = [(-w / 2, -h / 2), (w / 2, -h / 2), (w / 2, h / 2), (-w / 2, h / 2)]
                 item["poly"] = [[round(c[0] + x * ca - y * sa, 1), round(c[1] + x * sa + y * ca, 1)] for x, y in corners]
             out[side].append(item)
+    # filled copper pours, as SVG paths (outer outline plus holes) per side; needs a filled board
+    out["fill"] = {"front": [], "back": []}
+    for z in board.Zones():
+        if z.GetIsRuleArea():
+            continue
+        for layer, side in side_of.items():
+            if not z.IsOnLayer(layer):
+                continue
+            polys = z.GetFilledPolysList(layer)
+            for i in range(polys.OutlineCount()):
+                rings = [polys.Outline(i)] + [polys.Hole(i, j) for j in range(polys.HoleCount(i))]
+                d_ = ""
+                for ring in rings:
+                    pts = [px(ring.CPoint(k)) for k in range(ring.PointCount())]
+                    d_ += "M" + "L".join(f"{x:.0f},{y:.0f}" for x, y in pts) + "Z"
+                out["fill"][side].append(d_)
     for s in board.GetDrawings():
         if s.GetLayer() == pcbnew.Edge_Cuts and s.GetShape() == pcbnew.SHAPE_T_SEGMENT:
             out["outline"].append([px(s.GetStart()), px(s.GetEnd())])
@@ -60,7 +76,7 @@ def main():
         f.write("// KiCad reconstruction for flip.html, exported from nanox.kicad_pcb by export_overlay.py.\n")
         f.write("// Coordinates are pixels in the 5376x3024 photos.\n")
         f.write("window.KICAD = " + json.dumps(out, separators=(",", ":")) + ";\n")
-    print("wrote", path, {k: len(v) for k, v in out.items()})
+    print("wrote", path, {k: len(v) for k, v in out.items() if k != "fill"}, "fill", {k: len(v) for k, v in out["fill"].items()})
 
 
 if __name__ == "__main__":

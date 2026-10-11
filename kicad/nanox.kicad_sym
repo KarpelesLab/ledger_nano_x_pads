@@ -346,6 +346,17 @@
     (pin passive line (at 10.16 0.00 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
    )
   )
+  (symbol "C37" (in_bom yes) (on_board yes)
+   (property "Reference" "C" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
+   (property "Value" "nanox:C37" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
+   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+   (symbol "C37_0_1"
+    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+   (symbol "C37_1_1"
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 10.16 0.00 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
+   )
+  )
   (symbol "C5" (in_bom yes) (on_board yes)
    (property "Reference" "C" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
    (property "Value" "nanox:C5" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
