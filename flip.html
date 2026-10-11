@@ -127,8 +127,9 @@
       <li>Click the board to place points on the side shown, <kbd>Enter</kbd> to finish the segment</li>
       <li><kbd>Backspace</kbd>: undo point, <kbd>Esc</kbd>: cancel segment / deselect</li>
       <li><kbd>V</kbd> with the cursor on a via, or <kbd>Shift</kbd>+click it: place a via and continue on the other side</li>
-      <li>Click a trace to select and edit it; new segments are added to the selected trace</li>
-      <li>Click on the selected trace to start a branch from that spot; ending a segment on it joins it there</li>
+      <li>Click a trace to select and edit it; click on it again to start a branch there</li>
+      <li>Starting anywhere else makes a new trace; a segment ending on an existing trace, via or
+        connected pad joins that trace</li>
       <li>Points placed on a test pad or via snap to its center; a trace touching a pad is connected to it</li>
     </ul>
   </div>
@@ -283,26 +284,43 @@
     const near = (x, y, r) => Math.hypot(pt[0] - x, pt[1] - y) <= r;
     for (const p of pads) if (p.side === side() && near(p.x, p.y, p.r || 45)) return [p.x, p.y];
     for (const t of traces) for (const v of t.vias || []) if (near(v[0], v[1], 30)) return v.slice();
-    return onSelected(pt) || pt;
+    // otherwise the nearest trace within reach, where traces run close together
+    let best = null;
+    for (const t of traces) {
+      const o = onTrace(t, pt);
+      if (o && (!best || o.d < best.d)) best = o;
+    }
+    return best ? best.q : pt;
   }
 
-  // nearest point on the selected trace on the side shown, if pt is within its hit width;
-  // this is where branches leave or rejoin it
-  function onSelected(pt) {
-    if (!selected) return null;
-    let best = null, bd = Math.max(selected.width || 20, 14 / (fit() * scale)) / 2;
-    for (const p of selected.paths) {
-      if (p.side !== side()) continue;
+  // nearest point q of trace t to pt on side s, at distance d: one of its vias, or a point
+  // on one of its segments within its hit width; this is where branches leave or join it
+  function onTrace(t, pt, s = side()) {
+    for (const v of t.vias || []) {
+      const d = Math.hypot(v[0] - pt[0], v[1] - pt[1]);
+      if (d <= 30) return { q: v.slice(), d };
+    }
+    let best = null, bd = Math.max(t.width || 20, 14 / (fit() * scale)) / 2;
+    for (const p of t.paths) {
+      if (p.side !== s) continue;
       for (let i = 1; i < p.points.length; i++) {
         const [ax, ay] = p.points[i - 1], [bx, by] = p.points[i];
         const dx = bx - ax, dy = by - ay, len2 = dx * dx + dy * dy;
         const f = len2 ? Math.max(0, Math.min(1, ((pt[0] - ax) * dx + (pt[1] - ay) * dy) / len2)) : 0;
         const q = [Math.round(ax + f * dx), Math.round(ay + f * dy)];
         const d = Math.hypot(q[0] - pt[0], q[1] - pt[1]);
-        if (d <= bd) { bd = d; best = q; }
+        if (d <= bd) { bd = d; best = { q, d }; }
       }
     }
     return best;
+  }
+
+  // whether snapped point pt is on trace t: on its line or a via, or on a pad it connects to
+  function touches(t, pt, s = side()) {
+    const o = onTrace(t, pt, s);
+    if (o && o.d <= 2) return true;
+    const p = pads.find(p => p.side === s && samePoint([p.x, p.y], pt));
+    return !!p && connected(t, p);
   }
 
   function renderDraft() {
@@ -391,10 +409,31 @@
     return selected;
   }
 
+  // a segment starting on the selected trace branches from it; anywhere else starts a new trace
+  function startSegment(pt) {
+    if (selected && !touches(selected, pt)) selected = null;
+    drawing = { side: side(), points: [pt] };
+  }
+
+  // a segment whose ends land on other traces connects them: it joins the first, and any
+  // others are merged in
+  function joinTracesAt(points, s) {
+    for (const pt of points) {
+      for (const t of traces) {
+        if (t === selected || !touches(t, pt, s)) continue;
+        if (!selected) selected = t;
+        else merge(t);
+        break;
+      }
+    }
+  }
+
   function finishSegment() {
     const d = drawing;
     drawing = null;
     if (d && d.points.length >= 2) {
+      // join first so the segment lands in the trace it connects to
+      joinTracesAt([d.points[0], d.points.at(-1)], d.side);
       ensureTrace().paths.push(d);
       changed();
     } else {
@@ -405,12 +444,17 @@
 
   // end the segment at a via (pt, or the last point placed) and continue from it on the other side
   function placeVia(pt) {
-    if (!drawing) drawing = { side: side(), points: [] };
-    if (pt) drawing.points.push(pt);
+    if (!drawing) {
+      if (!pt) return;
+      startSegment(pt);
+    } else if (pt) drawing.points.push(pt);
     const via = drawing.points.at(-1);
     if (!via) return;
-    (ensureTrace().vias ||= []).push(via);
     finishSegment();
+    // a via placed without a segment can still sit on an existing trace
+    joinTracesAt([via], side());
+    const t = ensureTrace();
+    if (!(t.vias ||= []).some(v => samePoint(v, via))) t.vias.push(via);
     show(shown ^ 1);
     drawing = { side: side(), points: [via] };
     changed();
@@ -434,9 +478,9 @@
     const pt = snap(toImage(e.clientX, e.clientY));
     if (e.shiftKey) return placeVia(pt);
     if (drawing) drawing.points.push(pt);
-    // clicking another trace selects it; clicking a pad or the selected trace starts a segment there
+    // clicking another trace selects it; anywhere else starts a segment there
     else if (hit && !pads.includes(hit) && hit !== selected) return select(hit);
-    else drawing = { side: side(), points: [pt] };
+    else startSegment(pt);
     renderDraft();
     updateEditor();
   }
@@ -450,7 +494,9 @@
       ? `Click the trace to merge into ${target}`
       : drawing
       ? `Drawing on ${drawing.side} (${drawing.points.length} points), adding to ${target}`
-      : `Click the board to start a segment for ${target}`;
+      : selected
+      ? `Click on ${target} to branch from it, or elsewhere to start a new trace`
+      : 'Click the board to start a new trace';
     $('finish').disabled = !drawing;
     $('via').disabled = !drawing?.points.length;
     $('merge').disabled = !selected || drawing;
