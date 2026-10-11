@@ -152,9 +152,20 @@ def specimen_b():
     zf0, zf1 = BOT - .14, BOT - .06            # body, on the back under the OLED
     body = [b(*p) for p in [[165, 575], [458, 575], [458, 495], [1540, 490], [1540, 930], [165, 930]]]
     window = [b(*p) for p in [[288, 632], [388, 632], [388, 842], [288, 842]]]
-    out.append(dict(t="slab", poly=poly(body), holes=[poly(window)], z=[zf0, zf1], color="#161618", opacity=1,
+    # cut-outs around three of the Ledger's capacitors, which key the flex into place: holes around C30
+    # and C31, and a notch in the edge around C32, each 0.15 mm clear of the part
+    caps = {q["id"]: q["box"] for q in d.load_js("passives.js", "PASSIVES") if q["id"] in ("C30", "C31", "C32")}
+    m = 13
+    holes = [window] + [[[x - m, y - m], [x + w + m, y - m], [x + w + m, y + h + m], [x - m, y + h + m]]
+                        for x, y, w, h in (caps["C30"], caps["C31"])]
+    (x0, y0), (x1, y1) = body[0], body[1]
+    cx, cy, cw, ch = caps["C32"]
+    at = lambda x: y0 + (y1 - y0) * (x0 - x) / (x0 - x1)
+    body[1:1] = [[cx + cw + m, at(cx + cw + m)], [cx + cw + m, cy + ch + m], [cx - m, cy + ch + m], [cx - m, at(cx - m)]]
+    out.append(dict(t="slab", poly=poly(body), holes=[poly(h) for h in holes], z=[zf0, zf1], color="#161618", opacity=1,
                     title="Implant flex (black-coated)", notes="Orange polyimide flex painted black, cut to fit under the OLED "
-                    "around the Ledger's own parts; the window fits over the board-to-board connector"))
+                    "around the Ledger's own parts: the window fits over the board-to-board connector, and cut-outs around C30, C31 and "
+                    "C32 key it into place so it can't be misaligned"))
     parts = [
         ((772, 565, 1170, 925), 1.3, "#cfcfcc", "Nordic\nnRF9151", "Nordic nRF9151 module",
          "LTE-M / NB-IoT modem with its own regulatory markings, left unscraped"),
