@@ -2866,7 +2866,7 @@
   (pin "1" (uuid "686f0184-23b6-5c44-904d-6c968e0e4d44"))
   (instances (project "nanox" (path "/9fc871f3-1e36-5a01-9359-e2a20c86f96f" (reference "TP08") (unit 1))))
  )
- (no_connect (at 327.66 210.82) (uuid "6a411c66-0203-5701-b724-0321f5ce5097"))
+ (label "Net-T77" (at 327.66 210.82 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "fece6802-fb8b-59b0-8ce3-e0b947dbb0b2"))
  (symbol (lib_id "nanox:TP09") (at 337.82 226.06 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "1b0eb81f-1ed5-52b7-8b7e-ca433510888d")
   (property "Reference" "TP09" (at 337.82 222.25 0) (effects (font (size 1.27 1.27))))
   (property "Value" "PD SDA" (at 337.82 229.87 0) (effects (font (size 1.27 1.27))))
