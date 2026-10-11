@@ -6,7 +6,7 @@ window.PADS = [
   {"id":"03","name":"","notes":"","side":"back","x":828,"y":1686,"r":45},
   {"id":"04","name":"MCU PB7","notes":"MCU PB7 through R30; role not known","side":"back","x":971,"y":1971,"r":45},
   {"id":"05","name":"PD SCL","notes":"STUSB4500L pin 7, I2C clock (not to the MCU, likely for configuration), as TP09 is its SDA","side":"back","x":1060,"y":1270,"r":45},
-  {"id":"06","name":"BAT-?","notes":"Likely battery minus, on battery pad 1 before R1 (a likely current-sense resistor to ground); not measured","side":"back","x":1048,"y":1664,"r":45},
+  {"id":"06","name":"BAT NTC?","notes":"Likely the battery's temperature sensor (NTC): battery pad 1 and R1; not measured","side":"back","x":1048,"y":1664,"r":45},
   {"id":"07","name":"Switched supply?","notes":"Likely the output of the X9 power switch, into PWR1 pins 1 and 2; R31 feeds it to the MCU PA1 voltage sense; not measured","side":"back","x":1116,"y":932,"r":45},
   {"id":"08","name":"","notes":"","side":"back","x":1190,"y":1968,"r":45},
   {"id":"09","name":"PD SDA","notes":"STUSB4500L pin 8, I2C data (not to the MCU, likely for configuration), as TP05 is its SCL","side":"back","x":1280,"y":1224,"r":45},

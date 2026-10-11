@@ -1102,7 +1102,7 @@
    (symbol "TP06_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP06_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BAT-?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BAT NTC?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "nanox:TP07" (in_bom yes) (on_board yes)
@@ -2820,7 +2820,7 @@
  (label "PD SCL" (at 327.66 165.10 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "3cec355e-7571-522c-94b4-139214c6b7f8"))
  (symbol (lib_id "nanox:TP06") (at 337.82 180.34 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "ac157967-fffa-5ba3-b0c3-6af60996f49e")
   (property "Reference" "TP06" (at 337.82 176.53 0) (effects (font (size 1.27 1.27))))
-  (property "Value" "BAT-?" (at 337.82 184.15 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "BAT NTC?" (at 337.82 184.15 0) (effects (font (size 1.27 1.27))))
   (property "Footprint" "" (at 337.82 180.34 0) (effects (font (size 1.27 1.27)) hide))
   (property "Description" "test pad" (at 337.82 180.34 0) (effects (font (size 1.27 1.27)) hide))
   (pin "1" (uuid "dbba2158-3daf-5d0d-a26e-e80f2dfcce64"))

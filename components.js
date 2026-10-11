@@ -125,7 +125,7 @@ window.COMPONENTS = [
     {"id":"R3","name":"","polygon":[[5046,1648],[5139,1648],[5139,1705],[5046,1705]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
-    {"id":"1","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
-    {"id":"2","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
-    {"id":"3","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
+    {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with R1 and test pad 06; not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
+    {"id":"2","name":"","notes":"Likely battery -, to PWR3 (a likely battery protection IC), R35 and C2; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
+    {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the X9 power switch, PWR1 and PWR2; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
 ];

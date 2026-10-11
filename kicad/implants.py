@@ -148,11 +148,16 @@ def b_centre(x0, y0, x1, y1):
     return xy(cx, cy), [round(w, 3), round(h, 3)]
 
 
+# the OLED SPI test pads specimen B solders to: CS, CLK and MOSI
+TAPS_B = ["31", "34", "35"]
+
+
 def specimen_b():
     out = []
     zf0, zf1 = BOT - .14, BOT - .06            # body, on the back under the OLED
     # around the OLED connector the flex stops short of C33 and C34 (photo y 597)
-    body = [b(*p) for p in [[163, 597], [458, 597], [458, 495], [1540, 490], [1540, 930], [163, 930]]]
+    body = [b(*p) for p in [[163, 597], [458, 597], [458, 495], [1540, 490], [1540, 930],
+                            [795, 930], [795, 962], [695, 962], [695, 930], [163, 930]]]
     # the window fits snugly around the board-to-board connector (its pads and hold-downs, 0.1 mm clear)
     btb = [q["polygon"] for c in d.load_js("components.js", "COMPONENTS") if c["id"] == "BTB" for q in c["pads"]]
     bx = [v[0] for pg in btb for v in pg]; by = [v[1] for pg in btb for v in pg]
@@ -182,6 +187,11 @@ def specimen_b():
             return
         raise SystemExit(f"{name} is not on an edge of specimen B's body")
     notch("C32", caps["C32"])
+    # round holes over the Ledger's OLED SPI test pads, each soldered by hand to the pad below
+    pads = {p["id"]: p for p in d.load_js("pads.js", "PADS")}
+    for pid in TAPS_B:
+        cx, cy = pads[pid]["x"], pads[pid]["y"]
+        holes.append([[cx + 36 * math.cos(a), cy + 36 * math.sin(a)] for a in (k * math.pi / 8 for k in range(16))])
     out.append(dict(t="slab", poly=poly(body), holes=[poly(h) for h in holes], z=[zf0, zf1], color="#161618", opacity=1,
                     title="Implant flex (black-coated)", notes="Orange polyimide flex painted black, cut to fit under the OLED "
                     "around the Ledger's own parts: the window fits snugly around the board-to-board connector, and cut-outs around "
@@ -195,6 +205,10 @@ def specimen_b():
          "MFF2 eSIM, 5 x 6 mm, top surface abraded"),
         ((955, 475, 1025, 535), .9, "#c9a54a", "", "U.FL connector", "Antenna connector for the coax lead"),
     ]
+    for pid in TAPS_B:
+        out.append(dict(t="dome", at=xy(pads[pid]["x"], pads[pid]["y"]), r=.4, z=BOT, side="back", color="#d8d8d8",
+                        title=f"Solder joint on TP{pid}", notes=f"{pads[pid]['name']}: a round hole in the flex, soldered "
+                                                              "by hand to the test pad, taps the display's SPI bus"))
     for rc, h, col, mark, title, notes in parts:
         at, size = b_centre(*rc)
         out.append(dict(t="box", at=at, size=size, z=[zf0 - h, zf0], color=col, marking=mark, flip=True,
@@ -207,15 +221,16 @@ def specimen_b():
     out.append(dict(t="tube", points=pts, radius=.35, color="#111111",
                     title="Coax lead", notes="Thin coax from the U.FL connector to the antenna AC-A2016-NANO-V1.1, which is "
                                              "stuck inside the case shell (not modelled, as the case isn't)"))
-    # the leg: leaves the body's edge, folds around the board's top edge to the front and runs under the
-    # battery contacts, ending in two tabs on battery + (pad 3) and battery - (pad 1)
+    # the leg: leaves the body's edge, folds around the board's top edge to the front and runs straight
+    # down to PWR3, then turns 90 degrees onto battery pad 2 (-); a short branch just past the fold lands on
+    # battery pad 3 (+). Battery pad 1 is the temperature sensor and isn't touched.
     zl0, zl1 = TOP + .85, TOP + .92            # on the front, above the parts it crosses
-    exit_x, exit_y = b(1460, 930)
-    lx0, lx1 = exit_x - 50, exit_x + 50
+    lx0, lx1 = 1430, 1580
+    exit_y = b(1460, 930)[1]
     edge = 824
     leg = dict(color="#161618", opacity=1, title="Leg (black-coated flex)",
-               notes="Branches off the body, wraps around the board's edge to the front and lands under the battery "
-                     "contacts, so the implant is powered straight from the battery (+ and -)")
+               notes="Branches off the body, wraps around the board's edge to the front and lands on battery pads 3 (+) "
+                     "and 2 (-), so the implant is powered straight from the battery")
     out.append(dict(t="slab", poly=rect(lx0, edge, lx1, exit_y + 20), z=[zf0, zf1], **leg))
     r = (zl1 - zf1) / 2
     zc = (zl1 + zf1) / 2
@@ -225,12 +240,11 @@ def specimen_b():
         path.append([edge - r * S * math.cos(phi), zc + r * math.sin(phi)])
     path += [[edge, zl1], [edge + 40, zl1]]
     out.append(dict(t="ribbon", x=[lx0 / S, lx1 / S], path=[[round((y - d.IMG_H) / S, 3), round(z, 3)] for y, z in path], **leg))
-    for rc in ((1015, edge, lx1, 915), (1015, edge, 1100, 1880), (930, 1780, 1015, 1880)):
+    for rc in ((lx0, edge, lx1, 1880), (1110, 1760, lx0, 1880), (1110, 905, lx0, 995)):
         out.append(dict(t="slab", poly=rect(*rc), z=[zl0, zl1], **leg))
-    for (x, y), pol in (((975, 1830), "-"), ((1060, 952), "+")):
+    for (x, y), pid, pol in (((1165, 1820), "2", "-"), ((1165, 950), "3", "+")):
         out.append(dict(t="box", at=xy(x, y), size=[.9, .9], z=[TOP, zl0], color="#d8d8d8",
-                        title=f"Leg tab on battery {pol}", notes=f"Solder tab on the battery {pol} contact "
-                                                          "(battery pad 3 is likely +, pad 1 likely -)"))
+                        title=f"Leg tab on battery pad {pid}", notes=f"Solder tab on battery pad {pid}, likely battery {pol}"))
     return out
 
 

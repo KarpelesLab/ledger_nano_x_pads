@@ -10998,6 +10998,109 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
+		(uuid "07765028-572a-5421-aab6-f47287ff150f")
+		(at 12.47619 16.190476)
+		(property "Reference" "TP06"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "0b823127-5bb7-5e2e-89ee-49dc406d9f91")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "BAT NTC?"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9e6e0a4a-e599-5f2c-a4e4-600ae1f6cc6c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0301b04c-9c45-5497-a1a5-3542a394a5e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e864d32e-8297-5edd-93e9-70be3e9c0ffc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/ac157967-fffa-5ba3-b0c3-6af60996f49e")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.535714 -0.535714)
+			(end -0.535714 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "6396649c-8137-5f01-b18b-8421ac550f02")
+		)
+		(fp_line
+			(start -0.535714 0.535715)
+			(end 0.535714 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "00717e0f-edb9-5b07-b681-f9caa67fa660")
+		)
+		(fp_line
+			(start 0.535714 -0.535714)
+			(end -0.535714 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f6c6ab83-ef18-553b-ad2b-efd2bc35d9e0")
+		)
+		(fp_line
+			(start 0.535714 0.535715)
+			(end 0.535714 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "251314a1-22f6-5cad-970a-2a2666a73794")
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.071428 1.071428)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "Net-T43")
+			(uuid "0605b4c9-dbeb-544d-bc78-bdefa9392a1c")
+		)
+		(embedded_fonts no)
+	)
+	(footprint ""
+		(layer "B.Cu")
 		(uuid "0963e562-ed43-5980-bfdf-eb7670263b4c")
 		(at 12.619047 20.880952)
 		(property "Reference" "TP05"
@@ -14537,109 +14640,6 @@
 				(xyz 0 0 90)
 			)
 		)
-	)
-	(footprint ""
-		(layer "B.Cu")
-		(uuid "954353be-201a-5b71-854f-55501498371e")
-		(at 12.47619 16.190476)
-		(property "Reference" "TP06"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "779bac6c-273b-5b04-93b7-00cc06165fac")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "BAT-?"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "37e5415c-08fb-5989-bc4e-37702e5df274")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "a8d450c4-548a-50e7-b58e-360798a161cb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "3a271f3b-ed97-532c-8ea2-b493e870c201")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/ac157967-fffa-5ba3-b0c3-6af60996f49e")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.535714 -0.535714)
-			(end -0.535714 0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "30348f37-dc05-5d05-b69f-5833d9df56c3")
-		)
-		(fp_line
-			(start -0.535714 0.535715)
-			(end 0.535714 0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "b0c39df4-c7e8-5373-934b-ba83e9e9622b")
-		)
-		(fp_line
-			(start 0.535714 -0.535714)
-			(end -0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "9df27b47-5cb0-54a3-9216-40558a2b9354")
-		)
-		(fp_line
-			(start 0.535714 0.535715)
-			(end 0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "b6c06c67-5ebb-55c9-90eb-bc695bf3603a")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.071428 1.071428)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T43")
-			(uuid "3c98d69d-f692-56db-aec7-de082cd88501")
-		)
-		(embedded_fonts no)
 	)
 	(footprint ""
 		(layer "B.Cu")
