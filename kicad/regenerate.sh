@@ -14,5 +14,6 @@ python3 stable_uuids.py --sort-tracks
 python3 check.py
 python3 export_overlay.py
 python3 export_scene.py
+python3 implants.py
 # 3D renders and STEP export, so they never fall behind the board
 ./render.sh

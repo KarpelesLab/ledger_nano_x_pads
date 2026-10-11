@@ -30,6 +30,14 @@
   <label><input type="checkbox" id="opt-parts" checked> Components</label>
   <label><input type="checkbox" id="opt-pours" checked> Ground pours</label>
   <label><input type="checkbox" id="opt-tracks" checked> Tracks and vias</label>
+  <label>Implant overlay
+    <select id="implant">
+      <option value="">none</option>
+      <option value="A">Specimen A (generation 2)</option>
+      <option value="B">Specimen B (generation 3)</option>
+    </select>
+  </label>
+  <div class="hint" id="implant-note" hidden></div>
   <div class="buttons">
     <button id="top">Top</button><button id="bottom">Bottom</button><button id="angle">Angle</button>
   </div>
@@ -38,6 +46,7 @@
 </div>
 <div id="tip" hidden></div>
 <script src="scene.js"></script>
+<script src="implants.js"></script>
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -212,6 +221,82 @@ for (const p of S.parts) {
   register(mesh, { kind: 'part', ref: p.ref, part: p });
 }
 
+// ---- implants: approximate models of the hardware implants found in Nano X devices, from implants.js ----
+
+const implantGroups = {};
+const implantInfo = info => ({ kind: 'implant', ...info });
+function buildImplant(key) {
+  const spec = window.IMPLANTS?.[key];
+  const g = new THREE.Group();
+  if (!spec) return g;
+  const material = (p) => {
+    const m = new THREE.MeshStandardMaterial({ color: p.color, roughness: .5, metalness: p.color === '#cfcfcc' || p.color === '#c9c9c6' ? .6 : .1,
+                                               side: THREE.DoubleSide });
+    if (p.opacity !== undefined && p.opacity < 1) { m.transparent = true; m.opacity = p.opacity; m.depthWrite = false; }
+    return m;
+  };
+  for (const p of spec.parts) {
+    let mesh;
+    const info = implantInfo({ implant: spec.name, title: p.title, notes: p.notes });
+    if (p.t === 'slab') {
+      const sh = shapeOf(p.poly);
+      for (const h of p.holes || []) sh.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y))));
+      mesh = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: p.z[1] - p.z[0], bevelEnabled: false }), material(p));
+      mesh.position.z = p.z[0];
+    } else if (p.t === 'box') {
+      mesh = new THREE.Mesh(new THREE.BoxGeometry(p.size[0], p.size[1], p.z[1] - p.z[0]), material(p));
+      mesh.position.set(p.at[0], p.at[1], (p.z[0] + p.z[1]) / 2);
+      if (p.marking) {
+        // text on the face pointing away from the board
+        const tex = markingTexture(p.marking, 512, Math.round(512 * p.size[1] / p.size[0]));
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(p.size[0] * .85, p.size[1] * .8),
+          new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+        const face = p.flip ? p.z[0] - .003 : p.z[1] + .003;
+        plane.position.set(p.at[0], p.at[1], face);
+        if (p.flip) plane.rotation.y = Math.PI;
+        g.add(plane);
+      }
+    } else if (p.t === 'ribbon') {
+      // a strip between x[0] and x[1] following a path of (y, z) points
+      const pos = [], idx = [];
+      p.path.forEach(([y, z], i) => {
+        pos.push(p.x[0], y, z, p.x[1], y, z);
+        if (i) idx.push(2 * i - 2, 2 * i - 1, 2 * i, 2 * i - 1, 2 * i + 1, 2 * i);
+      });
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      geo.setIndex(idx);
+      geo.computeVertexNormals();
+      mesh = new THREE.Mesh(geo, material(p));
+    } else if (p.t === 'tube') {
+      const curve = new THREE.CatmullRomCurve3(p.points.map(([x, y, z]) => new THREE.Vector3(x, y, z)));
+      mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, p.radius, 8), material(p));
+    } else if (p.t === 'dome') {
+      mesh = new THREE.Mesh(new THREE.SphereGeometry(p.r, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), material(p));
+      mesh.scale.z = .45;
+      mesh.rotation.x = p.side === 'back' ? -Math.PI / 2 : Math.PI / 2;
+      mesh.position.set(p.at[0], p.at[1], p.z);
+    }
+    if (!mesh) continue;
+    g.add(mesh);
+    mesh.userData = info;
+    mesh.userData.base = mesh.material;
+    pickable.push(mesh);
+  }
+  g.visible = false;
+  root.add(g);
+  return g;
+}
+for (const key of Object.keys(window.IMPLANTS || {})) implantGroups[key] = buildImplant(key);
+if (!window.IMPLANTS) $('implant').disabled = true;
+$('implant').onchange = e => {
+  for (const [k, g] of Object.entries(implantGroups)) g.visible = k === e.target.value;
+  const spec = window.IMPLANTS?.[e.target.value];
+  $('implant-note').hidden = !spec;
+  if (spec) $('implant-note').textContent = spec.summary + '. Approximate model from Tibane Labs\' photographs.';
+  e.target.blur();
+};
+
 // ---- camera views ----
 function view(name) {
   const d = 70;
@@ -251,6 +336,9 @@ function netHtml(net) {
     (ps.length ? `<p class="meta">${ps.length} pad${ps.length > 1 ? 's' : ''}: ${esc(ps.slice(0, 24).join(', '))}${ps.length > 24 ? '…' : ''}</p>` : '');
 }
 function describe(u) {
+  if (u.kind === 'implant') {
+    return `<b>${esc(u.title)}</b> <span class="meta">implant · ${esc(u.implant)}</span>` + (u.notes ? `<p>${esc(u.notes)}</p>` : '');
+  }
   if (u.kind === 'part') {
     const p = u.part, pads = S.pads.filter(q => q.ref === p.ref && q.net);
     return `<b>${esc(p.ref)}</b> <span class="meta">${esc(p.title)}${p.package ? ' · ' + esc(p.package) : ''} · ${p.side}</span>` +
@@ -270,7 +358,7 @@ renderer.domElement.addEventListener('pointermove', e => {
   const tip = $('tip');
   if (!hit) { light([]); tip.hidden = true; return; }
   const u = hit.object.userData;
-  light(u.kind === 'part' ? byRef.get(u.ref) : u.net && u.net !== 'GND' ? byNet.get(u.net) : [hit.object]);
+  light(u.kind === 'implant' ? [hit.object] : u.kind === 'part' ? byRef.get(u.ref) : u.net && u.net !== 'GND' ? byNet.get(u.net) : [hit.object]);
   tip.innerHTML = describe(u);
   tip.hidden = false;
   tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
@@ -285,7 +373,7 @@ addEventListener('resize', () => {
 });
 $('loading').remove();
 renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
-window.__viewer = { camera, controls, view, pickable };
+window.__viewer = { camera, controls, view, pickable, implantGroups };
 </script>
 </body>
 </html>
