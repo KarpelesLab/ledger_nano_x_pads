@@ -27,6 +27,13 @@
   .k-pad, .k-via { fill: rgba(251, 146, 60, .35); stroke: #fb923c; stroke-width: calc(var(--px) * 1.5); }
   .k-pad.nonet { fill: rgba(148, 163, 184, .3); stroke: #94a3b8; }
   .k-fill { fill: rgba(251, 146, 60, .18); fill-rule: evenodd; stroke: rgba(251, 146, 60, .5); stroke-width: calc(var(--px) * 1); pointer-events: none; }
+  .k-issue { fill: none; stroke: #ef4444; stroke-width: calc(var(--px) * 3); pointer-events: none; }
+  .k-issue.current { stroke: #fff; stroke-width: calc(var(--px) * 5); }
+  #issues summary { cursor: pointer; }
+  #issues ol { margin: 4px 0; padding-left: 22px; max-height: 40vh; overflow-y: auto; font-size: 12px; }
+  #issues li { cursor: pointer; padding: 2px 0; color: #ddd; }
+  #issues li:hover, #issues li.current { color: #ffd43b; }
+  #issues .kind { color: #f87171; }
   .k-edge { fill: none; stroke: #facc15; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 8); pointer-events: none; }
   .k-item.hover { opacity: 1; stroke: #fff; }
   .k-track.hover { stroke: #fff; }
@@ -131,6 +138,10 @@
   <label><input type="checkbox" id="opt-flip"> Mirror vertically</label>
   <label><input type="checkbox" id="opt-traces" checked> Show traces and test pads</label>
   <label><input type="checkbox" id="opt-kicad"> Show KiCad reconstruction</label>
+  <details id="issues" hidden>
+    <summary id="issues-title">KiCad issues</summary>
+    <ol id="issues-list"></ol>
+  </details>
   <label><input type="checkbox" id="opt-edit"> Edit traces</label>
   <button id="reset">Reset zoom</button>
   <ul>
@@ -523,6 +534,49 @@
     return g ? g.item : null;
   }
 
+  // ---- KiCad issues: overlaps and missing connections found by its design rule check ----
+
+  let currentIssue = null;
+  // trace numbers stand in for unnamed nets in KiCad (Net-T12 is trace 12)
+  const friendly = s => s.replace(/Net-T(\d+)/g, 'trace $1');
+
+  function setupIssues() {
+    const list = window.KICAD?.issues || [];
+    if (!list.length) return;
+    $('issues').hidden = false;
+    $('issues-title').textContent = `KiCad issues (${list.length}): click one to zoom on it`;
+    list.forEach((it, i) => {
+      const li = document.createElement('li');
+      const kind = document.createElement('span');
+      kind.className = 'kind';
+      kind.textContent = it.kind === 'overlap' ? 'overlap' : 'not connected';
+      li.append(kind, ` (${it.side}): ` + friendly(it.items.join(it.kind === 'overlap' ? ' touches ' : ' to ')));
+      li.onclick = () => focusIssue(i);
+      $('issues-list').append(li);
+    });
+  }
+
+  // centre the view on image point (x, y) of the given side, zoomed in
+  function focusOn(x, y, s, zoom = 10) {
+    if (s !== side()) toggle();
+    const W = view.clientWidth, H = view.clientHeight, k = fit();
+    let sx = (W - IMG_W * k) / 2 + x * k, sy = (H - IMG_H * k) / 2 + y * k;
+    if (stack.classList.contains('flipped')) sy = H - sy;
+    scale = zoom;
+    tx = W / 2 - scale * sx;
+    ty = H / 2 - scale * sy;
+    apply();
+  }
+
+  function focusIssue(i) {
+    currentIssue = i;
+    const it = KICAD.issues[i];
+    if (!optKicad.checked) optKicad.click();
+    focusOn(it.at[0], it.at[1], it.side);
+    [...$('issues-list').children].forEach((li, j) => li.classList.toggle('current', j === i));
+    render();
+  }
+
   // the KiCad reconstruction of the side shown, from kicad/overlay.js
   function renderKicad() {
     klayer.replaceChildren();
@@ -530,6 +584,11 @@
     // copper pours first, so tracks and pads draw over them
     for (const d of KICAD.fill?.[side()] || []) klayer.append(el('path', { class: 'k-fill', d }));
     for (const [a, b] of KICAD.outline) klayer.append(el('line', { class: 'k-edge', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
+    (KICAD.issues || []).forEach((it, i) => {
+      if (it.side !== side()) return;
+      klayer.append(el('circle', { class: 'k-issue' + (i === currentIssue ? ' current' : ''), cx: it.at[0], cy: it.at[1], r: 45 }));
+      if (it.to) klayer.append(el('line', { class: 'k-issue', x1: it.at[0], y1: it.at[1], x2: it.to[0], y2: it.to[1] }));
+    });
     for (const k of KICAD[side()]) {
       let e;
       if (k.t === 'track') e = el('line', { class: 'k-item k-track', x1: k.a[0], y1: k.a[1], x2: k.b[0], y2: k.b[1], 'stroke-width': k.w });
@@ -882,6 +941,7 @@
 
   apply();
   updateLabel();
+  setupIssues();
   render();
   updateEditor();
 </script>

@@ -25,6 +25,40 @@ def L(mm):
     return round(mm * d.PX_PER_MM, 1)
 
 
+def drc_issues():
+    """KiCad's design rule check, reduced to what matters for the reconstruction: copper of two nets
+    touching, and items that should be connected but are not. One entry per pair of items."""
+    import re
+    import subprocess
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        rep = os.path.join(tmp, "drc.json")
+        subprocess.run(["kicad-cli", "pcb", "drc", "--format", "json", "-o", rep, os.path.join(HERE, "nanox.kicad_pcb")],
+                       capture_output=True)
+        r = json.load(open(rep))
+    def short(desc):
+        return re.sub(r", length [\d.]+ mm| on [FB]\.Cu.*| on F\.Cu - .*| on B\.Cu - .*", "", desc)
+    def at(item):
+        return [round(item["pos"]["x"] * d.PX_PER_MM), round(d.IMG_H - item["pos"]["y"] * d.PX_PER_MM)]
+    issues, seen = [], set()
+    for v in r["violations"]:
+        if v["type"] != "shorting_items":
+            continue
+        items = [short(i["description"]) for i in v["items"]]
+        key = tuple(sorted(items))
+        if key in seen:
+            continue
+        seen.add(key)
+        side = "front" if "F.Cu" in v["items"][0]["description"] else "back"
+        issues.append({"kind": "overlap", "side": side, "at": at(v["items"][0]), "items": items})
+    for v in r["unconnected_items"]:
+        items = [short(i["description"]) for i in v["items"]]
+        side = "front" if "F.Cu" in v["items"][0]["description"] else "back"
+        issues.append({"kind": "unconnected", "side": side, "at": at(v["items"][0]), "to": at(v["items"][-1]), "items": items})
+    issues.sort(key=lambda i: (i["kind"], i["side"], i["at"][0]))
+    return issues
+
+
 def main():
     board = pcbnew.LoadBoard(os.path.join(HERE, "nanox.kicad_pcb"))
     out = {"front": [], "back": [], "outline": []}
@@ -71,6 +105,7 @@ def main():
     for s in board.GetDrawings():
         if s.GetLayer() == pcbnew.Edge_Cuts and s.GetShape() == pcbnew.SHAPE_T_SEGMENT:
             out["outline"].append([px(s.GetStart()), px(s.GetEnd())])
+    out["issues"] = drc_issues()
     path = os.path.join(HERE, "overlay.js")
     with open(path, "w") as f:
         f.write("// KiCad reconstruction for flip.html, exported from nanox.kicad_pcb by export_overlay.py.\n")
