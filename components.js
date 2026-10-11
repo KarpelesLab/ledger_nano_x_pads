@@ -82,6 +82,10 @@ window.COMPONENTS = [
    "notes":"Black part marked P near the USB port, like P1; most likely ESD protection. Pads named by end; cathode side not known","outline":[[817,1080],[977,1080],[977,1183],[817,1183]],"pads":[
     {"id":"L","name":"","polygon":[[817,1080],[865,1080],[865,1183],[817,1183]]},
     {"id":"R","name":"","polygon":[[929,1080],[977,1080],[977,1183],[929,1183]]}]},
+  {"id":"P5","part":"likely an ESD protection diode, marked P","package":"black, ~1.9 x 1.15 mm, 2 terminals","side":"front",
+   "notes":"Black part marked P near the USB port, like P1; most likely ESD protection. Pads named by end; cathode side not known","outline":[[570,1883],[727,1883],[727,1980],[570,1980]],"pads":[
+    {"id":"L","name":"","polygon":[[570,1883],[617,1883],[617,1980],[570,1980]]},
+    {"id":"R","name":"","polygon":[[680,1883],[727,1883],[727,1980],[680,1980]]}]},
   {"id":"X2","part":"unknown, marked 2GC","package":"3 pins, shiny, ~1.2 x 0.8 mm","side":"front",
    "notes":"Small shiny 3-pin part right of R35, marked 2GC: two small pads on one side and a larger one on the other in the bare photo; type unknown",
    "corners":[[1362,1942],[1465,1942],[1465,2010],[1362,2010]]},
@@ -106,6 +110,19 @@ window.COMPONENTS = [
     {"id":"TR","name":"","polygon":[[5175,1268],[5245,1268],[5245,1322],[5175,1322]]},
     {"id":"BL","name":"","polygon":[[5015,1518],[5085,1518],[5085,1572],[5015,1572]]},
     {"id":"BR","name":"","polygon":[[5175,1518],[5245,1518],[5245,1572],[5175,1572]]}]},
+  {"id":"X9","part":"unknown, marked P8W 26","package":"3 terminals, SOT-23 style, ~1.3 x 2.9 mm body","side":"front",
+   "notes":"Wide black 3-terminal part marked P8W 26: two pads on its left side, one on its right (in the front photo). Pads named by position as pin numbering is not known","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
+    {"id":"TL","name":"","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
+    {"id":"BL","name":"","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
+    {"id":"R","name":"","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
+  {"id":"X10","part":"unknown, marked 1C4F, likely a switching regulator for the +3.3V rail","package":"6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body","side":"front",
+   "notes":"Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 input, L3 +3.3V output, R1 switch node to L1, R2 GND (confirmed), R3 feedback via R25/R26","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
+    {"id":"L1","name":"","polygon":[[4806,1484],[4903,1484],[4903,1541],[4806,1541]]},
+    {"id":"L2","name":"","polygon":[[4806,1566],[4903,1566],[4903,1623],[4806,1623]]},
+    {"id":"L3","name":"","polygon":[[4806,1648],[4903,1648],[4903,1705],[4806,1705]]},
+    {"id":"R1","name":"","polygon":[[5046,1484],[5139,1484],[5139,1541],[5046,1541]]},
+    {"id":"R2","name":"GND","polygon":[[5046,1566],[5139,1566],[5139,1623],[5046,1623]]},
+    {"id":"R3","name":"","polygon":[[5046,1648],[5139,1648],[5139,1705],[5046,1705]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},

@@ -74,5 +74,6 @@ window.PASSIVES = [
   {"id":"C35","kind":"C","side":"front","box":[976,1600,94,28],"axis":"h","notes":"Decoupling capacitor on STUSB4500L pin 23 (VREG_2V7, 1 uF typ. per datasheet) to ground; was R36, its body is dark brown rather than black. Added by hand"},
   {"id":"R37","kind":"R","side":"front","box":[2977,955,90,53],"axis":"h","notes":"Resistor below R18; added by hand after the automatic pass missed it"},
   {"id":"X7","kind":"X","side":"front","box":[3040,1892,55,100],"axis":"v","notes":"Grey two-terminal part at the end of HSE crystal OUT, past Y1; most likely that crystal's load capacitor (C0G types are grey), not confirmed. Added by hand"},
-  {"id":"X8","kind":"X","side":"front","box":[2706,1905,62,98],"axis":"v","notes":"Grey two-terminal part on HSE crystal IN, left of Y1, mirroring X7; most likely the crystal's other load capacitor (C0G types are grey), not confirmed. Added by hand"}
+  {"id":"X8","kind":"X","side":"front","box":[2706,1905,62,98],"axis":"v","notes":"Grey two-terminal part on HSE crystal IN, left of Y1, mirroring X7; most likely the crystal's other load capacitor (C0G types are grey), not confirmed. Added by hand"},
+  {"id":"C36","kind":"C","side":"front","box":[1166,1595,84,36],"axis":"h","notes":"0201 capacitor below the STUSB4500L; added by hand"}
 ];
