@@ -1089,7 +1089,7 @@
    (symbol "TP04_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP04_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "MCU PB7" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP05" (in_bom yes) (on_board yes)
@@ -1109,7 +1109,7 @@
    (symbol "TP06_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP06_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BAT-?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP07" (in_bom yes) (on_board yes)
@@ -1117,9 +1117,9 @@
    (property "Value" "nanox:TP07" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "TP07_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -8.89 2.54) (end 8.89 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP07_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 0.00 0) (length 2.54) (name "Switched supply?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP08" (in_bom yes) (on_board yes)
@@ -1179,7 +1179,7 @@
    (symbol "TP13_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP13_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "PWR1 pin 12" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP14" (in_bom yes) (on_board yes)
@@ -1189,7 +1189,7 @@
    (symbol "TP14_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP14_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "VBAT?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP15" (in_bom yes) (on_board yes)
@@ -1197,9 +1197,9 @@
    (property "Value" "nanox:TP15" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "TP15_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -8.89 2.54) (end 8.89 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP15_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 0.00 0) (length 2.54) (name "PWR1 to MCU PA2?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP16" (in_bom yes) (on_board yes)
@@ -1209,7 +1209,7 @@
    (symbol "TP16_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP16_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "MCU PB3" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP17" (in_bom yes) (on_board yes)
@@ -1229,7 +1229,7 @@
    (symbol "TP18_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP18_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "PWR1 pin 15" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP19" (in_bom yes) (on_board yes)
@@ -1267,9 +1267,9 @@
    (property "Value" "nanox:TP22" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "TP22_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -11.43 2.54) (end 11.43 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP22_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -13.97 0.00 0) (length 2.54) (name "Supply sense (MCU PA1)" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP23" (in_bom yes) (on_board yes)
@@ -1299,7 +1299,7 @@
    (symbol "TP25_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP25_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "MCU PA5" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP26" (in_bom yes) (on_board yes)
@@ -1419,7 +1419,7 @@
    (symbol "TP37_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP37_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BTB pin 9" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP38" (in_bom yes) (on_board yes)
@@ -1427,9 +1427,9 @@
    (property "Value" "nanox:TP38" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "TP38_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -8.89 2.54) (end 8.89 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP38_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 0.00 0) (length 2.54) (name "Regulator input?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP39" (in_bom yes) (on_board yes)
