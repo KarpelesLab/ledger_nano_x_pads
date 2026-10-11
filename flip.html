@@ -28,10 +28,15 @@
   .trace .via { fill: none; stroke-width: calc(var(--px) * 2); opacity: .6; pointer-events: all; }
   .trace.hover .line, .trace.selected .line, .trace.hover .via, .trace.selected .via { opacity: 1; }
   .trace.hover .ghost, .trace.selected .ghost { display: inline; opacity: .7; }
+  /* pins: connection points without a drawn track, e.g. ground */
+  .trace .pin { stroke: #000; stroke-width: calc(var(--px) * 1.5); opacity: .8; pointer-events: all; }
+  .trace.hover .pin, .trace.selected .pin { stroke: #fff; opacity: 1; }
+  .trace .ghost-pin { fill: none; stroke-width: calc(var(--px) * 1.5); stroke-dasharray: calc(var(--px) * 3); display: none; }
+  .trace.hover .ghost-pin, .trace.selected .ghost-pin { display: inline; opacity: .7; }
   .trace.hover .halo { opacity: .85; }
   .trace.selected .halo { stroke: #ff0; opacity: .85; }
   #view:not(.editing) .trace { cursor: help; }
-  .pad circle { fill: transparent; stroke: #22d3ee; stroke-width: calc(var(--px) * 2); pointer-events: all; }
+  .pad :is(circle, polygon) { fill: transparent; stroke: #22d3ee; stroke-width: calc(var(--px) * 2); pointer-events: all; }
   .pad text {
     fill: #22d3ee; font-family: sans-serif; font-weight: bold; text-anchor: middle; dominant-baseline: central;
     stroke: #000; stroke-width: calc(var(--px) * 2); paint-order: stroke; pointer-events: none;
@@ -39,8 +44,12 @@
   }
   #stack.flipped .pad text { transform: scaleY(-1); }
   /* the annotated photos already show the pad numbers */
-  #traces.annotated .pad text { display: none; }
-  .pad.hover circle { stroke: #fff; stroke-width: calc(var(--px) * 4); }
+  #traces.annotated .pad:not(.chip-pin) text { display: none; }
+  /* chips: outline and pins, which otherwise behave like test pads */
+  .chip { fill: none; stroke: #f472b6; stroke-width: calc(var(--px) * 1.5); stroke-dasharray: calc(var(--px) * 6); pointer-events: none; }
+  .pad.chip-pin :is(circle, polygon) { stroke: #f472b6; stroke-width: calc(var(--px) * 1.5); }
+  .pad.chip-pin text { fill: #f472b6; }
+  .pad.hover :is(circle, polygon) { stroke: #fff; stroke-width: calc(var(--px) * 4); }
   #view:not(.editing) .pad { cursor: help; }
   #draft polyline { stroke: #fff; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 6); }
   #draft circle { fill: #fff; r: calc(var(--px) * 3); }
@@ -111,6 +120,7 @@
     <button id="via" title="make the last point a via and continue on the other side">Via at last point</button>
     <button id="new">New trace</button>
     <button id="merge" title="then click another trace to fold it into the selected one">Merge another trace in</button>
+    <label><input type="checkbox" id="opt-pins"> Place pins (<kbd>P</kbd>)</label>
     <form id="fields" class="fields" hidden>
       <span>Name</span><input id="f-name" placeholder="e.g. USB_D+">
       <span>Purpose</span><input id="f-purpose" placeholder="what it carries / connects">
@@ -120,11 +130,13 @@
         <button type="button" id="del">Delete trace</button></span>
     </form>
     <button id="download">Download traces.js</button>
-    <button id="copy">Copy traces.js</button>
-    <div id="draft-note" hidden>Unsaved changes: download or copy traces.js and replace the file next to flip.html;
-      reloading the page discards them.</div>
+    <button id="copy" title="copy only the traces added, changed or removed since the page loaded or the last copy">Copy changes</button>
+    <div id="draft-note" hidden>Unsaved changes: download traces.js and replace the file next to flip.html, or copy
+      the changes; reloading the page discards them.</div>
     <ul>
       <li>Click the board to place points on the side shown, <kbd>Enter</kbd> to finish the segment</li>
+      <li>Place pins: each click marks a connection point of the selected trace without drawing
+        copper, e.g. everything going to a ground fill; click a pin again to remove it</li>
       <li><kbd>Backspace</kbd>: undo point, <kbd>Esc</kbd>: cancel segment / deselect</li>
       <li><kbd>V</kbd> with the cursor on a via, or <kbd>Shift</kbd>+click it: place a via and continue on the other side</li>
       <li>Click a trace to select and edit it; click on it again to start a branch there</li>
@@ -135,6 +147,7 @@
   </div>
 </details>
 <script src="pads.js"></script>
+<script src="components.js"></script>
 <script src="traces.js"></script>
 <script>
   const IMG_W = 5376, IMG_H = 3024;
@@ -154,13 +167,18 @@
   const optFlip = $('opt-flip');
   const optTraces = $('opt-traces');
   const optEdit = $('opt-edit');
+  const optPins = $('opt-pins');
   let shown = 0, scale = 1, tx = 0, ty = 0;
 
   // the board's fixed test pads, and the traces from traces.js; edits live only in this page
   // until saved back to that file
-  const pads = window.PADS || [];
+  // chip pins from components.js join the test pads: they snap, connect and highlight the same way
+  const chips = window.COMPONENTS || [];
+  const pads = [...(window.PADS || []), ...chips.flatMap(chipPins)];
   let traces = window.TRACES || [];
   let dirty = false;
+  // what "Copy changes" compares against: the traces as loaded, then as of the last copy
+  let baseline = snapshot();
   // hovered is a trace or pad; selected is the trace being edited;
   // drawing is the segment being placed: { side, points }
   let hovered = null, selected = null, drawing = null, cursorPt = null;
@@ -247,28 +265,85 @@
       }
       // vias go through the board, so they show on both sides
       for (const [cx, cy] of t.vias || []) g.append(el('circle', { class: 'via', cx, cy, r: 22, stroke }));
+      for (const pin of t.pins || []) {
+        const on = pin.side === s;
+        here ||= on;
+        g.append(el('circle', { class: on ? 'pin' : 'ghost-pin', cx: pin.x, cy: pin.y, r: 18, [on ? 'fill' : 'stroke']: stroke }));
+      }
       if (here || t.vias?.length) layer.append(g);
     });
     padLayer.replaceChildren();
+    for (const c of chips) if (c.side === s && pinCounts(c)) padLayer.append(el('polygon', { class: 'chip', points: c.corners.join(' ') }));
     for (const p of pads) {
       if (p.side !== s) continue;
-      const g = el('g', { class: 'pad' });
+      const g = el('g', { class: p.chip ? 'pad chip-pin' : 'pad' });
       g.item = p;
-      const text = el('text', { x: p.x, y: p.y, 'font-size': (p.r || 45) * .9 });
+      const text = el('text', { x: p.x, y: p.y, 'font-size': Math.min((p.r || 45) * .9, 60) });
       text.textContent = p.id;
-      g.append(el('circle', { cx: p.x, cy: p.y, r: p.r || 45 }), text);
+      g.append(p.poly ? el('polygon', { points: p.poly.join(' ') }) : el('circle', { cx: p.x, cy: p.y, r: p.r || 45 }), text);
       padLayer.append(g);
     }
     markHover();
     renderDraft();
   }
 
+  function padLabel(p) {
+    if (!p.chip) return `Test pad ${p.id}`;
+    return p.body ? p.chip.id : `${p.chip.id} ${p.poly ? 'pad' : 'pin'} ${p.id}`;
+  }
+
+  // whether image point (x, y) lies on pad p: inside its polygon, or within its radius
+  function onPad(p, x, y) {
+    if (!p.poly) return Math.hypot(x - p.x, y - p.y) <= (p.r || 45);
+    let inside = false;
+    for (let i = 0, j = p.poly.length - 1; i < p.poly.length; j = i++) {
+      const [xi, yi] = p.poly[i], [xj, yj] = p.poly[j];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+
+  // pins of a QFN chip c, computed from its outline corners: pin 1 is next to the first corner and
+  // numbering runs along the first edge and on around the package; each pin sits on the body edge
+  function chipPins(c) {
+    const polyPad = (id, name, notes, polygon, extra) => {
+      const xs = polygon.map(v => v[0]), ys = polygon.map(v => v[1]);
+      return { id, name: name || '', notes: notes || '', side: c.side, poly: polygon, chip: c, ...extra,
+               x: Math.round(xs.reduce((a, b) => a + b) / xs.length), y: Math.round(ys.reduce((a, b) => a + b) / ys.length),
+               r: Math.round(Math.min(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) / 2) };
+    };
+    // a component made of drawn pads, like the battery contacts
+    if (c.pads) return c.pads.map(q => polyPad(q.id, q.name, q.notes, q.polygon));
+    // a component whose pins are not known yet: its whole body acts as one pad
+    if (!pinCounts(c)) return [polyPad(c.id, '', c.notes, c.corners, { body: true })];
+    // size is the body in mm, square or [first edge, second edge]; pins per edge, in corner order
+    const C = c.corners, [W, H] = [].concat(c.size, c.size), counts = pinCounts(c);
+    const at = (u, v) => [0, 1].map(k =>
+      Math.round((1 - u) * (1 - v) * C[0][k] + u * (1 - v) * C[1][k] + u * v * C[2][k] + (1 - u) * v * C[3][k]));
+    const pxPerMm = C.reduce((sum, p, i) => sum + Math.hypot(...[0, 1].map(k => C[(i + 1) % 4][k] - p[k])) / (i % 2 ? H : W), 0) / 4;
+    const pin = (id, [x, y], r) => ({ id, name: c.pinNames?.[id] || '', notes: '', side: c.side, x, y, r, chip: c });
+    const out = [];
+    for (let e = 0; e < 4; e++) {
+      const n = counts[e], L = e % 2 ? H : W;
+      for (let j = 0; j < n; j++) {
+        const t = (L / 2 - (n - 1) / 2 * c.pitch + j * c.pitch) / L;
+        const uv = [[t, 0], [1, t], [1 - t, 1], [0, 1 - t]][e];
+        out.push(pin(String(out.length + 1), at(...uv), Math.round(c.pitch / 2 * pxPerMm)));
+      }
+    }
+    if (c.exposedPad) out.push(pin('EP', at(.5, .5), Math.round(c.exposedPad / 2 * pxPerMm)));
+    return out;
+  }
+
+  // pins on each edge of a chip, following its corners: pinCounts, or pinsPerSide on all four
+  function pinCounts(c) { return c.pinCounts || (c.pinsPerSide && Array(4).fill(c.pinsPerSide)); }
+
   function samePoint(a, b) { return a[0] === b[0] && a[1] === b[1]; }
 
   // a trace connects to a pad when one of its points on the pad's side lies within the pad
   function connected(t, p) {
-    const r = p.r || 45;
-    return t.paths.some(q => q.side === p.side && q.points.some(([x, y]) => Math.hypot(x - p.x, y - p.y) <= r));
+    return t.paths.some(q => q.side === p.side && q.points.some(([x, y]) => onPad(p, x, y))) ||
+      (t.pins || []).some(q => q.side === p.side && onPad(p, q.x, q.y));
   }
 
   // highlight the hovered item along with the pads or traces it connects to
@@ -282,7 +357,7 @@
   // snap to a test pad on the side shown or any via under pt
   function snap(pt) {
     const near = (x, y, r) => Math.hypot(pt[0] - x, pt[1] - y) <= r;
-    for (const p of pads) if (p.side === side() && near(p.x, p.y, p.r || 45)) return [p.x, p.y];
+    for (const p of pads) if (p.side === side() && onPad(p, ...pt)) return p.poly ? pt : [p.x, p.y];
     for (const t of traces) for (const v of t.vias || []) if (near(v[0], v[1], 30)) return v.slice();
     // otherwise the nearest trace within reach, where traces run close together
     let best = null;
@@ -299,6 +374,10 @@
     for (const v of t.vias || []) {
       const d = Math.hypot(v[0] - pt[0], v[1] - pt[1]);
       if (d <= 30) return { q: v.slice(), d };
+    }
+    for (const p of t.pins || []) {
+      const d = Math.hypot(p.x - pt[0], p.y - pt[1]);
+      if (p.side === s && d <= 20) return { q: [p.x, p.y], d };
     }
     let best = null, bd = Math.max(t.width || 20, 14 / (fit() * scale)) / 2;
     for (const p of t.paths) {
@@ -319,7 +398,7 @@
   function touches(t, pt, s = side()) {
     const o = onTrace(t, pt, s);
     if (o && o.d <= 2) return true;
-    const p = pads.find(p => p.side === s && samePoint([p.x, p.y], pt));
+    const p = pads.find(p => p.side === s && (p.poly ? onPad(p, ...pt) : samePoint([p.x, p.y], pt)));
     return !!p && connected(t, p);
   }
 
@@ -346,16 +425,17 @@
     meta.className = 'meta';
     let texts;
     if (pads.includes(t)) {
-      b.textContent = `Test pad ${t.id}` + (t.name ? ` · ${t.name}` : '');
+      b.textContent = padLabel(t) + (t.name ? ` · ${t.name}` : '');
       const names = traces.filter(x => connected(x, t)).map(x => x.name || '(unnamed trace)');
-      meta.textContent = t.side + (names.length ? ' · traces: ' + names.join(', ') : ' · no traces yet');
+      meta.textContent = (t.chip ? `${t.chip.part} (${t.chip.package}) · ` : '') + t.side + (names.length ? ' · traces: ' + names.join(', ') : ' · no traces yet');
       texts = [t.notes];
     } else {
-      const sides = [...new Set(t.paths.map(p => p.side))].join(' + ');
-      const vias = t.vias?.length || 0;
-      const ids = pads.filter(p => connected(t, p)).map(p => p.id);
+      const sides = [...new Set([...t.paths, ...t.pins || []].map(p => p.side))].join(' + ');
+      const vias = t.vias?.length || 0, pins = t.pins?.length || 0;
+      const ids = pads.filter(p => connected(t, p)).map(p => p.chip ? `${p.chip.id} ${p.id}` : p.id);
       b.textContent = t.name || '(unnamed trace)';
       meta.textContent = 'side: ' + sides + (vias ? ` · ${vias} via${vias > 1 ? 's' : ''}` : '') +
+        (pins ? ` · ${pins} pin${pins > 1 ? 's' : ''}` : '') +
         (ids.length ? ` · pad${ids.length > 1 ? 's' : ''} ${ids.join(', ')}` : '');
       texts = [t.purpose, t.notes];
     }
@@ -386,6 +466,22 @@
     dirty = true;
     render();
     updateEditor();
+  }
+
+  function snapshot() { return new Map(traces.map((t, i) => [t, { n: i + 1, json: JSON.stringify(t) }])); }
+
+  // the traces added, changed or removed since the baseline, numbered as they were then
+  function serializeChanges() {
+    const label = (n, t) => `trace ${n}` + (t.name ? ` (${t.name})` : '');
+    const added = [], changed = [], removed = [];
+    for (const t of traces) {
+      const b = baseline.get(t), json = JSON.stringify(t);
+      if (!b) added.push('  ' + json);
+      else if (b.json !== json) changed.push(`// changed ${label(b.n, t)}:\n  ${json}`);
+    }
+    for (const [t, b] of baseline) if (!traces.includes(t)) removed.push(`// removed ${label(b.n, t)}`);
+    return `// Trace changes from flip.html: ${added.length} new, ${changed.length} changed, ${removed.length} removed\n` +
+      [...changed, ...removed, ...(added.length ? ['// new:', ...added] : [])].join('\n') + '\n';
   }
 
   function serialize() {
@@ -469,11 +565,34 @@
     changed();
   }
 
-  function editClick(e, hit) {
+  // add a pin to the selected trace at pt, or remove the one already there
+  function togglePin(pt) {
+    if (drawing) finishSegment();
+    const s = side();
+    const i = selected ? (selected.pins || []).findIndex(p => p.side === s && Math.hypot(p.x - pt[0], p.y - pt[1]) <= 20) : -1;
+    if (i >= 0) selected.pins.splice(i, 1);
+    else (ensureTrace().pins ||= []).push({ side: s, x: pt[0], y: pt[1] });
+    changed();
+  }
+
+  // pins snap to test pads and vias only, never onto another trace's copper
+  function snapPin(pt) {
+    const near = (x, y, r) => Math.hypot(pt[0] - x, pt[1] - y) <= r;
+    for (const p of pads) if (p.side === side() && onPad(p, ...pt)) return p.poly ? pt : [p.x, p.y];
+    for (const t of traces) for (const v of t.vias || []) if (near(v[0], v[1], 30)) return v.slice();
+    return pt;
+  }
+
+  function editClick(e, hit, onPin) {
     if (merging) {
       merging = false;
       if (hit && !pads.includes(hit) && hit !== selected) return merge(hit);
       return updateEditor();
+    }
+    if (optPins.checked) {
+      // clicking another trace's pin selects that trace, so its pins can be edited
+      if (onPin && hit !== selected) return select(hit);
+      return togglePin(snapPin(toImage(e.clientX, e.clientY)));
     }
     const pt = snap(toImage(e.clientX, e.clientY));
     if (e.shiftKey) return placeVia(pt);
@@ -492,6 +611,8 @@
     const target = selected ? `“${selected.name || 'unnamed trace'}”` : 'a new trace';
     $('edit-status').textContent = merging
       ? `Click the trace to merge into ${target}`
+      : optPins.checked
+      ? `Click to add a pin to ${target}, or click a pin to remove it`
       : drawing
       ? `Drawing on ${drawing.side} (${drawing.points.length} points), adding to ${target}`
       : selected
@@ -523,6 +644,11 @@
   $('via').addEventListener('click', () => placeVia());
   $('new').addEventListener('click', () => { if (drawing) finishSegment(); select(null); });
   $('merge').addEventListener('click', () => { merging = true; updateEditor(); });
+  optPins.addEventListener('change', () => {
+    if (drawing) finishSegment();
+    updateEditor();
+    optPins.blur();
+  });
   $('pop-seg').addEventListener('click', () => {
     selected.paths.pop();
     // drop vias no longer at the end of any segment
@@ -545,7 +671,11 @@
     saved();
   });
   $('copy').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(serialize()); saved(); }
+    try {
+      await navigator.clipboard.writeText(serializeChanges());
+      baseline = snapshot();
+      saved();
+    }
     catch (e) { alert('Copy failed, use Download instead: ' + e); }
   });
   function saved() { dirty = false; updateEditor(); }
@@ -598,7 +728,7 @@
     // Ctrl+click is the Mac right click, which flips via contextmenu
     if (e.button !== 0 || e.ctrlKey) return;
     // pointer capture retargets later events to view, so remember the trace pressed on
-    down = { x: e.clientX, y: e.clientY, tx, ty, hit: itemAt(e.target) };
+    down = { x: e.clientX, y: e.clientY, tx, ty, hit: itemAt(e.target), onPin: e.target.classList.contains('pin') };
     moved = false;
     view.setPointerCapture(e.pointerId);
   });
@@ -621,7 +751,7 @@
   });
   view.addEventListener('pointerup', e => {
     if (down && !moved) {
-      if (editing()) editClick(e, down.hit);
+      if (editing()) editClick(e, down.hit, down.onPin);
       // touch has no hover, so a tap on a trace shows its details instead of flipping
       else if (e.pointerType !== 'mouse' && (down.hit || hovered)) setHover(down.hit, e);
       else toggle();
@@ -657,6 +787,7 @@
     else if (e.key === 'e') toggleVariant();
     else if (e.key === 'f') flipAt(view.clientHeight / 2);
     else if (e.key === 't') optTraces.click();
+    else if (e.key === 'p' && editing()) optPins.click();
     else if (e.key === '0') reset();
   });
   addEventListener('resize', apply);
