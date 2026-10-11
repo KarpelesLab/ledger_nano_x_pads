@@ -49,6 +49,20 @@
   .chip { fill: none; stroke: #f472b6; stroke-width: calc(var(--px) * 1.5); stroke-dasharray: calc(var(--px) * 6); pointer-events: none; }
   .pad.chip-pin :is(circle, polygon) { stroke: #f472b6; stroke-width: calc(var(--px) * 1.5); }
   .pad.chip-pin text { fill: #f472b6; }
+  /* resistors and capacitors: an outline with their name, and two end pads to connect traces to */
+  .passive { fill: none; stroke-width: calc(var(--px) * 1.5); pointer-events: none; }
+  .passive.R { stroke: #f87171; }
+  .passive.C { stroke: #67e8f9; }
+  text.passive { stroke: #000; stroke-width: calc(var(--px) * 2); paint-order: stroke; font-family: sans-serif;
+                 font-weight: bold; text-anchor: middle; dominant-baseline: central; transform-box: fill-box; transform-origin: center; }
+  text.passive.R { fill: #f87171; }
+  text.passive.C { fill: #67e8f9; }
+  .passive.X { stroke: #e5e7eb; }
+  text.passive.X { fill: #e5e7eb; }
+  #stack.flipped text.passive { transform: scaleY(-1); }
+  .pad.passive-pad :is(circle, polygon) { stroke: transparent; }
+  .pad.passive-pad.hover :is(circle, polygon) { stroke: #fff; }
+  .pad.passive-pad text { display: none; }
   .pad.hover :is(circle, polygon) { stroke: #fff; stroke-width: calc(var(--px) * 4); }
   #view:not(.editing) .pad { cursor: help; }
   #draft polyline { stroke: #fff; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 6); }
@@ -148,6 +162,7 @@
 </details>
 <script src="pads.js"></script>
 <script src="components.js"></script>
+<script src="passives.js"></script>
 <script src="traces.js"></script>
 <script>
   const IMG_W = 5376, IMG_H = 3024;
@@ -173,7 +188,7 @@
   // the board's fixed test pads, and the traces from traces.js; edits live only in this page
   // until saved back to that file
   // chip pins from components.js join the test pads: they snap, connect and highlight the same way
-  const chips = window.COMPONENTS || [];
+  const chips = [...(window.COMPONENTS || []), ...(window.PASSIVES || []).map(passive)];
   const pads = [...(window.PADS || []), ...chips.flatMap(chipPins)];
   let traces = window.TRACES || [];
   let dirty = false;
@@ -274,9 +289,15 @@
     });
     padLayer.replaceChildren();
     for (const c of chips) if (c.side === s && pinCounts(c)) padLayer.append(el('polygon', { class: 'chip', points: c.corners.join(' ') }));
+    for (const c of chips) {
+      if (c.side !== s || !c.passive) continue;
+      const [x, y, w, h] = c.rect, label = el('text', { class: `passive ${c.passive}`, x: x + w / 2, y: y + h / 2, 'font-size': Math.min(w, h) * .6 });
+      label.textContent = c.id;
+      padLayer.append(el('rect', { class: `passive ${c.passive}`, x, y, width: w, height: h }), label);
+    }
     for (const p of pads) {
       if (p.side !== s) continue;
-      const g = el('g', { class: p.chip ? 'pad chip-pin' : 'pad' });
+      const g = el('g', { class: !p.chip ? 'pad' : p.chip.passive ? 'pad passive-pad' : 'pad chip-pin' });
       g.item = p;
       const text = el('text', { x: p.x, y: p.y, 'font-size': Math.min((p.r || 45) * .9, 60) });
       text.textContent = p.id;
@@ -285,6 +306,17 @@
     }
     markHover();
     renderDraft();
+  }
+
+  // a resistor or capacitor from passives.js, as a component with one pad on each end cap
+  function passive(q) {
+    const [x, y, w, h] = q.box, e = Math.round((q.axis === 'h' ? w : h) * .3);
+    const rect = (x0, y0, x1, y1) => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+    const ends = q.axis === 'h' ? [rect(x, y, x + e, y + h), rect(x + w - e, y, x + w, y + h)]
+                                : [rect(x, y, x + w, y + e), rect(x, y + h - e, x + w, y + h)];
+    const part = { R: 'resistor', C: 'capacitor' }[q.kind] || 'unknown two-terminal part';
+    return { id: q.id, part, package: 'two-terminal SMD', side: q.side,
+             passive: q.kind, rect: q.box, notes: q.notes || '', pads: ends.map((polygon, i) => ({ id: String(i + 1), name: '', polygon })) };
   }
 
   function padLabel(p) {
@@ -398,7 +430,8 @@
   function touches(t, pt, s = side()) {
     const o = onTrace(t, pt, s);
     if (o && o.d <= 2) return true;
-    const p = pads.find(p => p.side === s && (p.poly ? onPad(p, ...pt) : samePoint([p.x, p.y], pt)));
+    // a connector or unidentified part outline carries many nets, so landing on it joins nothing
+    const p = pads.find(p => p.side === s && !p.body && (p.poly ? onPad(p, ...pt) : samePoint([p.x, p.y], pt)));
     return !!p && connected(t, p);
   }
 
