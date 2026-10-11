@@ -14,6 +14,14 @@ def slot(x0, x1, edge, depth, down):
     """A U-shaped slot cut into a horizontal edge at y=edge, between x0 and x1, reaching y=depth;
     down is True when the slot goes down from the top edge. Points run left to right."""
     r = (x1 - x0) / 2
+    sag = abs(depth - edge)
+    if sag < r:
+        # shallower than a half circle: a circular arc through both slot ends and the deepest point
+        R = (r * r + sag * sag) / (2 * sag)
+        cx, sgn = (x0 + x1) / 2, 1 if down else -1
+        cy = depth - sgn * R
+        a0 = math.asin(r / R)
+        return [[x0, edge]] + [[cx - R * math.sin(a0 - 2 * a0 * k / 8), cy + sgn * R * math.cos(a0 - 2 * a0 * k / 8)] for k in range(1, 8)] + [[x1, edge]]
     cx, cy = (x0 + x1) / 2, depth - r if down else depth + r
     pts = [[x0, edge], [x0, cy]]
     for k in range(1, 8):
@@ -27,7 +35,7 @@ def main():
            [1344, 740]] + slot(1344, 1434, 740, 910, True)[:-1] + [[1434, 824], [2190, 824], [2190, 740],
            [3765, 740], [3765, 830], [3920, 830], [3920, 744], [4815, 744], [4815, 815], [4905, 815]] +
            slot(4905, 5000, 815, 922, True)[1:-1] + [[5000, 820], [RIGHT, 820]])
-    bottom = ([[LEFT, 2008], [436, 2008]] + slot(436, 520, 2008, 1964, False) + [[520, 2004], [616, 2004], [616, 2074],
+    bottom = ([[LEFT, 2008], [436, 2008]] + slot(436, 520, 2008, 1964, False)[:-1] + [[520, 2004], [616, 2004], [616, 2074],
               [2122, 2074], [2122, 1994], [2405, 1994], [2405, 2076], [4030, 2076], [4030, 1992], [4150, 1992]] +
               slot(4150, 4245, 1992, 1866, False)[1:-1] + [[4245, 2078], [4815, 2078], [4815, 2008], [4905, 2008]] +
               slot(4905, 5000, 2008, 1900, False)[1:-1] + [[5000, 2008], [RIGHT, 2008]])

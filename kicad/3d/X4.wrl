@@ -1,0 +1,7 @@
+#VRML V2.0 utf8
+Shape { appearance Appearance { material Material { diffuseColor 0.93 0.93 0.9 specularColor .2 .2 .2 shininess .3 } }
+ geometry IndexedFaceSet { solid FALSE coord Coordinate { point [ 0.09374 -0.10820 0.00000, 0.09374 0.10820 0.00000, -0.09374 0.10820 0.00000, -0.09374 -0.10820 0.00000, 0.09374 -0.10820 0.16873, 0.09374 0.10820 0.16873, -0.09374 0.10820 0.16873, -0.09374 -0.10820 0.16873 ] } coordIndex [ 3, 2, 1, 0, -1, 4, 5, 6, 7, -1, 0, 1, 5, 4, -1, 1, 2, 6, 5, -1, 2, 3, 7, 6, -1, 3, 0, 4, 7, -1 ] } }
+Shape { appearance Appearance { material Material { diffuseColor 0.82 0.82 0.82 specularColor .2 .2 .2 shininess .3 } }
+ geometry IndexedFaceSet { solid FALSE coord Coordinate { point [ 0.09374 -0.19322 0.00000, 0.09374 -0.10820 0.00000, -0.09374 -0.10820 0.00000, -0.09374 -0.19322 0.00000, 0.09374 -0.19322 0.16873, 0.09374 -0.10820 0.16873, -0.09374 -0.10820 0.16873, -0.09374 -0.19322 0.16873 ] } coordIndex [ 3, 2, 1, 0, -1, 4, 5, 6, 7, -1, 0, 1, 5, 4, -1, 1, 2, 6, 5, -1, 2, 3, 7, 6, -1, 3, 0, 4, 7, -1 ] } }
+Shape { appearance Appearance { material Material { diffuseColor 0.82 0.82 0.82 specularColor .2 .2 .2 shininess .3 } }
+ geometry IndexedFaceSet { solid FALSE coord Coordinate { point [ 0.09374 0.10820 0.00000, 0.09374 0.19322 0.00000, -0.09374 0.19322 0.00000, -0.09374 0.10820 0.00000, 0.09374 0.10820 0.16873, 0.09374 0.19322 0.16873, -0.09374 0.19322 0.16873, -0.09374 0.10820 0.16873 ] } coordIndex [ 3, 2, 1, 0, -1, 4, 5, 6, 7, -1, 0, 1, 5, 4, -1, 1, 2, 6, 5, -1, 2, 3, 7, 6, -1, 3, 0, 4, 7, -1 ] } }

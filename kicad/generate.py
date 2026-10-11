@@ -14,6 +14,7 @@ import pcbnew
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import nanox_data as d  # noqa: E402
+import models3d as m3d  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "nanox.kicad_pcb")
@@ -82,38 +83,86 @@ def chip_angle(c):
     return math.degrees(math.atan2(-(y1 - y0), x1 - x0))
 
 
-def make_footprint(board, ref, value, side, center, pads, outline, nets_by_name, desc=""):
-    cu, pad_layers, silk, fab, crtyd = layers(side)
+def make_footprint(board, ref, value, side, center, pads, outline, nets_by_name, desc="", model=None):
+    """A footprint with pads and outline given in photo pixels. Back-side footprints are built mirrored on
+    the front and then flipped, as KiCad expects, so their 3D models sit under the board. model is a
+    dict: {"lib": path, "rot": degrees, "scale": (x, y, z)} or {"custom": (colour, height, text)} or
+    {"ceramic": (colour, vertical)}."""
+    back = side == "back"
+    cx, cy = center
+    my = (lambda y: 2 * cy - y) if back else (lambda y: y)
     fp = pcbnew.FOOTPRINT(board)
     fp.SetReference(ref)
     fp.SetValue(value)
-    fp.SetLayer(cu)
-    fp.SetPosition(mm(*center))
+    fp.SetLayer(pcbnew.F_Cu)
+    fp.SetPosition(mm(cx, cy))
     fp.SetPath(pcbnew.KIID_PATH("/" + symbol_uuid(ref)))
     if desc:
         fp.SetLibDescription(desc)
     board.Add(fp)
-    fp.Reference().SetLayer(silk)
+    fp.Reference().SetLayer(pcbnew.F_SilkS)
     fp.Reference().SetTextSize(size_mm(0.5, 0.5))
     fp.Reference().SetTextThickness(pcbnew.FromMM(0.08))
-    fp.Reference().SetPosition(mm(*center))
-    fp.Reference().SetMirrored(side == "back")
-    fp.Value().SetLayer(fab)
+    fp.Reference().SetPosition(mm(cx, cy))
+    fp.Value().SetLayer(pcbnew.F_Fab)
     fp.Value().SetVisible(False)
+    front_layers = [pcbnew.F_Cu, pcbnew.F_Mask, pcbnew.F_Paste]
     for p in pads:
         pad = pcbnew.PAD(fp)
         pad.SetNumber(p["number"])
         pad.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
-        pad.SetLayerSet(lset(pad_layers))
+        pad.SetLayerSet(lset(front_layers))
         pad.SetShape(pcbnew.PAD_SHAPE_CIRCLE if p["shape"] == "circle" else pcbnew.PAD_SHAPE_RECT)
         pad.SetSize(size_mm(*p["size"]))
         fp.Add(pad)
-        pad.SetPosition(mm(*p["at"]))
-        pad.SetOrientation(deg(p.get("angle", 0)))
+        pad.SetPosition(mm(p["at"][0], my(p["at"][1])))
+        pad.SetOrientation(deg(-p.get("angle", 0) if back else p.get("angle", 0)))
         if p.get("net"):
             pad.SetNet(nets_by_name[p["net"]])
-    add_poly(fp, outline, fab)
+    local = [((x - cx) / d.PX_PER_MM, (my(y) - cy) / d.PX_PER_MM) for x, y in outline]
+    add_poly(fp, [[x, my(y)] for x, y in outline], pcbnew.F_Fab)
+    if model:
+        m = pcbnew.FP_3DMODEL()
+        if "lib" in model:
+            m.m_Filename = model["lib"]
+            m.m_Rotation = pcbnew.VECTOR3D(0, 0, model.get("rot", 0))
+            sx, sy, sz = model.get("scale", (1, 1, 1))
+            m.m_Scale = pcbnew.VECTOR3D(sx, sy, sz)
+        elif "custom" in model:
+            color, height, text = model["custom"]
+            m.m_Filename = m3d.write_custom(ref, value, local, color, height, text)
+        else:
+            color, vertical = model["ceramic"]
+            xs, ys = [p[0] for p in local], [p[1] for p in local]
+            L, W = (max(ys) - min(ys), max(xs) - min(xs)) if vertical else (max(xs) - min(xs), max(ys) - min(ys))
+            m.m_Filename = m3d.ceramic_model(ref, L, W, vertical, color)
+        fp.Add3DModel(m)
+    if back:
+        fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_TOP_BOTTOM)
     return fp
+
+
+def model_for(c, pts):
+    """The 3D model for component c with outline pts (photo pixels), or None."""
+    cid = c["id"]
+    if c.get("passive"):
+        x, y, w, h = c["rect"]
+        vertical = c["axis"] == "v"
+        if c["passive"] in "RC":
+            return {"lib": m3d.passive_model(c["passive"], max(w, h) / d.PX_PER_MM), "rot": 90 if vertical else 0}
+        # unidentified two-terminal parts: white or grey ceramic bodies
+        white = cid in ("X1", "X4")
+        return {"ceramic": (((.93, .93, .9) if white else (.6, .6, .6)), vertical)}
+    if cid in m3d.LIBRARY:
+        # library QFNs put pin 1 at the top left with pins running down: turn that edge onto ours
+        (x0, y0), (x1, y1) = c["corners"][:2]
+        # KiCad turns 3D models clockwise in the top view for positive angles
+        rot = -math.degrees(math.atan2(x1 - x0, -(y1 - y0)))
+        scale = c["size"] / 3 if cid == "PWR1" else 1
+        return {"lib": m3d.LIB + m3d.LIBRARY[cid], "rot": rot, "scale": (scale, scale, 1)}
+    if cid in m3d.CUSTOM:
+        return {"custom": m3d.CUSTOM[cid]}
+    return None
 
 
 def main():
@@ -180,7 +229,7 @@ def main():
         center = (sum(v[0] for v in pts) / len(pts), sum(v[1] for v in pts) / len(pts))
         value = c.get("part", "") if not c.get("passive") else {"R": "R", "C": "C"}.get(c["passive"], "?")
         make_footprint(board, d.ref(c["id"]), value, c["side"], center, out, pts, nets_by_name,
-                       desc=(c.get("package", "") + "; " + c.get("notes", "")).strip("; "))
+                       desc=(c.get("package", "") + "; " + c.get("notes", "")).strip("; "), model=model_for(c, pts))
 
     # tracks and vias
     for i, t in enumerate(traces):
@@ -209,6 +258,8 @@ def main():
     # ground runs in an inner plane, which the photos cannot show: model it as a filled GND zone on an
     # inner layer, with each ground connection made through the vias and pins we traced
     board.SetCopperLayerCount(4)
+    # measured on the real board
+    board.GetDesignSettings().SetBoardThickness(pcbnew.FromMM(0.6))
 
     def polygon(pts):
         chain = pcbnew.SHAPE_LINE_CHAIN()
