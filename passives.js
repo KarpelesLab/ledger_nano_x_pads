@@ -17,7 +17,7 @@ window.PASSIVES = [
   {"id":"R10","kind":"R","side":"front","box":[1486,1466,60,100],"axis":"v"},
   {"id":"X4","kind":"X","side":"front","box":[1517,1760,50,97],"axis":"v","notes":"Two-terminal part left of PWR2 with a white body, unlike the brown capacitors on this board; was C4. Could be an inductor, ferrite bead or white capacitor"},
   {"id":"R11","kind":"R","side":"front","box":[1584,1213,86,32],"axis":"h"},
-  {"id":"R12","kind":"R","side":"front","box":[1625,1589,46,78],"axis":"v"},
+  {"id":"R12","kind":"R","side":"front","box":[1634,1557,38,110],"axis":"v"},
   {"id":"C5","kind":"C","side":"front","box":[1772,1587,48,98],"axis":"v"},
   {"id":"R13","kind":"R","side":"front","box":[1870,1694,60,100],"axis":"v"},
   {"id":"C6","kind":"C","side":"front","box":[1885,1841,46,78],"axis":"v"},
