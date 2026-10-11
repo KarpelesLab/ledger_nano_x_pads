@@ -76,5 +76,6 @@ window.TRACES = [
   {"name":"","purpose":"","notes":"","width":20,"paths":[{"side":"front","points":[[1399,1730],[1475,1711]]}],"vias":[]},
   {"name":"PD VREG_2V7","purpose":"STUSB4500L pin 23: 2.7 V internal regulator output, decoupled to ground by C35","notes":"","width":20,"paths":[{"side":"front","points":[[1091,1544],[1095,1600]]},{"side":"front","points":[[1095,1600],[1045,1614]]}],"vias":[[1095,1600]]},
   {"name":"","purpose":"","notes":"","width":20,"paths":[{"side":"front","points":[[1409,1272],[1456,1269],[1477,1295],[1476,1373],[1521,1427],[1545,1423],[1557,1439],[1540,1484]]}],"vias":[]},
-  {"name":"","purpose":"","notes":"Split from the pad 38 trace: R25 sits between the two","width":20,"paths":[{"side":"front","points":[[5074,1796],[5075,1752],[5093,1728],[5093,1679],[5196,1675]]}],"vias":[]}
+  {"name":"","purpose":"","notes":"Split from the pad 38 trace: R25 sits between the two","width":20,"paths":[{"side":"front","points":[[5074,1796],[5075,1752],[5093,1728],[5093,1679],[5196,1675]]}],"vias":[]},
+  {"name":"","purpose":"","notes":"","width":20,"paths":[{"side":"back","points":[[1190,1968],[1177,2019]]}],"vias":[[1177,2019]]}
 ];
