@@ -121,8 +121,8 @@
     </form>
     <button id="download">Download traces.js</button>
     <button id="copy">Copy traces.js</button>
-    <div id="draft-note" hidden>Unsaved local draft: download traces.js and replace the file next to flip.html.
-      <button id="discard">Discard draft</button></div>
+    <div id="draft-note" hidden>Unsaved changes: download or copy traces.js and replace the file next to flip.html;
+      reloading the page discards them.</div>
     <ul>
       <li>Click the board to place points on the side shown, <kbd>Enter</kbd> to finish the segment</li>
       <li><kbd>Backspace</kbd>: undo point, <kbd>Esc</kbd>: cancel segment / deselect</li>
@@ -139,7 +139,6 @@
   const IMG_W = 5376, IMG_H = 3024;
   const SVGNS = 'http://www.w3.org/2000/svg';
   const COLORS = ['#ff6b6b', '#4dabf7', '#ffd43b', '#69db7c', '#da77f2', '#ff922b', '#3bc9db', '#f783ac'];
-  const DRAFT_KEY = 'flip-traces-draft';
   const $ = id => document.getElementById(id);
 
   const view = $('view');
@@ -156,10 +155,11 @@
   const optEdit = $('opt-edit');
   let shown = 0, scale = 1, tx = 0, ty = 0;
 
-  // the board's fixed test pads, and the traces with any local draft of unsaved edits
+  // the board's fixed test pads, and the traces from traces.js; edits live only in this page
+  // until saved back to that file
   const pads = window.PADS || [];
-  const fileTraces = window.TRACES || [];
-  let traces = loadTraces();
+  let traces = window.TRACES || [];
+  let dirty = false;
   // hovered is a trace or pad; selected is the trace being edited;
   // drawing is the segment being placed: { side, points }
   let hovered = null, selected = null, drawing = null, cursorPt = null;
@@ -364,29 +364,10 @@
 
   // ---- trace data and editing ----
 
-  function loadTraces() {
-    try {
-      const d = localStorage.getItem(DRAFT_KEY);
-      if (d) {
-        // a draft matching traces.js has been saved already
-        if (d === JSON.stringify(fileTraces)) localStorage.removeItem(DRAFT_KEY);
-        else {
-          const v = JSON.parse(d);
-          if (Array.isArray(v)) return v;
-        }
-      }
-    } catch (e) {}
-    return structuredClone(fileTraces);
-  }
-
   function changed() {
-    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(traces)); } catch (e) {}
+    dirty = true;
     render();
     updateEditor();
-  }
-
-  function hasDraft() {
-    try { return localStorage.getItem(DRAFT_KEY) !== null; } catch (e) { return false; }
   }
 
   function serialize() {
@@ -463,7 +444,7 @@
   function updateEditor() {
     $('editor').hidden = !editing();
     view.classList.toggle('editing', editing());
-    $('draft-note').hidden = !hasDraft();
+    $('draft-note').hidden = !dirty;
     const target = selected ? `“${selected.name || 'unnamed trace'}”` : 'a new trace';
     $('edit-status').textContent = merging
       ? `Click the trace to merge into ${target}`
@@ -515,19 +496,16 @@
     a.download = 'traces.js';
     a.click();
     URL.revokeObjectURL(a.href);
+    saved();
   });
   $('copy').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(serialize()); }
+    try { await navigator.clipboard.writeText(serialize()); saved(); }
     catch (e) { alert('Copy failed, use Download instead: ' + e); }
   });
-  $('discard').addEventListener('click', () => {
-    if (!confirm('Discard all trace edits not saved in traces.js?')) return;
-    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
-    traces = structuredClone(fileTraces);
-    selected = drawing = null;
-    render();
-    updateEditor();
-  });
+  function saved() { dirty = false; updateEditor(); }
+
+  // warn before a reload or close throws away unsaved edits
+  addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
 
   // ---- view interaction ----
 
