@@ -287,7 +287,7 @@ function buildImplant(key) {
       mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, p.radius, 8), material(p));
     } else if (p.t === 'dome') {
       mesh = new THREE.Mesh(new THREE.SphereGeometry(p.r, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), material(p));
-      mesh.scale.z = .45;
+      mesh.scale.y = .45;           // the cap points along y; squash it before turning it to face z
       mesh.rotation.x = p.side === 'back' ? -Math.PI / 2 : Math.PI / 2;
       mesh.position.set(p.at[0], p.at[1], p.z);
     }
