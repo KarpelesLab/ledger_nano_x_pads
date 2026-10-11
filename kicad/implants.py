@@ -14,7 +14,7 @@ and partly inferred where the photos don't show a part:
     cut with straight edges along the board's axes.
   Specimen B (generation 3): a black-coated flex cut to fit under the OLED on the back of the board, around
     the board-to-board connector, carrying an nRF9151 module, a scraped MCU and eSIM and a U.FL connector,
-    with a coax lead to an antenna stuck inside the case (not modelled), and a leg that wraps around the bottom
+    with a coax lead to an antenna stuck inside the case (not modelled), and a leg that wraps around the board's
     edge to the battery contacts on the front. Placed from the photo of the board
     with the screen removed, mapped onto the board by the USB shell joints, the two buttons and the BTB
     connector.
@@ -127,9 +127,10 @@ def specimen_a():
 
 # ---- Specimen B ---------------------------------------------------------------------------------------
 
-# photo pixels of camo-under-screen.jpg to back-photo pixels, fitted on the USB shell joints, both buttons
-# and the BTB connector (about 5 photo px residual)
-MB = [[-2.7177, 0.0568], [0.29615, 2.72016], [5240.75793, -620.81032]]
+# photo pixels of camo-under-screen.jpg to back-photo pixels. That photo shows the back of the board turned
+# 180 degrees from the back photo (as does the photo of specimen A in place, whose mapping is fitted on test pads
+# independently); fitted on the USB shell joints, both buttons and the BTB connector, about 10 px residual
+MB = [[-2.7223, -0.06254], [0.08727, -2.72109], [5397.51359, 3461.84757]]
 
 
 def b(px, py):
@@ -151,21 +152,42 @@ def specimen_b():
     out = []
     zf0, zf1 = BOT - .14, BOT - .06            # body, on the back under the OLED
     body = [b(*p) for p in [[165, 575], [458, 575], [458, 495], [1540, 490], [1540, 930], [165, 930]]]
-    window = [b(*p) for p in [[288, 632], [388, 632], [388, 842], [288, 842]]]
-    # cut-outs around three of the Ledger's capacitors, which key the flex into place: holes around C30
-    # and C31, and a notch in the edge around C32, each 0.15 mm clear of the part
-    caps = {q["id"]: q["box"] for q in d.load_js("passives.js", "PASSIVES") if q["id"] in ("C30", "C31", "C32")}
+    # the window fits snugly around the board-to-board connector (its pads and hold-downs, 0.1 mm clear)
+    btb = [q["polygon"] for c in d.load_js("components.js", "COMPONENTS") if c["id"] == "BTB" for q in c["pads"]]
+    bx = [v[0] for pg in btb for v in pg]; by = [v[1] for pg in btb for v in pg]
+    w8 = 8
+    window = [[min(bx) - w8, min(by) - w8], [max(bx) + w8, min(by) - w8], [max(bx) + w8, max(by) + w8], [min(bx) - w8, max(by) + w8]]
+    # cut-outs around the Ledger's own capacitors, which key the flex into place: holes around C30 and C31,
+    # notches in the edge around C32 and around C33/C34, each 0.15 mm clear of the parts
+    caps = {q["id"]: q["box"] for q in d.load_js("passives.js", "PASSIVES") if q["id"] in ("C30", "C31", "C32", "C33", "C34")}
     m = 13
     holes = [window] + [[[x - m, y - m], [x + w + m, y - m], [x + w + m, y + h + m], [x - m, y + h + m]]
                         for x, y, w, h in (caps["C30"], caps["C31"])]
-    (x0, y0), (x1, y1) = body[0], body[1]
-    cx, cy, cw, ch = caps["C32"]
-    at = lambda x: y0 + (y1 - y0) * (x0 - x) / (x0 - x1)
-    body[1:1] = [[cx + cw + m, at(cx + cw + m)], [cx + cw + m, cy + ch + m], [cx - m, cy + ch + m], [cx - m, at(cx - m)]]
+
+    def notch(name, box):
+        """Cut box (x, y, w, h) out of whichever body edge crosses it, on the side away from the body."""
+        cx, cy, cw, ch = box
+        for i in range(len(body)):
+            (x0, y0), (x1, y1) = body[i], body[(i + 1) % len(body)]
+            if abs(x1 - x0) < 1 or not min(x0, x1) <= cx + cw / 2 <= max(x0, x1):
+                continue
+            at = lambda x: y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+            if not cy - m <= at(cx + cw / 2) <= cy + ch + m:
+                continue
+            # the body is on the side of the edge where the part's far end is not
+            inner = cy + ch + m if at(cx) < cy + ch / 2 else cy - m
+            xs = (cx - m, cx + cw + m) if x1 > x0 else (cx + cw + m, cx - m)
+            body[i + 1:i + 1] = [[xs[0], at(xs[0])], [xs[0], inner], [xs[1], inner], [xs[1], at(xs[1])]]
+            return
+        raise SystemExit(f"{name} is not on an edge of specimen B's body")
+    notch("C32", caps["C32"])
+    c3, c4 = caps["C33"], caps["C34"]
+    x0, y0 = min(c3[0], c4[0]), min(c3[1], c4[1])
+    notch("C33/C34", (x0, y0, max(c3[0] + c3[2], c4[0] + c4[2]) - x0, max(c3[1] + c3[3], c4[1] + c4[3]) - y0))
     out.append(dict(t="slab", poly=poly(body), holes=[poly(h) for h in holes], z=[zf0, zf1], color="#161618", opacity=1,
                     title="Implant flex (black-coated)", notes="Orange polyimide flex painted black, cut to fit under the OLED "
-                    "around the Ledger's own parts: the window fits over the board-to-board connector, and cut-outs around C30, C31 and "
-                    "C32 key it into place so it can't be misaligned"))
+                    "around the Ledger's own parts: the window fits snugly around the board-to-board connector, and cut-outs around "
+                    "C30, C31 and C32 key it into place so it can't be misaligned; it stays clear of C33 and C34"))
     parts = [
         ((772, 565, 1170, 925), 1.3, "#cfcfcc", "Nordic\nnRF9151", "Nordic nRF9151 module",
          "LTE-M / NB-IoT modem with its own regulatory markings, left unscraped"),
@@ -187,30 +209,29 @@ def specimen_b():
     out.append(dict(t="tube", points=pts, radius=.35, color="#111111",
                     title="Coax lead", notes="Thin coax from the U.FL connector to the antenna AC-A2016-NANO-V1.1, which is "
                                              "stuck inside the case shell (not modelled, as the case isn't)"))
-    # the leg: leaves the body's bottom edge, folds around the board's bottom edge to the front and runs
-    # under the battery contacts, ending in two tabs on battery + (pad 3) and battery - (pad 1)
+    # the leg: leaves the body's edge, folds around the board's top edge to the front and runs under the
+    # battery contacts, ending in two tabs on battery + (pad 3) and battery - (pad 1)
     zl0, zl1 = TOP + .85, TOP + .92            # on the front, above the parts it crosses
     exit_x, exit_y = b(1460, 930)
     lx0, lx1 = exit_x - 50, exit_x + 50
-    edge = 2074
+    edge = 824
     leg = dict(color="#161618", opacity=1, title="Leg (black-coated flex)",
-               notes="Branches off the body, wraps around the board's bottom edge to the front and lands on the battery "
+               notes="Branches off the body, wraps around the board's edge to the front and lands under the battery "
                      "contacts, so the implant is powered straight from the battery (+ and -)")
-    out.append(dict(t="slab", poly=rect(lx0, exit_y - 20, lx1, edge), z=[zf0, zf1], **leg))
+    out.append(dict(t="slab", poly=rect(lx0, edge, lx1, exit_y + 20), z=[zf0, zf1], **leg))
     r = (zl1 - zf1) / 2
     zc = (zl1 + zf1) / 2
-    path = [[edge - 30, zf1], [edge, zf1]]
+    path = [[edge + 30, zf1], [edge, zf1]]
     for k in range(1, 12):
         phi = -math.pi / 2 + math.pi * k / 12
-        path.append([edge + r * S * math.cos(phi), zc + r * math.sin(phi)])
-    path += [[edge, zl1], [edge - 40, zl1]]
+        path.append([edge - r * S * math.cos(phi), zc + r * math.sin(phi)])
+    path += [[edge, zl1], [edge + 40, zl1]]
     out.append(dict(t="ribbon", x=[lx0 / S, lx1 / S], path=[[round((y - d.IMG_H) / S, 3), round(z, 3)] for y, z in path], **leg))
-    out.append(dict(t="slab", poly=poly([[lx1, edge], [1015, edge], [1015, 940], [1100, 940], [1100, 1960], [lx1, 1960]]),
-                    z=[zl0, zl1], **leg))
-    out.append(dict(t="slab", poly=rect(930, 1780, 1015, 1880), z=[zl0, zl1], **leg))
+    for rc in ((1015, edge, lx1, 915), (1015, edge, 1100, 1880), (930, 1780, 1015, 1880)):
+        out.append(dict(t="slab", poly=rect(*rc), z=[zl0, zl1], **leg))
     for (x, y), pol in (((975, 1830), "-"), ((1060, 952), "+")):
         out.append(dict(t="box", at=xy(x, y), size=[.9, .9], z=[TOP, zl0], color="#d8d8d8",
-                        title=f"Leg tab on battery {pol}", notes=f"Solder tab on the battery {'+' if pol == '+' else '-'} contact "
+                        title=f"Leg tab on battery {pol}", notes=f"Solder tab on the battery {pol} contact "
                                                           "(battery pad 3 is likely +, pad 1 likely -)"))
     return out
 
