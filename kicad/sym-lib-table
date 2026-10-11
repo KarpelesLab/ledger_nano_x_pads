@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "nanox")(type "KiCad")(uri "${KIPRJMOD}/nanox.kicad_sym")(options "")(descr "Reconstructed parts"))
+)

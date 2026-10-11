@@ -19,6 +19,16 @@
   /* --px is the size of one screen pixel in image pixels, kept current by apply() */
   #traces { pointer-events: none; overflow: visible; }
   #traces.off { display: none; }
+  /* KiCad reconstruction, drawn under our traces to compare with them and the photos */
+  #kicad { pointer-events: none; overflow: visible; }
+  #kicad.off { display: none; }
+  .k-item { pointer-events: all; cursor: help; }
+  .k-track { fill: none; stroke: #fb923c; stroke-linecap: round; opacity: .75; pointer-events: stroke; }
+  .k-pad, .k-via { fill: rgba(251, 146, 60, .35); stroke: #fb923c; stroke-width: calc(var(--px) * 1.5); }
+  .k-pad.nonet { fill: rgba(148, 163, 184, .3); stroke: #94a3b8; }
+  .k-edge { fill: none; stroke: #facc15; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 8); pointer-events: none; }
+  .k-item.hover { opacity: 1; stroke: #fff; }
+  .k-track.hover { stroke: #fff; }
   #traces polyline { fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .trace polyline { pointer-events: stroke; }
   .trace .line { stroke-width: max(var(--w), calc(var(--px) * 2)); opacity: .45; }
@@ -104,6 +114,7 @@
     <img class="hidden" src="img/front_with_details_adjusted.jpg" alt="front" draggable="false">
     <img class="hidden" src="img/back_empty.jpg" alt="back, bare" draggable="false">
     <img class="hidden" src="img/front_empty.jpg" alt="front, bare" draggable="false">
+    <svg id="kicad" class="off" viewBox="0 0 5376 3024" preserveAspectRatio="xMidYMid meet"><g id="klayer"></g></svg>
     <svg id="traces" viewBox="0 0 5376 3024" preserveAspectRatio="xMidYMid meet">
       <g id="layer"></g>
       <g id="padlayer"></g>
@@ -118,6 +129,7 @@
   <label><input type="checkbox" id="opt-empty"> Bare board (components removed, no annotations)</label>
   <label><input type="checkbox" id="opt-flip"> Mirror vertically</label>
   <label><input type="checkbox" id="opt-traces" checked> Show traces and test pads</label>
+  <label><input type="checkbox" id="opt-kicad"> Show KiCad reconstruction</label>
   <label><input type="checkbox" id="opt-edit"> Edit traces</label>
   <button id="reset">Reset zoom</button>
   <ul>
@@ -125,7 +137,8 @@
     <li>Middle-click / <kbd>E</kbd>: annotated ↔ bare board, to trace tracks hidden under components</li>
     <li>Right-click / <kbd>F</kbd>: mirror vertically</li>
     <li>Hover (or tap) a trace or test pad for details and what it connects to</li>
-    <li><kbd>T</kbd>: show/hide traces and pads</li>
+    <li><kbd>T</kbd>: show/hide traces and pads, <kbd>K</kbd>: show/hide the KiCad reconstruction
+      (regenerate it with kicad/export_overlay.py)</li>
     <li>Scroll: zoom, drag: pan, <kbd>0</kbd>: reset</li>
   </ul>
   <div id="editor" hidden>
@@ -163,6 +176,7 @@
 <script src="pads.js"></script>
 <script src="components.js"></script>
 <script src="passives.js"></script>
+<script src="kicad/overlay.js"></script>
 <script src="traces.js"></script>
 <script>
   const IMG_W = 5376, IMG_H = 3024;
@@ -181,6 +195,9 @@
   const optEmpty = $('opt-empty');
   const optFlip = $('opt-flip');
   const optTraces = $('opt-traces');
+  const optKicad = $('opt-kicad');
+  const klayer = $('klayer');
+  if (!window.KICAD) optKicad.disabled = true;
   const optEdit = $('opt-edit');
   const optPins = $('opt-pins');
   let shown = 0, scale = 1, tx = 0, ty = 0;
@@ -241,7 +258,7 @@
 
   function apply() {
     stack.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
-    svg.style.setProperty('--px', 1 / (fit() * scale) + 'px');
+    stack.style.setProperty('--px', 1 / (fit() * scale) + 'px');
   }
 
   // screen point -> image pixel coordinates, undoing pan/zoom, flip and object-fit
@@ -304,6 +321,7 @@
       g.append(p.poly ? el('polygon', { points: p.poly.join(' ') }) : el('circle', { cx: p.x, cy: p.y, r: p.r || 45 }), text);
       padLayer.append(g);
     }
+    renderKicad();
     markHover();
     renderDraft();
   }
@@ -381,8 +399,11 @@
   // highlight the hovered item along with the pads or traces it connects to
   function markHover() {
     const h = hovered;
-    const lit = !h ? [] : pads.includes(h) ? [h, ...traces.filter(t => connected(t, h))]
-                                           : [h, ...pads.filter(p => connected(h, p))];
+    const lit = !h || h.kicad ? [] : pads.includes(h) ? [h, ...traces.filter(t => connected(t, h))]
+                                                      : [h, ...pads.filter(p => connected(h, p))];
+    // a KiCad item lights up everything on its net
+    const knet = h?.kicad && h.kicad.net;
+    for (const e of klayer.children) if (e.item) e.classList.toggle('hover', e.item === h || (!!knet && e.item.kicad.net === knet));
     for (const g of svg.querySelectorAll('.trace, .pad')) g.classList.toggle('hover', lit.includes(g.item));
   }
 
@@ -457,7 +478,13 @@
     const meta = document.createElement('div');
     meta.className = 'meta';
     let texts;
-    if (pads.includes(t)) {
+    if (t.kicad) {
+      const k = t.kicad, all = window.KICAD ? [...KICAD.front, ...KICAD.back] : [];
+      const on = k.net ? all.filter(o => o.t === 'pad' && o.net === k.net).map(o => `${o.ref}.${o.num}`) : [];
+      b.textContent = 'KiCad: ' + (k.net || 'no net');
+      meta.textContent = (k.t === 'pad' ? `pad ${k.ref}.${k.num}` : k.t) + (on.length ? ' · net pads: ' + on.join(', ') : '');
+      texts = [];
+    } else if (pads.includes(t)) {
       b.textContent = padLabel(t) + (t.name ? ` · ${t.name}` : '');
       const names = traces.filter(x => connected(x, t)).map(x => x.name || '(unnamed trace)');
       meta.textContent = (t.chip ? `${t.chip.part} (${t.chip.package}) · ` : '') + t.side + (names.length ? ' · traces: ' + names.join(', ') : ' · no traces yet');
@@ -487,10 +514,26 @@
     tip.style.top = Math.max(8, y) + 'px';
   }
 
-  // the trace or pad under an event target
+  // the trace, pad or KiCad item under an event target
   function itemAt(target) {
-    const g = target.closest && target.closest('.trace, .pad');
+    const g = target.closest && target.closest('.trace, .pad, .k-item');
     return g ? g.item : null;
+  }
+
+  // the KiCad reconstruction of the side shown, from kicad/overlay.js
+  function renderKicad() {
+    klayer.replaceChildren();
+    if (!window.KICAD || !optKicad.checked) return;
+    for (const [a, b] of KICAD.outline) klayer.append(el('line', { class: 'k-edge', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
+    for (const k of KICAD[side()]) {
+      let e;
+      if (k.t === 'track') e = el('line', { class: 'k-item k-track', x1: k.a[0], y1: k.a[1], x2: k.b[0], y2: k.b[1], 'stroke-width': k.w });
+      else if (k.t === 'via') e = el('circle', { class: 'k-item k-via', cx: k.at[0], cy: k.at[1], r: k.d / 2 });
+      else if (k.poly) e = el('polygon', { class: 'k-item k-pad' + (k.net ? '' : ' nonet'), points: k.poly.join(' ') });
+      else e = el('circle', { class: 'k-item k-pad' + (k.net ? '' : ' nonet'), cx: k.at[0], cy: k.at[1], r: k.r });
+      e.item = { kicad: k };
+      klayer.append(e);
+    }
   }
 
   // ---- trace data and editing ----
@@ -740,6 +783,12 @@
   optFront.addEventListener('change', () => { toggle(); optFront.blur(); });
   optEmpty.addEventListener('change', () => { toggleVariant(); optEmpty.blur(); });
   optFlip.addEventListener('change', () => { flipAt(view.clientHeight / 2); optFlip.blur(); });
+  optKicad.addEventListener('change', () => {
+    $('kicad').classList.toggle('off', !optKicad.checked);
+    render();
+    setHover(null);
+    optKicad.blur();
+  });
   optTraces.addEventListener('change', () => {
     svg.classList.toggle('off', !optTraces.checked);
     setHover(null);
@@ -820,6 +869,7 @@
     else if (e.key === 'e') toggleVariant();
     else if (e.key === 'f') flipAt(view.clientHeight / 2);
     else if (e.key === 't') optTraces.click();
+    else if (e.key === 'k' && !optKicad.disabled) optKicad.click();
     else if (e.key === 'p' && editing()) optPins.click();
     else if (e.key === '0') reset();
   });
