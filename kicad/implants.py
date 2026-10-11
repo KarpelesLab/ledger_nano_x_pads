@@ -179,9 +179,12 @@ def specimen_b():
         at, size = b_centre(*rc)
         out.append(dict(t="box", at=at, size=size, z=[zf0 - h, zf0], color=col, marking=mark, flip=True,
                         title=title, notes=notes))
-    zc = zf0 - 1.0
+    # the coax runs over the outside of the nRF9151 module (away from the board), from the top of the U.FL
+    zu = zf0 - .9                               # U.FL top
+    zc = zf0 - 1.3 - .4                         # past the module's outer face, plus the cable radius
     coax = [b(*p) for p in [[990, 505], [800, 480], [600, 455], [500, 445], [470, 470], [455, 530]]]
-    out.append(dict(t="tube", points=[[*xy(*p), zc] for p in coax], radius=.35, color="#111111",
+    pts = [[*xy(*coax[0]), zu - .1]] + [[*xy(*p), zc] for p in coax[1:]]
+    out.append(dict(t="tube", points=pts, radius=.35, color="#111111",
                     title="Coax lead", notes="Thin coax from the U.FL connector to the antenna AC-A2016-NANO-V1.1, which is "
                                              "stuck inside the case shell (not modelled, as the case isn't)"))
     # the leg: leaves the body's bottom edge, folds around the board's bottom edge to the front and runs
