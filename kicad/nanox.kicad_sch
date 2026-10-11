@@ -2351,7 +2351,7 @@
   (instances (project "nanox" (path "/9fc871f3-1e36-5a01-9359-e2a20c86f96f" (reference "R13") (unit 1))))
  )
  (label "Net-T41" (at 185.42 73.66 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "15fe1aa1-1cbe-52cb-8d7f-3224e84a62b7"))
- (no_connect (at 205.74 73.66) (uuid "1486663f-fb5c-5f18-b85e-d62328b8a198"))
+ (label "Net-T65" (at 205.74 73.66 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "ef3e74be-ca81-5db0-b380-61b7a148edd0"))
  (symbol (lib_id "nanox:R14") (at 195.58 88.90 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "a9b20186-9c25-5720-9d03-fd5a98559c38")
   (property "Reference" "R14" (at 195.58 85.09 0) (effects (font (size 1.27 1.27))))
   (property "Value" "R" (at 195.58 92.71 0) (effects (font (size 1.27 1.27))))
