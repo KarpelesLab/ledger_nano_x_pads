@@ -132,6 +132,9 @@ def make_footprint(board, ref, value, side, center, pads, outline, nets_by_name,
                 mk = pcbnew.FP_3DMODEL()
                 mk.m_Filename = m3d.write_marking(ref, local, model["marking"], m3d.LIBRARY_HEIGHT)
                 fp.Add3DModel(mk)
+        elif "detailed" in model:
+            m.m_Filename = m3d.write_detailed(ref, model["detailed"],
+                                              lambda x, y: ((x - cx) / d.PX_PER_MM, (my(y) - cy) / d.PX_PER_MM))
         elif "custom" in model:
             color, height, text = model["custom"]
             m.m_Filename = m3d.write_custom(ref, value, local, color, height, text)
@@ -165,6 +168,8 @@ def model_for(c, pts):
         scale = c["size"] / 3 if cid == "PWR1" else 1
         return {"lib": m3d.LIB + m3d.LIBRARY[cid], "rot": rot, "scale": (scale, scale, 1),
                 "marking": m3d.LIBRARY_MARKINGS.get(cid)}
+    if cid in m3d.DETAILED:
+        return {"detailed": cid}
     if cid in m3d.CUSTOM:
         return {"custom": m3d.CUSTOM[cid]}
     return None

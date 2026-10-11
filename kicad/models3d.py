@@ -56,6 +56,19 @@ for i in range(1, 10):
 
 MARK = (.85, .85, .8)
 
+# parts modelled piece by piece from the photo, in front-photo pixels: (x0, y0, x1, y1, z0, z1, colour) boxes
+# and (x, y, radius mm, colour) dots on top. RFF: a lavender-grey ceramic body with castellated terminals on
+# both long sides and on both ends, and a dark pin 1 dot by its input
+SILVER = (.8, .8, .78)
+DETAILED = {
+    "RFF": {
+        "boxes": [(2925, 1590, 3090, 1687, 0, .55, (.74, .76, .84))] +
+                 [(x0, y0, x0 + 33, y0 + 14, 0, .56, SILVER) for x0 in (2937, 2990, 3047) for y0 in (1584, 1679)] +
+                 [(2919, 1622, 2933, 1655, 0, .56, SILVER), (3082, 1622, 3096, 1655, 0, .56, SILVER)],
+        "dots": [(2970, 1638, .13, (.28, .22, .38))],
+    },
+}
+
 
 def vrml_prism(poly, z0, z1, color):
     """A prism with polygon poly (list of (x, y) in mm, convex or not, counter-clockwise) as its section."""
@@ -166,4 +179,22 @@ def write_marking(ref, local_outline, spec, z):
     cy = sum(p[1] for p in local_outline) / len(local_outline)
     path = os.path.join(OUT_DIR, f"{ref}_marking.wrl")
     open(path, "w").write("#VRML V2.0 utf8\n" + marking(text, (cx, cy), ang, side, side, z))
+    return path
+
+
+def write_detailed(ref, cid, to_local):
+    """A model built from DETAILED[cid]; to_local maps photo pixels to footprint-local mm."""
+    os.makedirs(OUT_DIR, exist_ok=True)
+    spec = DETAILED[cid]
+    src = "#VRML V2.0 utf8\n"
+    for x0, y0, x1, y1, z0, z1, col in spec["boxes"]:
+        pts = [to_local(x, y) for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))]
+        src += vrml_prism(ccw(pts), z0, z1, col)
+    top = max(b[5] for b in spec["boxes"])
+    for x, y, r, col in spec.get("dots", []):
+        cx, cy = to_local(x, y)
+        circle = [(cx + r * math.cos(2 * math.pi * k / 16), cy + r * math.sin(2 * math.pi * k / 16)) for k in range(16)]
+        src += vrml_prism(ccw(circle), top - .01, top + .01, col)
+    path = os.path.join(OUT_DIR, f"{ref}.wrl")
+    open(path, "w").write(src)
     return path

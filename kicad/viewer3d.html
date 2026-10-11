@@ -191,6 +191,20 @@ for (const p of S.parts) {
     };
     mesh = box(l - 2 * capL, mat(p.color), 0);
     box(capL, M.cap, -(l - capL) / 2); box(capL, M.cap, (l - capL) / 2);
+  } else if (p.boxes) {
+    // a part modelled piece by piece: the first box is its body, which takes the hover
+    p.boxes.forEach((bx, i) => {
+      const m = new THREE.Mesh(new THREE.ExtrudeGeometry(shapeOf(bx.outline), { depth: bx.z[1] - bx.z[0], bevelEnabled: false }),
+        mat(bx.color));
+      m.position.z = back ? -top - bx.z[1] : top + bx.z[0];
+      body.add(m);
+      if (!i) mesh = m;
+    });
+    for (const dt of p.dots || []) {
+      const dot = new THREE.Mesh(new THREE.CircleGeometry(dt.r, 20), mat(dt.color));
+      dot.position.set(dt.at[0], dt.at[1], back ? -top - p.height - .002 : top + p.height + .002);
+      body.add(dot);
+    }
   } else {
     const g = new THREE.ExtrudeGeometry(shapeOf(p.outline), { depth: p.height, bevelEnabled: false });
     mesh = new THREE.Mesh(g, mat(p.color));

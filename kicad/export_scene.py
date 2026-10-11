@@ -128,6 +128,15 @@ def main():
                 text, (i, j) = m3d.LIBRARY_MARKINGS[cid]
                 a, b = photo(*c["corners"][i]), photo(*c["corners"][j])
                 part["marking"] = {"text": text, "angle": math.atan2(b[1] - a[1], b[0] - a[0])}
+        elif cid in m3d.DETAILED:
+            spec = m3d.DETAILED[cid]
+            part["boxes"] = [{"outline": [photo(x, y) for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))], "z": [z0, z1],
+                              "color": "#%02x%02x%02x" % tuple(round(v * 255) for v in col)}
+                             for x0, y0, x1, y1, z0, z1, col in spec["boxes"]]
+            part["dots"] = [{"at": photo(x, y), "r": r, "color": "#%02x%02x%02x" % tuple(round(v * 255) for v in col)}
+                            for x, y, r, col in spec.get("dots", [])]
+            part["height"] = max(b[5] for b in spec["boxes"])
+            part["color"] = part["boxes"][0]["color"]
         elif cid in m3d.CUSTOM:
             col, h, text = m3d.CUSTOM[cid]
             part["height"] = h
