@@ -24,6 +24,16 @@ LIBRARY = {
     "PWR1": "Package_DFN_QFN.3dshapes/QFN-16-1EP_3x3mm_P0.5mm_EP1.7x1.7mm.step",
 }
 
+# markings read from the photos, laid on the library models (whose bodies are 0.78 mm tall), each reading
+# along the direction it has on the part. The SE marking is hard to read: some characters are a best guess
+LIBRARY_MARKINGS = {
+    # text, and the two outline corners whose direction the text reads along
+    "MCU": ("STM32WB35\nCCU6A\nGQ239139R\nCHN GQ 132", (0, 1)),
+    "SE": ("Ledger\n02MJCH\n13N\n471", (0, 1)),
+    "USBPD": ("4500L\nM20700", (0, 3)),
+}
+LIBRARY_HEIGHT = .78
+
 # generated bodies: colour (r, g, b), height in mm, marking
 CUSTOM = {
     "PWR2": ((.08, .08, .08), .55, "E058\n2050"),
@@ -65,7 +75,7 @@ def ccw(poly):
     return poly if area < 0 else poly[::-1]
 
 
-def text_pixels(text, rows=9):
+def text_pixels(text, rows=11):
     """The marking as a grid of on-pixels: list of (col, row), plus the grid size."""
     lines = text.split("\n")
     font = ImageFont.truetype(FONT, 60)
@@ -142,4 +152,18 @@ def ceramic_model(ref, length_mm, width_mm, vertical, color):
            vrml_prism(ccw(rect(L / 2 - cap, L / 2)), 0, W * .9, (.82, .82, .82)))
     path = os.path.join(OUT_DIR, f"{ref}.wrl")
     open(path, "w").write(src)
+    return path
+
+
+def write_marking(ref, local_outline, spec, z):
+    """Only the marking, for a library model: centred on the outline, reading from corner i to corner j."""
+    text, (i, j) = spec
+    os.makedirs(OUT_DIR, exist_ok=True)
+    (x0, y0), (x1, y1) = local_outline[i], local_outline[j]
+    ang = math.atan2(y1 - y0, x1 - x0)
+    side = math.hypot(x1 - x0, y1 - y0)
+    cx = sum(p[0] for p in local_outline) / len(local_outline)
+    cy = sum(p[1] for p in local_outline) / len(local_outline)
+    path = os.path.join(OUT_DIR, f"{ref}_marking.wrl")
+    open(path, "w").write("#VRML V2.0 utf8\n" + marking(text, (cx, cy), ang, side, side, z))
     return path

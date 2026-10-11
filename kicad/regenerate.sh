@@ -10,3 +10,4 @@ python3 gen_sch.py --force
 kicad-cli pcb drc --refill-zones --save-board -o /dev/null nanox.kicad_pcb >/dev/null
 python3 check.py
 python3 export_overlay.py
+python3 export_scene.py

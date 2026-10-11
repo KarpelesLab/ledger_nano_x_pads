@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nano X board 3D</title>
+<style>
+  :root { --panel: rgba(18, 20, 24, .86); --text: #e8e8e8; --muted: #a0a4ab; --accent: #ffd43b; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #15171b; color: var(--text); font: 13px/1.4 system-ui, sans-serif; }
+  #view { position: fixed; inset: 0; }
+  #panel { position: fixed; top: 8px; left: 8px; padding: 8px 10px; background: var(--panel); border-radius: 6px; max-width: min(320px, calc(100vw - 16px)); }
+  #panel b { font-size: 14px; }
+  #panel label { display: flex; gap: 6px; align-items: center; padding: 2px 0; cursor: pointer; }
+  #panel .buttons { display: flex; gap: 6px; margin: 6px 0 2px; flex-wrap: wrap; }
+  #panel button { font: inherit; cursor: pointer; }
+  #panel .hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  #tip { position: fixed; pointer-events: none; max-width: 360px; padding: 6px 10px; background: var(--panel);
+         border: 1px solid #444; border-radius: 6px; font-size: 12px; }
+  #tip b { font-size: 13px; color: var(--accent); }
+  #tip .meta { color: var(--muted); }
+  #tip p { margin: 3px 0 0; }
+  #tip ul { margin: 3px 0 0; padding-left: 16px; }
+  #loading { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="view"></div>
+<div id="loading">Loading…</div>
+<div id="panel">
+  <b>Nano X main board, reconstructed</b>
+  <label><input type="checkbox" id="opt-parts" checked> Components</label>
+  <label><input type="checkbox" id="opt-pours" checked> Ground pours</label>
+  <label><input type="checkbox" id="opt-tracks" checked> Tracks and vias</label>
+  <div class="buttons">
+    <button id="top">Top</button><button id="bottom">Bottom</button><button id="angle">Angle</button>
+  </div>
+  <div class="hint">Drag to rotate, right-drag to pan, scroll to zoom. Hover a track, via, pad or part for details;
+    nets light up on both sides.</div>
+</div>
+<div id="tip" hidden></div>
+<script src="scene.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const S = window.SCENE;
+const T = S.thickness, top = T / 2;
+const $ = id => document.getElementById(id);
+
+// ---- renderer, camera, lights ----
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setSize(innerWidth, innerHeight);
+$('view').append(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#15171b');
+const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, .1, 1000);
+camera.up.set(0, 0, 1);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+scene.add(new THREE.HemisphereLight('#ffffff', '#444444', 1.2));
+const sun = new THREE.DirectionalLight('#ffffff', 1.6);
+sun.position.set(-30, -40, 80);
+scene.add(sun);
+const under = new THREE.DirectionalLight('#ffffff', .9);
+under.position.set(30, 40, -80);
+scene.add(under);
+
+const xs = S.outline.map(p => p[0]), ys = S.outline.map(p => p[1]);
+const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+const root = new THREE.Group();
+root.position.set(-cx, -cy, 0);
+scene.add(root);
+
+// ---- materials ----
+const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: .55, metalness: .1, side: THREE.DoubleSide });
+const M = {
+  board: new THREE.MeshStandardMaterial({ color: '#174a2a', roughness: .7 }),
+  pour: mat('#2a6b3c'), track: mat('#3d8a4f'),
+  pad: new THREE.MeshStandardMaterial({ color: '#d6b25e', roughness: .35, metalness: .7, side: THREE.DoubleSide }),
+  via: new THREE.MeshStandardMaterial({ color: '#c9a24f', roughness: .4, metalness: .6 }),
+  hi: new THREE.MeshStandardMaterial({ color: '#ffd43b', emissive: '#7a5a00', roughness: .4, side: THREE.DoubleSide }),
+  cap: new THREE.MeshStandardMaterial({ color: '#cfcfcf', roughness: .3, metalness: .8 }),
+};
+
+// pickable meshes, and lookups to highlight a whole net or part
+const pickable = [], byNet = new Map(), byRef = new Map();
+function register(mesh, info) {
+  mesh.userData = info;
+  mesh.userData.base = mesh.material;
+  pickable.push(mesh);
+  if (info.net) (byNet.get(info.net) || byNet.set(info.net, []).get(info.net)).push(mesh);
+  if (info.ref) (byRef.get(info.ref) || byRef.set(info.ref, []).get(info.ref)).push(mesh);
+}
+const groups = { pours: new THREE.Group(), tracks: new THREE.Group(), parts: new THREE.Group() };
+Object.values(groups).forEach(g => root.add(g));
+const zOf = (side, lift) => side === 'front' ? top + lift : -top - lift;
+
+// ---- board ----
+const shapeOf = pts => new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y)));
+{
+  const g = new THREE.ExtrudeGeometry(shapeOf(S.outline), { depth: T, bevelEnabled: false });
+  const m = new THREE.Mesh(g, M.board);
+  m.position.z = -top;
+  root.add(m);
+}
+
+// ---- copper ----
+for (const f of S.fills) {
+  const sh = shapeOf(f.rings[0]);
+  for (const h of f.rings.slice(1)) sh.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y))));
+  const m = new THREE.Mesh(new THREE.ShapeGeometry(sh), M.pour);
+  m.position.z = zOf(f.side, .004);
+  groups.pours.add(m);
+  register(m, { kind: 'pour', net: f.net, side: f.side });
+}
+for (const t of S.tracks) {
+  const [ax, ay] = t.a, [bx, by] = t.b, len = Math.hypot(bx - ax, by - ay);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(len + t.w, t.w), M.track);
+  m.position.set((ax + bx) / 2, (ay + by) / 2, zOf(t.side, .008));
+  m.rotation.z = Math.atan2(by - ay, bx - ax);
+  groups.tracks.add(m);
+  register(m, { kind: 'track', net: t.net, side: t.side });
+}
+for (const v of S.vias) {
+  const g = new THREE.CylinderGeometry(v.d / 2, v.d / 2, T + .03, 16);
+  g.rotateX(Math.PI / 2);
+  const m = new THREE.Mesh(g, M.via);
+  m.position.set(v.at[0], v.at[1], 0);
+  groups.tracks.add(m);
+  register(m, { kind: 'via', net: v.net });
+}
+for (const p of S.pads) {
+  const g = p.circle ? new THREE.CircleGeometry(p.w / 2, 24) : new THREE.PlaneGeometry(p.w, p.h);
+  const m = new THREE.Mesh(g, M.pad);
+  m.position.set(p.at[0], p.at[1], zOf(p.side, .012));
+  // KiCad pad angles turn counter-clockwise in its y-down view, so the same way here with y up
+  m.rotation.z = p.rot * Math.PI / 180;
+  root.add(m);
+  register(m, { kind: 'pad', net: p.net, ref: p.ref, num: p.num, pin: p.pin, side: p.side });
+}
+
+// ---- parts ----
+function markingTexture(text, wPx, hPx) {
+  const c = document.createElement('canvas');
+  c.width = wPx; c.height = hPx;
+  const g = c.getContext('2d');
+  const lines = text.split('\n');
+  let size = hPx / (lines.length * 1.25);
+  g.font = `bold ${size}px DejaVu Sans Mono, monospace`;
+  const widest = Math.max(...lines.map(l => g.measureText(l).width));
+  if (widest > wPx * .9) { size *= wPx * .9 / widest; g.font = `bold ${size}px DejaVu Sans Mono, monospace`; }
+  g.fillStyle = '#e8e6dc';
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  lines.forEach((l, i) => g.fillText(l, wPx / 2, hPx / 2 + (i - (lines.length - 1) / 2) * size * 1.2));
+  const tex = new THREE.CanvasTexture(c);
+  tex.anisotropy = 8;
+  return tex;
+}
+
+for (const p of S.parts) {
+  const back = p.side === 'back', sgn = back ? -1 : 1;
+  const base = back ? -top : top;
+  const body = new THREE.Group();
+  let mesh;
+  if (p.caps) {
+    // two-terminal part: body with metal end caps along its axis
+    const [x0, y0] = p.outline[0], [x2, y2] = p.outline[2];
+    const minx = Math.min(x0, x2), maxx = Math.max(x0, x2), miny = Math.min(y0, y2), maxy = Math.max(y0, y2);
+    const vert = p.caps === 'v', L = vert ? maxy - miny : maxx - minx, W = vert ? maxx - minx : maxy - miny;
+    const l = L * .8, w = W * .75, capL = l * .2, h = p.height;
+    const box = (len, mt, off) => {
+      const b = new THREE.Mesh(new THREE.BoxGeometry(vert ? w : len, vert ? len : w, h), mt);
+      b.position.set((minx + maxx) / 2 + (vert ? 0 : off), (miny + maxy) / 2 + (vert ? off : 0), base + sgn * h / 2);
+      body.add(b);
+      return b;
+    };
+    mesh = box(l - 2 * capL, mat(p.color), 0);
+    box(capL, M.cap, -(l - capL) / 2); box(capL, M.cap, (l - capL) / 2);
+  } else {
+    const g = new THREE.ExtrudeGeometry(shapeOf(p.outline), { depth: p.height, bevelEnabled: false });
+    mesh = new THREE.Mesh(g, mat(p.color));
+    mesh.position.z = back ? -top - p.height : top;
+    body.add(mesh);
+    if (p.pin1) {
+      // pin 1 dot, inset from the pin 1 corner
+      const ccx = p.outline.reduce((s, q) => s + q[0], 0) / 4, ccy = p.outline.reduce((s, q) => s + q[1], 0) / 4;
+      const dot = new THREE.Mesh(new THREE.CircleGeometry(.22, 20), mat('#d8d4c8'));
+      dot.position.set(p.pin1[0] + (ccx - p.pin1[0]) * .15, p.pin1[1] + (ccy - p.pin1[1]) * .15, top + p.height + .002);
+      body.add(dot);
+    }
+  }
+  if (p.marking && !back) {
+    // text plane on top, sized to the outline measured along the reading direction
+    const a = p.marking.angle, ca = Math.cos(a), sa = Math.sin(a);
+    const us = p.outline.map(([x, y]) => x * ca + y * sa), vs = p.outline.map(([x, y]) => -x * sa + y * ca);
+    const L = Math.max(...us) - Math.min(...us), W = Math.max(...vs) - Math.min(...vs);
+    const u0 = (Math.max(...us) + Math.min(...us)) / 2, v0 = (Math.max(...vs) + Math.min(...vs)) / 2;
+    const tex = markingTexture(p.marking.text, 512, Math.round(512 * W / L));
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(L * .82, W * .78),
+      new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+    plane.position.set(u0 * ca - v0 * sa, u0 * sa + v0 * ca, top + p.height + .003);
+    plane.rotation.z = a;
+    body.add(plane);
+  }
+  groups.parts.add(body);
+  register(mesh, { kind: 'part', ref: p.ref, part: p });
+}
+
+// ---- camera views ----
+function view(name) {
+  const d = 70;
+  controls.target.set(0, 0, 0);
+  if (name === 'top') camera.position.set(0, -0.001, d);
+  else if (name === 'bottom') camera.position.set(0, 0.001, -d);
+  else camera.position.set(-12, -48, 40);
+  controls.update();
+}
+view('angle');
+$('top').onclick = () => view('top');
+$('bottom').onclick = () => view('bottom');
+$('angle').onclick = () => view('angle');
+$('opt-parts').onchange = e => groups.parts.visible = e.target.checked;
+$('opt-pours').onchange = e => groups.pours.visible = e.target.checked;
+$('opt-tracks').onchange = e => groups.tracks.visible = e.target.checked;
+
+// ---- hover ----
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+let lit = [];
+function light(meshes) {
+  for (const m of lit) m.material = m.userData.base;
+  lit = meshes;
+  for (const m of lit) m.material = M.hi;
+}
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+function netPads(net) {
+  return S.pads.filter(p => p.net === net).map(p => `${p.ref}.${p.num}${p.pin ? ' ' + p.pin : ''}`);
+}
+function netHtml(net) {
+  const info = S.nets[net], items = [];
+  for (const t of info?.traces || []) {
+    if (t.purpose || t.notes) items.push(`<p>${esc([t.purpose, t.notes].filter(Boolean).join(' · '))}</p>`);
+  }
+  const ps = netPads(net);
+  return [...new Set(items)].slice(0, 3).join('') +
+    (ps.length ? `<p class="meta">${ps.length} pad${ps.length > 1 ? 's' : ''}: ${esc(ps.slice(0, 24).join(', '))}${ps.length > 24 ? '…' : ''}</p>` : '');
+}
+function describe(u) {
+  if (u.kind === 'part') {
+    const p = u.part, pads = S.pads.filter(q => q.ref === p.ref && q.net);
+    return `<b>${esc(p.ref)}</b> <span class="meta">${esc(p.title)}${p.package ? ' · ' + esc(p.package) : ''} · ${p.side}</span>` +
+      (p.notes ? `<p>${esc(p.notes)}</p>` : '') +
+      (pads.length ? `<ul>${pads.slice(0, 16).map(q => `<li>${esc(q.num)}${q.pin ? ' ' + esc(q.pin) : ''}: ${esc(q.net)}</li>`).join('')}</ul>` : '');
+  }
+  const head = u.kind === 'pad' ? `${u.ref} pad ${u.num}${u.pin ? ' · ' + u.pin : ''}` : u.kind;
+  if (!u.net) return `<b>${esc(head)}</b> <span class="meta">no net</span>`;
+  return `<b>${esc(u.net)}</b> <span class="meta">${esc(head)}${u.side ? ' · ' + u.side : ''}</span>` + netHtml(u.net);
+}
+renderer.domElement.addEventListener('pointermove', e => {
+  mouse.set(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+  const hit = ray.intersectObjects(pickable.filter(m => m.parent.visible && m.visible), false)
+    // pours sit under everything else, so prefer anything on top of them
+    .sort((a, b) => (a.object.userData.kind === 'pour') - (b.object.userData.kind === 'pour') || a.distance - b.distance)[0];
+  const tip = $('tip');
+  if (!hit) { light([]); tip.hidden = true; return; }
+  const u = hit.object.userData;
+  light(u.kind === 'part' ? byRef.get(u.ref) : u.net && u.net !== 'GND' ? byNet.get(u.net) : [hit.object]);
+  tip.innerHTML = describe(u);
+  tip.hidden = false;
+  tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
+  tip.style.top = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8) + 'px';
+});
+renderer.domElement.addEventListener('pointerleave', () => { light([]); $('tip').hidden = true; });
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+$('loading').remove();
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+window.__viewer = { camera, controls, view, pickable };
+</script>
+</body>
+</html>
