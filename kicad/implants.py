@@ -60,15 +60,13 @@ def rect(x0, y0, x1, y1):
 # ---- Specimen A ---------------------------------------------------------------------------------------
 
 KAPTON = "#d9891c"
-TAP_A = [[1568,1923],[1568,1973],[1188,1973],[1188,1775],[996,1775],[996,1965],[920,1965],[920,1840],[768,1840],
-    [768,1714],[876,1714],[876,1562],[1020,1562],[1020,1037],[1380,1037],[1380,968],[1520,968],[1520,824],
+TAP_A = [[1568,1923],[1568,1973],[1188,1973],[1188,1775],[996,1775],[996,1965],[920,1965],[920,1905],[520,1905],
+    [525,1558],[1020,1558],[1020,835],[1195,835],[1195,1037],[1380,1037],[1380,968],[1520,968],[1520,824],
     [1888,824],[1888,1037],[1970,1037],[1970,878],[2026,878],[2026,1050],[2860,1050],[2860,902],[2992,902],
-    [2992,1036],[3078,1036],[3078,1193],[3173,1193],[3173,1042],[3302,1042],[3302,778],[3404,778],[3404,917],
-    [3540,917],[3540,780],[3764,780],[3764,894],[3970,894],[3970,923],[4156,923],[4156,1092],[3994,1092],
-    [3994,1166],[4146,1166],[4146,1363],[4180,1363],[4180,1536],[4132,1536],[4132,1665],[4472,1665],[4472,1846],
-    [4256,1846],[4256,1770],[3978,1770],[3978,1923]]
+    [2992,1036],[3285,1036],[3285,775],[3677,775],[3677,875],[4156,875],[4156,1665],[4472,1665],[4485,2075],
+    [4266,2075],[4256,1770],[3978,1770],[3978,1923]]
 # solder joints of the tap layer, on these test pads
-JOINTS_A = ["35", "34", "36", "29", "31", "14", "03", "07"]
+JOINTS_A = ["35", "34", "36", "29", "31", "38", "14", "03", "07"]
 
 
 def specimen_a():
@@ -156,8 +154,15 @@ def specimen_b():
     out = []
     zf0, zf1 = BOT - .14, BOT - .06            # body, on the back under the OLED
     # around the OLED connector the flex stops short of C33 and C34 (photo y 597)
-    body = [b(*p) for p in [[163, 597], [458, 597], [458, 495], [1540, 490], [1540, 930],
-                            [795, 930], [795, 962], [695, 962], [695, 930], [163, 930]]]
+    body = [b(*p) for p in [[163, 597], [458, 597], [458, 495], [1540, 490], [1540, 930]]]
+    # along the board's top edge (in board px) the flex runs out to 0.25 mm from the edge, around the
+    # board's notch next to TP31, then steps back in before C32 (Tibane Labs' close-up of the fitted flex)
+    def edge_at(x):
+        """Where the photo-fitted edge (photo y 930) crosses board column x."""
+        (x0, y0), (x1, y1) = b(1540, 930), b(163, 930)
+        return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+    body += [[2190, edge_at(2190)], [2190, 760], [3750, 760], [3750, 840], [3935, 840], [3935, 800],
+             [4200, 800], [4200, edge_at(4200)], b(163, 930)]
     # the window fits snugly around the board-to-board connector (its pads and hold-downs, 0.1 mm clear)
     btb = [q["polygon"] for c in d.load_js("components.js", "COMPONENTS") if c["id"] == "BTB" for q in c["pads"]]
     bx = [v[0] for pg in btb for v in pg]; by = [v[1] for pg in btb for v in pg]
@@ -195,7 +200,9 @@ def specimen_b():
     out.append(dict(t="slab", poly=poly(body), holes=[poly(h) for h in holes], z=[zf0, zf1], color="#161618", opacity=1,
                     title="Implant flex (black-coated)", notes="Orange polyimide flex painted black, cut to fit under the OLED "
                     "around the Ledger's own parts: the window fits snugly around the board-to-board connector, and cut-outs around "
-                    "C30, C31 and C32 key it into place so it can't be misaligned; it stops short of C33 and C34"))
+                    "C30, C31 and C32 key it into place so it can't be misaligned; it stops short of C33 and C34. "
+                    "It taps only the OLED SPI CS, CLK and MOSI test pads (31, 34, 35), skipping the D/C (36) and SE "
+                    "RESET (29) pads specimen A also soldered to, which likely made it easier to install"))
     parts = [
         ((772, 565, 1170, 925), 1.3, "#cfcfcc", "Nordic\nnRF9151", "Nordic nRF9151 module",
          "LTE-M / NB-IoT modem with its own regulatory markings, left unscraped"),
