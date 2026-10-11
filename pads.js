@@ -40,5 +40,5 @@ window.PADS = [
   {"id":"37","name":"","notes":"","side":"back","x":4308,"y":1770,"r":45},
   {"id":"38","name":"","notes":"","side":"back","x":4414,"y":1970,"r":45},
   {"id":"39","name":"","notes":"","side":"back","x":4778,"y":1152,"r":45},
-  {"id":"40","name":"","notes":"","side":"back","x":4950,"y":1772,"r":45}
+  {"id":"40","name":"Right button","notes":"","side":"back","x":4950,"y":1772,"r":45}
 ];
