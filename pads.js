@@ -26,7 +26,7 @@ window.PADS = [
   {"id":"23","name":"","notes":"","side":"back","x":2472,"y":1228,"r":45},
   {"id":"24","name":"+3.3V rail","notes":"","side":"back","x":2470,"y":1900,"r":45},
   {"id":"25","name":"","notes":"","side":"back","x":2690,"y":849,"r":45},
-  {"id":"26","name":"","notes":"","side":"back","x":2690,"y":1228,"r":45},
+  {"id":"26","name":"MCU NRST","notes":"","side":"back","x":2690,"y":1228,"r":45},
   {"id":"27","name":"","notes":"","side":"back","x":2854,"y":1370,"r":45},
   {"id":"28","name":"Left button","notes":"","side":"back","x":3124,"y":850,"r":45},
   {"id":"29","name":"SE RESET","notes":"","side":"back","x":3128,"y":1148,"r":45},
