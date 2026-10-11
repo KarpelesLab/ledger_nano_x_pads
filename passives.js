@@ -22,7 +22,7 @@ window.PASSIVES = [
   {"id":"R13","kind":"R","side":"front","box":[1870,1694,60,100],"axis":"v"},
   {"id":"C6","kind":"C","side":"front","box":[1885,1841,46,78],"axis":"v"},
   {"id":"C7","kind":"C","side":"front","box":[1890,958,100,60],"axis":"h"},
-  {"id":"R14","kind":"R","side":"front","box":[1925,904,46,24],"axis":"h"},
+  {"id":"R14","kind":"R","side":"front","box":[1922,1898,92,44],"axis":"h"},
   {"id":"C8","kind":"C","side":"front","box":[1936,1195,32,66],"axis":"v"},
   {"id":"R15","kind":"R","side":"front","box":[1925,1053,78,46],"axis":"h"},
   {"id":"C9","kind":"C","side":"front","box":[1911,1500,114,72],"axis":"h"},
