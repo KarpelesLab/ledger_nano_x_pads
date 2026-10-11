@@ -1,7 +1,7 @@
 // The board's 40 test pads, numbered as in img/back_with_details.jpg.
 // Centers and radii are pixels in the 5376x3024 photos.
 window.PADS = [
-  {"id":"01","name":"","notes":"","side":"back","x":490,"y":944,"r":45},
+  {"id":"01","name":"USB CC2","notes":"","side":"back","x":490,"y":944,"r":45},
   {"id":"02","name":"Left button power","notes":"Lets the left button also act as the power button; exact role not yet known","side":"back","x":848,"y":1100,"r":45},
   {"id":"03","name":"","notes":"","side":"back","x":828,"y":1686,"r":45},
   {"id":"04","name":"","notes":"","side":"back","x":971,"y":1971,"r":45},
@@ -9,10 +9,10 @@ window.PADS = [
   {"id":"06","name":"","notes":"","side":"back","x":1048,"y":1664,"r":45},
   {"id":"07","name":"","notes":"","side":"back","x":1116,"y":932,"r":45},
   {"id":"08","name":"","notes":"","side":"back","x":1190,"y":1968,"r":45},
-  {"id":"09","name":"","notes":"","side":"back","x":1280,"y":1224,"r":45},
+  {"id":"09","name":"PD SDA","notes":"","side":"back","x":1280,"y":1224,"r":45},
   {"id":"10","name":"I2C1 SCL","notes":"","side":"back","x":1432,"y":1970,"r":45},
-  {"id":"11","name":"","notes":"","side":"back","x":1478,"y":1406,"r":45},
-  {"id":"12","name":"","notes":"","side":"back","x":1476,"y":1664,"r":45},
+  {"id":"11","name":"PD VBUS_EN_SNK","notes":"","side":"back","x":1478,"y":1406,"r":45},
+  {"id":"12","name":"VBUS","notes":"","side":"back","x":1476,"y":1664,"r":45},
   {"id":"13","name":"","notes":"","side":"back","x":1570,"y":981,"r":45},
   {"id":"14","name":"","notes":"","side":"back","x":1612,"y":1222,"r":45},
   {"id":"15","name":"","notes":"","side":"back","x":1786,"y":978,"r":45},

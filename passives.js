@@ -3,7 +3,7 @@
 // height] in pixels of the 5376x3024 photos and axis the direction from one end cap to the other.
 // Detected automatically and reviewed by eye; a few parts may still be missing or misread.
 window.PASSIVES = [
-  {"id":"R1","kind":"R","side":"front","box":[703,1884,66,32],"axis":"h"},
+  {"id":"R1","kind":"R","side":"front","box":[746,1870,36,86],"axis":"v"},
   {"id":"C1","kind":"C","side":"front","box":[848,1523,48,98],"axis":"v"},
   {"id":"R3","kind":"R","side":"front","box":[1221,1089,78,46],"axis":"h"},
   {"id":"C2","kind":"C","side":"front","box":[1333,1617,78,46],"axis":"h"},
@@ -12,10 +12,10 @@ window.PASSIVES = [
   {"id":"C3","kind":"C","side":"front","box":[1441,1073,46,78],"axis":"v"},
   {"id":"R6","kind":"R","side":"front","box":[1449,1904,46,24],"axis":"h"},
   {"id":"R7","kind":"R","side":"front","box":[1465,1681,78,46],"axis":"h"},
-  {"id":"R8","kind":"R","side":"front","box":[1500,869,24,46],"axis":"v"},
+  {"id":"R8","kind":"R","side":"front","box":[1502,866,36,70],"axis":"v"},
   {"id":"R9","kind":"R","side":"front","box":[1463,1612,98,48],"axis":"h"},
   {"id":"R10","kind":"R","side":"front","box":[1486,1466,60,100],"axis":"v"},
-  {"id":"C4","kind":"C","side":"front","box":[1517,1760,50,97],"axis":"v"},
+  {"id":"X4","kind":"X","side":"front","box":[1517,1760,50,97],"axis":"v","notes":"Two-terminal part left of PWR2 with a white body, unlike the brown capacitors on this board; was C4. Could be an inductor, ferrite bead or white capacitor"},
   {"id":"R11","kind":"R","side":"front","box":[1593,1216,46,24],"axis":"h"},
   {"id":"R12","kind":"R","side":"front","box":[1625,1589,46,78],"axis":"v"},
   {"id":"C5","kind":"C","side":"front","box":[1772,1587,48,98],"axis":"v"},
@@ -45,17 +45,17 @@ window.PASSIVES = [
   {"id":"C22","kind":"C","side":"front","box":[3129,1785,78,46],"axis":"h"},
   {"id":"C23","kind":"C","side":"front","box":[3136,883,72,114],"axis":"v"},
   {"id":"C24","kind":"C","side":"front","box":[3232,911,48,98],"axis":"v"},
-  {"id":"C25","kind":"C","side":"front","box":[3251,1904,114,72],"axis":"h"},
+  {"id":"X5","kind":"X","side":"front","box":[3251,1904,114,72],"axis":"h","notes":"Two-terminal part in the antenna matching network with a grey/white body; was C25. Either a C0G/NP0 capacitor (often grey or white) or a ceramic chip inductor"},
   {"id":"X1","kind":"X","side":"front","box":[3296,1650,124,220],"axis":"v","notes":"Two-terminal part in series in the Bluetooth RF path between RF 2 and RF 3 (only two pads in the bare photo). White ceramic body with a black mark on one end, on oversized pads; not a capacitor. Possibly an RF chip inductor, not confirmed"},
   {"id":"R20","kind":"R","side":"front","box":[3369,833,78,46],"axis":"h"},
-  {"id":"C27","kind":"C","side":"front","box":[3363,1556,114,72],"axis":"h"},
+  {"id":"X6","kind":"X","side":"front","box":[3363,1556,114,72],"axis":"h","notes":"Two-terminal part in the antenna matching network with a grey/white body; was C27. Either a C0G/NP0 capacitor (often grey or white) or a ceramic chip inductor"},
   {"id":"R21","kind":"R","side":"front","box":[3744,1287,48,98],"axis":"v"},
   {"id":"R22","kind":"R","side":"front","box":[3827,932,98,48],"axis":"h"},
   {"id":"R23","kind":"R","side":"front","box":[4446,1258,60,100],"axis":"v"},
   {"id":"R24","kind":"R","side":"front","box":[4482,1534,60,100],"axis":"v"},
   {"id":"C28","kind":"C","side":"front","box":[4625,1584,118,56],"axis":"h"},
   {"id":"C29","kind":"C","side":"front","box":[4615,1468,154,72],"axis":"h"},
-  {"id":"R25","kind":"R","side":"front","box":[4993,1761,78,46],"axis":"h"},
+  {"id":"R25","kind":"R","side":"front","box":[4975,1745,115,70],"axis":"h"},
   {"id":"R26","kind":"R","side":"front","box":[5158,1666,60,100],"axis":"v"},
   {"id":"R27","kind":"R","side":"back","box":[684,803,48,98],"axis":"v"},
   {"id":"R28","kind":"R","side":"back","box":[799,812,98,48],"axis":"h"},
@@ -71,5 +71,8 @@ window.PASSIVES = [
   {"id":"R33","kind":"R","side":"back","box":[4699,876,98,48],"axis":"h"},
   {"id":"R34","kind":"R","side":"back","box":[4728,1863,48,98],"axis":"v"},
   {"id":"R35","kind":"R","side":"front","box":[1320,1960,35,67],"axis":"v","notes":"0201 resistor, added by hand after the automatic pass missed it"},
-  {"id":"R36","kind":"R","side":"front","box":[976,1600,94,28],"axis":"h","notes":"Resistor from STUSB4500L pin 23 to ground; added by hand after the automatic pass missed it"}
+  {"id":"C35","kind":"C","side":"front","box":[976,1600,94,28],"axis":"h","notes":"Decoupling capacitor on STUSB4500L pin 23 (VREG_2V7, 1 uF typ. per datasheet) to ground; was R36, its body is dark brown rather than black. Added by hand"},
+  {"id":"R37","kind":"R","side":"front","box":[2977,955,90,53],"axis":"h","notes":"Resistor below R18; added by hand after the automatic pass missed it"},
+  {"id":"X7","kind":"X","side":"front","box":[3040,1892,55,100],"axis":"v","notes":"Grey two-terminal part at the end of HSE crystal OUT, past Y1; most likely that crystal's load capacitor (C0G types are grey), not confirmed. Added by hand"},
+  {"id":"X8","kind":"X","side":"front","box":[2706,1905,62,98],"axis":"v","notes":"Grey two-terminal part on HSE crystal IN, left of Y1, mirroring X7; most likely the crystal's other load capacitor (C0G types are grey), not confirmed. Added by hand"}
 ];

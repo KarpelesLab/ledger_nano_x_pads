@@ -9,10 +9,12 @@ window.COMPONENTS = [
    // from ST's STM32_open_pin_data, mcu/STM32WB35C(C-E)UxA.xml; the exposed pad is VSS
    "pinNames":{"1":"VBAT","2":"PC14-OSC32_IN","3":"PC15-OSC32_OUT","4":"PH3-BOOT0","5":"PB8","6":"PB9","7":"NRST","8":"VDDA","9":"PA0","10":"PA1","11":"PA2","12":"PA3","13":"PA4","14":"PA5","15":"PA6","16":"PA7","17":"PA8","18":"PA9","19":"PB2","20":"VDD","21":"RF1","22":"VSSRF","23":"VDDRF","24":"OSC_OUT","25":"OSC_IN","26":"AT0","27":"AT1","28":"PB0","29":"PB1","30":"PE4","31":"VFBSMPS","32":"VSSSMPS","33":"VLXSMPS","34":"VDDSMPS","35":"VDD","36":"PA10","37":"PA11","38":"PA12","39":"PA13","40":"VDDUSB","41":"PA14","42":"PA15","43":"PB3","44":"PB4","45":"PB5","46":"PB6","47":"PB7","48":"VDD","EP":"VSS"}},
   {"id":"SE","part":"secure element","package":"QFN20","side":"front","size":4,"pitch":0.5,"pinsPerSide":5,"exposedPad":2.7,
-   "corners":[[3351,1308],[3336,964],[3687,968],[3688,1310]],"pinNames":{}},
+   "corners":[[3351,1308],[3336,964],[3687,968],[3688,1310]],"pinNames":{"10":"GND"}},
   {"id":"USBPD","part":"STUSB4500L","package":"QFN24","side":"front","size":4,"pitch":0.5,"pinsPerSide":6,"exposedPad":2.7,
-   "notes":"USB power delivery controller; pin 1 inferred from the marking orientation",
-   "corners":[[988,1545],[1001,1216],[1321,1216],[1317,1543]],"pinNames":{}},
+   "notes":"USB power delivery controller; pin 1 inferred from the marking orientation and confirmed by the traces (CC1DB/CC1 and CC2/CC2DB are tied)",
+   "corners":[[988,1545],[1001,1216],[1321,1216],[1317,1543]],
+   // from the STUSB4500L datasheet (DS13102), QFN24 pin function list
+   "pinNames":{"1":"CC1DB","2":"CC1","3":"NU (to ground)","4":"CC2","5":"CC2DB","6":"RESET","7":"SCL","8":"SDA","9":"DISCH","10":"GND","11":"ATTACH","12":"ADDR0","13":"ADDR1","14":"RP_1A5","15":"GPIO","16":"VBUS_EN_SNK","17":"A_B_SIDE","18":"VBUS_VS_DISCH","19":"ALERT","20":"RP_3A","21":"VREG_1V2","22":"VSYS","23":"VREG_2V7","24":"VDD","EP":"GND"}},
   // parts not identified yet
   {"id":"PWR1","part":"unknown","package":"16 pins, ~2.75 mm square","side":"front","size":2.75,"pitch":0.5,"pinsPerSide":4,"exposedPad":1.5,
    "notes":"Very likely power related; pin 1 not verified, numbered from the first corner outlined",
@@ -45,15 +47,21 @@ window.COMPONENTS = [
     {"id":"5","name":"not connected","polygon":[[2995,1662],[3045,1662],[3045,1740],[2995,1740]]},
     {"id":"6","name":"GND","polygon":[[2940,1662],[2987,1662],[2987,1740],[2940,1740]]},
     {"id":"OUT","name":"RF out, toward C27 and the antenna","polygon":[[3090,1615],[3135,1615],[3135,1660],[3090,1660]]}]},
-  {"id":"P1","part":"unknown, marked P","package":"black, ~1.9 x 1.05 mm","side":"front",
-   "notes":"Black part marked P (reads as b in the mirrored front photo), next to the STUSB4500L; terminals not identified yet",
+  {"id":"P1","part":"likely an ESD protection diode, marked P","package":"black, ~1.9 x 1.05 mm","side":"front",
+   "notes":"Black part marked P (reads as b in the mirrored front photo) on USB CC1, next to the STUSB4500L; one of several such parts around the USB port, so most likely ESD protection. Terminals not identified yet",
    "corners":[[852,1333],[940,1333],[940,1493],[852,1493]]},
-  {"id":"X2","part":"unknown","package":"3 pins, black, ~1.2 x 0.8 mm","side":"front",
-   "notes":"Small 3-pin part right of R35: two small pads on one side and a larger one on the other in the bare photo; type unknown",
+  {"id":"X2","part":"unknown, marked 2GC","package":"3 pins, shiny, ~1.2 x 0.8 mm","side":"front",
+   "notes":"Small shiny 3-pin part right of R35, marked 2GC: two small pads on one side and a larger one on the other in the bare photo; type unknown",
    "corners":[[1362,1942],[1465,1942],[1465,2010],[1362,2010]]},
-  {"id":"X3","part":"unknown","package":"3 pins, shiny blue-grey, very small","side":"front",
-   "notes":"Very small shiny 3-pin part with a dark dot, next to X2; type unknown",
+  {"id":"X3","part":"unknown, marked 6","package":"3 pins, shiny blue-grey, very small","side":"front",
+   "notes":"Very small shiny 3-pin part with a dark dot, next to X2, marked 6; type unknown",
    "corners":[[1470,1942],[1535,1942],[1535,2007],[1470,2007]]},
+  {"id":"Y1","part":"crystal, likely the 32 MHz HSE","package":"4 corner pads, ~2.0 x 1.6 mm","side":"front",
+   "notes":"Marked 32k0 J 2B; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground","pads":[
+    {"id":"TL","name":"GND","polygon":[[2845,1842],[2907,1842],[2907,1914],[2845,1914]]},
+    {"id":"TR","name":"crystal, to HSE OUT (MCU pin 24)","polygon":[[2930,1842],[2992,1842],[2992,1914],[2930,1914]]},
+    {"id":"BR","name":"GND","polygon":[[2930,1942],[2992,1942],[2992,2014],[2930,2014]]},
+    {"id":"BL","name":"crystal, to HSE IN (MCU pin 25)","polygon":[[2845,1942],[2907,1942],[2907,2014],[2845,2014]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
