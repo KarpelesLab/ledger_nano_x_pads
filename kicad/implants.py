@@ -14,7 +14,8 @@ and partly inferred where the photos don't show a part:
     cut with straight edges along the board's axes.
   Specimen B (generation 3): a black-coated flex cut to fit under the OLED on the back of the board, around
     the board-to-board connector, carrying an nRF9151 module, a scraped MCU and eSIM and a U.FL connector,
-    with a coax lead to an antenna stuck on the inside wall of the case. Placed from the photo of the board
+    with a coax lead to an antenna stuck inside the case (not modelled), and a leg that wraps around the bottom
+    edge to the battery contacts on the front. Placed from the photo of the board
     with the screen removed, mapped onto the board by the USB shell joints, the two buttons and the BTB
     connector.
 
@@ -170,12 +171,33 @@ def specimen_b():
     zc = zf0 - 1.0
     coax = [b(*p) for p in [[990, 505], [800, 480], [600, 455], [500, 445], [470, 470], [455, 530]]]
     out.append(dict(t="tube", points=[[*xy(*p), zc] for p in coax], radius=.35, color="#111111",
-                    title="Coax lead", notes="Thin coax from the U.FL connector to the antenna on the case wall"))
-    # the antenna is stuck on the case wall along the top edge, outside the board
-    x0, x1 = b(1000, 500)[0], b(150, 500)[0]
-    out.append(dict(t="box", at=xy((x0 + x1) / 2, 690), size=[abs(x1 - x0) / S, .12], z=[-2.4, 2.4], color="#121212",
-                    title="Antenna AC-A2016-NANO-V1.1", notes="Flexible printed antenna made for the Nano X, stuck along "
-                    "the inside wall of the case shell (position approximate, as the case is not modelled)"))
+                    title="Coax lead", notes="Thin coax from the U.FL connector to the antenna AC-A2016-NANO-V1.1, which is "
+                                             "stuck inside the case shell (not modelled, as the case isn't)"))
+    # the leg: leaves the body's bottom edge, folds around the board's bottom edge to the front and runs
+    # under the battery contacts, ending in two tabs on battery + (pad 3) and battery - (pad 1)
+    zl0, zl1 = TOP + .85, TOP + .92            # on the front, above the parts it crosses
+    exit_x, exit_y = b(1460, 930)
+    lx0, lx1 = exit_x - 50, exit_x + 50
+    edge = 2074
+    leg = dict(color="#161618", opacity=1, title="Leg (black-coated flex)",
+               notes="Branches off the body, wraps around the board's bottom edge to the front and lands on the battery "
+                     "contacts, so the implant is powered straight from the battery (+ and -)")
+    out.append(dict(t="slab", poly=rect(lx0, exit_y - 20, lx1, edge), z=[zf0, zf1], **leg))
+    r = (zl1 - zf1) / 2
+    zc = (zl1 + zf1) / 2
+    path = [[edge - 30, zf1], [edge, zf1]]
+    for k in range(1, 12):
+        phi = -math.pi / 2 + math.pi * k / 12
+        path.append([edge + r * S * math.cos(phi), zc + r * math.sin(phi)])
+    path += [[edge, zl1], [edge - 40, zl1]]
+    out.append(dict(t="ribbon", x=[lx0 / S, lx1 / S], path=[[round((y - d.IMG_H) / S, 3), round(z, 3)] for y, z in path], **leg))
+    out.append(dict(t="slab", poly=poly([[lx1, edge], [1015, edge], [1015, 940], [1100, 940], [1100, 1960], [lx1, 1960]]),
+                    z=[zl0, zl1], **leg))
+    out.append(dict(t="slab", poly=rect(930, 1780, 1015, 1880), z=[zl0, zl1], **leg))
+    for (x, y), pol in (((975, 1830), "-"), ((1060, 952), "+")):
+        out.append(dict(t="box", at=xy(x, y), size=[.9, .9], z=[TOP, zl0], color="#d8d8d8",
+                        title=f"Leg tab on battery {pol}", notes=f"Solder tab on the battery {'+' if pol == '+' else '-'} contact "
+                                                          "(battery pad 3 is likely +, pad 1 likely -)"))
     return out
 
 
