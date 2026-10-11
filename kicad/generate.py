@@ -218,7 +218,7 @@ def main():
         return chain
 
     # GND pours: the inner plane (assumed) and the copper fill visible on both outer layers in the
-    # bare photos. Islands are kept, as not every stitching via that ties them to ground is traced.
+    # bare photos. Islands with no traced via or pad are removed, as on the real board.
     for layer, name in ((pcbnew.In1_Cu, "GND plane (assumed)"), (pcbnew.F_Cu, "GND pour, front"), (pcbnew.B_Cu, "GND pour, back")):
         zone = pcbnew.ZONE(board)
         zone.SetLayer(layer)
@@ -229,7 +229,7 @@ def main():
         zone.SetLocalClearance(pcbnew.FromMM(0.15))
         zone.SetMinThickness(pcbnew.FromMM(0.12))
         zone.SetPadConnection(pcbnew.ZONE_CONNECTION_FULL)
-        zone.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_NEVER)
+        zone.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         zone.SetAssignedPriority(0 if layer == pcbnew.In1_Cu else 1)
         board.Add(zone)
 
@@ -247,21 +247,8 @@ def main():
         keep.Outline().AddOutline(polygon([[3620, top], [3965, top], [3965, d.IMG_H], [3620, d.IMG_H]]))
         keep.SetZoneName("Antenna keep-out")
         board.Add(keep)
-    for t in traces:
-        if t["name"] != "GND":
-            continue
-        # each ground pin drops into the plane through a via, marked as assumed
-        for q in t.get("pins", []):
-            via = pcbnew.PCB_VIA(board)
-            # blind, from the pin's side down to the plane only, so it cannot touch copper on the other side
-            via.SetViaType(pcbnew.VIATYPE_BLIND)
-            via.SetLayerPair(pcbnew.F_Cu if q["side"] == "front" else pcbnew.B_Cu, pcbnew.In1_Cu)
-            via.SetPosition(mm(q["x"], q["y"]))
-            # small enough to sit on a 0.5 mm pitch pin without touching its neighbours' tracks
-            via.SetDrill(pcbnew.FromMM(0.1))
-            via.SetWidth(pcbnew.FromMM(0.2))
-            via.SetNet(nets_by_name["GND"])
-            board.Add(via)
+    # GND pins get no via of their own: the real stitching vias are traced, and pins connect through
+    # the copper pour on their side
     # filling the zone from Python crashes KiCad 10's pcbnew module: it is filled on first open in KiCad,
     # or by kicad-cli pcb drc --refill-zones
 
