@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nano X PCB front/back flip</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #view { position: fixed; inset: 0; cursor: pointer; touch-action: none; }
+  #stack { position: absolute; inset: 0; transform-origin: 0 0; }
+  #stack img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; user-select: none; -webkit-user-drag: none;
+  }
+  #stack img.hidden { visibility: hidden; }
+  #stack.flipped img { transform: scaleY(-1); }
+  #panel {
+    position: fixed; top: 8px; left: 8px; max-width: calc(100vw - 16px); box-sizing: border-box;
+    padding: 6px 10px; font: 14px/1.4 system-ui, sans-serif; color: #fff;
+    background: rgba(0, 0, 0, .7); border-radius: 6px; user-select: none;
+  }
+  #panel summary { cursor: pointer; font-family: monospace; }
+  #panel label { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; }
+  #panel input { width: 18px; height: 18px; margin: 0; cursor: pointer; }
+  #panel button { margin: 4px 0; font: inherit; cursor: pointer; }
+  #panel ul { margin: 6px 0 2px; padding-left: 18px; font-size: 12px; color: #ccc; }
+  #panel kbd { font: 11px monospace; padding: 0 3px; border: 1px solid #777; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div id="view">
+  <div id="stack">
+    <img src="img/back_with_details.jpg" alt="back" draggable="false">
+    <img class="hidden" src="img/front_with_details_adjusted.jpg" alt="front" draggable="false">
+    <img class="hidden" src="img/back_empty.jpg" alt="back, bare" draggable="false">
+    <img class="hidden" src="img/front_empty.jpg" alt="front, bare" draggable="false">
+  </div>
+</div>
+<details id="panel" open>
+  <summary id="label">back</summary>
+  <label><input type="checkbox" id="opt-front"> Front side</label>
+  <label><input type="checkbox" id="opt-empty"> Bare board (components removed, no annotations)</label>
+  <label><input type="checkbox" id="opt-flip"> Mirror vertically</label>
+  <button id="reset">Reset zoom</button>
+  <ul>
+    <li>Click / tap / <kbd>Space</kbd>: front ↔ back</li>
+    <li>Middle-click / <kbd>E</kbd>: annotated ↔ bare board, to trace tracks hidden under components</li>
+    <li>Right-click / <kbd>F</kbd>: mirror vertically</li>
+    <li>Scroll: zoom, drag: pan, <kbd>0</kbd>: reset</li>
+  </ul>
+</details>
+<script>
+  const view = document.getElementById('view');
+  const stack = document.getElementById('stack');
+  // index = side (0 back, 1 front) + 2 * variant (0 with details, 1 empty)
+  const imgs = [...stack.querySelectorAll('img')];
+  const label = document.getElementById('label');
+  const optFront = document.getElementById('opt-front');
+  const optEmpty = document.getElementById('opt-empty');
+  const optFlip = document.getElementById('opt-flip');
+  let shown = 0, scale = 1, tx = 0, ty = 0;
+
+  function show(i) {
+    imgs[shown].classList.add('hidden');
+    shown = i;
+    imgs[shown].classList.remove('hidden');
+    updateLabel();
+  }
+
+  function toggle() { show(shown ^ 1); }
+  function toggleVariant() { show(shown ^ 2); }
+
+  function updateLabel() {
+    const flipped = stack.classList.contains('flipped');
+    label.textContent = imgs[shown].alt + (flipped ? ' (flipped)' : '');
+    optFront.checked = !!(shown & 1);
+    optEmpty.checked = !!(shown & 2);
+    optFlip.checked = flipped;
+  }
+
+  // flip vertically, keeping screen row y in place when zoomed
+  function flipAt(y) {
+    stack.classList.toggle('flipped');
+    if (scale !== 1) {
+      ty = 2 * y - ty - scale * view.clientHeight;
+      apply();
+    }
+    updateLabel();
+  }
+
+  function reset() { scale = 1; tx = ty = 0; apply(); }
+
+  function apply() {
+    stack.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  }
+
+  // wheel zooms around the cursor
+  view.addEventListener('wheel', e => {
+    e.preventDefault();
+    const s = Math.min(40, Math.max(1, scale * Math.exp(-e.deltaY * 0.0015)));
+    tx = e.clientX - (e.clientX - tx) * (s / scale);
+    ty = e.clientY - (e.clientY - ty) * (s / scale);
+    scale = s;
+    if (scale === 1) tx = ty = 0;
+    apply();
+  }, { passive: false });
+
+  // right click flips vertically around the cursor
+  view.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    flipAt(e.clientY);
+  });
+
+  // checkboxes; blur afterwards so Space goes back to the global shortcut
+  optFront.addEventListener('change', () => { toggle(); optFront.blur(); });
+  optEmpty.addEventListener('change', () => { toggleVariant(); optEmpty.blur(); });
+  optFlip.addEventListener('change', () => { flipAt(view.clientHeight / 2); optFlip.blur(); });
+  document.getElementById('reset').addEventListener('click', e => { reset(); e.currentTarget.blur(); });
+
+  // drag pans; a press without movement is a click and toggles
+  let down = null, moved = false;
+  view.addEventListener('pointerdown', e => {
+    // middle click switches between the detailed and empty variants
+    if (e.button === 1) { e.preventDefault(); toggleVariant(); return; }
+    if (e.button !== 0) return;
+    down = { x: e.clientX, y: e.clientY, tx, ty };
+    moved = false;
+    view.setPointerCapture(e.pointerId);
+  });
+  view.addEventListener('pointermove', e => {
+    if (!down) return;
+    const dx = e.clientX - down.x, dy = e.clientY - down.y;
+    if (!moved && Math.hypot(dx, dy) < 4) return;
+    moved = true;
+    tx = down.tx + dx;
+    ty = down.ty + dy;
+    apply();
+  });
+  view.addEventListener('pointerup', () => {
+    if (down && !moved) toggle();
+    down = null;
+  });
+  view.addEventListener('pointercancel', () => { down = null; });
+  // keep middle click from starting autoscroll
+  view.addEventListener('mousedown', e => { if (e.button === 1) e.preventDefault(); });
+
+  addEventListener('keydown', e => {
+    // let a focused panel control handle its own keys
+    if (e.target.closest && e.target.closest('#panel')) return;
+    if (e.key === ' ') { e.preventDefault(); toggle(); }
+    else if (e.key === 'e') toggleVariant();
+    else if (e.key === 'f') flipAt(view.clientHeight / 2);
+    else if (e.key === '0') reset();
+  });
+</script>
+</body>
+</html>
