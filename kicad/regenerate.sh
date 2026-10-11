@@ -11,3 +11,5 @@ kicad-cli pcb drc --refill-zones --save-board -o /dev/null nanox.kicad_pcb >/dev
 python3 check.py
 python3 export_overlay.py
 python3 export_scene.py
+# 3D renders and STEP export, so they never fall behind the board
+./render.sh
