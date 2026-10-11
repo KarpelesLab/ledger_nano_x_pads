@@ -23,7 +23,7 @@ window.PADS = [
   {"id":"20","name":"SWCLK","notes":"Legacy SWD debug access: Ledger originally left the STM32 unlocked so users could verify the device's state over SWD. That was shown to be a risk, and the STM32 now ships locked, so this port can no longer be used","side":"back","x":2018,"y":1441,"r":45},
   {"id":"21","name":"SWDIO","notes":"Legacy SWD debug access: Ledger originally left the STM32 unlocked so users could verify the device's state over SWD. That was shown to be a risk, and the STM32 now ships locked, so this port can no longer be used","side":"back","x":2016,"y":1661,"r":45},
   {"id":"22","name":"Supply sense (MCU PA1)","notes":"Voltage sense into MCU PA1 (ADC1_IN6): R31 and R32 divide down the supply on TP07's net, R32 to ground","side":"back","x":2472,"y":852,"r":45},
-  {"id":"23","name":"","notes":"","side":"back","x":2472,"y":1228,"r":45},
+  {"id":"23","name":"GND","notes":"","side":"back","x":2472,"y":1228,"r":45},
   {"id":"24","name":"+3.3V rail","notes":"","side":"back","x":2470,"y":1900,"r":45},
   {"id":"25","name":"MCU PA5","notes":"MCU PA5, with R19 and R37; role not known","side":"back","x":2690,"y":849,"r":45},
   {"id":"26","name":"MCU NRST","notes":"","side":"back","x":2690,"y":1228,"r":45},
