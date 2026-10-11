@@ -48,6 +48,12 @@ window.COMPONENTS = [
   {"id":"P1","part":"unknown, marked P","package":"black, ~1.9 x 1.05 mm","side":"front",
    "notes":"Black part marked P (reads as b in the mirrored front photo), next to the STUSB4500L; terminals not identified yet",
    "corners":[[852,1333],[940,1333],[940,1493],[852,1493]]},
+  {"id":"X2","part":"unknown","package":"3 pins, black, ~1.2 x 0.8 mm","side":"front",
+   "notes":"Small 3-pin part right of R35: two small pads on one side and a larger one on the other in the bare photo; type unknown",
+   "corners":[[1362,1942],[1465,1942],[1465,2010],[1362,2010]]},
+  {"id":"X3","part":"unknown","package":"3 pins, shiny blue-grey, very small","side":"front",
+   "notes":"Very small shiny 3-pin part with a dark dot, next to X2; type unknown",
+   "corners":[[1470,1942],[1535,1942],[1535,2007],[1470,2007]]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},

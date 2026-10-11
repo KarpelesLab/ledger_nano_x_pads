@@ -69,5 +69,7 @@ window.PASSIVES = [
   {"id":"C33","kind":"C","side":"back","box":[4540,1863,72,114],"axis":"v"},
   {"id":"C34","kind":"C","side":"back","box":[4648,1853,56,118],"axis":"v"},
   {"id":"R33","kind":"R","side":"back","box":[4699,876,98,48],"axis":"h"},
-  {"id":"R34","kind":"R","side":"back","box":[4728,1863,48,98],"axis":"v"}
+  {"id":"R34","kind":"R","side":"back","box":[4728,1863,48,98],"axis":"v"},
+  {"id":"R35","kind":"R","side":"front","box":[1320,1960,35,67],"axis":"v","notes":"0201 resistor, added by hand after the automatic pass missed it"},
+  {"id":"R36","kind":"R","side":"front","box":[976,1600,94,28],"axis":"h","notes":"Resistor from STUSB4500L pin 23 to ground; added by hand after the automatic pass missed it"}
 ];
