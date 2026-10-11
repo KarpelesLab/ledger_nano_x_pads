@@ -18,11 +18,14 @@ window.COMPONENTS = [
    "notes":"Very likely power related; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1822,902],[1816,1130],[1585,1137],[1590,903]],"pinNames":{}},
   {"id":"PWR2","part":"unknown","package":"10 pins, ~2.9 x 1.9 mm","side":"front","size":[2.9,1.9],"pitch":0.5,"pinCounts":[5,0,5,0],
-   "notes":"Very likely power related; marked E058 2050; pin 1 not verified, numbered from the first corner outlined",
+   "notes":"Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; marked E058 2050; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1835,1913],[1590,1917],[1595,1760],[1839,1758]],"pinNames":{}},
   {"id":"PWR3","part":"unknown","package":"6 pins, ~1.5 mm square","side":"front","size":1.5,"pitch":0.5,"pinCounts":[3,0,3,0],
    "notes":"Very likely power related; marked TC; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1421,1848],[1293,1853],[1297,1731],[1419,1730]],"pinNames":{}},
+  {"id":"ANT","part":"chip antenna","package":"ceramic, ~3.6 x 1.6 mm","side":"front",
+   "notes":"2.4 GHz Bluetooth antenna, fed at its left end by Bluetooth RF 3; the copper-free area above it is its keep-out zone",
+   "corners":[[3615,1903],[3958,1903],[3958,2037],[3615,2037]]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"One of the three battery pads is +, one is -, one is the temperature sensor; which is which is not known yet","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
