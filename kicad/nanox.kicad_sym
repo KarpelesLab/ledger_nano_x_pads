@@ -902,17 +902,6 @@
     (pin passive line (at 10.16 0.00 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
    )
   )
-  (symbol "R37" (in_bom yes) (on_board yes)
-   (property "Reference" "R" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Value" "nanox:R37" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-   (symbol "R37_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
-   (symbol "R37_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 0.00 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
-   )
-  )
   (symbol "R4" (in_bom yes) (on_board yes)
    (property "Reference" "R" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
    (property "Value" "nanox:R4" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
