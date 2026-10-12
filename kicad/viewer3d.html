@@ -33,6 +33,7 @@
   <label>Implant overlay
     <select id="implant">
       <option value="">none</option>
+      <option value="C">Specimen C (generation 1)</option>
       <option value="A">Specimen A (generation 2)</option>
       <option value="B">Specimen B (generation 3)</option>
     </select>
@@ -307,7 +308,7 @@ $('implant').onchange = e => {
   for (const [k, g] of Object.entries(implantGroups)) g.visible = k === e.target.value;
   const spec = window.IMPLANTS?.[e.target.value];
   $('implant-note').hidden = !spec;
-  if (spec) $('implant-note').textContent = spec.summary + '. Approximate model from Tibane Labs\' photographs.';
+  if (spec) $('implant-note').textContent = spec.summary + `. Approximate model from photographs by ${spec.source || 'Tibane Labs'}.`;
   e.target.blur();
 };
 

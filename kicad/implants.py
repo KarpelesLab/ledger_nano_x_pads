@@ -1,8 +1,8 @@
-"""Write implants.js for viewer3d.html: approximate 3D models of the two hardware implants Tibane Labs
-found in Ledger Nano X devices (https://tibane.net, "Ledger Nano X: the spy implant"), placed on the
-reconstructed board.
+"""Write implants.js for viewer3d.html: approximate 3D models of hardware implants found in Ledger Nano X
+devices, placed on the reconstructed board: the two Tibane Labs examined (https://tibane.net, "Ledger Nano X:
+the spy implant") and an earlier, hand-wired one.
 
-Everything here is measured from Tibane Labs' photographs, so it is approximate (to about a millimetre)
+Everything here is measured from photographs, so it is approximate (to about a millimetre)
 and partly inferred where the photos don't show a part:
 
   Specimen A (generation 2): a translucent amber Kapton flex. Its tap layer is laminated over the back of
@@ -18,6 +18,13 @@ and partly inferred where the photos don't show a part:
     edge to the battery contacts on the front. Placed from the photo of the board
     with the screen removed, mapped onto the board by the USB shell joints, the two buttons and the BTB
     connector.
+  Specimen C (generation 1): no flex at all. A small green board marked "V03", a copper coil antenna and a
+    half-size 70 mAh cell (XYT 261626) sit in the case under the front of the board, where the original battery
+    was, and fine enamelled wires run from the V03 board around the board's top edge to the test pads on the
+    back (a blob of white glue holds them over the display pads) and to the battery contacts on the front.
+    From @Us_Chan007's photographs (x.com/Us_Chan007/status/2109259136915624446 and 2109260884258554298);
+    the back joints were located by fitting the photo of the back onto the board (USB shell joints, the
+    button and the via grid under the secure element).
 
 Coordinates: photo pixels of the back photo (5376x3024, 84 px/mm), converted to the viewer's millimetres:
 x right, y up, z out of the front side.
@@ -255,17 +262,90 @@ def specimen_b():
     return out
 
 
+# ---- Specimen C ---------------------------------------------------------------------------------------
+
+# test pads wired to the V03 board: VBUS and GND, SE RESET and the display's SPI lines (D/C under the glue)
+WIRES_C = ["12", "23", "29", "31", "34", "35", "36"]
+# white glue over the display pads and the wires running into it, traced on the photo of the back
+GLUE_C = [[3827, 1435], [3774, 1644], [3566, 1771], [3260, 1802], [3101, 1717], [2888, 1575], [2675, 1527],
+          [2407, 1490], [2270, 1375], [2349, 1229], [2562, 1197], [2877, 1185], [3032, 1165], [3185, 1119],
+          [3439, 1131], [3695, 1273]]
+COPPER = "#c47a3a"
+
+
+def specimen_c():
+    pads = {p["id"]: p for p in d.load_js("pads.js", "PADS")}
+    bat = {q["id"]: q["polygon"] for c in d.load_js("components.js", "COMPONENTS") if c["id"] == "BAT" for q in c["pads"]}
+    centre = lambda pg: [sum(v[0] for v in pg) / len(pg), sum(v[1] for v in pg) / len(pg)]
+    out = []
+    # the case floor under the front, where the original battery was: the cell and the V03 board lie on it
+    floor = TOP + 3.65
+    out.append(dict(t="box", at=xy(3010, 1450), size=[26, 16], z=[floor - 2.6, floor], color="#c3c5c9",
+                    marking="XYT 261626 70mAh\n+3.7V 0.259Wh", flip=True,
+                    title="Replacement battery", notes="Half-size 70 mAh lithium-polymer cell (XYT 261626, 26 x 16 x 2.6 mm) "
+                                                       "in place of the original battery; its label faces the board"))
+    out.append(dict(t="box", at=xy(4190, 1450), size=[1.8, 9], z=[floor - 1.2, floor], color="#d6d6d2",
+                    title="Battery tabs", notes="The cell's protection board and tabs, wired to the Ledger's battery contacts"))
+    out.append(dict(t="slab", poly=rect(690, 930, 1900, 1970), z=[floor - .6, floor], color="#2f5d2a", opacity=1,
+                    title="Implant board (V03)", notes="Small green board marked V03, lying in the case next to the "
+                    "battery, components towards the Ledger. Its wire pads are labelled for the display lines (DI, CLK, "
+                    "CS, DC), reset, power and GND, plus SWD, BOOT and USB pads to program it"))
+    for (x, y), w, h, col, title in (((1150, 1300), 3.2, 3.2, "#1d1d1f", "Microcontroller"),
+                                     ((1600, 1250), 2.2, 1.4, "#1d1d1f", "Regulator"),
+                                     ((1550, 1700), 3.0, 1.6, "#1d1d1f", "Radio / power IC"),
+                                     ((900, 1650), 1.6, .8, "#8a6b4a", "Passive")):
+        out.append(dict(t="box", at=xy(x, y), size=[w, h], z=[floor - .6 - .45, floor - .6], color=col,
+                        title=f"V03 board: {title.lower()}", notes="Part on the implant board (unmarked in the photos)"))
+    # a flat spiral coil antenna beside the board, at the USB end of the case
+    coil = []
+    for k in range(6 * 24 + 1):
+        a = 2 * math.pi * k / 24
+        r = 1 - .1 * k / 24
+        coil.append([*xy(500 + 140 * r * math.cos(a), 1450 + 270 * r * math.sin(a)), floor - .1])
+    out.append(dict(t="tube", points=coil, radius=.08, color=COPPER, title="Coil antenna",
+                    notes="Flat spiral of copper wire in the end of the case, the implant's antenna"))
+    # wires: from the V03 board's pad row, around the board's top edge to the back, to each test pad
+    def wire(points, title, notes):
+        out.append(dict(t="tube", points=points, radius=.06, color=COPPER, title=title, notes=notes))
+    edge = 824
+    for i, pid in enumerate(WIRES_C):
+        p = pads[pid]
+        sx, ex = 980 + 110 * i, 2010 + 22 * i
+        mid = [(ex + p["x"]) / 2, (edge + p["y"]) / 2]
+        wire([[*xy(sx, 990), floor - .6], [*xy(sx + 200, 900), TOP + 2.2], [*xy(ex, edge - 30), TOP + .8],
+              [*xy(ex, edge - 40), BOT - .5], [*xy(*mid), BOT - .45 - .05 * i], [*xy(p["x"], p["y"]), BOT - .05]],
+             f"Wire to TP{pid}", f"Enamelled wire from the V03 board to test pad {pid} ({p['name']})")
+        out.append(dict(t="dome", at=xy(p["x"], p["y"]), r=.4, z=BOT, side="back", color="#d8d8d8",
+                        title=f"Solder joint on TP{pid}", notes=f"{p['name']}: wire soldered straight onto the test pad"))
+    out.append(dict(t="slab", poly=poly(GLUE_C), z=[BOT - .5, BOT - .02], color="#efefe9", opacity=1,
+                    title="Glue", notes="White glue over the display test pads, holding the wires down"))
+    # power: the cell feeds the Ledger through its own battery contacts, pad 3 (+) and pad 2 (-)
+    for pid, start, pol in (("3", [*xy(1700, 990), floor - .6], "+"), ("2", [*xy(4190, 1800), floor - 1.2], "-")):
+        cx, cy = centre(bat[pid])
+        wire([start, [*xy((start[0] * S + cx) / 2, (cy + 1450) / 2), TOP + 1.6], [*xy(cx, cy), TOP + .05]],
+             f"Wire to battery pad {pid}", f"Battery {pol} from the implant to the Ledger's battery pad {pid}")
+        out.append(dict(t="dome", at=xy(cx, cy), r=.6, z=TOP, side="front", color="#d8d8d8",
+                        title=f"Solder joint on battery pad {pid}", notes=f"Battery {pol} wire soldered to the Ledger's battery contact"))
+    return out
+
+
 def main():
     data = {
         "A": {"name": "Specimen A (generation 2)", "parts": specimen_a(),
-              "summary": "Kapton flex over the back of the board, wrapped around to an LTE module and a replacement battery on the front"},
+              "summary": "Kapton flex over the back of the board, wrapped around to an LTE module and a replacement battery on the front",
+              "source": "Tibane Labs"},
         "B": {"name": "Specimen B (generation 3)", "parts": specimen_b(),
-              "summary": "Black-coated flex under the OLED with an nRF9151 modem, original battery kept"},
+              "summary": "Black-coated flex under the OLED with an nRF9151 modem, original battery kept",
+              "source": "Tibane Labs"},
+        "C": {"name": "Specimen C (generation 1)", "parts": specimen_c(),
+              "summary": "Hand-wired: a small board, a coil antenna and a half-size battery in the case, enamelled "
+                         "wires to the test pads and battery contacts",
+              "source": "@Us_Chan007"},
     }
     path = os.path.join(HERE, "implants.js")
     with open(path, "w") as f:
         f.write("// Approximate 3D models of the implants found in Ledger Nano X devices, for viewer3d.html.\n")
-        f.write("// Generated by implants.py from Tibane Labs' photographs; see that file for sources and caveats.\n")
+        f.write("// Generated by implants.py from photographs; see that file for sources and caveats.\n")
         f.write("window.IMPLANTS = " + json.dumps(data, separators=(",", ":"), ensure_ascii=False) + ";\n")
     print("wrote", path, {k: len(v["parts"]) for k, v in data.items()})
 
