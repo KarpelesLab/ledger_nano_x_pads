@@ -42,3 +42,13 @@ kicad/render.sh       # optional: 3D renders and a STEP file
 itself would be lost.
 
 The site is published by `.github/workflows/pages.yml` on every push to `master`.
+
+## License
+
+Original reverse engineering work by Karpeles Lab Inc., made available for the public good.
+
+- **Code** (the viewers, the scripts under `kicad/` and the workflow): [MIT](LICENSE).
+- **Content** (photos, board data, the KiCad project and its 3D models, and this documentation):
+  [CC BY 4.0](LICENSE-CC-BY-4.0). Reuse it freely, including commercially, crediting "Karpeles Lab Inc.".
+
+Ledger and Nano X are trademarks of Ledger SAS; this project is not affiliated with or endorsed by Ledger.
