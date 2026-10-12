@@ -3261,7 +3261,7 @@
   (instances (project "nanox" (path "/9fc871f3-1e36-5a01-9359-e2a20c86f96f" (reference "X5") (unit 1))))
  )
  (label "GND" (at 439.42 294.64 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "a61f78be-9b1c-56e5-8c45-c744fe1c144f"))
- (no_connect (at 459.74 294.64) (uuid "3adc5eb2-dc66-533b-b22a-1035e3bc5bb5"))
+ (label "Bluetooth RF 3" (at 459.74 294.64 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "049cece7-f038-5bbc-8e3e-3294ffc423c6"))
  (symbol (lib_id "nanox:X6") (at 513.08 27.94 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "49d975f5-5dd7-5acc-b8e4-2d42f3b535d6")
   (property "Reference" "X6" (at 513.08 24.13 0) (effects (font (size 1.27 1.27))))
   (property "Value" "?" (at 513.08 31.75 0) (effects (font (size 1.27 1.27))))
