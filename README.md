@@ -17,7 +17,7 @@ approximate, and names ending in "?" are likely but not confirmed.
 
 | Path | Contents |
 |---|---|
-| `flip.html` | Photo viewer, which is also the editor used to draw traces |
+| `flip.html` | Photo viewer |
 | `img/` | Photos of both sides, with and without components, aligned to the same pixel grid |
 | `traces.js` | Traced nets: segments per side, vias, ground connection points, names and purposes |
 | `pads.js` | The 40 test pads and their signal names |
@@ -27,8 +27,8 @@ approximate, and names ending in "?" are likely but not confirmed.
 
 ## Working on it
 
-Open `flip.html` in a browser; no server is needed. Tick "Edit traces" to draw, then "Download traces.js" or
-"Copy changes" and save the result into `traces.js`.
+Open `flip.html` in a browser; no server is needed. The traces are edited directly in `traces.js`, one trace
+per line with its points in pixel coordinates of the photos.
 
 After changing the data, rebuild the KiCad reconstruction and the viewer data (needs KiCad 10 and its Python
 module):

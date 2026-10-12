@@ -1,4 +1,4 @@
-// Trace overlay data for flip.html, edited from its "Edit traces" mode.
+// Trace overlay data for flip.html and the KiCad generator.
 // Points are pixel coordinates in the 5376x3024 photos, one trace per line.
 window.TRACES = [
   {"name":"","purpose":"","notes":"","width":20,"paths":[{"side":"back","points":[[4437,1438],[4419,1440],[4262,1595],[4235,1596],[4230,1698],[4300,1775]]}]},

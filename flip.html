@@ -6,7 +6,6 @@
 <style>
   html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
   #view { position: fixed; inset: 0; cursor: pointer; touch-action: none; }
-  #view.editing { cursor: crosshair; }
   #stack { position: absolute; inset: 0; transform-origin: 0 0; }
   #stack > * {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -44,16 +43,15 @@
   .trace .hit { stroke: transparent; stroke-width: max(var(--w), calc(var(--px) * 14)); }
   .trace .ghost { stroke-width: max(var(--w), calc(var(--px) * 2)); stroke-dasharray: calc(var(--px) * 8); display: none; }
   .trace .via { fill: none; stroke-width: calc(var(--px) * 2); opacity: .6; pointer-events: all; }
-  .trace.hover .line, .trace.selected .line, .trace.hover .via, .trace.selected .via { opacity: 1; }
-  .trace.hover .ghost, .trace.selected .ghost { display: inline; opacity: .7; }
+  .trace.hover .line, .trace.hover .via { opacity: 1; }
+  .trace.hover .ghost { display: inline; opacity: .7; }
   /* pins: connection points without a drawn track, e.g. ground */
   .trace .pin { stroke: #000; stroke-width: calc(var(--px) * 1.5); opacity: .8; pointer-events: all; }
-  .trace.hover .pin, .trace.selected .pin { stroke: #fff; opacity: 1; }
+  .trace.hover .pin { stroke: #fff; opacity: 1; }
   .trace .ghost-pin { fill: none; stroke-width: calc(var(--px) * 1.5); stroke-dasharray: calc(var(--px) * 3); display: none; }
-  .trace.hover .ghost-pin, .trace.selected .ghost-pin { display: inline; opacity: .7; }
+  .trace.hover .ghost-pin { display: inline; opacity: .7; }
   .trace.hover .halo { opacity: .85; }
-  .trace.selected .halo { stroke: #ff0; opacity: .85; }
-  #view:not(.editing) .trace { cursor: help; }
+  .trace { cursor: help; }
   .pad :is(circle, polygon) { fill: transparent; stroke: #22d3ee; stroke-width: calc(var(--px) * 2); pointer-events: all; }
   .pad text {
     fill: #22d3ee; font-family: sans-serif; font-weight: bold; text-anchor: middle; dominant-baseline: central;
@@ -82,10 +80,7 @@
   .pad.passive-pad.hover :is(circle, polygon) { stroke: #fff; }
   .pad.passive-pad text { display: none; }
   .pad.hover :is(circle, polygon) { stroke: #fff; stroke-width: calc(var(--px) * 4); }
-  #view:not(.editing) .pad { cursor: help; }
-  #draft polyline { stroke: #fff; stroke-width: calc(var(--px) * 2); stroke-dasharray: calc(var(--px) * 6); }
-  #draft circle { fill: #fff; r: calc(var(--px) * 3); }
-  #draft circle.via { fill: none; stroke: #fff; stroke-width: calc(var(--px) * 2); r: 22px; }
+  .pad { cursor: help; }
 
   #tip {
     position: fixed; z-index: 2; max-width: 320px; padding: 6px 10px; pointer-events: none;
@@ -107,12 +102,6 @@
   #panel button { margin: 4px 0; font: inherit; cursor: pointer; }
   #panel ul { margin: 6px 0 2px; padding-left: 18px; font-size: 12px; color: #ccc; }
   #panel kbd { font: 11px monospace; padding: 0 3px; border: 1px solid #777; border-radius: 3px; }
-  #editor { margin-top: 4px; padding-top: 4px; border-top: 1px solid #555; }
-  #editor .status { font-size: 12px; color: #ffd43b; }
-  .fields { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: center; margin: 6px 0; }
-  .fields input, .fields textarea { font: 13px system-ui, sans-serif; box-sizing: border-box; width: 100%; }
-  .fields textarea { resize: vertical; min-height: 3em; }
-  #draft-note { font-size: 12px; color: #ff922b; }
 </style>
 </head>
 <body>
@@ -126,7 +115,6 @@
     <svg id="traces" viewBox="0 0 5376 3024" preserveAspectRatio="xMidYMid meet">
       <g id="layer"></g>
       <g id="padlayer"></g>
-      <g id="draft"></g>
     </svg>
   </div>
 </div>
@@ -142,7 +130,6 @@
     <summary id="issues-title">KiCad issues</summary>
     <ol id="issues-list"></ol>
   </details>
-  <label><input type="checkbox" id="opt-edit"> Edit traces</label>
   <button id="reset">Reset zoom</button>
   <ul>
     <li>Click / tap / <kbd>Space</kbd>: front ↔ back</li>
@@ -153,37 +140,6 @@
       (regenerate it with kicad/export_overlay.py)</li>
     <li>Scroll: zoom, drag: pan, <kbd>0</kbd>: reset</li>
   </ul>
-  <div id="editor" hidden>
-    <div class="status" id="edit-status"></div>
-    <button id="finish">Finish segment</button>
-    <button id="via" title="make the last point a via and continue on the other side">Via at last point</button>
-    <button id="new">New trace</button>
-    <button id="merge" title="then click another trace to fold it into the selected one">Merge another trace in</button>
-    <label><input type="checkbox" id="opt-pins"> Place pins (<kbd>P</kbd>)</label>
-    <form id="fields" class="fields" hidden>
-      <span>Name</span><input id="f-name" placeholder="e.g. USB_D+">
-      <span>Purpose</span><input id="f-purpose" placeholder="what it carries / connects">
-      <span>Notes</span><textarea id="f-notes"></textarea>
-      <span>Width</span><input id="f-width" type="number" min="1" step="1" title="trace width in image pixels">
-      <span></span><span><button type="button" id="pop-seg">Remove last segment</button>
-        <button type="button" id="del">Delete trace</button></span>
-    </form>
-    <button id="download">Download traces.js</button>
-    <button id="copy" title="copy only the traces added, changed or removed since the page loaded or the last copy">Copy changes</button>
-    <div id="draft-note" hidden>Unsaved changes: download traces.js and replace the file next to flip.html, or copy
-      the changes; reloading the page discards them.</div>
-    <ul>
-      <li>Click the board to place points on the side shown, <kbd>Enter</kbd> to finish the segment</li>
-      <li>Place pins: each click marks a connection point of the selected trace without drawing
-        copper, e.g. everything going to a ground fill; click a pin again to remove it</li>
-      <li><kbd>Backspace</kbd>: undo point, <kbd>Esc</kbd>: cancel segment / deselect</li>
-      <li><kbd>V</kbd> with the cursor on a via, or <kbd>Shift</kbd>+click it: place a via and continue on the other side</li>
-      <li>Click a trace to select and edit it; click on it again to start a branch there</li>
-      <li>Starting anywhere else makes a new trace; a segment ending on an existing trace, via or
-        connected pad joins that trace</li>
-      <li>Points placed on a test pad or via snap to its center; a trace touching a pad is connected to it</li>
-    </ul>
-  </div>
 </details>
 <script src="pads.js"></script>
 <script src="components.js"></script>
@@ -200,7 +156,7 @@
   const stack = $('stack');
   // index = side (0 back, 1 front) + 2 * variant (0 with details, 1 empty)
   const imgs = [...stack.querySelectorAll('img')];
-  const svg = $('traces'), layer = $('layer'), padLayer = $('padlayer'), draftLayer = $('draft');
+  const svg = $('traces'), layer = $('layer'), padLayer = $('padlayer');
   const tip = $('tip');
   const label = $('label');
   const optFront = $('opt-front');
@@ -210,30 +166,19 @@
   const optKicad = $('opt-kicad');
   const klayer = $('klayer');
   if (!window.KICAD) optKicad.disabled = true;
-  const optEdit = $('opt-edit');
-  const optPins = $('opt-pins');
   let shown = 0, scale = 1, tx = 0, ty = 0;
 
-  // the board's fixed test pads, and the traces from traces.js; edits live only in this page
-  // until saved back to that file
-  // chip pins from components.js join the test pads: they snap, connect and highlight the same way
+  // the board's fixed test pads, and the traces from traces.js
+  // chip pins from components.js join the test pads: they connect and highlight the same way
   const chips = [...(window.COMPONENTS || []), ...(window.PASSIVES || []).map(passive)];
   const pads = [...(window.PADS || []), ...chips.flatMap(chipPins)];
-  let traces = window.TRACES || [];
-  let dirty = false;
-  // what "Copy changes" compares against: the traces as loaded, then as of the last copy
-  let baseline = snapshot();
-  // hovered is a trace or pad; selected is the trace being edited;
-  // drawing is the segment being placed: { side, points }
-  let hovered = null, selected = null, drawing = null, cursorPt = null;
-  // waiting for a click on the trace to merge into the selected one
-  let merging = false;
+  const traces = window.TRACES || [];
+  // the trace or pad under the cursor
+  let hovered = null;
 
   function side() { return shown & 1 ? 'front' : 'back'; }
 
   function show(i) {
-    // a segment stays on one side; switching sides ends it (e.g. at a via)
-    if (drawing && (i & 1) !== (shown & 1)) finishSegment();
     imgs[shown].classList.add('hidden');
     shown = i;
     imgs[shown].classList.remove('hidden');
@@ -273,14 +218,6 @@
     stack.style.setProperty('--px', 1 / (fit() * scale) + 'px');
   }
 
-  // screen point -> image pixel coordinates, undoing pan/zoom, flip and object-fit
-  function toImage(cx, cy) {
-    const W = view.clientWidth, H = view.clientHeight, k = fit();
-    let x = (cx - tx) / scale, y = (cy - ty) / scale;
-    if (stack.classList.contains('flipped')) y = H - y;
-    return [Math.round((x - (W - IMG_W * k) / 2) / k), Math.round((y - (H - IMG_H * k) / 2) / k)];
-  }
-
   // ---- trace rendering ----
 
   function el(name, attrs) {
@@ -295,12 +232,11 @@
     traces.forEach((t, i) => {
       const g = el('g', { class: 'trace', style: `--w: ${t.width || 20}px` });
       g.item = t;
-      g.classList.toggle('selected', t === selected);
       const stroke = COLORS[i % COLORS.length];
       let here = false;
       for (const p of t.paths) {
         const points = p.points.join(' ');
-        // the other side's route, shown dashed when the trace is hovered or selected
+        // the other side's route, shown dashed when the trace is hovered
         if (p.side !== s) { g.append(el('polyline', { class: 'ghost', points, stroke })); continue; }
         here = true;
         g.append(el('polyline', { class: 'halo', points }),
@@ -335,7 +271,6 @@
     }
     renderKicad();
     markHover();
-    renderDraft();
   }
 
   // a resistor or capacitor from passives.js, as a component with one pad on each end cap
@@ -400,8 +335,6 @@
   // pins on each edge of a chip, following its corners: pinCounts, or pinsPerSide on all four
   function pinCounts(c) { return c.pinCounts || (c.pinsPerSide && Array(4).fill(c.pinsPerSide)); }
 
-  function samePoint(a, b) { return a[0] === b[0] && a[1] === b[1]; }
-
   // a trace connects to a pad when one of its points on the pad's side lies within the pad
   function connected(t, p) {
     return t.paths.some(q => q.side === p.side && q.points.some(([x, y]) => onPad(p, x, y))) ||
@@ -419,67 +352,6 @@
     const knet = h?.kicad && h.kicad.net;
     for (const e of klayer.children) if (e.item) e.classList.toggle('hover', e.item === h || (!!knet && e.item.kicad.net === knet));
     for (const g of svg.querySelectorAll('.trace, .pad')) g.classList.toggle('hover', lit.includes(g.item));
-  }
-
-  // snap to a test pad on the side shown or any via under pt
-  function snap(pt) {
-    const near = (x, y, r) => Math.hypot(pt[0] - x, pt[1] - y) <= r;
-    for (const p of pads) if (p.side === side() && onPad(p, ...pt)) return p.poly ? pt : [p.x, p.y];
-    for (const t of traces) for (const v of t.vias || []) if (near(v[0], v[1], 30)) return v.slice();
-    // otherwise the nearest trace within reach, where traces run close together
-    let best = null;
-    for (const t of traces) {
-      const o = onTrace(t, pt);
-      if (o && (!best || o.d < best.d)) best = o;
-    }
-    return best ? best.q : pt;
-  }
-
-  // nearest point q of trace t to pt on side s, at distance d: one of its vias, or a point
-  // on one of its segments within its hit width; this is where branches leave or join it
-  function onTrace(t, pt, s = side()) {
-    for (const v of t.vias || []) {
-      const d = Math.hypot(v[0] - pt[0], v[1] - pt[1]);
-      if (d <= 30) return { q: v.slice(), d };
-    }
-    for (const p of t.pins || []) {
-      const d = Math.hypot(p.x - pt[0], p.y - pt[1]);
-      if (p.side === s && d <= 20) return { q: [p.x, p.y], d };
-    }
-    let best = null, bd = Math.max(t.width || 20, 14 / (fit() * scale)) / 2;
-    for (const p of t.paths) {
-      if (p.side !== s) continue;
-      for (let i = 1; i < p.points.length; i++) {
-        const [ax, ay] = p.points[i - 1], [bx, by] = p.points[i];
-        const dx = bx - ax, dy = by - ay, len2 = dx * dx + dy * dy;
-        const f = len2 ? Math.max(0, Math.min(1, ((pt[0] - ax) * dx + (pt[1] - ay) * dy) / len2)) : 0;
-        const q = [Math.round(ax + f * dx), Math.round(ay + f * dy)];
-        const d = Math.hypot(q[0] - pt[0], q[1] - pt[1]);
-        if (d <= bd) { bd = d; best = { q, d }; }
-      }
-    }
-    return best;
-  }
-
-  // whether snapped point pt is on trace t: on its line or a via, or on a pad it connects to
-  function touches(t, pt, s = side()) {
-    const o = onTrace(t, pt, s);
-    if (o && o.d <= 2) return true;
-    // a connector or unidentified part outline carries many nets, so landing on it joins nothing
-    const p = pads.find(p => p.side === s && !p.body && (p.poly ? onPad(p, ...pt) : samePoint([p.x, p.y], pt)));
-    return !!p && connected(t, p);
-  }
-
-  function renderDraft() {
-    draftLayer.replaceChildren();
-    if (!drawing || drawing.side !== side()) return;
-    const pts = cursorPt ? [...drawing.points, snap(cursorPt)] : drawing.points;
-    draftLayer.append(el('polyline', { points: pts.join(' ') }));
-    for (const [cx, cy] of drawing.points) draftLayer.append(el('circle', { cx, cy, r: 8 }));
-    // the via this segment continues from
-    const via = drawing.points[0];
-    if (via && selected?.vias?.some(v => samePoint(v, via)))
-      draftLayer.append(el('circle', { class: 'via', cx: via[0], cy: via[1], r: 22 }));
   }
 
   function setHover(t, e) {
@@ -600,229 +472,6 @@
     }
   }
 
-  // ---- trace data and editing ----
-
-  function changed() {
-    dirty = true;
-    render();
-    updateEditor();
-  }
-
-  function snapshot() { return new Map(traces.map((t, i) => [t, { n: i + 1, json: JSON.stringify(t) }])); }
-
-  // the traces added, changed or removed since the baseline, numbered as they were then
-  function serializeChanges() {
-    const label = (n, t) => `trace ${n}` + (t.name ? ` (${t.name})` : '');
-    const added = [], changed = [], removed = [];
-    for (const t of traces) {
-      const b = baseline.get(t), json = JSON.stringify(t);
-      if (!b) added.push('  ' + json);
-      else if (b.json !== json) changed.push(`// changed ${label(b.n, t)}:\n  ${json}`);
-    }
-    for (const [t, b] of baseline) if (!traces.includes(t)) removed.push(`// removed ${label(b.n, t)}`);
-    return `// Trace changes from flip.html: ${added.length} new, ${changed.length} changed, ${removed.length} removed\n` +
-      [...changed, ...removed, ...(added.length ? ['// new:', ...added] : [])].join('\n') + '\n';
-  }
-
-  function serialize() {
-    return '// Trace overlay data for flip.html, edited from its "Edit traces" mode.\n' +
-      `// Points are pixel coordinates in the ${IMG_W}x${IMG_H} photos, one trace per line.\n` +
-      'window.TRACES = [\n' + traces.map(t => '  ' + JSON.stringify(t)).join(',\n') + '\n];\n';
-  }
-
-  function select(t) {
-    selected = t;
-    merging = false;
-    render();
-    updateEditor();
-  }
-
-  function ensureTrace() {
-    if (!selected) {
-      selected = { name: '', purpose: '', notes: '', width: 20, paths: [], vias: [] };
-      traces.push(selected);
-    }
-    return selected;
-  }
-
-  // a segment starting on the selected trace branches from it; anywhere else starts a new trace
-  function startSegment(pt) {
-    if (selected && !touches(selected, pt)) selected = null;
-    drawing = { side: side(), points: [pt] };
-  }
-
-  // a segment whose ends land on other traces connects them: it joins the first, and any
-  // others are merged in
-  function joinTracesAt(points, s) {
-    for (const pt of points) {
-      for (const t of traces) {
-        if (t === selected || !touches(t, pt, s)) continue;
-        if (!selected) selected = t;
-        else merge(t);
-        break;
-      }
-    }
-  }
-
-  function finishSegment() {
-    const d = drawing;
-    drawing = null;
-    if (d && d.points.length >= 2) {
-      // join first so the segment lands in the trace it connects to
-      joinTracesAt([d.points[0], d.points.at(-1)], d.side);
-      ensureTrace().paths.push(d);
-      changed();
-    } else {
-      render();
-      updateEditor();
-    }
-  }
-
-  // end the segment at a via (pt, or the last point placed) and continue from it on the other side
-  function placeVia(pt) {
-    if (!drawing) {
-      if (!pt) return;
-      startSegment(pt);
-    } else if (pt) drawing.points.push(pt);
-    const via = drawing.points.at(-1);
-    if (!via) return;
-    finishSegment();
-    // a via placed without a segment can still sit on an existing trace
-    joinTracesAt([via], side());
-    const t = ensureTrace();
-    if (!(t.vias ||= []).some(v => samePoint(v, via))) t.vias.push(via);
-    show(shown ^ 1);
-    drawing = { side: side(), points: [via] };
-    changed();
-  }
-
-  // fold trace t into the selected one, keeping the selected trace's details where set
-  function merge(t) {
-    for (const k of ['name', 'purpose', 'notes']) if (!selected[k]) selected[k] = t[k];
-    selected.paths.push(...t.paths);
-    selected.vias = [...(selected.vias || []), ...(t.vias || [])];
-    traces.splice(traces.indexOf(t), 1);
-    changed();
-  }
-
-  // add a pin to the selected trace at pt, or remove the one already there
-  function togglePin(pt) {
-    if (drawing) finishSegment();
-    const s = side();
-    const i = selected ? (selected.pins || []).findIndex(p => p.side === s && Math.hypot(p.x - pt[0], p.y - pt[1]) <= 20) : -1;
-    if (i >= 0) selected.pins.splice(i, 1);
-    else (ensureTrace().pins ||= []).push({ side: s, x: pt[0], y: pt[1] });
-    changed();
-  }
-
-  // pins snap to test pads and vias only, never onto another trace's copper
-  function snapPin(pt) {
-    const near = (x, y, r) => Math.hypot(pt[0] - x, pt[1] - y) <= r;
-    for (const p of pads) if (p.side === side() && onPad(p, ...pt)) return p.poly ? pt : [p.x, p.y];
-    for (const t of traces) for (const v of t.vias || []) if (near(v[0], v[1], 30)) return v.slice();
-    return pt;
-  }
-
-  function editClick(e, hit, onPin) {
-    if (merging) {
-      merging = false;
-      if (hit && !pads.includes(hit) && hit !== selected) return merge(hit);
-      return updateEditor();
-    }
-    if (optPins.checked) {
-      // clicking another trace's pin selects that trace, so its pins can be edited
-      if (onPin && hit !== selected) return select(hit);
-      return togglePin(snapPin(toImage(e.clientX, e.clientY)));
-    }
-    const pt = snap(toImage(e.clientX, e.clientY));
-    if (e.shiftKey) return placeVia(pt);
-    if (drawing) drawing.points.push(pt);
-    // clicking another trace selects it; anywhere else starts a segment there
-    else if (hit && !pads.includes(hit) && hit !== selected) return select(hit);
-    else startSegment(pt);
-    renderDraft();
-    updateEditor();
-  }
-
-  function updateEditor() {
-    $('editor').hidden = !editing();
-    view.classList.toggle('editing', editing());
-    $('draft-note').hidden = !dirty;
-    const target = selected ? `“${selected.name || 'unnamed trace'}”` : 'a new trace';
-    $('edit-status').textContent = merging
-      ? `Click the trace to merge into ${target}`
-      : optPins.checked
-      ? `Click to add a pin to ${target}, or click a pin to remove it`
-      : drawing
-      ? `Drawing on ${drawing.side} (${drawing.points.length} points), adding to ${target}`
-      : selected
-      ? `Click on ${target} to branch from it, or elsewhere to start a new trace`
-      : 'Click the board to start a new trace';
-    $('finish').disabled = !drawing;
-    $('via').disabled = !drawing?.points.length;
-    $('merge').disabled = !selected || drawing;
-    $('fields').hidden = !selected;
-    if (selected) {
-      // don't clobber a field while it is being typed in
-      for (const [id, key] of [['f-name', 'name'], ['f-purpose', 'purpose'], ['f-notes', 'notes'], ['f-width', 'width']])
-        if (document.activeElement !== $(id)) $(id).value = selected[key] ?? '';
-      $('pop-seg').disabled = !selected.paths.length;
-    }
-  }
-
-  function editing() { return optEdit.checked; }
-
-  for (const [id, key] of [['f-name', 'name'], ['f-purpose', 'purpose'], ['f-notes', 'notes'], ['f-width', 'width']]) {
-    $(id).addEventListener('input', () => {
-      if (!selected) return;
-      selected[key] = key === 'width' ? Math.max(1, +$(id).value || 20) : $(id).value;
-      changed();
-    });
-  }
-  $('fields').addEventListener('submit', e => e.preventDefault());
-  $('finish').addEventListener('click', finishSegment);
-  $('via').addEventListener('click', () => placeVia());
-  $('new').addEventListener('click', () => { if (drawing) finishSegment(); select(null); });
-  $('merge').addEventListener('click', () => { merging = true; updateEditor(); });
-  optPins.addEventListener('change', () => {
-    if (drawing) finishSegment();
-    updateEditor();
-    optPins.blur();
-  });
-  $('pop-seg').addEventListener('click', () => {
-    selected.paths.pop();
-    // drop vias no longer at the end of any segment
-    const ends = new Set(selected.paths.flatMap(p => [p.points[0], p.points.at(-1)]).map(String));
-    if (selected.vias) selected.vias = selected.vias.filter(v => ends.has(String(v)));
-    changed();
-  });
-  $('del').addEventListener('click', () => {
-    if (!confirm(`Delete ${selected.name || 'this unnamed trace'}?`)) return;
-    traces.splice(traces.indexOf(selected), 1);
-    selected = null;
-    changed();
-  });
-  $('download').addEventListener('click', () => {
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([serialize()], { type: 'text/javascript' }));
-    a.download = 'traces.js';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    saved();
-  });
-  $('copy').addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(serializeChanges());
-      baseline = snapshot();
-      saved();
-    }
-    catch (e) { alert('Copy failed, use Download instead: ' + e); }
-  });
-  function saved() { dirty = false; updateEditor(); }
-
-  // warn before a reload or close throws away unsaved edits
-  addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
-
   // ---- view interaction ----
 
   // wheel zooms around the cursor
@@ -858,15 +507,9 @@
     setHover(null);
     optTraces.blur();
   });
-  optEdit.addEventListener('change', () => {
-    if (!editing()) { drawing = selected = null; render(); }
-    if (editing() && !optTraces.checked) optTraces.click();
-    updateEditor();
-    optEdit.blur();
-  });
   $('reset').addEventListener('click', e => { reset(); e.currentTarget.blur(); });
 
-  // drag pans; a press without movement is a click: toggles side, or edits traces in edit mode
+  // drag pans; a press without movement is a click, which toggles the side
   let down = null, moved = false;
   view.addEventListener('pointerdown', e => {
     // middle click switches between the detailed and empty variants
@@ -874,13 +517,11 @@
     // Ctrl+click is the Mac right click, which flips via contextmenu
     if (e.button !== 0 || e.ctrlKey) return;
     // pointer capture retargets later events to view, so remember the trace pressed on
-    down = { x: e.clientX, y: e.clientY, tx, ty, hit: itemAt(e.target), onPin: e.target.classList.contains('pin') };
+    down = { x: e.clientX, y: e.clientY, tx, ty, hit: itemAt(e.target) };
     moved = false;
     view.setPointerCapture(e.pointerId);
   });
   view.addEventListener('pointermove', e => {
-    if (editing()) cursorPt = toImage(e.clientX, e.clientY);
-    if (drawing) renderDraft();
     // a release we never saw (e.g. after a context menu) must not leave the view panning
     if (down && e.pointerType === 'mouse' && !(e.buttons & 1)) down = null;
     if (!down) {
@@ -897,44 +538,25 @@
   });
   view.addEventListener('pointerup', e => {
     if (down && !moved) {
-      if (editing()) editClick(e, down.hit, down.onPin);
       // touch has no hover, so a tap on a trace shows its details instead of flipping
-      else if (e.pointerType !== 'mouse' && (down.hit || hovered)) setHover(down.hit, e);
+      if (e.pointerType !== 'mouse' && (down.hit || hovered)) setHover(down.hit, e);
       else toggle();
     }
     down = null;
   });
   view.addEventListener('pointercancel', () => { down = null; });
-  view.addEventListener('pointerleave', () => { setHover(null); cursorPt = null; renderDraft(); });
+  view.addEventListener('pointerleave', () => setHover(null));
   // keep middle click from starting autoscroll
   view.addEventListener('mousedown', e => { if (e.button === 1) e.preventDefault(); });
 
   addEventListener('keydown', e => {
     // let a focused panel control handle its own keys
     if (e.target.closest && e.target.closest('#panel')) return;
-    if (editing()) {
-      if (e.key === 'Enter') { finishSegment(); return; }
-      if (e.key === 'v') { if (cursorPt) placeVia(snap(cursorPt)); return; }
-      if (e.key === 'Escape') {
-        if (merging) { merging = false; updateEditor(); }
-        else if (drawing) { drawing = null; renderDraft(); updateEditor(); }
-        else select(null);
-        return;
-      }
-      if (e.key === 'Backspace' && drawing) {
-        e.preventDefault();
-        drawing.points.pop();
-        renderDraft();
-        updateEditor();
-        return;
-      }
-    }
     if (e.key === ' ') { e.preventDefault(); toggle(); }
     else if (e.key === 'e') toggleVariant();
     else if (e.key === 'f') flipAt(view.clientHeight / 2);
     else if (e.key === 't') optTraces.click();
     else if (e.key === 'k' && !optKicad.disabled) optKicad.click();
-    else if (e.key === 'p' && editing()) optPins.click();
     else if (e.key === '0') reset();
   });
   addEventListener('resize', apply);
@@ -943,7 +565,6 @@
   updateLabel();
   setupIssues();
   render();
-  updateEditor();
 </script>
 </body>
 </html>
