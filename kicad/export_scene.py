@@ -133,9 +133,13 @@ def main():
             part["boxes"] = [{"outline": [photo(x, y) for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))], "z": [z0, z1],
                               "color": "#%02x%02x%02x" % tuple(round(v * 255) for v in col)}
                              for x0, y0, x1, y1, z0, z1, col in spec["boxes"]]
+            hexc = lambda col: "#%02x%02x%02x" % tuple(round(v * 255) for v in col)
+            part["boxes"] += [{"outline": [photo(x + r * S * math.cos(2 * math.pi * k / 24), y + r * S * math.sin(2 * math.pi * k / 24))
+                                           for k in range(24)], "z": [z0, z1], "color": hexc(col)}
+                              for x, y, r, z0, z1, col in spec.get("discs", [])]
             part["dots"] = [{"at": photo(x, y), "r": r, "color": "#%02x%02x%02x" % tuple(round(v * 255) for v in col)}
                             for x, y, r, col in spec.get("dots", [])]
-            part["height"] = max(b[5] for b in spec["boxes"])
+            part["height"] = max(b["z"][1] for b in part["boxes"])
             part["color"] = part["boxes"][0]["color"]
         elif cid in m3d.CUSTOM:
             col, h, text = m3d.CUSTOM[cid]

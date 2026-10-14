@@ -46,8 +46,6 @@ CUSTOM = {
     "L1": ((.55, .55, .57), 1.0, ""),
     "RFF": ((.15, .3, .7), .6, ""),
     "ANT": ((.92, .92, .9), .9, ""),
-    "SW1": ((.2, .2, .2), 1.5, ""),
-    "SW2": ((.2, .2, .2), 1.5, ""),
 }
 for i in range(1, 10):
     CUSTOM[f"P{i}"] = ((.08, .08, .08), .6, "P")
@@ -55,7 +53,7 @@ for i in range(1, 10):
 MARK = (.85, .85, .8)
 
 # parts modelled piece by piece from the photo, in front-photo pixels: (x0, y0, x1, y1, z0, z1, colour) boxes
-# and (x, y, radius mm, colour) dots on top. RFF: a lavender-grey ceramic body with castellated terminals on
+# (x, y, radius mm, z0, z1, colour) raised discs, and (x, y, radius mm, colour) flat dots on top. RFF: a lavender-grey ceramic body with castellated terminals on
 # both long sides and on both ends, and a dark pin 1 dot by its input
 SILVER = (.8, .8, .78)
 DETAILED = {
@@ -142,6 +140,29 @@ def _usb():
 
 
 DETAILED["USB"] = _usb()
+
+
+def _switch(cx, cy, along):
+    """A flat 4-terminal tactile switch: a dark square frame 3.2 x 2.75 x 0.45 mm with a gold metal dome and its
+    plunger in a circle in the middle, and two silver terminals on each of the two sides along `along` ('x' or
+    'y', photo axes), placed from the back photo."""
+    k = 84
+    def box(a0, a1, b0, b1, z0, z1, col):
+        # a runs along the terminal sides, b across them
+        if along == "x":
+            return (cx + a0 * k, cy + b0 * k, cx + a1 * k, cy + b1 * k, z0, z1, col)
+        return (cx + b0 * k, cy + a0 * k, cx + b1 * k, cy + a1 * k, z0, z1, col)
+    frame, steel = (.24, .23, .22), (.8, .8, .78)
+    out = [box(-1.6, 1.6, -1.37, 1.37, 0, .45, frame)]
+    for a in (-1, 1):
+        for b in (-1, 1):
+            lo, hi = sorted((a * 1.45, a * 1.95))
+            out.append(box(lo, hi, b * .95 - .3, b * .95 + .3, 0, .2, steel))
+    return {"boxes": out, "discs": [(cx, cy, 1.0, .45, .52, (.86, .74, .42)), (cx, cy, .38, .52, .58, (.8, .7, .5))]}
+
+
+DETAILED["SW1"] = _switch(735, 1410, "x")
+DETAILED["SW2"] = _switch(5133, 1420, "y")
 
 
 def vrml_prism(poly, z0, z1, color):
@@ -264,6 +285,10 @@ def write_detailed(ref, cid, to_local):
     for x0, y0, x1, y1, z0, z1, col in spec["boxes"]:
         pts = [to_local(x, y) for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))]
         src += vrml_prism(ccw(pts), z0, z1, col)
+    for x, y, r, z0, z1, col in spec.get("discs", []):
+        cx, cy = to_local(x, y)
+        circle = [(cx + r * math.cos(2 * math.pi * k / 24), cy + r * math.sin(2 * math.pi * k / 24)) for k in range(24)]
+        src += vrml_prism(ccw(circle), z0, z1, col)
     top = max(b[5] for b in spec["boxes"])
     for x, y, r, col in spec.get("dots", []):
         cx, cy = to_local(x, y)
