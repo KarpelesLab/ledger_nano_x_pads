@@ -145,9 +145,19 @@ for (const f of S.fills) {
   groups.pours.add(m);
   register(m, { kind: 'pour', net: f.net, side: f.side });
 }
+// a track segment with round ends, as KiCad draws it, so segments meet cleanly at each bend
+function stadium(len, w) {
+  const r = w / 2, h = len / 2, sh = new THREE.Shape();
+  sh.moveTo(-h, -r);
+  sh.lineTo(h, -r);
+  sh.absarc(h, 0, r, -Math.PI / 2, Math.PI / 2, false);
+  sh.lineTo(-h, r);
+  sh.absarc(-h, 0, r, Math.PI / 2, Math.PI * 3 / 2, false);
+  return new THREE.ShapeGeometry(sh, 6);
+}
 for (const t of S.tracks) {
   const [ax, ay] = t.a, [bx, by] = t.b, len = Math.hypot(bx - ax, by - ay);
-  const m = new THREE.Mesh(new THREE.PlaneGeometry(len + t.w, t.w), M.track);
+  const m = new THREE.Mesh(stadium(len, t.w), M.track);
   m.position.set((ax + bx) / 2, (ay + by) / 2, zOf(t.side, .008));
   m.rotation.z = Math.atan2(by - ay, bx - ax);
   groups.tracks.add(m);
