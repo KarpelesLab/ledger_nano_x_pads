@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nano X board 3D</title>
 <style>
   :root { --panel: rgba(18, 20, 24, .86); --text: #e8e8e8; --muted: #a0a4ab; --accent: #ffd43b; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: #15171b; color: var(--text); font: 13px/1.4 system-ui, sans-serif; }
   #view { position: fixed; inset: 0; }
-  #panel { position: fixed; top: 8px; left: 8px; padding: 8px 10px; background: var(--panel); border-radius: 6px; max-width: min(320px, calc(100vw - 16px)); }
-  #panel b { font-size: 14px; }
+  #view canvas { display: block; touch-action: none; }
+  #panel { position: fixed; top: max(8px, env(safe-area-inset-top)); left: max(8px, env(safe-area-inset-left)); padding: 8px 10px;
+           background: var(--panel); border-radius: 6px; max-width: min(320px, calc(100vw - 16px));
+           max-height: calc(100dvh - 16px); overflow-y: auto; box-sizing: border-box; touch-action: manipulation; }
+  #panel summary { cursor: pointer; font-weight: bold; font-size: 14px; }
+  #panel[open] summary { margin-bottom: 4px; }
   #panel label { display: flex; gap: 6px; align-items: center; padding: 2px 0; cursor: pointer; }
   #panel .buttons { display: flex; gap: 6px; margin: 6px 0 2px; flex-wrap: wrap; }
   #panel button { font: inherit; cursor: pointer; }
@@ -19,14 +24,25 @@
   #tip .meta { color: var(--muted); }
   #tip p { margin: 3px 0 0; }
   #tip ul { margin: 3px 0 0; padding-left: 16px; }
+  /* touch screens: bigger controls, and details in a sheet along the bottom instead of next to the finger */
+  @media (pointer: coarse) {
+    #panel { font-size: 15px; }
+    #panel label { padding: 5px 0; }
+    #panel input[type=checkbox] { width: 20px; height: 20px; }
+    #panel select, #panel button { font-size: 16px; padding: 6px 12px; }
+    #tip { left: max(8px, env(safe-area-inset-left)) !important; right: max(8px, env(safe-area-inset-right));
+           top: auto !important; bottom: max(8px, env(safe-area-inset-bottom)); max-width: none;
+           max-height: 40dvh; overflow-y: auto; pointer-events: auto; font-size: 14px; }
+    #tip b { font-size: 15px; }
+  }
   #loading { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); }
 </style>
 </head>
 <body>
 <div id="view"></div>
 <div id="loading">Loading…</div>
-<div id="panel">
-  <b>Nano X main board, reconstructed</b>
+<details id="panel" open>
+  <summary>Nano X main board, reconstructed</summary>
   <label><input type="checkbox" id="opt-parts" checked> Components</label>
   <label><input type="checkbox" id="opt-pours" checked> Ground pours</label>
   <label><input type="checkbox" id="opt-tracks" checked> Tracks and vias</label>
@@ -42,9 +58,9 @@
   <div class="buttons">
     <button id="top">Top</button><button id="bottom">Bottom</button><button id="angle">Angle</button>
   </div>
-  <div class="hint">Drag to rotate, right-drag to pan, scroll to zoom. Hover a track, via, pad or part for details;
+  <div class="hint" id="help">Drag to rotate, right-drag to pan, scroll to zoom. Hover a track, via, pad or part for details;
     nets light up on both sides.</div>
-</div>
+</details>
 <div id="tip" hidden></div>
 <script src="scene.js"></script>
 <script src="implants.js"></script>
@@ -64,7 +80,7 @@ const $ = id => document.getElementById(id);
 
 // ---- renderer, camera, lights ----
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio(devicePixelRatio);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
 $('view').append(renderer.domElement);
 const scene = new THREE.Scene();
@@ -313,12 +329,21 @@ $('implant').onchange = e => {
 };
 
 // ---- camera views ----
+const boardW = Math.max(...xs) - Math.min(...xs);
 function view(name) {
-  const d = 70;
+  // on a portrait screen the board's length runs up the screen; 70 mm away fits it on a wide screen,
+  // further on a narrow one so its length still fits
+  const portrait = camera.aspect < 1;
+  const halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
+  const across = portrait ? 1 : camera.aspect;
+  const k = Math.max(1, boardW * .6 / (Math.tan(halfFov) * across) / 70);
+  const d = 70 * k;
   controls.target.set(0, 0, 0);
-  if (name === 'top') camera.position.set(0, -0.001, d);
-  else if (name === 'bottom') camera.position.set(0, 0.001, -d);
-  else camera.position.set(-12, -48, 40);
+  if (name === 'top') camera.position.set(portrait ? -0.001 : 0, portrait ? 0 : -0.001, d);
+  else if (name === 'bottom') camera.position.set(portrait ? 0.001 : 0, portrait ? 0 : 0.001, -d);
+  // the angled view brings the near end closer, so it backs off a little more
+  else if (portrait) camera.position.set(-60 * k, 15 * k, 50 * k);
+  else camera.position.set(-12 * k, -48 * k, 40 * k);
   controls.update();
 }
 view('angle');
@@ -364,22 +389,43 @@ function describe(u) {
   if (!u.net) return `<b>${esc(head)}</b> <span class="meta">no net</span>`;
   return `<b>${esc(u.net)}</b> <span class="meta">${esc(head)}${u.side ? ' · ' + u.side : ''}</span>` + netHtml(u.net);
 }
-renderer.domElement.addEventListener('pointermove', e => {
-  mouse.set(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1);
+function pick(x, y) {
+  mouse.set(x / innerWidth * 2 - 1, -y / innerHeight * 2 + 1);
   ray.setFromCamera(mouse, camera);
-  const hit = ray.intersectObjects(pickable.filter(m => m.parent.visible && m.visible), false)
+  return ray.intersectObjects(pickable.filter(m => m.parent.visible && m.visible), false)
     // pours sit under everything else, so prefer anything on top of them
     .sort((a, b) => (a.object.userData.kind === 'pour') - (b.object.userData.kind === 'pour') || a.distance - b.distance)[0];
-  const tip = $('tip');
+}
+function inspect(x, y) {
+  const hit = pick(x, y), tip = $('tip');
   if (!hit) { light([]); tip.hidden = true; return; }
   const u = hit.object.userData;
   light(u.kind === 'implant' ? [hit.object] : u.kind === 'part' ? byRef.get(u.ref) : u.net && u.net !== 'GND' ? byNet.get(u.net) : [hit.object]);
   tip.innerHTML = describe(u);
   tip.hidden = false;
-  tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
-  tip.style.top = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8) + 'px';
+  tip.scrollTop = 0;
+  // next to the pointer; on touch screens the stylesheet docks it along the bottom instead
+  tip.style.left = Math.min(x + 14, innerWidth - tip.offsetWidth - 8) + 'px';
+  tip.style.top = Math.min(y + 14, innerHeight - tip.offsetHeight - 8) + 'px';
+}
+const el = renderer.domElement;
+el.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') inspect(e.clientX, e.clientY); });
+el.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { light([]); $('tip').hidden = true; } });
+// a tap (a touch that barely moves) shows what is under it; tapping empty space clears it
+let press = null;
+el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') press = e.isPrimary ? { x: e.clientX, y: e.clientY, t: performance.now() } : null; });
+el.addEventListener('pointerup', e => {
+  if (e.pointerType === 'mouse' || !press) return;
+  if (Math.hypot(e.clientX - press.x, e.clientY - press.y) < 10 && performance.now() - press.t < 500) inspect(e.clientX, e.clientY);
+  press = null;
 });
-renderer.domElement.addEventListener('pointerleave', () => { light([]); $('tip').hidden = true; });
+el.addEventListener('pointercancel', () => { press = null; });
+
+const touch = matchMedia('(pointer: coarse)').matches;
+if (touch) $('help').textContent = 'Drag to rotate, pinch to zoom, drag with two fingers to pan. Tap a track, via, pad or part ' +
+  'for details; nets light up on both sides.';
+// on a phone the panel would cover much of the board: start it folded
+if (innerWidth < 600) $('panel').open = false;
 
 addEventListener('resize', () => {
   camera.aspect = innerWidth / innerHeight;
