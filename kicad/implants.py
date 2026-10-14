@@ -114,10 +114,13 @@ def specimen_a():
         out.append(dict(t="box", at=xy(4860, y), size=[1.8, 2.2], z=[zm1, zm1 + .2], color="#d0d0cc",
                         title="Battery tab", notes="Battery soldered to the tabs at the end of the tail"))
     ztop_bat, ztop_can = zm1 + 3.4, zm1 + 1.7
-    out.append(dict(t="slab", poly=rect(2470, 940, 3580, 1910), z=[ztop_bat, ztop_bat + .06], color="#151515",
-                    title="Antenna", notes="Flat printed antenna taped across the battery and the LTE module"))
-    out.append(dict(t="slab", poly=rect(1050, 940, 2470, 1910), z=[ztop_can, ztop_can + .06], color="#151515",
-                    title="Antenna", notes="Flat printed antenna taped across the battery and the LTE module"))
+    # one flexible sheet: flat on the LTE module's can, rising across the gap between them, flat on the battery
+    can_end, bat_start = 1380 + 1030 / 2, 3620 - 2300 / 2
+    out.append(dict(t="ribbon", along="x", y=[(940 - d.IMG_H) / S, (1910 - d.IMG_H) / S],
+                    path=[[round(x / S, 3), round(z + .03, 3)] for x, z in
+                          ((1050, ztop_can), (can_end, ztop_can), (bat_start, ztop_bat), (3580, ztop_bat))],
+                    color="#151515", opacity=1, title="Antenna",
+                    notes="Flat printed antenna taped across the battery and the LTE module, bending over the step between them"))
     feed = xy(2940, 1590)
     out.append(dict(t="tube", points=[[*feed, ztop_bat + .1], [*xy(2470, 1420), ztop_bat + .3], [*xy(1180, 1230), ztop_can + .3],
                                       [*xy(900, 2000), ztop_can - .2], [*xy(880, 2060), zm1 + .1]],

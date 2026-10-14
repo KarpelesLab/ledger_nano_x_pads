@@ -300,10 +300,12 @@ function buildImplant(key) {
         g.add(plane);
       }
     } else if (p.t === 'ribbon') {
-      // a strip between x[0] and x[1] following a path of (y, z) points
+      // a strip between x[0] and x[1] following a path of (y, z) points, or with along: 'x', between
+      // y[0] and y[1] following a path of (x, z) points
       const pos = [], idx = [];
-      p.path.forEach(([y, z], i) => {
-        pos.push(p.x[0], y, z, p.x[1], y, z);
+      p.path.forEach(([t, z], i) => {
+        if (p.along === 'x') pos.push(t, p.y[0], z, t, p.y[1], z);
+        else pos.push(p.x[0], t, z, p.x[1], t, z);
         if (i) idx.push(2 * i - 2, 2 * i - 1, 2 * i, 2 * i - 1, 2 * i + 1, 2 * i);
       });
       const geo = new THREE.BufferGeometry();
