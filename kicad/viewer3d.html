@@ -225,7 +225,9 @@ for (const p of S.parts) {
         mat(bx.color));
       m.position.z = back ? -top - bx.z[1] : top + bx.z[0];
       body.add(m);
+      // every piece hovers and lights up as the part, not just its body
       if (!i) mesh = m;
+      else register(m, { kind: 'part', ref: p.ref, part: p });
     });
     for (const dt of p.dots || []) {
       const dot = new THREE.Mesh(new THREE.CircleGeometry(dt.r, 20), mat(dt.color));
