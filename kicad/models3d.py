@@ -45,7 +45,6 @@ CUSTOM = {
     "Y1": ((.75, .75, .72), .5, "32k0\nJ 2B"),
     "L1": ((.55, .55, .57), 1.0, ""),
     "RFF": ((.15, .3, .7), .6, ""),
-    "BTB": ((.12, .12, .12), .6, ""),
     "ANT": ((.92, .92, .9), .9, ""),
     "USB": ((.7, .7, .72), 3.2, ""),
     "SW1": ((.2, .2, .2), 1.5, ""),
@@ -68,6 +67,42 @@ DETAILED = {
         "dots": [(2970, 1638, .13, (.28, .22, .38))],
     },
 }
+
+
+def _btb():
+    """Hirose BM20B(0.8)-16DS-0.4V receptacle, built from the dimensions of Hirose's drawing (its 3D model is
+    not redistributable, so this is our own simplified model): a dark housing 5.68 x 2.30 x 0.80 mm with a slot
+    around a centre island, raised ends with guide slopes, 16 gold contacts at 0.4 mm pitch that run from
+    their tails over each wall into the slot, and metal hold-down tails at the ends. u runs along the
+    connector (photo y), v across it (photo x), in mm from its centre."""
+    cx, cy = 4542, 1420                      # centre, from the pads in the bare back photo
+    def box(u0, u1, v0, v1, z0, z1, col):
+        return (cx + v0 * d_px, cy + u0 * d_px, cx + v1 * d_px, cy + u1 * d_px, z0, z1, col)
+    d_px = 84
+    dark, gold, tin = (.21, .2, .2), (.83, .67, .3), (.78, .78, .76)
+    out = [box(-1.985, 1.985, -1.045, -.685, 0, .67, dark)]       # first box: the part's body, for hovering
+    out.append(box(-1.985, 1.985, .685, 1.045, 0, .67, dark))       # the other long wall
+    out.append(box(-1.895, 1.895, -.425, .425, 0, .67, dark))       # centre island
+    out.append(box(-2.315, 2.315, -.685, .685, 0, .14, dark))       # slot floor
+    for s in (-1, 1):
+        lo, hi = sorted((s * 2.5, s * 2.835))
+        out.append(box(lo, hi, -1.095, 1.095, 0, .8, dark))         # end cap
+        lo, hi = sorted((s * 1.985, s * 2.5))
+        out += [box(lo, hi, -1.145, -.81, 0, .8, dark), box(lo, hi, .81, 1.145, 0, .8, dark)]   # guide rails
+        lo, hi = sorted((s * 2.315, s * 2.5))
+        out.append(box(lo, hi, -.81, .81, 0, .47, dark))            # guide slope into the slot
+        lo, hi = sorted((s * 2.565, s * 2.655))
+        out += [box(lo, hi, -1.17, -1.095, 0, .1, tin), box(lo, hi, 1.095, 1.17, 0, .1, tin)]   # hold-down tails
+    for u in (-1.4, -1.0, -.6, -.2, .2, .6, 1.0, 1.4):
+        for s in (-1, 1):
+            v = lambda a, b: sorted((s * a, s * b))
+            out.append(box(u - .055, u + .055, *v(1.04, 1.17), 0, .08, gold))       # tail on the pad
+            out.append(box(u - .055, u + .055, *v(.66, 1.06), .67, .69, gold))     # over the wall
+            out.append(box(u - .055, u + .055, *v(.66, .69), .14, .69, gold))      # down into the slot
+    return {"boxes": out}
+
+
+DETAILED["BTB"] = _btb()
 
 
 def vrml_prism(poly, z0, z1, color):
