@@ -9,7 +9,7 @@ window.COMPONENTS = [
    // from ST's STM32_open_pin_data, mcu/STM32WB35C(C-E)UxA.xml; the exposed pad is VSS
    "pinNames":{"1":"VBAT","2":"PC14-OSC32_IN","3":"PC15-OSC32_OUT","4":"PH3-BOOT0","5":"PB8","6":"PB9","7":"NRST","8":"VDDA","9":"PA0","10":"PA1","11":"PA2","12":"PA3","13":"PA4","14":"PA5","15":"PA6","16":"PA7","17":"PA8","18":"PA9","19":"PB2","20":"VDD","21":"RF1","22":"VSSRF","23":"VDDRF","24":"OSC_OUT","25":"OSC_IN","26":"AT0","27":"AT1","28":"PB0","29":"PB1","30":"PE4","31":"VFBSMPS","32":"VSSSMPS","33":"VLXSMPS","34":"VDDSMPS","35":"VDD","36":"PA10","37":"PA11","38":"PA12","39":"PA13","40":"VDDUSB","41":"PA14","42":"PA15","43":"PB3","44":"PB4","45":"PB5","46":"PB6","47":"PB7","48":"VDD","EP":"VSS"}},
   {"id":"SE","part":"secure element","package":"QFN20","side":"front","size":4,"pitch":0.5,"pinsPerSide":5,"exposedPad":2.7,
-   "corners":[[3351,1308],[3336,964],[3687,968],[3688,1310]],"pinNames":{"10":"GND"}},
+   "corners":[[3360,1302],[3360,968],[3699,968],[3699,1302]],"pinNames":{"10":"GND"}},
   {"id":"USBPD","part":"STUSB4500L","package":"QFN24","side":"front","size":4,"pitch":0.5,"pinsPerSide":6,"exposedPad":2.7,
    "notes":"USB power delivery controller; pin 1 inferred from the marking orientation and confirmed by the traces (CC1DB/CC1 and CC2/CC2DB are tied)",
    "corners":[[988,1545],[1001,1216],[1321,1216],[1317,1543]],
