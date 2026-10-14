@@ -46,7 +46,6 @@ CUSTOM = {
     "L1": ((.55, .55, .57), 1.0, ""),
     "RFF": ((.15, .3, .7), .6, ""),
     "ANT": ((.92, .92, .9), .9, ""),
-    "USB": ((.7, .7, .72), 3.2, ""),
     "SW1": ((.2, .2, .2), 1.5, ""),
     "SW2": ((.2, .2, .2), 1.5, ""),
 }
@@ -103,6 +102,46 @@ def _btb():
 
 
 DETAILED["BTB"] = _btb()
+
+
+def _usb():
+    """USB-C receptacle: a stainless shell with rounded sides (stacked slices approximate the stadium profile,
+    8.94 x 3.26 mm), the dark mouth at the board's end with the tongue and its gold contacts, the six holes on
+    the shell's top and the solder tails at the back, placed from the front photo (shell y 1050-1790, back at
+    x 680, mouth past the board's edge at x 0). u runs along the plug (photo x), v across it (photo y)."""
+    mouth, cy, k = 0, 1420, 84
+    def box(u0, u1, v0, v1, z0, z1, col):
+        return (mouth + u0 * k, cy + v0 * k, mouth + u1 * k, cy + v1 * k, z0, z1, col)
+    steel, dark, black, gold, tin = (.8, .8, .78), (.16, .16, .17), (.04, .04, .05), (.83, .67, .3), (.76, .76, .74)
+    H, W, L = 3.26, 8.94, 8.1
+    def stadium(u0, u1, hw, hh, zc, col, n=24):
+        """Slices of a rounded-end section (half width hw, half height hh) centred at height zc."""
+        out = []
+        for i in range(n):
+            za, zb = zc - hh + 2 * hh * i / n, zc - hh + 2 * hh * (i + 1) / n
+            t = ((za + zb) / 2 - zc) / hh
+            half = hw - hh + hh * math.sqrt(max(0, 1 - t * t))
+            out.append(box(u0, u1, -half, half, za, zb, col))
+        return out
+    zc = H / 2
+    out = stadium(0, L, W / 2, H / 2, zc, steel)                       # the shell (first box is its body)
+    out += stadium(-.006, .6, W / 2 - .22, H / 2 - .22, zc, black)       # the mouth, seen from the end
+    out.append(box(-.012, .6, -3.35, 3.35, zc - .35, zc + .35, dark))    # the tongue
+    for i in range(12):
+        v = -2.75 + .5 * i
+        out += [box(-.016, .5, v - .12, v + .12, zc + .35, zc + .38, gold),
+                box(-.016, .5, v - .12, v + .12, zc - .38, zc - .35, gold)]
+    for v in (-2.6, -1.58, -.55, .41, 1.43, 2.43):                       # holes in the shell's top
+        out.append(box(6.45, 6.9, v - .24, v + .24, H, H + .01, black))
+    for i in range(12):                                                  # solder tails at the back
+        v = -2.75 + .5 * i
+        out.append(box(L, L + .95, v - .12, v + .12, 0, .1, tin))
+    for v in (-4.3, 4.3):                                                # shell legs
+        out.append(box(L - 1.1, L + .1, v - .3, v + .3, 0, 1.0, steel))
+    return {"boxes": out}
+
+
+DETAILED["USB"] = _usb()
 
 
 def vrml_prism(poly, z0, z1, color):
