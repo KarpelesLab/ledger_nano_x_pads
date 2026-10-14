@@ -74,6 +74,8 @@ TAP_A = [[1568,1923],[1568,1973],[1188,1973],[1188,1775],[996,1775],[996,1965],[
     [4266,2075],[4256,1770],[3978,1770],[3978,1923]]
 # solder joints of the tap layer, on these test pads
 JOINTS_A = ["35", "34", "36", "29", "31", "38", "14", "03", "07"]
+# joints with no trace on the flex: solder that only holds it in place
+ANCHORS_A = {"03", "38"}
 
 
 def specimen_a():
@@ -128,8 +130,10 @@ def specimen_a():
     for pid in JOINTS_A:
         p = pads[pid]
         out.append(dict(t="dome", at=xy(p["x"], p["y"]), r=.45, z=zt0, side="back", color="#d8d8d8",
-                        title=f"Solder joint on TP{pid}", notes=(p.get("name") or "anchor joint") +
-                        ("" if p.get("name") else ": holds the flex in place, not wired to the implant")))
+                        title=f"Solder joint on TP{pid}",
+                        notes=f"{p.get('name') or 'Unnamed pad'}: " + (
+                            "no trace on the flex, so not wired to the implant; the joint only holds the flex in place"
+                            if pid in ANCHORS_A else "wired to the implant through the flex")))
     return out
 
 
