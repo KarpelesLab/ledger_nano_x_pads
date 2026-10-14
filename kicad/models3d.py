@@ -131,9 +131,10 @@ def _usb():
                 box(-.016, .5, v - .12, v + .12, zc - .38, zc - .35, gold)]
     for v in (-2.6, -1.58, -.55, .41, 1.43, 2.43):                       # holes in the shell's top
         out.append(box(6.45, 6.9, v - .24, v + .24, H, H + .01, black))
-    for i in range(12):                                                  # solder tails at the back
-        v = -2.75 + .5 * i
-        out.append(box(L, L + .95, v - .12, v + .12, 0, .1, tin))
+    # solder tails of the A row, behind the shell on USB1's pads (the B row is hidden under the shell)
+    for y in (1156, 1202, 1245, 1289, 1330, 1374, 1418, 1460, 1502, 1546, 1589, 1633):
+        v = (y - cy) / k
+        out.append(box(L, L + 1.05, v - .12, v + .12, 0, .1, tin))
     for v in (-4.3, 4.3):                                                # shell legs
         out.append(box(L - 1.1, L + .1, v - .3, v + .3, 0, 1.0, steel))
     return {"boxes": out}
