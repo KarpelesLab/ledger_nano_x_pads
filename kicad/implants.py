@@ -289,13 +289,20 @@ def specimen_c():
     out.append(dict(t="slab", poly=rect(690, 930, 1900, 1970), z=[floor - .6, floor], color="#2f5d2a", opacity=1,
                     title="Implant board (V03)", notes="Small green board marked V03, lying in the case next to the "
                     "battery, components towards the Ledger. Its wire pads are labelled for the display lines (DI, CLK, "
-                    "CS, DC), reset, power and GND, plus SWD, BOOT and USB pads to program it"))
-    for (x, y), w, h, col, title in (((1150, 1300), 3.2, 3.2, "#1d1d1f", "Microcontroller"),
-                                     ((1600, 1250), 2.2, 1.4, "#1d1d1f", "Regulator"),
-                                     ((1550, 1700), 3.0, 1.6, "#1d1d1f", "Radio / power IC"),
-                                     ((900, 1650), 1.6, .8, "#8a6b4a", "Passive")):
-        out.append(dict(t="box", at=xy(x, y), size=[w, h], z=[floor - .6 - .45, floor - .6], color=col,
-                        title=f"V03 board: {title.lower()}", notes="Part on the implant board (unmarked in the photos)"))
+                    "CS, DC), reset, power and GND, plus SWD, BOOT and USB pads to program it; an eSIM sits on it, on its own small board"))
+    # parts on the V03 board, placed from the photo of it in the case (its board-facing side)
+    zp = floor - .6
+    for (x, y), w, h, title in (((1183, 1707), 1.2, 1.8, "IC (8 pins)"), ((1372, 1748), .9, .9, "Transistor"),
+                                ((845, 1776), 1.1, 1.1, "IC"), ((1147, 1381), .9, .9, "IC")):
+        out.append(dict(t="box", at=xy(x, y), size=[w, h], z=[zp - .4, zp], color="#1d1d1f",
+                        title=f"V03 board: {title}", notes="Small unmarked part on the implant board"))
+    # the eSIM: a small carrier board soldered onto V03 by a row of 8 contacts, at the coil end
+    out.append(dict(t="slab", poly=rect(715, 1346, 943, 1720), z=[zp - .45, zp - .05], color="#1c3a1a", opacity=1,
+                    title="eSIM", notes="Small board soldered onto V03 by 8 contacts: the eSIM giving the implant "
+                                        "its cellular identity"))
+    for k in range(8):
+        out.append(dict(t="box", at=xy(925, 1365 + k * 48.5), size=[.45, .3], z=[zp - .45, zp], color="#c9a54a",
+                        title="eSIM contact", notes=f"Contact {k + 1} of 8 between the eSIM board and V03"))
     # a flat spiral coil antenna beside the board, at the USB end of the case
     coil = []
     for k in range(6 * 24 + 1):
