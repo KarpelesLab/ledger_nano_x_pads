@@ -6087,134 +6087,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "99793622-9378-55f0-b075-8612e5cbaa35")
-		(at 20.845238 19.208333)
-		(descr "SOT-23, 2.9 x 1.3 mm; 16 V Zener diode. Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +")
-		(property "Reference" "X9"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "918b5c29-31fd-5ff6-bb6a-4e4b81bc186f")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "NXP PMBZ5246B 16 V Zener diode (marked P8W 26)"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b1a2cd2a-be77-529e-83a3-376d699112b7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c3be43ac-c186-5430-ac7b-cc008d5087da")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c3b8e8f7-62c3-5756-b539-b1e4b9d0a070")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.642858 -1.434524)
-			(end -0.642858 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "8e1a3f01-452d-5c97-b815-903e2ca91e9e")
-		)
-		(fp_line
-			(start -0.642858 1.434524)
-			(end 0.642857 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "dd406c7c-5e67-5319-b45d-b1b5f02ec87e")
-		)
-		(fp_line
-			(start 0.642857 -1.434524)
-			(end -0.642858 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "cba56272-41aa-5bc7-a4ee-f64edf67b752")
-		)
-		(fp_line
-			(start 0.642857 1.434524)
-			(end 0.642857 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "2a86c1b8-a53e-5c43-9a46-76778d0b74bb")
-		)
-		(pad "BL" smd rect
-			(at -0.916667 -0.869048)
-			(size 1.047619 0.892857)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger input?")
-			(thermal_bridge_angle 45)
-			(uuid "031dc3cc-f1e0-56da-b51f-269aae3a44c1")
-		)
-		(pad "R" smd rect
-			(at 1.125 0.077381)
-			(size 1.011904 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Left button power (pad 19)")
-			(thermal_bridge_angle 45)
-			(uuid "6461ac42-b20b-5ced-8ac9-d3970f77f67b")
-		)
-		(pad "TL" smd rect
-			(at -0.916667 1.041667)
-			(size 1.047619 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "fc14556c-b74c-512e-a387-23c6a3a951b2")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "9e78f920-cdf8-5c4d-95fc-5411560e7754")
 		(at 15 22.761904)
 		(descr "two-terminal SMD")
@@ -7273,6 +7145,134 @@
 			)
 			(rotate
 				(xyz 0 0 -0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "bd545cc2-6ea0-5f38-a4b1-42334ae9f11b")
+		(at 20.845238 19.208333)
+		(descr "SOT-23, 2.9 x 1.3 mm; 16 V Zener diode (Philips/NXP PMBZ52xx series datasheet: 8W is the PMBZ5246B's marking code, the leading p means made in Hong Kong; pin 1 anode, 2 not connected, 3 cathode). Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +")
+		(property "Reference" "X9"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "c66522e9-0342-5b4a-bb94-c1e64c2108a7")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "NXP PMBZ5246B 16 V Zener diode (marked P8W 26)"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fd2d9e6e-bbc8-507e-8432-8c53608fef17")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e5a091ef-7533-50db-bfe8-da6260380bb7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8e2fd26a-4297-548e-b2be-fe7f01ed9f59")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.642858 -1.434524)
+			(end -0.642858 1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "68f58ffb-8a02-5954-9c99-6e5184b9bae3")
+		)
+		(fp_line
+			(start -0.642858 1.434524)
+			(end 0.642857 1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "5895566c-f8f5-54da-be58-d14451b88de7")
+		)
+		(fp_line
+			(start 0.642857 -1.434524)
+			(end -0.642858 -1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "3b4a82c3-8605-5f45-8d9f-3bea8328cd67")
+		)
+		(fp_line
+			(start 0.642857 1.434524)
+			(end 0.642857 -1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "fd324e96-8002-5635-9779-babe36045b72")
+		)
+		(pad "BL" smd rect
+			(at -0.916667 -0.869048)
+			(size 1.047619 0.892857)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger input?")
+			(thermal_bridge_angle 45)
+			(uuid "dd0cc65e-d427-5a1f-aef3-24ea19065a74")
+		)
+		(pad "R" smd rect
+			(at 1.125 0.077381)
+			(size 1.011904 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Left button power (pad 19)")
+			(thermal_bridge_angle 45)
+			(uuid "94cddde4-7aa6-5d8a-a2d3-4f7a2c786c54")
+		)
+		(pad "TL" smd rect
+			(at -0.916667 1.041667)
+			(size 1.047619 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T41")
+			(thermal_bridge_angle 45)
+			(uuid "0e1a1b6e-1c81-5bc6-8f69-e019c377ef38")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -28184,7 +28184,7 @@
 				(xy 4.983156 14.329266) (xy 4.996291 14.378289) (xy 4.996354 14.378522) (xy 5.052372 14.475548)
 				(xy 5.056026 14.479202) (xy 5.07331 14.520919) (xy 5.07331 18.136502) (xy 5.07331 18.22064) (xy 5.08326 18.257775)
 				(xy 5.093638 18.296507) (xy 5.095087 18.301912) (xy 5.130556 18.363347) (xy 5.137158 18.374781)
-				(xy 6.422837 19.660459) (xy 6.422839 19.66046) (xy 6.422841 19.660462) (xy 6.495707 19.702531) (xy 6.500946 19.703934)
+				(xy 6.363346 19.600967) (xy 6.422841 19.660462) (xy 6.495707 19.702531) (xy 6.500946 19.703934)
 				(xy 6.536773 19.731422) (xy 6.54267 19.776191) (xy 6.525474 19.804484) (xy 5.748824 20.514016) (xy 5.748814 20.514027)
 				(xy 5.718206 20.541854) (xy 5.717992 20.542185) (xy 5.717696 20.542457) (xy 5.695205 20.577641)
 				(xy 5.694957 20.578028) (xy 5.672719 20.612636) (xy 5.672597 20.613014) (xy 5.672383 20.613351)
@@ -28567,7 +28567,7 @@
 				(xy 32.806415 18.805064) (xy 32.811802 19.094508) (xy 32.811803 19.094514) (xy 32.812795 19.099055)
 				(xy 32.824523 19.152769) (xy 32.825345 19.153951) (xy 32.825652 19.155356) (xy 32.826847 19.158096)
 				(xy 32.826302 19.158333) (xy 32.834979 19.198067) (xy 32.826567 19.219497) (xy 32.816958 19.234474)
-				(xy 32.806415 19.293159) (xy 32.811802 19.582603) (xy 32.811803 19.582609) (xy 32.816472 19.603993)
+				(xy 32.806415 19.293159) (xy 32.811802 19.582603) (xy 32.811803 19.582609) (xy 32.815812 19.600967)
 				(xy 32.824523 19.640864) (xy 32.825345 19.642046) (xy 32.825652 19.643451) (xy 32.826847 19.646191)
 				(xy 32.826302 19.646428) (xy 32.834979 19.686162) (xy 32.826567 19.707592) (xy 32.816958 19.722569)
 				(xy 32.806415 19.781254) (xy 32.811802 20.070698) (xy 32.811803 20.070704) (xy 32.824523 20.128958)
@@ -28610,7 +28610,7 @@
 				(xy 26.754468 20.229812) (xy 26.762062 20.187539) (xy 26.765011 20.171125) (xy 26.764607 20.14943)
 				(xy 26.759624 19.881677) (xy 26.746904 19.823421) (xy 26.742107 19.816524) (xy 26.732475 19.772408)
 				(xy 26.740889 19.750977) (xy 26.754466 19.729815) (xy 26.754465 19.729815) (xy 26.754468 19.729812)
-				(xy 26.760567 19.69586) (xy 26.765011 19.671125) (xy 26.764813 19.660462) (xy 26.759624 19.381677)
+				(xy 26.760567 19.69586) (xy 26.765011 19.671125) (xy 26.764668 19.652695) (xy 26.759624 19.381677)
 				(xy 26.746904 19.323421) (xy 26.746902 19.323418) (xy 26.746901 19.323415) (xy 26.735917 19.307622)
 				(xy 26.726283 19.263505) (xy 26.734697 19.242073) (xy 26.738693 19.235845) (xy 26.742564 19.229812)
 				(xy 26.749194 19.192905) (xy 26.753107 19.171125) (xy 26.752073 19.115542) (xy 26.74772 18.881677)

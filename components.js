@@ -139,7 +139,7 @@ window.COMPONENTS = [
     {"id":"BL","name":"","polygon":[[5015,1518],[5085,1518],[5085,1572],[5015,1572]]},
     {"id":"BR","name":"","polygon":[[5175,1518],[5245,1518],[5245,1572],[5175,1572]]}]},
   {"id":"X9","part":"NXP PMBZ5246B 16 V Zener diode (marked P8W 26)","package":"SOT-23, 2.9 x 1.3 mm","side":"front",
-   "notes":"16 V Zener diode. Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
+   "notes":"16 V Zener diode (Philips/NXP PMBZ52xx series datasheet: 8W is the PMBZ5246B's marking code, the leading p means made in Hong Kong; pin 1 anode, 2 not connected, 3 cathode). Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
     {"id":"TL","name":"n.c. (2)","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
     {"id":"BL","name":"anode (1)","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
     {"id":"R","name":"cathode (3)","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
