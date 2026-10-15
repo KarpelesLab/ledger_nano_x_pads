@@ -1418,7 +1418,7 @@
    (symbol "TP38_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP38_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "OLED VCC?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "OLED VCC" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP39" (in_bom yes) (on_board yes)
@@ -1517,14 +1517,14 @@
    (property "Value" "nanox:X10" (at 0 -6.35 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "X10_0_1"
-    (rectangle (start -7.62 5.08) (end 7.62 -5.08) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -8.89 5.08) (end 8.89 -5.08) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "X10_1_1"
-    (pin passive line (at -10.16 2.54 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "L1" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "L2" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at -10.16 -2.54 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "L3" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 2.54 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "R1" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 0.00 180) (length 2.54) (name "GND" (effects (font (size 1.0 1.0)))) (number "R2" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 -2.54 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "R3" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 2.54 0) (length 2.54) (name "VIN (6)" (effects (font (size 1.0 1.0)))) (number "L1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 0.00 0) (length 2.54) (name "VOUT (5)" (effects (font (size 1.0 1.0)))) (number "L2" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -11.43 -2.54 0) (length 2.54) (name "EN (4)" (effects (font (size 1.0 1.0)))) (number "L3" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 11.43 2.54 180) (length 2.54) (name "SW (1)" (effects (font (size 1.0 1.0)))) (number "R1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 11.43 0.00 180) (length 2.54) (name "GND (2)" (effects (font (size 1.0 1.0)))) (number "R2" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 11.43 -2.54 180) (length 2.54) (name "FB (3)" (effects (font (size 1.0 1.0)))) (number "R3" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "X9" (in_bom yes) (on_board yes)

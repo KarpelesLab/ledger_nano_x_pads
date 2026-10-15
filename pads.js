@@ -38,7 +38,7 @@ window.PADS = [
   {"id":"35","name":"OLED MOSI","notes":"","side":"back","x":3920,"y":1406,"r":45},
   {"id":"36","name":"OLED D/C","notes":"","side":"back","x":4052,"y":1148,"r":45},
   {"id":"37","name":"OLED VCOMH?","notes":"BTB pin 9, filtered by C31 to ground: likely the OLED controller's VCOMH, which only needs a capacitor; not measured","side":"back","x":4308,"y":1770,"r":45},
-  {"id":"38","name":"OLED VCC?","notes":"Likely the OLED panel supply (7.5 to 16.5 V for an SSD1312), the output of the X10 boost converter, to BTB pin 12; not measured","side":"back","x":4414,"y":1970,"r":45},
+  {"id":"38","name":"OLED VCC","notes":"The OLED panel supply (7.5 to 16.5 V for an SSD1312): output of the X10 TLV61046A boost converter, to BTB pin 12; voltage not measured","side":"back","x":4414,"y":1970,"r":45},
   {"id":"39","name":"OLED IREF?","notes":"Likely the OLED controller's IREF, with R33 to ground setting the segment current; not measured","side":"back","x":4778,"y":1152,"r":45},
   {"id":"40","name":"Right button","notes":"","side":"back","x":4950,"y":1772,"r":45}
 ];

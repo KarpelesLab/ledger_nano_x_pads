@@ -60,7 +60,7 @@ window.COMPONENTS = [
     {"id":"S3","name":"shield","polygon":[[600,1000],[770,1000],[770,1120],[600,1120]]},
     {"id":"S4","name":"shield","polygon":[[585,1690],[760,1690],[760,1830],[585,1830]]}]},
   {"id":"BTB","part":"Hirose BM20B(0.8)-16DS-0.4V(51)","package":"16-pin board-to-board receptacle, 0.4 mm pitch, 2 rows","side":"back",
-   "notes":"Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected. With the display's SSD1312 controller, the rest read as: 1 MOSI, 3 and 11 +3.3V (VDD), 4 CLK, 5 D/C#, 6 RES#, 8 CS#, 9 VCOMH (capacitor only), 10 IREF (resistor to ground), 12 VCC panel supply from the X10 boost converter","pads":[
+   "notes":"Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected. With the display's SSD1312 controller, the rest read as: 1 MOSI, 3 and 11 +3.3V (VDD), 4 CLK, 5 D/C#, 6 RES#, 8 CS#, 9 VCOMH (capacitor only), 10 IREF (resistor to ground), 12 VCC panel supply from the X10 boost converter (TLV61046A)","pads":[
     {"id":"1","name":"","polygon":[[4429,1293],[4471,1293],[4471,1311],[4429,1311]]},
     {"id":"2","name":"GND","polygon":[[4613,1293],[4655,1293],[4655,1311],[4613,1311]]},
     {"id":"3","name":"","polygon":[[4429,1329],[4471,1329],[4471,1347],[4429,1347]]},
@@ -82,7 +82,7 @@ window.COMPONENTS = [
     {"id":"MP3","name":"mounting","polygon":[[4428,1627],[4498,1627],[4498,1661],[4428,1661]]},
     {"id":"MP4","name":"mounting","polygon":[[4591,1627],[4661,1627],[4661,1661],[4591,1661]]}]},
   {"id":"L1","part":"unknown, likely a shielded power inductor","package":"~4.8 mm square metal","side":"front",
-   "notes":"Large silver part, probably the inductor of the X10 boost converter that makes the OLED supply; not confirmed",
+   "notes":"Large silver part: the power inductor of the X10 boost converter (TLV61046A) that makes the OLED supply, on its SW pin",
    "corners":[[4773,1045],[5173,1045],[5173,1409],[4773,1409]]},
   {"id":"RFF","part":"RF filter / matching device","package":"blue ceramic, 8 terminals","side":"front",
    "notes":"In the Bluetooth RF path between MCU pin 21 (RF1) and C27; dot marking near the IN end. Side terminals 1, 3, 4 and 6 go to ground, 2 and 5 are not connected; which side row is 1-3 is not known","pads":[
@@ -143,14 +143,14 @@ window.COMPONENTS = [
     {"id":"TL","name":"","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
     {"id":"BL","name":"","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
     {"id":"R","name":"","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
-  {"id":"X10","part":"unknown, marked 1C4F, likely the boost converter for the OLED panel supply","package":"6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body","side":"front",
-   "notes":"Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 output (OLED VCC, which the R25/R26 divider feeds back), L3 +3.3V input, R1 switch node to L1, R2 GND (confirmed), R3 feedback","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
-    {"id":"L1","name":"","polygon":[[4806,1484],[4903,1484],[4903,1541],[4806,1541]]},
-    {"id":"L2","name":"","polygon":[[4806,1566],[4903,1566],[4903,1623],[4806,1623]]},
-    {"id":"L3","name":"","polygon":[[4806,1648],[4903,1648],[4903,1705],[4806,1705]]},
-    {"id":"R1","name":"","polygon":[[5046,1484],[5139,1484],[5139,1541],[5046,1541]]},
-    {"id":"R2","name":"GND","polygon":[[5046,1566],[5139,1566],[5139,1623],[5046,1623]]},
-    {"id":"R3","name":"","polygon":[[5046,1648],[5139,1648],[5139,1705],[5046,1705]]}]},
+  {"id":"X10","part":"TI TLV61046A boost converter (marked 1C4F)","package":"SOT23-6 (DBV), 2.9 x 1.6 mm","side":"front",
+   "notes":"Boost converter that makes the OLED panel's drive supply: identified by its 1C4F marking (TI's marking for the TLV61046A, a 28 V boost converter for PMOLED panels). Pads named by side and row from the top in the front photo; GND and the feedback divider fix the orientation: R1-R3 are pins 1-3 (SW, GND, FB), L3-L1 pins 4-6 (EN, VOUT, VIN). VIN is the switched battery supply from X9, EN the +3.3V rail, VOUT the OLED VCC to BTB pin 12, FB the R25/R26 divider, SW the L1 inductor","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
+    {"id":"L1","name":"VIN (6)","polygon":[[4806,1484],[4903,1484],[4903,1541],[4806,1541]]},
+    {"id":"L2","name":"VOUT (5)","polygon":[[4806,1566],[4903,1566],[4903,1623],[4806,1623]]},
+    {"id":"L3","name":"EN (4)","polygon":[[4806,1648],[4903,1648],[4903,1705],[4806,1705]]},
+    {"id":"R1","name":"SW (1)","polygon":[[5046,1484],[5139,1484],[5139,1541],[5046,1541]]},
+    {"id":"R2","name":"GND (2)","polygon":[[5046,1566],[5139,1566],[5139,1623],[5046,1623]]},
+    {"id":"R3","name":"FB (3)","polygon":[[5046,1648],[5139,1648],[5139,1705],[5046,1705]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with R1 and test pad 06; not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
