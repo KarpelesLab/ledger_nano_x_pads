@@ -3380,142 +3380,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "5b7bc487-8ead-5563-8522-164d23ae6c7f")
-		(at 34.744047 13.047619)
-		(descr "4 corner pads, ~2.0 x 1.6 mm; Marked 32k0 J 2B; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground")
-		(property "Reference" "Y1"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "fe598a01-698e-51fc-8e42-d514bb23e7a2")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "crystal, likely the 32 MHz HSE"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b1008b21-9c6b-5877-85fd-2d10a2b641bd")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "45208e3c-d6f5-5375-9267-4fe4fd2d4f74")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b210f6a8-037c-50fa-ac16-d6ebcee7c672")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/5e4f179b-c074-5fd5-aa52-6ad602b7e018")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.875 -1.02381)
-			(end -0.875 1.023809)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "2622bb9c-9ae6-5392-a9c6-1b92d869fa1f")
-		)
-		(fp_line
-			(start -0.875 1.023809)
-			(end 0.875 1.023809)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "99725225-2d95-54d1-a828-2019038c7807")
-		)
-		(fp_line
-			(start 0.875 -1.02381)
-			(end -0.875 -1.02381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "7f1f7a12-4b00-5b8e-81e7-6587b569400b")
-		)
-		(fp_line
-			(start 0.875 1.023809)
-			(end 0.875 -1.02381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "fd798cd4-e441-532d-aee4-38b2d6cfcb58")
-		)
-		(pad "BL" smd rect
-			(at -0.505952 -0.595239)
-			(size 0.738095 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "HSE crystal IN")
-			(thermal_bridge_angle 45)
-			(uuid "f7d80b39-f5f3-5324-b5be-b8028e3faad4")
-		)
-		(pad "BR" smd rect
-			(at 0.505953 -0.595239)
-			(size 0.738095 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "fad734eb-d9ed-55c3-bebd-7f572c97df1c")
-		)
-		(pad "TL" smd rect
-			(at -0.505952 0.595238)
-			(size 0.738095 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "975abd73-a088-5daa-bc8c-15b4fb0e310c")
-		)
-		(pad "TR" smd rect
-			(at 0.505953 0.595238)
-			(size 0.738095 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "HSE crystal OUT")
-			(thermal_bridge_angle 45)
-			(uuid "147be827-e2f8-56ea-90cb-8659376cd21e")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/Y1.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "5c120a3c-37f4-5b40-ab6e-d1578d5111e7")
 		(at 18.309523 19.470238)
 		(descr "3 terminals, SOT-23 style, ~1.5 x 1.2 mm body; Black 3-terminal part across from X9, with two small pads on one side and a large one on the other. Pads named by position in the front photo. Its nets match a P-MOSFET switch between USB power and the charger: TL on VBUS (source), R on the charger input (drain), BL on the gate, which R10 holds at VBUS (off) and the STUSB4500L pulls low through R4 (VBUS_EN_SNK) once USB power is negotiated. Marking not read; not confirmed")
@@ -4359,6 +4223,142 @@
 			)
 			(rotate
 				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "6b8ab099-6f0f-5138-85fb-94ad722ab8e8")
+		(at 34.744047 13.047619)
+		(descr "4 corner pads, ~2.0 x 1.6 mm; Marked 32000 K145 Y: a 32.000 MHz crystal, the HSE clock the STM32WB needs for its radio; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground")
+		(property "Reference" "Y1"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "651346d8-9e85-5e7d-8764-ec0bef3bce93")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "32 MHz crystal (HSE)"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "37a4d2ff-522e-5f72-a26a-d02750a6bf24")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "185ea1a8-a90a-5485-b6ad-82bb9802a862")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0b8c5514-5227-5b0e-866b-7e1b6a9d32b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/5e4f179b-c074-5fd5-aa52-6ad602b7e018")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.875 -1.02381)
+			(end -0.875 1.023809)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "ee449adf-9f2c-5b85-a1bf-74778f188464")
+		)
+		(fp_line
+			(start -0.875 1.023809)
+			(end 0.875 1.023809)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "0fc4022a-c34e-5e12-8651-ab20aecf356e")
+		)
+		(fp_line
+			(start 0.875 -1.02381)
+			(end -0.875 -1.02381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8d058a13-85b3-5b7c-a087-ed7aa2de9248")
+		)
+		(fp_line
+			(start 0.875 1.023809)
+			(end 0.875 -1.02381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "a876920e-8067-5b28-a08e-73a343f0536d")
+		)
+		(pad "BL" smd rect
+			(at -0.505952 -0.595239)
+			(size 0.738095 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "HSE crystal IN")
+			(thermal_bridge_angle 45)
+			(uuid "cf98f20e-3ef8-5911-a68b-08fd9d2a854a")
+		)
+		(pad "BR" smd rect
+			(at 0.505953 -0.595239)
+			(size 0.738095 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "42094b42-c50b-5857-9e2c-82c07436d240")
+		)
+		(pad "TL" smd rect
+			(at -0.505952 0.595238)
+			(size 0.738095 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "696cbd67-6dca-5686-94b8-58c11d0f9e44")
+		)
+		(pad "TR" smd rect
+			(at 0.505953 0.595238)
+			(size 0.738095 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "HSE crystal OUT")
+			(thermal_bridge_angle 45)
+			(uuid "07a9234f-557c-5571-88b6-5fc7078f71ac")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/Y1.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
 			)
 		)
 	)

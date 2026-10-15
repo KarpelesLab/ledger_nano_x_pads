@@ -124,8 +124,8 @@ window.COMPONENTS = [
     {"id":"G","name":"gate? (COUT)","polygon":[[1484,1948],[1508,1948],[1508,1972],[1484,1972]]},
     {"id":"S","name":"source? (pack -)","polygon":[[1514,1948],[1540,1948],[1540,1975],[1514,1975]]},
     {"id":"D","name":"drain?","polygon":[[1484,1987],[1538,1987],[1538,2008],[1484,2008]]}]},
-  {"id":"Y1","part":"crystal, likely the 32 MHz HSE","package":"4 corner pads, ~2.0 x 1.6 mm","side":"front",
-   "notes":"Marked 32k0 J 2B; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground","pads":[
+  {"id":"Y1","part":"32 MHz crystal (HSE)","package":"4 corner pads, ~2.0 x 1.6 mm","side":"front",
+   "notes":"Marked 32000 K145 Y: a 32.000 MHz crystal, the HSE clock the STM32WB needs for its radio; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground","pads":[
     {"id":"TL","name":"GND","polygon":[[2845,1842],[2907,1842],[2907,1914],[2845,1914]]},
     {"id":"TR","name":"crystal, to HSE OUT (MCU pin 24)","polygon":[[2930,1842],[2992,1842],[2992,1914],[2930,1914]]},
     {"id":"BR","name":"GND","polygon":[[2930,1942],[2992,1942],[2992,2014],[2930,2014]]},

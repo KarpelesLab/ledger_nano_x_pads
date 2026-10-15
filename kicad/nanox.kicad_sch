@@ -3466,7 +3466,7 @@
  (label "GND" (at 530.86 157.48 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "53350ce2-ed2d-539e-8efa-c90b315380e6"))
  (symbol (lib_id "nanox:Y1") (at 541.02 172.72 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "5e4f179b-c074-5fd5-aa52-6ad602b7e018")
   (property "Reference" "Y1" (at 541.02 167.64 0) (effects (font (size 1.27 1.27))))
-  (property "Value" "crystal, likely the 32 MHz HSE" (at 541.02 177.80 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "32 MHz crystal (HSE)" (at 541.02 177.80 0) (effects (font (size 1.27 1.27))))
   (property "Footprint" "" (at 541.02 172.72 0) (effects (font (size 1.27 1.27)) hide))
   (property "Description" "4 corner pads, ~2.0 x 1.6 mm" (at 541.02 172.72 0) (effects (font (size 1.27 1.27)) hide))
   (pin "TL" (uuid "57c04509-7b4c-5585-ac7a-8511d1c79708"))
