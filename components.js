@@ -22,9 +22,9 @@ window.COMPONENTS = [
   {"id":"PWR2","part":"unknown","package":"10 pins, ~2.9 x 1.9 mm","side":"front","size":[2.9,1.9],"pitch":0.5,"pinCounts":[5,0,5,0],
    "notes":"Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; marked E058 2050; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1835,1913],[1590,1917],[1595,1760],[1839,1758]],"pinNames":{}},
-  {"id":"PWR3","part":"unknown","package":"6 pins, ~1.5 mm square","side":"front","size":1.5,"pitch":0.5,"pinCounts":[3,0,3,0],
-   "notes":"Very likely power related; marked 3T; pin 1 not verified, numbered from the first corner outlined",
-   "corners":[[1421,1848],[1293,1853],[1297,1731],[1419,1730]],"pinNames":{}},
+  {"id":"PWR3","part":"TI BQ29729 Li-ion battery protection IC (marked 3T)","package":"WSON-6 (DSE), 1.5 x 1.5 mm","side":"front","size":1.5,"pitch":0.5,"pinCounts":[3,0,3,0],
+   "notes":"Protects the battery: it cuts the charge or discharge FET on overcharge (4.275 V), over-discharge (2.3 V), charge or discharge overcurrent and short circuit. Its pinout matches the traced nets with pin 1 at the first corner outlined: VSS (4) on battery pad 2, the cell negative; BAT (5) fed from battery + through R9 with C2 to VSS; DOUT (3) with R35 to VSS; COUT (2) through R6 and V- (6) through R7 to the protection FETs and pack -, which are not traced",
+   "corners":[[1421,1848],[1293,1853],[1297,1731],[1419,1730]],"pinNames":{"1":"NC","2":"COUT","3":"DOUT","4":"VSS","5":"BAT","6":"V-"}},
   {"id":"ANT","part":"chip antenna","package":"ceramic, ~3.6 x 1.6 mm","side":"front",
    "notes":"2.4 GHz Bluetooth antenna, fed at its left end by Bluetooth RF 3; the copper-free area above it is its keep-out zone",
    "corners":[[3615,1903],[3958,1903],[3958,2037],[3615,2037]]},
@@ -165,6 +165,6 @@ window.COMPONENTS = [
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
-    {"id":"2","name":"","notes":"Likely battery -, to PWR3 (a likely battery protection IC), R35 and C2; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
+    {"id":"2","name":"","notes":"Battery - (the cell's negative terminal): VSS of the BQ29729 protection IC (PWR3), with C2 and R35. The system ground is on the other side of the protection FETs, which are not traced; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
     {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the charger (PWR1), PWR2 and X9's unconnected pin; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
 ];
