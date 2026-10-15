@@ -166,6 +166,18 @@ window.COMPONENTS = [
     {"id":"TL","name":"source? (VBUS)","polygon":[[1500,1337],[1530,1337],[1530,1366],[1500,1366]]},
     {"id":"BL","name":"gate?","polygon":[[1506,1402],[1540,1402],[1540,1432],[1506,1432]]},
     {"id":"R","name":"drain? (charger input)","polygon":[[1565,1365],[1620,1365],[1620,1402],[1565,1402]]}]},
+  {"id":"Y2","part":"not populated: 32.768 kHz crystal (LSE)","package":"2-pad crystal footprint, ~2.4 x 1.5 mm","side":"front","dnp":true,
+   "notes":"Empty footprint: bare pads with solder on them but no part, in the photos with components. It would be the MCU's 32.768 kHz low-speed crystal, between LSE crystal IN (left pad) and OUT (right pad); left empty, so the MCU must use its internal low-speed oscillator instead","pads":[
+    {"id":"1","name":"LSE IN","polygon":[[2118,875],[2192,875],[2192,1000],[2118,1000]]},
+    {"id":"2","name":"LSE OUT","polygon":[[2238,875],[2320,875],[2320,1000],[2238,1000]]}]},
+  {"id":"C38","part":"not populated: LSE load capacitor","package":"2-pad 0402 footprint","side":"front","dnp":true,
+   "notes":"Empty footprint: bare pads with solder on them but no part, in the photos with components. Load capacitor for the LSE crystal on LSE crystal IN; its other pad would normally go to ground","pads":[
+    {"id":"1","name":"","polygon":[[2035,885],[2095,885],[2095,940],[2035,940]]},
+    {"id":"2","name":"","polygon":[[2035,955],[2095,955],[2095,1010],[2035,1010]]}]},
+  {"id":"C39","part":"not populated: LSE load capacitor","package":"2-pad 0402 footprint","side":"front","dnp":true,
+   "notes":"Empty footprint: bare pads with solder on them but no part, in the photos with components. Load capacitor for the LSE crystal on LSE crystal OUT; its other pad would normally go to ground","pads":[
+    {"id":"1","name":"","polygon":[[2340,815],[2390,815],[2390,865],[2340,865]]},
+    {"id":"2","name":"","polygon":[[2410,815],[2460,815],[2460,865],[2410,865]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"NTC","notes":"The battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8)","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},

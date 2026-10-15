@@ -238,8 +238,12 @@ def main():
         pts = outline_points(c, cpads)
         center = (sum(v[0] for v in pts) / len(pts), sum(v[1] for v in pts) / len(pts))
         value = c.get("part", "") if not c.get("passive") else {"R": "R", "C": "C"}.get(c["passive"], "?")
-        make_footprint(board, d.ref(c["id"]), value, c["side"], center, out, pts, nets_by_name,
-                       desc=(c.get("package", "") + "; " + c.get("notes", "")).strip("; "), model=model_for(c, pts))
+        fp = make_footprint(board, d.ref(c["id"]), value, c["side"], center, out, pts, nets_by_name,
+                            desc=(c.get("package", "") + "; " + c.get("notes", "")).strip("; "), model=model_for(c, pts))
+        # footprints left empty on the real board: bare pads, no part
+        if c.get("dnp"):
+            fp.SetDNP(True)
+            fp.SetExcludedFromBOM(True)
 
     # tracks and vias
     for i, t in enumerate(traces):
