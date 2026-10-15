@@ -29,7 +29,7 @@ window.COMPONENTS = [
    "notes":"2.4 GHz Bluetooth antenna, fed at its left end by Bluetooth RF 3; the copper-free area above it is its keep-out zone",
    "corners":[[3615,1903],[3958,1903],[3958,2037],[3615,2037]]},
   {"id":"USB","part":"USB-C receptacle","package":"24-pin USB-C receptacle, two staggered rows at 0.5 mm pitch, 4 shell tabs","side":"front",
-   "notes":"USB-C port. Pads measured in the bare front photo: the row nearer the mouth is B1-B12 from the top, the other A12-A1, which matches where VBUS, CC1, CC2, D+ and D- are traced. Wired: VBUS (A4, A9, B4, B9), CC1 (A5), CC2 (B5), D+ (A6, B6) and D- (A7, B7). The USB 3 pairs (TX/RX) and SBU are unused, as on any USB 2 device; the GND pins and shell tabs go to ground through copper not traced here",
+   "notes":"USB-C port. Pads measured in the bare front photo: the row nearer the mouth is B1-B12 from the top, the other A12-A1, which matches where VBUS, CC1, CC2, D+ and D- are traced. Wired: VBUS (A4, A9, B4, B9), CC1 (A5), CC2 (B5), D+ (A6, B6) and D- (A7, B7). The USB 3 pairs (TX/RX) and SBU are unused, as on any USB 2 device; the GND pins (A1, A12, B1, B12) join the ground pour; the shell tabs are not traced",
    "outline":[[0,990],[775,990],[775,1800],[0,1800]],"pads":[
     {"id":"A1","name":"GND","polygon":[[683,1621],[770,1621],[770,1645],[683,1645]]},
     {"id":"A2","name":"TX1+","polygon":[[683,1577],[770,1577],[770,1601],[683,1601]]},
