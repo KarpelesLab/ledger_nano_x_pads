@@ -2591,7 +2591,7 @@
   (instances (project "nanox" (path "/9fc871f3-1e36-5a01-9359-e2a20c86f96f" (reference "R3") (unit 1))))
  )
  (label "PD DISCH" (at 236.22 58.42 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "7b6e9a50-6605-5cef-8af8-12ee84e64b55"))
- (no_connect (at 256.54 58.42) (uuid "ad8ca8b3-35a8-5aba-9aac-496c5c6c5139"))
+ (label "Charger input?" (at 256.54 58.42 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "2b901f24-6866-5fd8-8743-72fdce0d2e25"))
  (symbol (lib_id "nanox:R30") (at 246.38 73.66 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "f4b8ee26-67ff-5ff5-91ea-f0536136d0b5")
   (property "Reference" "R30" (at 246.38 69.85 0) (effects (font (size 1.27 1.27))))
   (property "Value" "R" (at 246.38 77.47 0) (effects (font (size 1.27 1.27))))

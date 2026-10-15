@@ -5,7 +5,7 @@
 window.PASSIVES = [
   {"id":"R1","kind":"R","side":"front","box":[746,1870,36,86],"axis":"v"},
   {"id":"C1","kind":"C","side":"front","box":[848,1523,48,98],"axis":"v"},
-  {"id":"R3","kind":"R","side":"front","box":[1221,1089,78,46],"axis":"h"},
+  {"id":"R3","kind":"R","side":"front","box":[1216,1085,122,55],"axis":"h"},
   {"id":"C2","kind":"C","side":"front","box":[1333,1617,78,46],"axis":"h"},
   {"id":"R4","kind":"R","side":"front","box":[1370,1258,60,100],"axis":"v"},
   {"id":"R5","kind":"R","side":"front","box":[1416,1479,48,98],"axis":"v"},
