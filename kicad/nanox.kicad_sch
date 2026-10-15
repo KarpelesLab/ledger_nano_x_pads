@@ -2272,7 +2272,7 @@
  (label "Charger TH" (at 127.00 228.60 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "d11eb64d-7693-59e2-9eca-9a61bacc1305"))
  (label "GND" (at 127.00 231.14 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "57913e02-932b-586e-8241-caf7b6aeb2bb"))
  (label "Net-T41" (at 147.32 210.82 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "5a162989-67b0-5933-9fae-0b49d70f1475"))
- (no_connect (at 147.32 213.36) (uuid "938e4cba-7a01-508f-b62a-fd39abbda841"))
+ (label "Net-T41" (at 147.32 213.36 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "353716fd-a4f2-50cc-a69a-8f05ab71b474"))
  (label "Charger VREF" (at 147.32 215.90 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "e1146f37-54bf-502b-b77f-63c3dc9e2d13"))
  (label "Charger IEND" (at 147.32 218.44 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "9487fc6f-46f0-569b-b23c-4b4ea420717f"))
  (no_connect (at 147.32 220.98) (uuid "19125c70-a654-5035-8ab1-79ea3e990a58"))
