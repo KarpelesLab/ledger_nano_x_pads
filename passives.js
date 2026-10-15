@@ -33,6 +33,7 @@ window.PASSIVES = [
   {"id":"C13","kind":"C","side":"front","box":[2101,1093,78,46],"axis":"h"},
   {"id":"C14","kind":"C","side":"front","box":[2125,1893,78,46],"axis":"h"},
   {"id":"R17","kind":"R","side":"front","box":[2364,1015,94,58],"axis":"h"},
+  {"id":"R36","kind":"R","side":"front","box":[2352,940,118,60],"axis":"h","notes":"Added by hand: missed by the automatic pass, next to R17"},
   {"id":"C15","kind":"C","side":"front","box":[2496,983,48,98],"axis":"v"},
   {"id":"C16","kind":"C","side":"front","box":[2473,1956,118,56],"axis":"h"},
   {"id":"C17","kind":"C","side":"front","box":[2519,1888,66,32],"axis":"h"},
