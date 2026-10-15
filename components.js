@@ -23,7 +23,7 @@ window.COMPONENTS = [
    "notes":"Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; pin 9 on battery + and pin 6 on pack -, across X4 (likely a current-sense resistor) from GND, so likely a battery fuel gauge; marked E058 2050; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1835,1913],[1590,1917],[1595,1760],[1839,1758]],"pinNames":{}},
   {"id":"PWR3","part":"TI BQ29729 Li-ion battery protection IC (marked 3T)","package":"WSON-6 (DSE), 1.5 x 1.5 mm","side":"front","size":1.5,"pitch":0.5,"pinCounts":[3,0,3,0],
-   "notes":"Protects the battery: it cuts the charge or discharge FET on overcharge (4.275 V), over-discharge (2.3 V), charge or discharge overcurrent and short circuit. Its pinout matches the traced nets with pin 1 at the first corner outlined: VSS (4) on battery pad 2, the cell negative; BAT (5) fed from battery + through R9 with C2 to VSS; DOUT (3) with R35 to VSS; COUT (2) through R6 and V- (6) through R7 to the protection FETs and pack -, which are not traced",
+   "notes":"Protects the battery: it cuts the charge or discharge FET on overcharge (4.275 V), over-discharge (2.3 V), charge or discharge overcurrent and short circuit. Its pinout matches the traced nets with pin 1 at the first corner outlined: VSS (4) on battery pad 2, the cell negative; BAT (5) fed from battery + through R9 with C2 to VSS; DOUT (3) with R35 to VSS; COUT (2) and DOUT drive the X3 charge and X2 discharge FETs, R6 and R7 return COUT and V- (6) to pack -",
    "corners":[[1421,1848],[1293,1853],[1297,1731],[1419,1730]],"pinNames":{"1":"NC","2":"COUT","3":"DOUT","4":"VSS","5":"BAT","6":"V-"}},
   {"id":"ANT","part":"chip antenna","package":"ceramic, ~3.6 x 1.6 mm","side":"front",
    "notes":"2.4 GHz Bluetooth antenna, fed at its left end by Bluetooth RF 3; the copper-free area above it is its keep-out zone",
@@ -114,12 +114,16 @@ window.COMPONENTS = [
    "notes":"Black part marked P near the USB port, like P1; most likely ESD protection. Pads named by end; cathode side not known","outline":[[570,1883],[727,1883],[727,1980],[570,1980]],"pads":[
     {"id":"L","name":"","polygon":[[570,1883],[617,1883],[617,1980],[570,1980]]},
     {"id":"R","name":"","polygon":[[680,1883],[727,1883],[727,1980],[680,1980]]}]},
-  {"id":"X2","part":"unknown, marked 2GC","package":"3 pins, shiny, ~1.2 x 0.8 mm","side":"front",
-   "notes":"Small shiny 3-pin part right of R35, marked 2GC: two small pads on one side and a larger one on the other in the bare photo; type unknown",
-   "corners":[[1362,1942],[1465,1942],[1465,2010],[1362,2010]]},
-  {"id":"X3","part":"unknown, marked 6","package":"3 pins, shiny blue-grey, very small","side":"front",
-   "notes":"Very small shiny 3-pin part with a dark dot, next to X2, marked 6; type unknown",
-   "corners":[[1470,1942],[1535,1942],[1535,2007],[1470,2007]]},
+  {"id":"X2","part":"likely an N-channel MOSFET: the battery discharge FET (marked 2GC)","package":"3 pins, shiny, ~1.2 x 0.8 mm","side":"front",
+   "notes":"Small shiny 3-pin part right of R35, marked 2GC: two small pads on one side and a larger one on the other in the bare photo. With X3 it forms the back-to-back FET pair the BQ29729 protection IC switches: its gate is on DOUT, its source on the battery cell -, its drain joined to X3's. Pads named by role; the exact part is not known","outline":[[1362,1942],[1465,1942],[1465,2010],[1362,2010]],"pads":[
+    {"id":"S","name":"source? (cell -)","polygon":[[1365,1955],[1407,1955],[1407,1980],[1365,1980]]},
+    {"id":"G","name":"gate? (DOUT)","polygon":[[1365,1990],[1407,1990],[1407,2012],[1365,2012]]},
+    {"id":"D","name":"drain?","polygon":[[1422,1955],[1462,1955],[1462,2012],[1422,2012]]}]},
+  {"id":"X3","part":"likely an N-channel MOSFET: the battery charge FET (marked 6)","package":"3 pins, shiny blue-grey, very small","side":"front",
+   "notes":"Very small shiny 3-pin part with a dark dot, next to X2, marked 6. With X2 it forms the back-to-back FET pair the BQ29729 protection IC switches: its gate is on COUT, its source on pack -, its drain joined to X2's. Pads named by role; the exact part is not known","outline":[[1470,1942],[1535,1942],[1535,2007],[1470,2007]],"pads":[
+    {"id":"G","name":"gate? (COUT)","polygon":[[1484,1948],[1508,1948],[1508,1972],[1484,1972]]},
+    {"id":"S","name":"source? (pack -)","polygon":[[1514,1948],[1540,1948],[1540,1975],[1514,1975]]},
+    {"id":"D","name":"drain?","polygon":[[1484,1987],[1538,1987],[1538,2008],[1484,2008]]}]},
   {"id":"Y1","part":"crystal, likely the 32 MHz HSE","package":"4 corner pads, ~2.0 x 1.6 mm","side":"front",
    "notes":"Marked 32k0 J 2B; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground","pads":[
     {"id":"TL","name":"GND","polygon":[[2845,1842],[2907,1842],[2907,1914],[2845,1914]]},
@@ -165,6 +169,6 @@ window.COMPONENTS = [
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
-    {"id":"2","name":"","notes":"Battery - (the cell's negative terminal): VSS of the BQ29729 protection IC (PWR3), with C2 and R35. The system ground is on the other side of the protection FETs, which are not traced; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
+    {"id":"2","name":"","notes":"Battery - (the cell's negative terminal): VSS of the BQ29729 protection IC (PWR3), with C2 and R35. The system ground is on the other side of the X2/X3 protection FETs and the X4 sense resistor; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
     {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the charger (PWR1), PWR2 and X9's unconnected pin; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
 ];

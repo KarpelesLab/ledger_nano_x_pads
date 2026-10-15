@@ -1552,6 +1552,30 @@
     (pin passive line (at 20.32 1.27 180) (length 2.54) (name "drain? (charger input)" (effects (font (size 1.0 1.0)))) (number "R" (effects (font (size 1.0 1.0)))))
    )
   )
+  (symbol "X2" (in_bom yes) (on_board yes)
+   (property "Reference" "X" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Value" "nanox:X2" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+   (symbol "X2_0_1"
+    (rectangle (start -11.43 3.81) (end 11.43 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
+   (symbol "X2_1_1"
+    (pin passive line (at -13.97 1.27 0) (length 2.54) (name "source? (cell -)" (effects (font (size 1.0 1.0)))) (number "S" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -13.97 -1.27 0) (length 2.54) (name "gate? (DOUT)" (effects (font (size 1.0 1.0)))) (number "G" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 13.97 1.27 180) (length 2.54) (name "drain?" (effects (font (size 1.0 1.0)))) (number "D" (effects (font (size 1.0 1.0)))))
+   )
+  )
+  (symbol "X3" (in_bom yes) (on_board yes)
+   (property "Reference" "X" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Value" "nanox:X3" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+   (symbol "X3_0_1"
+    (rectangle (start -11.43 3.81) (end 11.43 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
+   (symbol "X3_1_1"
+    (pin passive line (at -13.97 1.27 0) (length 2.54) (name "gate? (COUT)" (effects (font (size 1.0 1.0)))) (number "G" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -13.97 -1.27 0) (length 2.54) (name "source? (pack -)" (effects (font (size 1.0 1.0)))) (number "S" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 13.97 1.27 180) (length 2.54) (name "drain?" (effects (font (size 1.0 1.0)))) (number "D" (effects (font (size 1.0 1.0)))))
+   )
+  )
   (symbol "X9" (in_bom yes) (on_board yes)
    (property "Reference" "X" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
    (property "Value" "nanox:X9" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
@@ -1628,24 +1652,6 @@
    (symbol "X8_1_1"
     (pin passive line (at -10.16 0.00 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
     (pin passive line (at 10.16 0.00 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
-   )
-  )
-  (symbol "X2" (in_bom yes) (on_board yes)
-   (property "Reference" "X" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Value" "nanox:X2" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-   (symbol "X2_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
-   (symbol "X2_1_1"
-   )
-  )
-  (symbol "X3" (in_bom yes) (on_board yes)
-   (property "Reference" "X" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Value" "nanox:X3" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
-   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-   (symbol "X3_0_1"
-    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
-   (symbol "X3_1_1"
    )
   )
   (symbol "Y1" (in_bom yes) (on_board yes)
