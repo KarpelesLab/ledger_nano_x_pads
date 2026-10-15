@@ -2333,7 +2333,7 @@
  (no_connect (at 127.00 254.00) (uuid "c7a6f50f-ce86-585c-a9e0-371bd01b2352"))
  (label "GND" (at 127.00 256.54 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "c0cf65e8-e846-58b3-8749-de0ac2c34029"))
  (label "Pack -?" (at 147.32 246.38 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "35b2d8b6-ebde-5516-b7fe-775895c20bff"))
- (no_connect (at 147.32 248.92) (uuid "70fbd305-77e0-54b8-a7c0-4ea7e0363bd0"))
+ (label "GND" (at 147.32 248.92 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "823b426e-2189-5b31-b6ac-c8defa1ffe58"))
  (label "Fuel gauge BATD" (at 147.32 251.46 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "e9a1fcb6-91d4-58a0-8465-3c8885fc9bce"))
  (label "Battery +" (at 147.32 254.00 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "e064a987-0ae2-5f5d-9cf8-52f553d7cfad"))
  (label "Fuel gauge VIN" (at 147.32 256.54 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "95761f33-d112-5807-a936-ca6e8f5e56fb"))
