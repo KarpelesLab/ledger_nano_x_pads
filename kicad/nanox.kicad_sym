@@ -1408,7 +1408,7 @@
    (symbol "TP37_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP37_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BTB pin 9" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "OLED VCOMH?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP38" (in_bom yes) (on_board yes)
@@ -1416,9 +1416,9 @@
    (property "Value" "nanox:TP38" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "TP38_0_1"
-    (rectangle (start -8.89 2.54) (end 8.89 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP38_1_1"
-    (pin passive line (at -11.43 0.00 0) (length 2.54) (name "Regulator input?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "OLED VCC?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP39" (in_bom yes) (on_board yes)

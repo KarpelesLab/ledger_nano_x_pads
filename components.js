@@ -60,7 +60,7 @@ window.COMPONENTS = [
     {"id":"S3","name":"shield","polygon":[[600,1000],[770,1000],[770,1120],[600,1120]]},
     {"id":"S4","name":"shield","polygon":[[585,1690],[760,1690],[760,1830],[585,1830]]}]},
   {"id":"BTB","part":"Hirose BM20B(0.8)-16DS-0.4V(51)","package":"16-pin board-to-board receptacle, 0.4 mm pitch, 2 rows","side":"back",
-   "notes":"Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected","pads":[
+   "notes":"Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected. With the display's SSD1312 controller, the rest read as: 1 MOSI, 3 and 11 +3.3V (VDD), 4 CLK, 5 D/C#, 6 RES#, 8 CS#, 9 VCOMH (capacitor only), 10 IREF (resistor to ground), 12 VCC panel supply from the X10 boost converter","pads":[
     {"id":"1","name":"","polygon":[[4429,1293],[4471,1293],[4471,1311],[4429,1311]]},
     {"id":"2","name":"GND","polygon":[[4613,1293],[4655,1293],[4655,1311],[4613,1311]]},
     {"id":"3","name":"","polygon":[[4429,1329],[4471,1329],[4471,1347],[4429,1347]]},
@@ -82,7 +82,7 @@ window.COMPONENTS = [
     {"id":"MP3","name":"mounting","polygon":[[4428,1627],[4498,1627],[4498,1661],[4428,1661]]},
     {"id":"MP4","name":"mounting","polygon":[[4591,1627],[4661,1627],[4661,1661],[4591,1661]]}]},
   {"id":"L1","part":"unknown, likely a shielded power inductor","package":"~4.8 mm square metal","side":"front",
-   "notes":"Large silver part, probably the inductor of a switching regulator; not confirmed",
+   "notes":"Large silver part, probably the inductor of the X10 boost converter that makes the OLED supply; not confirmed",
    "corners":[[4773,1045],[5173,1045],[5173,1409],[4773,1409]]},
   {"id":"RFF","part":"RF filter / matching device","package":"blue ceramic, 8 terminals","side":"front",
    "notes":"In the Bluetooth RF path between MCU pin 21 (RF1) and C27; dot marking near the IN end. Side terminals 1, 3, 4 and 6 go to ground, 2 and 5 are not connected; which side row is 1-3 is not known","pads":[
@@ -143,8 +143,8 @@ window.COMPONENTS = [
     {"id":"TL","name":"","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
     {"id":"BL","name":"","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
     {"id":"R","name":"","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
-  {"id":"X10","part":"unknown, marked 1C4F, likely a switching regulator for the +3.3V rail","package":"6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body","side":"front",
-   "notes":"Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 input, L3 +3.3V output, R1 switch node to L1, R2 GND (confirmed), R3 feedback via R25/R26","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
+  {"id":"X10","part":"unknown, marked 1C4F, likely the boost converter for the OLED panel supply","package":"6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body","side":"front",
+   "notes":"Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 output (OLED VCC, which the R25/R26 divider feeds back), L3 +3.3V input, R1 switch node to L1, R2 GND (confirmed), R3 feedback","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
     {"id":"L1","name":"","polygon":[[4806,1484],[4903,1484],[4903,1541],[4806,1541]]},
     {"id":"L2","name":"","polygon":[[4806,1566],[4903,1566],[4903,1623],[4806,1623]]},
     {"id":"L3","name":"","polygon":[[4806,1648],[4903,1648],[4903,1705],[4806,1705]]},

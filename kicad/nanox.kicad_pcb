@@ -1405,6 +1405,126 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "18cce63f-46c9-568e-9e74-6324a356e7e8")
+		(at 59.910714 14.809523)
+		(descr "two-terminal SMD")
+		(property "Reference" "R25"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "5385e446-23e8-53a1-9171-d06b1acfe19b")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "1f8ecb46-8c7a-5a35-8da4-5d5505c86cf5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a52b53d2-9b7e-5f4a-a8ff-94642d451092")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "52eea089-42c6-5cc6-8047-ea1a18c87f62")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/aeb404db-55f9-56b1-8244-e6b9f14c13ae")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.684524 -0.416666)
+			(end -0.684524 0.416667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "9a5702b3-9fa3-5d7d-8d3c-b3b67b9f75c1")
+		)
+		(fp_line
+			(start -0.684524 0.416667)
+			(end 0.684524 0.416667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "02a97de9-19a7-5280-8f7e-1c7c9bc88e50")
+		)
+		(fp_line
+			(start 0.684524 -0.416666)
+			(end -0.684524 -0.416666)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "76c6affb-49a1-5f62-9498-6a227a6560a4")
+		)
+		(fp_line
+			(start 0.684524 0.416667)
+			(end 0.684524 -0.416666)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "b96c83ee-6981-5dcd-9ec0-dd26173c199e")
+		)
+		(pad "1" smd rect
+			(at -0.482143 0)
+			(size 0.404761 0.833333)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "7a0cbd1f-b052-5b9c-80bb-edf1cd6d00e1")
+		)
+		(pad "2" smd rect
+			(at 0.482143 0)
+			(size 0.404761 0.833333)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC feedback?")
+			(thermal_bridge_angle 45)
+			(uuid "e3bb987c-e367-5c2a-b0f4-7ae03eeb8133")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "1b5f0aaf-c2d4-5f9d-ab95-cc62a6e3ae41")
 		(at 13.770833 19.571428)
 		(descr "QFN24; USB power delivery controller; pin 1 inferred from the marking orientation and confirmed by the traces (CC1DB/CC1 and CC2/CC2DB are tied)")
@@ -2714,6 +2834,126 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "2b6cc52e-0642-59e7-acd1-c4c413546c0c")
+		(at 55.761904 16.809523)
+		(descr "two-terminal SMD")
+		(property "Reference" "C28"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "4466e108-abcc-5e3a-ae50-568794743aff")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fc5f0f06-8e47-5baa-a0f4-cd871bb6d9e5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "2bb981c3-c534-5865-bbfb-cef1d2624767")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "570f8375-b252-5f7e-828f-27007b8d1076")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/47bf502e-94c1-530a-bf2d-2ec45eda40bf")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.702381 -0.333333)
+			(end -0.702381 0.333334)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "a9835955-0a84-534e-b9bf-ec9f4e7367d4")
+		)
+		(fp_line
+			(start -0.702381 0.333334)
+			(end 0.702381 0.333334)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "b72de747-5832-53fc-9161-1f6153b43107")
+		)
+		(fp_line
+			(start 0.702381 -0.333333)
+			(end -0.702381 -0.333333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "119c45f1-dede-53cf-aefd-9bf8c3a8c40e")
+		)
+		(fp_line
+			(start 0.702381 0.333334)
+			(end 0.702381 -0.333333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "477732b3-00f8-559d-8ff2-93061ae56427")
+		)
+		(pad "1" smd rect
+			(at -0.494047 0)
+			(size 0.416666 0.666666)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "c379cb5e-10f0-5f90-a681-d3ed3f60bb00")
+		)
+		(pad "2" smd rect
+			(at 0.494048 0)
+			(size 0.416666 0.666666)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "040ffc2e-9e50-5d27-8791-d34dd18d51bd")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "2e4625da-0a43-56da-b38f-0bcdc4ff5ade")
 		(at 15.922619 12.267857)
 		(descr "two-terminal SMD; 0201 resistor, added by hand after the automatic pass missed it")
@@ -3193,6 +3433,158 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "451539d6-60a3-582f-ae08-9e1024b067b0")
+		(at 59.20238 16.97619)
+		(descr "6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body; Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 output (OLED VCC, which the R25/R26 divider feeds back), L3 +3.3V input, R1 switch node to L1, R2 GND (confirmed), R3 feedback")
+		(property "Reference" "X10"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "0a03c8d4-97df-5cfd-a2b9-ab64928acfca")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "unknown, marked 1C4F, likely the boost converter for the OLED panel supply"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "44268e0d-c3c1-5cf7-b02e-0fe8894222b9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0cb8fcac-e3db-5d02-8fb4-77e3e046878c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "2fb3621e-3204-5d44-9ec5-30585c034078")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/148564cd-ad7c-5376-ad36-da9ccbc4b2ef")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.75 -1.357143)
+			(end -0.75 1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c72c2cfd-c27c-5295-be4e-c0b19b035526")
+		)
+		(fp_line
+			(start -0.75 1.357143)
+			(end 0.75 1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "7e0771c8-cd3b-5ea9-b227-c431b9982dda")
+		)
+		(fp_line
+			(start 0.75 -1.357143)
+			(end -0.75 -1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "19295f27-3ad2-5c12-831a-ddb46509c858")
+		)
+		(fp_line
+			(start 0.75 1.357143)
+			(end 0.75 -1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "949bc81c-0dfc-52b8-abae-e546fbfab7a0")
+		)
+		(pad "L1" smd rect
+			(at -1.410714 1.017857)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Left button power (pad 19)")
+			(thermal_bridge_angle 45)
+			(uuid "ab291246-4d3f-5065-a81a-eacdcaad1a01")
+		)
+		(pad "L2" smd rect
+			(at -1.410714 0.041667)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "c825c15f-b5e0-588e-a774-cc6ef7024edb")
+		)
+		(pad "L3" smd rect
+			(at -1.410714 -0.934524)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "+3.3V rail")
+			(thermal_bridge_angle 45)
+			(uuid "5c79ca94-bf53-5f37-bf17-48aceb03ac8c")
+		)
+		(pad "R1" smd rect
+			(at 1.42262 1.017857)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T13")
+			(thermal_bridge_angle 45)
+			(uuid "fbecb542-3d62-5cfe-b189-638fd05df9e6")
+		)
+		(pad "R2" smd rect
+			(at 1.42262 0.041667)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "371db737-5f15-5301-93d5-b0673777fee4")
+		)
+		(pad "R3" smd rect
+			(at 1.42262 -0.934524)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC feedback?")
+			(thermal_bridge_angle 45)
+			(uuid "25550c5f-3bdf-57d4-8d1f-1e8104943d63")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X10.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "54674cf4-4afe-5b65-ba11-e48a89dc9947")
 		(at 17.488095 24.011904)
 		(descr "two-terminal SMD; 0201 capacitor; added by hand")
@@ -3404,126 +3796,6 @@
 		)
 		(embedded_fonts no)
 		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X2.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "58abab63-3106-5d1a-95b8-709a8b0af2ae")
-		(at 55.761904 16.809523)
-		(descr "two-terminal SMD")
-		(property "Reference" "C28"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "bc987489-7cc3-5c46-b57e-2e47e8b49915")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "C"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "70ad3b9a-8c02-5dd8-a964-1ad12bbb7b7b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4bd3a850-543d-50da-9749-5fb86ceda73c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8ffa7c37-8dc4-5409-8847-f339b302a2bd")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/47bf502e-94c1-530a-bf2d-2ec45eda40bf")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.702381 -0.333333)
-			(end -0.702381 0.333334)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "18573eac-c721-510a-9e93-91009cc13098")
-		)
-		(fp_line
-			(start -0.702381 0.333334)
-			(end 0.702381 0.333334)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "5ba38a0e-942d-5b94-8731-4a9b424d197b")
-		)
-		(fp_line
-			(start 0.702381 -0.333333)
-			(end -0.702381 -0.333333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "644a417c-8632-5d0e-a5bb-444e1fd60069")
-		)
-		(fp_line
-			(start 0.702381 0.333334)
-			(end 0.702381 -0.333333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "cf6da38d-c6f2-580d-9bd7-a2eb1c68d5c1")
-		)
-		(pad "1" smd rect
-			(at -0.494047 0)
-			(size 0.416666 0.666666)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "961c8859-4aa5-5d06-b207-596d32bee3ff")
-		)
-		(pad "2" smd rect
-			(at 0.494048 0)
-			(size 0.416666 0.666666)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "7ee56961-6c48-59d0-a2dc-e6c0d33a77c9")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4030,6 +4302,110 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "6135830a-7390-5bb8-a6cd-eed79386a457")
+		(at 59.20238 21.392857)
+		(descr "~4.8 mm square metal; Large silver part, probably the inductor of the X10 boost converter that makes the OLED supply; not confirmed")
+		(property "Reference" "L1"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "a4c35273-d63e-5f4d-af21-1dc1069959c5")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "unknown, likely a shielded power inductor"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "073da294-13fb-5c31-a663-ba8542d17278")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9ce1dcc2-c40b-51de-949e-6e001ac967c1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "65340758-59ee-5f04-87ef-0824e4a53ce4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/72ce9942-9bb5-58cb-b3e8-916ec9aab15a")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -2.380952 -2.166667)
+			(end -2.380952 2.166666)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8448e60c-57ba-5336-90a3-33667680ac5e")
+		)
+		(fp_line
+			(start -2.380952 2.166666)
+			(end 2.380953 2.166666)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "80e70fe5-4b2c-5885-9b8d-8935a0ae0736")
+		)
+		(fp_line
+			(start 2.380953 -2.166667)
+			(end -2.380952 -2.166667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "625acb51-b42f-5db4-abdd-85c2c2ebbf76")
+		)
+		(fp_line
+			(start 2.380953 2.166666)
+			(end 2.380953 -2.166667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "5100f843-5055-55de-b54c-3a4b3745b306")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/L1.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "62c9ec71-47b8-5b2a-8fde-7ec065ac0bb4")
 		(at 25.761904 13.190476)
 		(descr "two-terminal SMD")
@@ -4257,110 +4633,6 @@
 		)
 		(embedded_fonts no)
 		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "666b51ba-d4a3-5f22-9103-1eb01bfa43e6")
-		(at 59.20238 21.392857)
-		(descr "~4.8 mm square metal; Large silver part, probably the inductor of a switching regulator; not confirmed")
-		(property "Reference" "L1"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "ddaf168b-e685-59df-99b7-702093b9f60a")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "unknown, likely a shielded power inductor"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c7ae5a4f-37f7-5f67-a4e6-e6101b4611ad")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "02d2e3f7-31b4-598f-af24-338280b4d844")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0fb20845-0b18-5117-8ebf-bfc6ffb1f14c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/72ce9942-9bb5-58cb-b3e8-916ec9aab15a")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -2.380952 -2.166667)
-			(end -2.380952 2.166666)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "f01f0146-1aeb-5815-939a-713847977c23")
-		)
-		(fp_line
-			(start -2.380952 2.166666)
-			(end 2.380953 2.166666)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "1402f3de-7c1e-5c06-b1c3-b8589b3b5eea")
-		)
-		(fp_line
-			(start 2.380953 -2.166667)
-			(end -2.380952 -2.166667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "182e40c9-29a4-513f-810d-63f5aa725d2f")
-		)
-		(fp_line
-			(start 2.380953 2.166666)
-			(end 2.380953 -2.166667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "0229ab7e-fdea-582b-b8d7-b2876a1816a0")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/L1.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4760,6 +5032,126 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "6cf8e02f-4bd9-55de-9120-2c95bd91196f")
+		(at 61.761904 15.571428)
+		(descr "two-terminal SMD")
+		(property "Reference" "R26"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "1175a7cb-c86f-5623-b085-352798c96487")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "dca16fd3-cc7d-5c1d-bc4e-b88bf2867317")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "95fb6de3-d246-546f-9226-62256a0cf5b7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c29418af-36d4-561c-a485-1f6d9678e1a5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/f3a5efcc-f895-5a00-a31c-842d2931946d")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.357143 -0.595238)
+			(end -0.357143 0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "92a300cd-a512-5c74-be10-e44d81df3acb")
+		)
+		(fp_line
+			(start -0.357143 0.595238)
+			(end 0.357143 0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c8f4d72a-2d0a-5213-aeb5-d073c8b005c8")
+		)
+		(fp_line
+			(start 0.357143 -0.595238)
+			(end -0.357143 -0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "6d298929-2c46-5d5e-9aa5-2c70f6f08a4f")
+		)
+		(fp_line
+			(start 0.357143 0.595238)
+			(end 0.357143 -0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "68d58d9f-7001-5ac1-89d5-6e45351bb360")
+		)
+		(pad "1" smd rect
+			(at 0 0.416667)
+			(size 0.714285 0.357142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC feedback?")
+			(thermal_bridge_angle 45)
+			(uuid "ee75227a-94ac-5d69-91a9-fdf2f6099faf")
+		)
+		(pad "2" smd rect
+			(at 0 -0.416667)
+			(size 0.714285 0.357142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "b1829c75-7334-5432-9517-d67b0003c79d")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -5973,158 +6365,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "84cc0cfa-6296-5005-9ad2-c3dce3725a61")
-		(at 59.20238 16.97619)
-		(descr "6 terminals, SOT-23-6 style, ~1.5 x 2.7 mm body; Black 6-terminal part next to L1, three pads on each side. Pads named by side and row from the top in the front photo, as pin 1 is not known. Likely roles from its nets: L1 enable (power button), L2 input, L3 +3.3V output, R1 switch node to L1, R2 GND (confirmed), R3 feedback via R25/R26")
-		(property "Reference" "X10"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "a6166553-8403-524b-b344-d8ebff545a2d")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "unknown, marked 1C4F, likely a switching regulator for the +3.3V rail"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "a9d87ba6-abe5-5000-82b9-3b9ba9cce6b0")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0b26acc2-ccb3-59ea-861e-33bfbccb2f63")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "52e0717c-6eb1-5825-a8da-79fb29f47847")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/148564cd-ad7c-5376-ad36-da9ccbc4b2ef")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.75 -1.357143)
-			(end -0.75 1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "ed7550e1-ae98-5f9b-8e6f-37797c5d7f0d")
-		)
-		(fp_line
-			(start -0.75 1.357143)
-			(end 0.75 1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "c86b111e-3555-5bd1-abf4-f8fb05d40d98")
-		)
-		(fp_line
-			(start 0.75 -1.357143)
-			(end -0.75 -1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "1575b8c5-55ef-5eca-8a38-0e7dc037dfad")
-		)
-		(fp_line
-			(start 0.75 1.357143)
-			(end 0.75 -1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "b17f62d9-c36b-5bc3-a3b9-1219ec0dfd11")
-		)
-		(pad "L1" smd rect
-			(at -1.410714 1.017857)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Left button power (pad 19)")
-			(thermal_bridge_angle 45)
-			(uuid "0b6363c6-6711-5bf4-81bb-9edb7065baf2")
-		)
-		(pad "L2" smd rect
-			(at -1.410714 0.041667)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "b51349f9-0c7c-5038-9190-dc48fbb1eb5e")
-		)
-		(pad "L3" smd rect
-			(at -1.410714 -0.934524)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "+3.3V rail")
-			(thermal_bridge_angle 45)
-			(uuid "9c6ad2d2-24c8-528a-8ae5-bca390977808")
-		)
-		(pad "R1" smd rect
-			(at 1.42262 1.017857)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T13")
-			(thermal_bridge_angle 45)
-			(uuid "c3d04aec-d746-5c04-bc20-47cbbcdccf25")
-		)
-		(pad "R2" smd rect
-			(at 1.42262 0.041667)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "a9ffe260-10bd-5f31-9ba1-890353c819d2")
-		)
-		(pad "R3" smd rect
-			(at 1.42262 -0.934524)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T76")
-			(thermal_bridge_angle 45)
-			(uuid "4eafd4b8-e868-59ff-93ea-ea04daf2d262")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X10.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "993b3119-47e3-57dd-a757-cb89214eafeb")
 		(at 30 23.714285)
 		(descr "two-terminal SMD")
@@ -6479,126 +6719,6 @@
 			)
 			(rotate
 				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "9f1a6479-1b7f-59e0-b292-e6a67a73bf0a")
-		(at 61.761904 15.571428)
-		(descr "two-terminal SMD")
-		(property "Reference" "R26"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "1f49c065-4eb3-5be0-aa2e-7d3a7c186325")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "R"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d486ad20-db2b-5647-a60c-56594e58cbef")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8de10ed7-cea1-543b-bb5c-6fca5e322344")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7306cb2a-f3c5-5489-9375-81cd2289228b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/f3a5efcc-f895-5a00-a31c-842d2931946d")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.357143 -0.595238)
-			(end -0.357143 0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "70d66ccd-a81d-50b4-9511-8efb1ec8d3fa")
-		)
-		(fp_line
-			(start -0.357143 0.595238)
-			(end 0.357143 0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "406cb1e9-42ba-56cb-abf8-ef00bdd64201")
-		)
-		(fp_line
-			(start 0.357143 -0.595238)
-			(end -0.357143 -0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "eabc2d3e-c75b-5bef-94c1-f1571659962f")
-		)
-		(fp_line
-			(start 0.357143 0.595238)
-			(end 0.357143 -0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "969cce72-625a-5b62-b9c8-925387c1906e")
-		)
-		(pad "1" smd rect
-			(at 0 0.416667)
-			(size 0.714285 0.357142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T76")
-			(thermal_bridge_angle 45)
-			(uuid "063747a1-f11c-54ef-b34a-e1d2e6edc9c9")
-		)
-		(pad "2" smd rect
-			(at 0 -0.416667)
-			(size 0.714285 0.357142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "5278a654-3f9c-5da3-b526-80fb57377e77")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
 			)
 		)
 	)
@@ -10822,390 +10942,6 @@
 		)
 	)
 	(footprint ""
-		(layer "F.Cu")
-		(uuid "ffb61809-0016-503c-9da3-444908ed0e06")
-		(at 59.910714 14.809523)
-		(descr "two-terminal SMD")
-		(property "Reference" "R25"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "3d1098fd-9f68-5d42-9950-a3e892a93a7e")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "R"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4e2556b6-8398-5fdd-8386-1138d9898efe")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4c5d186b-c2a2-5dda-a2d7-3f9f97ff00e0")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "5c571a62-287e-581d-b80f-2afdfe798cc1")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/aeb404db-55f9-56b1-8244-e6b9f14c13ae")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.684524 -0.416666)
-			(end -0.684524 0.416667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "93b8b08b-eac8-5d6c-a18a-6454e85283b9")
-		)
-		(fp_line
-			(start -0.684524 0.416667)
-			(end 0.684524 0.416667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "6813e03e-2dc7-5d65-baf8-4e0396e8b11b")
-		)
-		(fp_line
-			(start 0.684524 -0.416666)
-			(end -0.684524 -0.416666)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "ed513449-c041-5761-b7c0-5296435d2e2f")
-		)
-		(fp_line
-			(start 0.684524 0.416667)
-			(end 0.684524 -0.416666)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "9ec5d7c3-182b-57ba-b0d6-0e1cb08ebed3")
-		)
-		(pad "1" smd rect
-			(at -0.482143 0)
-			(size 0.404761 0.833333)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "8a4d7ab0-5832-5421-bfae-285ef9b511fa")
-		)
-		(pad "2" smd rect
-			(at 0.482143 0)
-			(size 0.404761 0.833333)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T76")
-			(thermal_bridge_angle 45)
-			(uuid "6756c4c9-6755-5761-a6b4-17c368908cec")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "B.Cu")
-		(uuid "013757f6-ef4b-516a-90d7-9e46605586af")
-		(at 54.10119 19.089285)
-		(descr "16-pin board-to-board receptacle, 0.4 mm pitch, 2 rows; Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected")
-		(property "Reference" "BTB1"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "de639e8a-0bd9-5f86-9554-ed1e0da5ced4")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "Hirose BM20B(0.8)-16DS-0.4V(51)"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "db4de25e-4e34-55db-96b2-799006ae581e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "74ca370c-d0c6-57b0-bf8a-75f3d1989235")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "8685b41d-0931-511a-91e5-3731e6c31dc4")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/6fc31ce5-71aa-569e-8c69-4c028b29d5e7")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -1.386905 -2.863095)
-			(end -1.386905 2.863095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "cb0e74d0-ce29-54dc-a6ce-43c9c2ae0f28")
-		)
-		(fp_line
-			(start -1.386905 2.863095)
-			(end 1.386905 2.863095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "35769803-1528-58c3-9ac6-a2ced90e6316")
-		)
-		(fp_line
-			(start 1.386905 -2.863095)
-			(end -1.386905 -2.863095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "12590285-8617-5c0f-8e46-964264d1b2f6")
-		)
-		(fp_line
-			(start 1.386905 2.863095)
-			(end 1.386905 -2.863095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "27f56bf8-3be9-5ae2-b4db-dfd5b53e75f2")
-		)
-		(pad "1" smd rect
-			(at -1.125 1.410714)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED MOSI")
-			(thermal_bridge_angle 45)
-			(uuid "fd938ad8-039b-5443-a5c1-ee867d24dc38")
-		)
-		(pad "2" smd rect
-			(at 1.065476 1.410714)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "00173b5d-2b2d-5d59-9180-96c73f91d284")
-		)
-		(pad "3" smd rect
-			(at -1.125 0.982143)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "+3.3V rail")
-			(thermal_bridge_angle 45)
-			(uuid "ef78f42e-10cd-5ec0-af54-952fb1a73232")
-		)
-		(pad "4" smd rect
-			(at 1.065476 0.982143)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED CLK")
-			(thermal_bridge_angle 45)
-			(uuid "c1666cbb-fede-592b-84e0-d00d9daed503")
-		)
-		(pad "5" smd rect
-			(at -1.125 0.589285)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED D/C")
-			(thermal_bridge_angle 45)
-			(uuid "cfc793fa-148e-5ed1-b03f-79ca36d6367d")
-		)
-		(pad "6" smd rect
-			(at 1.065476 0.589285)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED RESET?")
-			(thermal_bridge_angle 45)
-			(uuid "1f370bef-7182-52b8-87e3-4134b151f1ec")
-		)
-		(pad "7" smd rect
-			(at -1.125 0.208333)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "ed2d23f8-08ab-5af0-a1d7-bc382bd71619")
-		)
-		(pad "8" smd rect
-			(at 1.065476 0.208333)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED SPI CS")
-			(thermal_bridge_angle 45)
-			(uuid "ad3d2383-7121-5216-a63e-12770788b803")
-		)
-		(pad "9" smd rect
-			(at -1.125 -0.220238)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T1")
-			(thermal_bridge_angle 45)
-			(uuid "6d6257bf-305a-55aa-98be-ec818cb39b42")
-		)
-		(pad "10" smd rect
-			(at 1.065476 -0.220238)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "OLED IREF?")
-			(thermal_bridge_angle 45)
-			(uuid "4dade704-b42a-5ad9-8e2b-e0b170c7d419")
-		)
-		(pad "11" smd rect
-			(at -1.125 -0.636905)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "+3.3V rail")
-			(thermal_bridge_angle 45)
-			(uuid "1c8b993a-c60e-5402-94cf-e1d9fcf8c37f")
-		)
-		(pad "12" smd rect
-			(at 1.065476 -0.636905)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "3503edeb-4263-5724-8894-df79d825dfb6")
-		)
-		(pad "13" smd rect
-			(at -1.125 -1.005953)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "5b79ac8a-abef-5b76-b424-54c9611acd79")
-		)
-		(pad "14" smd rect
-			(at 1.065476 -1.005953)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "398043ff-7498-57fd-b107-00a7bea1c2d2")
-		)
-		(pad "15" smd rect
-			(at -1.125 -1.434524)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "6ad7be5a-dace-5731-b55a-fc07cdbb76a5")
-		)
-		(pad "16" smd rect
-			(at 1.065476 -1.434524)
-			(size 0.5 0.214285)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "09ab4159-9861-599b-b59e-2fb472a9d6ad")
-		)
-		(pad "MP1" smd rect
-			(at -0.970238 2.660714)
-			(size 0.833333 0.404761)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "5839ac4a-f2b8-5b2d-9556-b9d9ee2a7151")
-		)
-		(pad "MP2" smd rect
-			(at 0.970238 2.660714)
-			(size 0.833333 0.404761)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "6b01b05f-b285-5530-9150-1a6fe3f83407")
-		)
-		(pad "MP3" smd rect
-			(at -0.970238 -2.660715)
-			(size 0.833333 0.404761)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "5c397e80-8904-5208-a750-b39083a7821e")
-		)
-		(pad "MP4" smd rect
-			(at 0.970238 -2.660715)
-			(size 0.833333 0.404761)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "7a412fa1-ad0f-519c-abea-30094b2be3b7")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/BTB1.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
 		(layer "B.Cu")
 		(uuid "07765028-572a-5421-aab6-f47287ff150f")
 		(at 12.47619 16.190476)
@@ -11516,130 +11252,6 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
-		(uuid "17ea3d85-62bc-5507-b103-c4c2df46cb3f")
-		(at 55.666666 13.238095)
-		(descr "two-terminal SMD")
-		(property "Reference" "C34"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "50d3ee84-2b19-5908-a5b1-b2e96cc12343")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "C"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "57b7cf9e-acf1-5497-a80b-d9bb5f1f0d27")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "015ee5f4-2161-5d48-b0f7-b12320e283ad")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "1bed6d28-10dd-5842-87ee-f7edb03a1d9a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/76e5c48a-11c0-5877-af9b-e2e9d5a91608")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.333333 -0.702381)
-			(end -0.333333 0.702381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "b92a706d-a16f-5540-8e5d-6e38604ccf10")
-		)
-		(fp_line
-			(start -0.333333 0.702381)
-			(end 0.333334 0.702381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "16294f06-bd69-52be-ad61-5360be0bf2e0")
-		)
-		(fp_line
-			(start 0.333334 -0.702381)
-			(end -0.333333 -0.702381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "560b0349-1cc5-548d-a380-e4f2ee36c192")
-		)
-		(fp_line
-			(start 0.333334 0.702381)
-			(end 0.333334 -0.702381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "041ebf3b-4529-5035-887f-30fda548fc4e")
-		)
-		(pad "1" smd rect
-			(at 0 0.494048)
-			(size 0.666666 0.416666)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "845ebe82-0915-5652-807f-aa59e2fb2f64")
-		)
-		(pad "2" smd rect
-			(at 0 -0.494047)
-			(size 0.666666 0.416666)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "92cb67ea-4e1e-5b58-9f00-7c9c88dedc56")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "B.Cu")
 		(uuid "18333806-ad0f-57b0-965d-eb15f1b52f56")
 		(at 29.404761 13.380952)
 		(property "Reference" "TP24"
@@ -11946,6 +11558,270 @@
 			(uuid "1e46c353-ed6f-58c9-a78b-c3b780806b4c")
 		)
 		(embedded_fonts no)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "1f00c4d4-55a9-5c72-916e-3c2447b0f34a")
+		(at 54.10119 19.089285)
+		(descr "16-pin board-to-board receptacle, 0.4 mm pitch, 2 rows; Connector to the display/button board. Pads measured in the bare back photo; numbering assumed odd pins on the left column and even on the right, from the top in the back photo, not checked against the datasheet. MP1-4 are the hold-down pads, all grounded. Pins 2 and 7 are GND; 13-16 are not connected. With the display's SSD1312 controller, the rest read as: 1 MOSI, 3 and 11 +3.3V (VDD), 4 CLK, 5 D/C#, 6 RES#, 8 CS#, 9 VCOMH (capacitor only), 10 IREF (resistor to ground), 12 VCC panel supply from the X10 boost converter")
+		(property "Reference" "BTB1"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "c10a2ca1-af7b-5949-bc0d-1f66d4c7f5f9")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "Hirose BM20B(0.8)-16DS-0.4V(51)"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "f7158a29-ff1a-56e5-829b-d40b37f0aecd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c0d35b2c-a0ac-560b-ba05-1acb1edaba54")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "de5cbdcd-bbcd-5c74-b2f1-74977ea9e441")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/6fc31ce5-71aa-569e-8c69-4c028b29d5e7")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.386905 -2.863095)
+			(end -1.386905 2.863095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "662be8b3-d418-5cc3-88ea-33bc38876405")
+		)
+		(fp_line
+			(start -1.386905 2.863095)
+			(end 1.386905 2.863095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "94fd76d9-7374-57d1-83a9-b82b307a49c0")
+		)
+		(fp_line
+			(start 1.386905 -2.863095)
+			(end -1.386905 -2.863095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "90997d05-f199-5590-b549-ea0a7c78cd56")
+		)
+		(fp_line
+			(start 1.386905 2.863095)
+			(end 1.386905 -2.863095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "de70057f-309c-5c10-9236-28cfd57720c5")
+		)
+		(pad "1" smd rect
+			(at -1.125 1.410714)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED MOSI")
+			(thermal_bridge_angle 45)
+			(uuid "ba3687ab-f4a3-536b-8e29-3e88c290eb47")
+		)
+		(pad "2" smd rect
+			(at 1.065476 1.410714)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "80691026-f90a-5ed7-a968-5acbf6091814")
+		)
+		(pad "3" smd rect
+			(at -1.125 0.982143)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "+3.3V rail")
+			(thermal_bridge_angle 45)
+			(uuid "8ccc177f-8411-5a01-a690-525fd3d1606c")
+		)
+		(pad "4" smd rect
+			(at 1.065476 0.982143)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED CLK")
+			(thermal_bridge_angle 45)
+			(uuid "94b1ea8b-5feb-5e44-8666-00ed90634e30")
+		)
+		(pad "5" smd rect
+			(at -1.125 0.589285)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED D/C")
+			(thermal_bridge_angle 45)
+			(uuid "46cc91c9-1c48-5898-b3d5-1b75df853076")
+		)
+		(pad "6" smd rect
+			(at 1.065476 0.589285)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED RESET?")
+			(thermal_bridge_angle 45)
+			(uuid "d86ef955-e11c-52b3-a053-f58f8cff5305")
+		)
+		(pad "7" smd rect
+			(at -1.125 0.208333)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "5495e7f1-9ef7-50d8-aafd-fb1d4969db3f")
+		)
+		(pad "8" smd rect
+			(at 1.065476 0.208333)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED SPI CS")
+			(thermal_bridge_angle 45)
+			(uuid "91707c4b-5728-500b-b1d7-68ca74fe8132")
+		)
+		(pad "9" smd rect
+			(at -1.125 -0.220238)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCOMH?")
+			(thermal_bridge_angle 45)
+			(uuid "0c14c70d-d02b-5a5e-9324-2c67fdace25d")
+		)
+		(pad "10" smd rect
+			(at 1.065476 -0.220238)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED IREF?")
+			(thermal_bridge_angle 45)
+			(uuid "8eae799a-b987-5fc6-b9a4-21e1bb58b152")
+		)
+		(pad "11" smd rect
+			(at -1.125 -0.636905)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "+3.3V rail")
+			(thermal_bridge_angle 45)
+			(uuid "a7e72743-18c7-5bb8-9647-17bd8812c26b")
+		)
+		(pad "12" smd rect
+			(at 1.065476 -0.636905)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "b9ebb11c-4131-55c5-9020-8ab93007f42e")
+		)
+		(pad "13" smd rect
+			(at -1.125 -1.005953)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "fc1aaea9-3526-5cef-a2cb-d8723c7a0e57")
+		)
+		(pad "14" smd rect
+			(at 1.065476 -1.005953)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "f02b180e-ba64-5725-8ee2-d6f6f4d0b3dd")
+		)
+		(pad "15" smd rect
+			(at -1.125 -1.434524)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "070d5a60-a0b8-590d-abc7-6fcce2d8dec3")
+		)
+		(pad "16" smd rect
+			(at 1.065476 -1.434524)
+			(size 0.5 0.214285)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "f9641bd4-2174-5d78-b511-6caf5a31b168")
+		)
+		(pad "MP1" smd rect
+			(at -0.970238 2.660714)
+			(size 0.833333 0.404761)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "e923160d-eb0a-5a48-a739-3903ec38512f")
+		)
+		(pad "MP2" smd rect
+			(at 0.970238 2.660714)
+			(size 0.833333 0.404761)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "ca86b50f-05e1-5125-b605-6e6075f3ff37")
+		)
+		(pad "MP3" smd rect
+			(at -0.970238 -2.660715)
+			(size 0.833333 0.404761)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "1a4415bd-de1a-50f5-81e2-51fa2347c9f0")
+		)
+		(pad "MP4" smd rect
+			(at 0.970238 -2.660715)
+			(size 0.833333 0.404761)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "8eca6eaa-dced-5d10-b0db-0b365101c6d6")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/BTB1.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint ""
 		(layer "B.Cu")
@@ -12377,109 +12253,6 @@
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net "OLED IREF?")
 			(uuid "d3b487a5-eb0b-57f3-9fa8-8f2a04b07a36")
-		)
-		(embedded_fonts no)
-	)
-	(footprint ""
-		(layer "B.Cu")
-		(uuid "306b546d-848e-50a8-a194-dbab938e7027")
-		(at 51.285714 14.928571)
-		(property "Reference" "TP37"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "bf214953-275a-5c74-8ecd-554c6b688fec")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "BTB pin 9"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "a0778e3c-b3e9-56a0-84c9-a4dd000e58cb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "a5d383c7-fc53-5ef8-bada-d792dc09cd5d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "5f9f7759-21c2-5c3e-b327-a8942bc91ce2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/5aa47446-d8c5-54a4-9d67-09530e339aff")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.535714 -0.535714)
-			(end -0.535714 0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "631b2115-1dd4-53fe-a432-e156d5b462f5")
-		)
-		(fp_line
-			(start -0.535714 0.535714)
-			(end 0.535714 0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "583467c2-d4cc-5f90-ab05-77c627da2347")
-		)
-		(fp_line
-			(start 0.535714 -0.535714)
-			(end -0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "afe3eb90-e083-57f8-9865-27b323d59990")
-		)
-		(fp_line
-			(start 0.535714 0.535714)
-			(end 0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "82695b70-0b99-5971-8739-42b76a7a92b4")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.071428 1.071428)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T1")
-			(uuid "3669e20d-3154-5ff4-ae1c-9a32190a4617")
 		)
 		(embedded_fonts no)
 	)
@@ -13245,130 +13018,6 @@
 			(uuid "76a6bcd5-2166-5ef7-ab33-9bdcec63c826")
 		)
 		(embedded_fonts no)
-	)
-	(footprint ""
-		(layer "B.Cu")
-		(uuid "4aaef5f9-8f2f-5b90-a577-c678de313426")
-		(at 50.47619 17.666666)
-		(descr "two-terminal SMD")
-		(property "Reference" "C31"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "a1f27b60-dd69-5378-ba1c-0da168ae6601")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "C"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "26531104-9285-5225-8145-cf1bdb8c87a9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "c860d6b3-e525-5cb8-ab7e-8e86e55df94e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "8f8c62a8-9984-5ded-92b9-44c007959a31")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/6e2cb063-4fae-5b13-a449-88e3763f6fe7")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.452381 -0.738095)
-			(end -0.452381 0.738095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "2d9c3ed3-19b7-5b36-a46c-ef7585b1c9ae")
-		)
-		(fp_line
-			(start -0.452381 0.738095)
-			(end 0.452381 0.738095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "df0ff219-56fe-5e72-8ba9-c1ba416ac0ae")
-		)
-		(fp_line
-			(start 0.452381 -0.738095)
-			(end -0.452381 -0.738095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "f7ea21ec-11b9-5980-beab-ac01accaeb00")
-		)
-		(fp_line
-			(start 0.452381 0.738095)
-			(end 0.452381 -0.738095)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "d9d076f4-4034-54db-bd82-a8843fc3c6a5")
-		)
-		(pad "1" smd rect
-			(at 0 0.517857)
-			(size 0.904761 0.440476)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "ac280fee-3d25-513b-bb4f-ba8e76ed0c9a")
-		)
-		(pad "2" smd rect
-			(at 0 -0.517857)
-			(size 0.904761 0.440476)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T1")
-			(thermal_bridge_angle 45)
-			(uuid "dae5e20b-32cb-595b-8d05-185901f6489c")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
-			)
-		)
 	)
 	(footprint ""
 		(layer "B.Cu")
@@ -14934,12 +14583,12 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
-		(uuid "ab15bbba-91ac-50ae-9205-15ff254f0039")
-		(at 52.547619 12.547619)
-		(property "Reference" "TP38"
+		(uuid "990d032a-214f-5971-9f54-8222915c581f")
+		(at 51.285714 14.928571)
+		(property "Reference" "TP37"
 			(at 0 0 180)
 			(layer "B.SilkS")
-			(uuid "bdfc5ab0-3eb7-5fa7-8dfa-3b9e4abc3fcb")
+			(uuid "8f1248e6-794d-5d97-93c3-b5716f666881")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -14948,11 +14597,11 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "Regulator input?"
+		(property "Value" "OLED VCOMH?"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "12b316b2-a1e2-50eb-bd9b-a8794dee3e35")
+			(uuid "5cf69af2-910a-5a45-8bf6-304161fb761a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14964,7 +14613,7 @@
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "7ba2b7b8-b44f-54f0-a079-ce96b9e53f68")
+			(uuid "3b5522c3-7d4c-5af9-99fc-1b9932cbaf35")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14976,7 +14625,7 @@
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "894dc064-4466-5067-b0c8-316b9a52c63a")
+			(uuid "3544863c-038d-5176-a377-7072acc33359")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14984,54 +14633,54 @@
 				(justify mirror)
 			)
 		)
-		(path "/e91ff096-6c68-55d4-8c01-0c596cf9dccf")
+		(path "/5aa47446-d8c5-54a4-9d67-09530e339aff")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.535715 -0.535714)
-			(end -0.535715 0.535715)
+			(start -0.535714 -0.535714)
+			(end -0.535714 0.535714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "2f0ad4af-e09d-5e1e-8f1a-fc928f63ecf4")
+			(uuid "04e0867e-7480-518d-8dfc-cd3621feb837")
 		)
 		(fp_line
-			(start -0.535715 0.535715)
-			(end 0.535714 0.535715)
+			(start -0.535714 0.535714)
+			(end 0.535714 0.535714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "2125c551-1bae-524b-ac45-7786961adf69")
+			(uuid "4680fc7a-3f86-5e66-81f3-86b139499659")
 		)
 		(fp_line
 			(start 0.535714 -0.535714)
-			(end -0.535715 -0.535714)
+			(end -0.535714 -0.535714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "cdeb8733-c633-5be6-824d-93a8d62e10f6")
+			(uuid "f0aaa153-3ada-576a-9c81-fdff3d968738")
 		)
 		(fp_line
-			(start 0.535714 0.535715)
+			(start 0.535714 0.535714)
 			(end 0.535714 -0.535714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "7f558132-615f-559d-bd64-9563133e58f8")
+			(uuid "195671c9-1ef0-5032-89d9-24d14b643ac5")
 		)
 		(pad "1" smd circle
 			(at 0 0)
 			(size 1.071428 1.071428)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T5")
-			(uuid "0b5b8999-2573-5448-af92-c450b0a517af")
+			(net "OLED VCOMH?")
+			(uuid "44729cef-ebe6-5cff-8d1c-f4dbbfbbe911")
 		)
 		(embedded_fonts no)
 	)
@@ -15343,6 +14992,130 @@
 			(uuid "184f54c9-7d73-50e3-902f-675912f554d4")
 		)
 		(embedded_fonts no)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "baabf5a2-91e5-56ba-8719-d3225e990db2")
+		(at 54.398809 13.285714)
+		(descr "two-terminal SMD")
+		(property "Reference" "C33"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "d2eea8bf-e0eb-59d5-90ac-242264fbe414")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0c3972ca-f245-50de-9bc1-8a8c9a1de74d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "8bdb6418-3b52-5ad4-9fb0-4d087defd538")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "7406a413-9e15-5c76-b79c-5515570c7de0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/916c3f9e-5ab7-5a4b-b120-bc369b99a5f5")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.541667 -0.97619)
+			(end -0.541667 0.976191)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "416aebb7-4387-5f0a-b488-2f95cdaeb505")
+		)
+		(fp_line
+			(start -0.541667 0.976191)
+			(end 0.541667 0.976191)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "8d9a2b5e-664b-53a2-afc2-055af1ec118d")
+		)
+		(fp_line
+			(start 0.541667 -0.97619)
+			(end -0.541667 -0.97619)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "b249e740-8294-5021-b2b8-46e44cfbed96")
+		)
+		(fp_line
+			(start 0.541667 0.976191)
+			(end 0.541667 -0.97619)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "b417d113-3319-54ca-915b-2879e68f65d0")
+		)
+		(pad "1" smd rect
+			(at 0 0.684524)
+			(size 1.083333 0.583333)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "80705d63-50cf-5746-96a9-641a4aa3af14")
+		)
+		(pad "2" smd rect
+			(at 0 -0.684524)
+			(size 1.083333 0.583333)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "b95454f9-72ca-5726-aa65-233615343e84")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
 	)
 	(footprint ""
 		(layer "B.Cu")
@@ -15811,6 +15584,130 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "cace7c6d-8ad6-57fd-989e-a50c41ba9a03")
+		(at 55.666666 13.238095)
+		(descr "two-terminal SMD")
+		(property "Reference" "C34"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "a7db129a-631d-57d6-8f6e-edd08a903a03")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d060a2b6-c2e4-56a3-95f1-99d9340a8851")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "3d1a87bf-88aa-548b-96d1-616896ca9153")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2214678a-605d-5dd4-a229-dc29c87795fa")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/76e5c48a-11c0-5877-af9b-e2e9d5a91608")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.333333 -0.702381)
+			(end -0.333333 0.702381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f9b6ccd3-c74d-53a9-bb7f-bf91ce1438b0")
+		)
+		(fp_line
+			(start -0.333333 0.702381)
+			(end 0.333334 0.702381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "d0e751d2-e138-5ddf-86a3-9fdb6fe575f8")
+		)
+		(fp_line
+			(start 0.333334 -0.702381)
+			(end -0.333333 -0.702381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "0c231eaa-57c2-56ef-aceb-1db839077c5c")
+		)
+		(fp_line
+			(start 0.333334 0.702381)
+			(end 0.333334 -0.702381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "291a57e5-dfb1-506c-a2cb-4d8ba56294ff")
+		)
+		(pad "1" smd rect
+			(at 0 0.494048)
+			(size 0.666666 0.416666)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCC?")
+			(thermal_bridge_angle 45)
+			(uuid "d33064ab-fc89-5eb6-9739-574cc304fd34")
+		)
+		(pad "2" smd rect
+			(at 0 -0.494047)
+			(size 0.666666 0.416666)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "2c5ccb50-d747-5bb6-91ea-801426bd3695")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -16455,6 +16352,130 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
+		(uuid "e1983474-2415-554f-9d59-72edf4614504")
+		(at 50.47619 17.666666)
+		(descr "two-terminal SMD")
+		(property "Reference" "C31"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "c1f20bfd-9f67-54a1-8331-f35b13202953")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "9d91c3b2-588e-51d5-a0e6-c861fa256467")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1e361edd-1abe-5234-ac58-cd474a5fa680")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "509304b5-05cb-584c-8751-59eac8a60461")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/6e2cb063-4fae-5b13-a449-88e3763f6fe7")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.452381 -0.738095)
+			(end -0.452381 0.738095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "6150317f-47ca-541c-93df-f6f77c394831")
+		)
+		(fp_line
+			(start -0.452381 0.738095)
+			(end 0.452381 0.738095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "5d3a07c4-bb92-5cc8-88fe-270b844a4f28")
+		)
+		(fp_line
+			(start 0.452381 -0.738095)
+			(end -0.452381 -0.738095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "00840e98-6b75-5707-bfe7-e6134b999aad")
+		)
+		(fp_line
+			(start 0.452381 0.738095)
+			(end 0.452381 -0.738095)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f80e6f9c-1bf9-51a3-ab3d-9a116065a9e5")
+		)
+		(pad "1" smd rect
+			(at 0 0.517857)
+			(size 0.904761 0.440476)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "1330b6ee-b855-5b5e-b4cc-8c3a42e46403")
+		)
+		(pad "2" smd rect
+			(at 0 -0.517857)
+			(size 0.904761 0.440476)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCOMH?")
+			(thermal_bridge_angle 45)
+			(uuid "f26a6030-f242-5138-bae9-f730b653cf20")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "B.Cu")
 		(uuid "e5e26ac9-6f1d-595b-9326-a69c67c71d09")
 		(at 17.047619 12.547619)
 		(property "Reference" "TP10"
@@ -16888,130 +16909,6 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
-		(uuid "f8415657-6792-5604-ab6a-05042da2928d")
-		(at 54.398809 13.285714)
-		(descr "two-terminal SMD")
-		(property "Reference" "C33"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "38532008-b118-5a95-a9bd-c55943df4b93")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "C"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "94bef1df-6a58-551a-857e-d23e280cb2ea")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "0fbb51b1-0308-5c49-8532-97fc3c64881b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "96eaee95-6dc1-5f49-ae03-72bf74ccad07")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/916c3f9e-5ab7-5a4b-b120-bc369b99a5f5")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.541667 -0.97619)
-			(end -0.541667 0.976191)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "2b0b21e3-12d5-5eac-9a34-61f9a09dd7b7")
-		)
-		(fp_line
-			(start -0.541667 0.976191)
-			(end 0.541667 0.976191)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "815129ec-1034-5620-be61-6ef47c5896cb")
-		)
-		(fp_line
-			(start 0.541667 -0.97619)
-			(end -0.541667 -0.97619)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "f860db52-7c87-5269-9cdb-df89c3fd53b8")
-		)
-		(fp_line
-			(start 0.541667 0.976191)
-			(end 0.541667 -0.97619)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "23798b8f-408d-5841-b5f0-b5fc8dd3e542")
-		)
-		(pad "1" smd rect
-			(at 0 0.684524)
-			(size 1.083333 0.583333)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T5")
-			(thermal_bridge_angle 45)
-			(uuid "76b057e6-0545-521d-9a1a-ee42b4a89a95")
-		)
-		(pad "2" smd rect
-			(at 0 -0.684524)
-			(size 1.083333 0.583333)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "8e151aa0-97ea-5d53-ba02-7426242735c3")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "B.Cu")
 		(uuid "f870ef43-6582-58a0-b477-41ff4ab22c62")
 		(at 29.428571 25.857142)
 		(property "Reference" "TP22"
@@ -17110,6 +17007,109 @@
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net "Net-T60")
 			(uuid "c3ed3d20-c76c-5d70-900e-2184799171b1")
+		)
+		(embedded_fonts no)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "f944f749-81de-5366-8254-e2cb84e338df")
+		(at 52.547619 12.547619)
+		(property "Reference" "TP38"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "f0a22ae1-575f-56d4-9470-f0733d359658")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "OLED VCC?"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1fd9ad26-16ab-5bd3-a200-a5be4a97db3b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4b0eea1b-1d83-58f8-a30b-48954c4eb228")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "10d07310-d080-54ab-84af-c3cfeb33965c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/e91ff096-6c68-55d4-8c01-0c596cf9dccf")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.535715 -0.535714)
+			(end -0.535715 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "028700d8-1e02-5473-b479-f73d5cb4a26c")
+		)
+		(fp_line
+			(start -0.535715 0.535715)
+			(end 0.535714 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "214c22b3-e098-566c-9111-bc29d0e348ad")
+		)
+		(fp_line
+			(start 0.535714 -0.535714)
+			(end -0.535715 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ae83e53e-0e59-58bf-961d-14751759bdbf")
+		)
+		(fp_line
+			(start 0.535714 0.535715)
+			(end 0.535714 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "a6cb6fc1-b415-5a7c-9019-0c2b9cee9015")
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.071428 1.071428)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "OLED VCC?")
+			(uuid "c17a7e8f-70a6-513a-bb65-269add9a6088")
 		)
 		(embedded_fonts no)
 	)
@@ -18305,6 +18305,14 @@
 		(uuid "0777b91f-c8ce-5389-9de3-c58d8c7c5cff")
 	)
 	(segment
+		(start 60.630952 16.011904)
+		(end 61.857142 16.059523)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC feedback?")
+		(uuid "0852160d-56fd-51d8-a72a-3811513a615c")
+	)
+	(segment
 		(start 11.166666 26.523809)
 		(end 11.035714 26.654761)
 		(width 0.238095)
@@ -18344,14 +18352,6 @@
 		(net "GND")
 		(uuid "09cb6e16-37db-544b-997d-370b38f70860")
 	)
-	(segment
-		(start 58.154761 17.047619)
-		(end 58.904761 17.023809)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "09d641ab-219c-5076-af6b-f687d8f635b6")
-	)
 	(via
 		(at 23.654761 25.619047)
 		(size 0.45)
@@ -18383,14 +18383,6 @@
 		(layer "B.Cu")
 		(net "OLED D/C")
 		(uuid "0b0a95e9-01c0-5f26-8ed7-5c6ade349767")
-	)
-	(segment
-		(start 57.428571 17.083333)
-		(end 58.154761 17.047619)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "0b47618c-7b33-550b-ba0f-7ce6d4196bd0")
 	)
 	(segment
 		(start 27.416666 25.95238)
@@ -18503,6 +18495,14 @@
 		(layer "B.Cu")
 		(net "USB D−")
 		(uuid "0df1bc68-bc6d-5688-b79e-77fb337dda12")
+	)
+	(segment
+		(start 50.416666 17)
+		(end 50.357142 15.785714)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCOMH?")
+		(uuid "0e2a8883-b381-5b27-b2dc-7e0107ff9b59")
 	)
 	(segment
 		(start 16.333333 15.809523)
@@ -18647,6 +18647,14 @@
 		(layer "F.Cu")
 		(net "VDDUSB")
 		(uuid "12a45948-fad0-5756-ac34-8895995d2398")
+	)
+	(segment
+		(start 60.630952 15.428571)
+		(end 60.630952 16.011904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC feedback?")
+		(uuid "1340d98b-4a1a-5514-b4ab-734064052388")
 	)
 	(segment
 		(start 16.869047 23.595238)
@@ -18825,14 +18833,6 @@
 		(uuid "19840de4-aea8-535a-9109-09aa7f78c415")
 	)
 	(segment
-		(start 54.333333 14.333333)
-		(end 54.488095 14.642857)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "199e7b45-6bc1-57b8-a784-8404a4c12271")
-	)
-	(segment
 		(start 6.72619 18.880952)
 		(end 6.107142 18.273809)
 		(width 0.238095)
@@ -18879,6 +18879,14 @@
 		(layer "F.Cu")
 		(net "Net-T38")
 		(uuid "1b84ea4e-0125-5d79-830b-c9a4419ab99e")
+	)
+	(segment
+		(start 58.154761 17.047619)
+		(end 58.904761 17.023809)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "1bee3c78-e57a-531d-9c5b-8a7d774a07bd")
 	)
 	(segment
 		(start 35.72619 23.285714)
@@ -18992,14 +19000,6 @@
 		(net "USB D+")
 		(uuid "1d538051-8710-5d08-87a7-679608336672")
 	)
-	(via
-		(at 55.72619 15.488095)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Net-T5")
-		(uuid "1d8f6e6c-a5a3-5c72-baaf-7730a3740638")
-	)
 	(segment
 		(start 25.904761 21.238095)
 		(end 25.738095 21.071428)
@@ -19031,6 +19031,14 @@
 		(layer "B.Cu")
 		(net "PD VBUS_EN_SNK")
 		(uuid "1e4cf202-55ed-5222-942f-627c350abbed")
+	)
+	(segment
+		(start 56.369047 16.321428)
+		(end 56.392857 17.011904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "1e5e0c26-ede5-5f10-897e-dc1633719164")
 	)
 	(segment
 		(start 52.523809 23.833333)
@@ -19161,6 +19169,14 @@
 		(uuid "215d3a8a-6507-502b-874f-ca0709062712")
 	)
 	(segment
+		(start 55.72619 15.488095)
+		(end 56.369047 16.321428)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "21688ca3-7ab3-5a44-8081-832c28da14b2")
+	)
+	(segment
 		(start 15.083333 23.738095)
 		(end 14.690476 23.738095)
 		(width 0.238095)
@@ -19233,20 +19249,20 @@
 		(uuid "23ab009e-a02f-532b-b719-68012cb3670f")
 	)
 	(segment
+		(start 53.154761 13.845238)
+		(end 54.333333 13.845238)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "23cff907-b9e6-534c-954f-e9bc2e640e30")
+	)
+	(segment
 		(start 22.166666 24.154761)
 		(end 21.666666 24.154761)
 		(width 0.238095)
 		(layer "F.Cu")
 		(net "Net-T38")
 		(uuid "23d7c45b-5f86-5075-8a3d-366a8bba68cb")
-	)
-	(segment
-		(start 52.821428 18.880952)
-		(end 52.607142 18.857142)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T1")
-		(uuid "23f4b3ef-efbb-54c9-a24a-c2df666039bf")
 	)
 	(via
 		(at 48.928571 18.011904)
@@ -19263,6 +19279,14 @@
 		(layer "B.Cu")
 		(net "I2C1 SCL")
 		(uuid "24a37cf8-8052-518b-9e2a-3d3f664c401b")
+	)
+	(segment
+		(start 58.904761 17.023809)
+		(end 59.5 16.404761)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "24c6c43d-0d4a-5509-ba76-0136683bc1e4")
 	)
 	(segment
 		(start 20.428571 17.5)
@@ -19343,14 +19367,6 @@
 		(layer "F.Cu")
 		(net "Net-T13")
 		(uuid "25eae092-2e4e-539a-b132-c366d0047468")
-	)
-	(segment
-		(start 52.547619 13.22619)
-		(end 53.154761 13.845238)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "25f3ee21-5a50-56b1-a2c7-b0eb0a3856b4")
 	)
 	(segment
 		(start 19.047619 18.619047)
@@ -19777,6 +19793,14 @@
 		(uuid "316a8ac9-94ea-54fa-a326-90e579a79792")
 	)
 	(segment
+		(start 55.380952 18.47619)
+		(end 55.119047 18.464285)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "31ea0c1d-fbc3-5f5c-829e-184c7f02757e")
+	)
+	(segment
 		(start 32.047619 22.22619)
 		(end 32.95238 22.22619)
 		(width 0.238095)
@@ -19847,6 +19871,14 @@
 		(layer "B.Cu")
 		(net "Left button power (pad 19)")
 		(uuid "33e8372b-a8be-5b4b-939b-79bcfa960834")
+	)
+	(segment
+		(start 50.738095 17.011904)
+		(end 50.416666 17)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCOMH?")
+		(uuid "34586153-14f6-54e8-b493-7204da52c066")
 	)
 	(via
 		(at 16.797619 19.345238)
@@ -20041,14 +20073,6 @@
 		(uuid "379e5835-1cb8-5f0c-b3e0-549cf4780e20")
 	)
 	(segment
-		(start 60.630952 16.011904)
-		(end 61.857142 16.059523)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T76")
-		(uuid "37c5375d-ff2e-5a3d-8a4e-e8f00ba78f51")
-	)
-	(segment
 		(start 15.666666 23.238095)
 		(end 15.714285 22.785714)
 		(width 0.238095)
@@ -20177,28 +20201,20 @@
 		(uuid "3b43bbf3-1103-5eee-ac1b-a6b7f734f0ef")
 	)
 	(segment
+		(start 56.392857 17.011904)
+		(end 57.428571 17.083333)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "3b4ce558-187c-5c4d-8cf1-4c8e2aeb187f")
+	)
+	(segment
 		(start 17.72619 17.380952)
 		(end 18.095238 17.392857)
 		(width 0.238095)
 		(layer "F.Cu")
 		(net "VBUS")
 		(uuid "3b5e47d3-26c5-5ba9-88e6-225bdab38011")
-	)
-	(segment
-		(start 50.738095 17.011904)
-		(end 50.416666 17)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T1")
-		(uuid "3b84216a-3dd9-5353-be45-c3a6cbbe3191")
-	)
-	(segment
-		(start 56.107142 18.47619)
-		(end 55.380952 18.47619)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "3ba1e639-a624-5ba7-9461-81761f0f3fd1")
 	)
 	(segment
 		(start 54.440476 20.47619)
@@ -20473,14 +20489,6 @@
 		(uuid "444e6cd1-4999-5c46-8f2d-efdcbf01e98d")
 	)
 	(segment
-		(start 56.785714 17.797619)
-		(end 56.107142 18.47619)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "4471e4ab-9ca1-5b3c-b334-49d4bc697928")
-	)
-	(segment
 		(start 18.690476 18.607142)
 		(end 18.690476 19.988095)
 		(width 0.238095)
@@ -20503,6 +20511,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "4522bb99-cc8e-598a-80d8-d57bddc2bdbe")
+	)
+	(segment
+		(start 54.880952 14.642857)
+		(end 55.72619 15.488095)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "4579a0df-338f-5b41-9e4c-46703f8e0f26")
 	)
 	(segment
 		(start 53.071428 19.690476)
@@ -20649,6 +20665,14 @@
 		(uuid "48ab7631-479e-5ea4-8c93-3737defef0ad")
 	)
 	(segment
+		(start 54.309523 13.845238)
+		(end 55.523809 13.821428)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "48d4c235-7813-54e1-ad79-2a4d0e1670a5")
+	)
+	(segment
 		(start 50.357142 22.619047)
 		(end 49.761904 22.619047)
 		(width 0.321428)
@@ -20735,14 +20759,6 @@
 		(layer "F.Cu")
 		(net "Net-T38")
 		(uuid "4b8a2434-d750-54df-b581-594f5218e5e8")
-	)
-	(segment
-		(start 55.380952 18.47619)
-		(end 55.119047 18.464285)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "4be7a8b1-187e-550b-9be3-81843872b14e")
 	)
 	(segment
 		(start 16.666666 17.333333)
@@ -21169,6 +21185,14 @@
 		(uuid "5a2a70a7-d998-5730-880f-7cb44646c0e1")
 	)
 	(segment
+		(start 54.488095 14.642857)
+		(end 54.880952 14.642857)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "5a815d76-b0d7-5bfa-9070-bafc5dcf0220")
+	)
+	(segment
 		(start 35.464285 14.845238)
 		(end 35.821428 14.488095)
 		(width 0.321428)
@@ -21199,6 +21223,14 @@
 		(layer "F.Cu")
 		(net "VBUS")
 		(uuid "5b05102c-3495-5a77-92f2-b9a4b4aed323")
+	)
+	(segment
+		(start 56.785714 15.595238)
+		(end 56.785714 17.797619)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "5b32f8ee-6776-5bc0-aaf3-e67b3cb6e6f9")
 	)
 	(segment
 		(start 18.178571 24.392857)
@@ -21561,12 +21593,12 @@
 		(uuid "6442cf99-86f1-5371-b75e-a7a369cd3bd5")
 	)
 	(segment
-		(start 50.357142 15.785714)
-		(end 51.190476 14.869047)
+		(start 60.404761 14.619047)
+		(end 60.416666 15.142857)
 		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T1")
-		(uuid "647b3057-83b4-57ac-b0a6-f8ae3a8995c9")
+		(layer "F.Cu")
+		(net "OLED VCC feedback?")
+		(uuid "645a0a52-39c4-5cac-bc88-ae40b5309684")
 	)
 	(via
 		(at 36.297619 26.571428)
@@ -21591,6 +21623,14 @@
 		(layer "B.Cu")
 		(net "+3.3V rail")
 		(uuid "64c094a8-096b-52c7-b142-3aa9ec4adc26")
+	)
+	(segment
+		(start 56.785714 17.797619)
+		(end 56.107142 18.47619)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "65665075-eb89-5124-bbc6-93377f77b7b6")
 	)
 	(segment
 		(start 53.119047 20.5)
@@ -21719,14 +21759,6 @@
 		(layer "F.Cu")
 		(net "Net-T58")
 		(uuid "68a9e0ba-3c9a-555e-a89b-0080abdba3b6")
-	)
-	(segment
-		(start 55.72619 15.488095)
-		(end 56.369047 16.321428)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "68dd0cdc-4a49-5088-ba24-e3fa3feb4f3c")
 	)
 	(segment
 		(start 26.333333 21.857142)
@@ -22041,6 +22073,14 @@
 		(uuid "716168eb-f0a0-5fad-9b95-44a513c2be4d")
 	)
 	(segment
+		(start 52.821428 18.880952)
+		(end 52.607142 18.857142)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCOMH?")
+		(uuid "71a3f99c-9327-52ed-a1d1-7da345218452")
+	)
+	(segment
 		(start 18.547619 18.880952)
 		(end 18.333333 18.333333)
 		(width 0.238095)
@@ -22087,14 +22127,6 @@
 		(layer "F.Cu")
 		(net "Left button power (pad 19)")
 		(uuid "72ddbf57-fa97-51e4-8d9f-fdab7ee88fa9")
-	)
-	(segment
-		(start 56.369047 16.321428)
-		(end 56.392857 17.011904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "73562919-f6d2-52f1-9e06-36517ab03f74")
 	)
 	(via
 		(at 37.547619 17.380952)
@@ -22143,14 +22175,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Net-T40")
 		(uuid "75faf53a-a5f4-5bca-a5e2-8f8903469a88")
-	)
-	(segment
-		(start 50.416666 17)
-		(end 50.357142 15.785714)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T1")
-		(uuid "7601cc45-9c5c-529b-8196-315d8ea9cfd5")
 	)
 	(via
 		(at 44.988095 21.333333)
@@ -22343,6 +22367,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "OLED SPI CS")
 		(uuid "7d5bd706-1e03-5ece-945d-668f419adc0a")
+	)
+	(segment
+		(start 59.5 16.404761)
+		(end 59.5 14.595238)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "7e07505d-2060-5b9d-95c1-2361bda6ca28")
 	)
 	(via
 		(at 24.642857 11.869047)
@@ -23001,14 +23033,6 @@
 		(uuid "924be038-335d-540d-8432-49fa1520ed01")
 	)
 	(segment
-		(start 54.333333 13.845238)
-		(end 54.333333 14.333333)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "925e13ec-568d-5835-b782-8b8fc6a71efc")
-	)
-	(segment
 		(start 43.666666 25.523809)
 		(end 43.190476 25.047619)
 		(width 0.238095)
@@ -23023,6 +23047,14 @@
 		(layer "B.Cu")
 		(net "Left button power (pad 19)")
 		(uuid "92cce7c4-c9ac-5fb3-be94-39b4dccd7bc7")
+	)
+	(segment
+		(start 50.357142 15.785714)
+		(end 51.190476 14.869047)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCOMH?")
+		(uuid "92f1b88f-7231-5341-b98b-d9666f38b8cf")
 	)
 	(segment
 		(start 25.678571 24.47619)
@@ -23055,14 +23087,6 @@
 		(layer "B.Cu")
 		(net "I2C1 SCL")
 		(uuid "93adc3f3-1379-5d87-94ee-3b4fb4d6ccb2")
-	)
-	(segment
-		(start 60.630952 15.428571)
-		(end 60.630952 16.011904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T76")
-		(uuid "93b87f47-711e-581f-ad46-1dab0cde7db4")
 	)
 	(segment
 		(start 26.20238 15.559523)
@@ -23143,14 +23167,6 @@
 		(layer "F.Cu")
 		(net "SWDIO")
 		(uuid "96078e76-621d-5515-99a6-84fa4f1e6969")
-	)
-	(segment
-		(start 54.880952 14.642857)
-		(end 55.72619 15.488095)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "9633df61-f0b9-5913-8157-67829d20769f")
 	)
 	(segment
 		(start 37.583333 14.214285)
@@ -23351,6 +23367,14 @@
 		(layer "F.Cu")
 		(net "OLED CLK")
 		(uuid "9b98ca69-868c-5cab-95e6-37d7fd7138ed")
+	)
+	(segment
+		(start 54.333333 14.333333)
+		(end 54.488095 14.642857)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "9bb950a1-2717-5f51-b6bc-46dd5f013a00")
 	)
 	(segment
 		(start 9.45238 20.666666)
@@ -23617,14 +23641,6 @@
 		(uuid "a42c0bf7-77c4-558e-b9a2-56990330c770")
 	)
 	(segment
-		(start 55.523809 14.345238)
-		(end 56.785714 15.595238)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "a471419e-6d63-5688-95a3-ffc17da15564")
-	)
-	(segment
 		(start 12.630952 21.523809)
 		(end 12.797619 22.72619)
 		(width 0.238095)
@@ -23872,14 +23888,6 @@
 		(net "Net-T38")
 		(uuid "aa963134-bdfb-584c-95bc-e08ee7f628c4")
 	)
-	(segment
-		(start 55.523809 13.821428)
-		(end 55.523809 14.345238)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "aac6a0d6-f300-53ac-885c-15c54b59eb9a")
-	)
 	(via
 		(at 43.666666 25.523809)
 		(size 0.45)
@@ -23887,14 +23895,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Left button")
 		(uuid "aad2c32b-1c96-59ee-bad9-dd5f4d7ff8b1")
-	)
-	(segment
-		(start 52.607142 18.857142)
-		(end 50.738095 17.011904)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T1")
-		(uuid "aadb3b84-9f6f-53d6-a141-5f9b7cec7185")
 	)
 	(segment
 		(start 36.309523 21.440476)
@@ -24087,6 +24087,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "af76cfbb-d593-5d4a-ad58-30f797ebb8d8")
+	)
+	(segment
+		(start 60.416666 15.142857)
+		(end 60.630952 15.428571)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC feedback?")
+		(uuid "af9e8ea7-07ac-5c7a-ba17-55c93f63c6ae")
 	)
 	(segment
 		(start 26.166666 21.238095)
@@ -24576,6 +24584,14 @@
 		(net "+3.3V rail")
 		(uuid "bd361c72-9343-579c-89e4-f96fbfcd4d65")
 	)
+	(via
+		(at 55.72619 15.488095)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "OLED VCC?")
+		(uuid "bda3344c-ec3c-53e1-bbc1-e292ff559bad")
+	)
 	(segment
 		(start 22.154761 14.809523)
 		(end 22.619047 14.809523)
@@ -24599,6 +24615,14 @@
 		(layer "F.Cu")
 		(net "OLED SPI CS")
 		(uuid "bde3e0fb-2f19-5d35-92c2-72fddef6b5b6")
+	)
+	(segment
+		(start 55.523809 14.345238)
+		(end 56.785714 15.595238)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "be7c4153-242a-5c06-aca6-ed209fa433ab")
 	)
 	(segment
 		(start 24.214285 17.940476)
@@ -24977,6 +25001,14 @@
 		(uuid "c7a62a7b-f4da-5902-bfc2-32a25f104e14")
 	)
 	(segment
+		(start 54.333333 13.845238)
+		(end 54.333333 14.333333)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "c7b9cb74-489b-51ca-9ecc-368e0b152936")
+	)
+	(segment
 		(start 29.547619 21.214285)
 		(end 29.547619 22.571428)
 		(width 0.238095)
@@ -25015,14 +25047,6 @@
 		(layer "F.Cu")
 		(net "+3.3V rail")
 		(uuid "c98de3ef-892a-527a-a527-3dd03d1034ff")
-	)
-	(segment
-		(start 58.904761 17.023809)
-		(end 59.5 16.404761)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "c9b24b5b-f338-5911-9e4c-0439e3b5635f")
 	)
 	(segment
 		(start 20.511904 15.75)
@@ -25185,6 +25209,14 @@
 		(uuid "cdcd59a3-49fe-5acf-8b55-1ef9683497eb")
 	)
 	(segment
+		(start 56.107142 18.47619)
+		(end 55.380952 18.47619)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "cddff0eb-a50d-5a56-9d41-23378d438a27")
+	)
+	(segment
 		(start 15.154761 13.059523)
 		(end 15.630952 12.595238)
 		(width 0.238095)
@@ -25279,14 +25311,6 @@
 		(layer "F.Cu")
 		(net "OLED MOSI")
 		(uuid "d051a84f-30ea-5739-a6e3-556e8ada6c1c")
-	)
-	(segment
-		(start 59.5 16.404761)
-		(end 59.5 14.595238)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "d053a364-1c56-54cf-a154-fcdc97870bb2")
 	)
 	(segment
 		(start 19.809523 12.214285)
@@ -25409,14 +25433,6 @@
 		(uuid "d32e29be-623b-5c5c-b548-925f0af49858")
 	)
 	(segment
-		(start 52.547619 12.547619)
-		(end 52.547619 13.22619)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "d33ef121-687d-5bd3-8108-a2908fc2f81d")
-	)
-	(segment
 		(start 38.464285 23.178571)
 		(end 38.97619 22.988095)
 		(width 0.238095)
@@ -25439,6 +25455,14 @@
 		(layer "F.Cu")
 		(net "PD DISCH")
 		(uuid "d4446c55-1289-5786-952d-927c2704342d")
+	)
+	(segment
+		(start 55.523809 13.821428)
+		(end 55.523809 14.345238)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "d445ccec-12b2-50b0-8f77-2e2cd95c13b4")
 	)
 	(segment
 		(start 25.190476 17.678571)
@@ -25624,6 +25648,14 @@
 		(net "+3.3V rail")
 		(uuid "da055ede-c316-5aca-9d7c-4e8ea42c039f")
 	)
+	(segment
+		(start 52.547619 12.547619)
+		(end 52.547619 13.22619)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "da0d7844-1164-5f6d-a4a9-7e3629d62c5a")
+	)
 	(via
 		(at 19.071428 17.785714)
 		(size 0.45)
@@ -25631,6 +25663,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "da569ef5-04d7-5c55-9a94-6fdc63b3ccea")
+	)
+	(segment
+		(start 52.547619 13.22619)
+		(end 53.154761 13.845238)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCC?")
+		(uuid "db123f97-ad94-54f9-a741-ec9bedd5ede2")
 	)
 	(segment
 		(start 33.607142 18.940476)
@@ -25679,6 +25719,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Net-T45")
 		(uuid "dd84cf4a-700f-57b6-aadf-d68b37654436")
+	)
+	(segment
+		(start 52.607142 18.857142)
+		(end 50.738095 17.011904)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "OLED VCOMH?")
+		(uuid "dd91814f-a3ca-5457-aac4-a61da5aaae8a")
 	)
 	(segment
 		(start 26.214285 16.559523)
@@ -25799,14 +25847,6 @@
 		(layer "F.Cu")
 		(net "VBUS")
 		(uuid "e0998c67-5542-58c5-b379-dcf62b98047d")
-	)
-	(segment
-		(start 53.154761 13.845238)
-		(end 54.333333 13.845238)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "e16c75c1-5268-57d2-ba80-efb57ee84d64")
 	)
 	(segment
 		(start 15.25 14.345238)
@@ -25953,14 +25993,6 @@
 		(uuid "e50bdb62-a0f8-5130-83c3-372927a4d143")
 	)
 	(segment
-		(start 60.416666 15.142857)
-		(end 60.630952 15.428571)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T76")
-		(uuid "e5292edc-86fc-5407-b07c-04d6ab2d22dd")
-	)
-	(segment
 		(start 31.166666 22.22619)
 		(end 30.559523 21.619047)
 		(width 0.321428)
@@ -25991,14 +26023,6 @@
 		(layer "F.Cu")
 		(net "Bluetooth RF 2")
 		(uuid "e6361c12-38d1-55cf-a8ad-642ad80aed77")
-	)
-	(segment
-		(start 56.785714 15.595238)
-		(end 56.785714 17.797619)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "e6e14521-14c2-5e1e-8542-7641158a2f4c")
 	)
 	(segment
 		(start 21.547619 16.107142)
@@ -26047,14 +26071,6 @@
 		(layer "B.Cu")
 		(net "Left button power (pad 02)")
 		(uuid "e86d763e-7120-5d73-a763-8551814edb44")
-	)
-	(segment
-		(start 54.488095 14.642857)
-		(end 54.880952 14.642857)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "e8740d9e-d547-522e-95e4-054e702b6df3")
 	)
 	(segment
 		(start 53.595238 20.130952)
@@ -26151,14 +26167,6 @@
 		(layer "F.Cu")
 		(net "Right button")
 		(uuid "ea122cac-8ed6-5f8c-8311-1357eb279b76")
-	)
-	(segment
-		(start 56.392857 17.011904)
-		(end 57.428571 17.083333)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T5")
-		(uuid "ea72facc-431e-50af-a55a-ee7898c0f792")
 	)
 	(segment
 		(start 21.988095 14.97619)
@@ -26305,6 +26313,14 @@
 		(uuid "ee3dbd58-927b-5bb2-b36c-f502b5974f34")
 	)
 	(segment
+		(start 57.428571 17.083333)
+		(end 58.154761 17.047619)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "OLED VCC?")
+		(uuid "eef7db15-f982-50f6-a586-8d88898fa374")
+	)
+	(segment
 		(start 10.797619 17.583333)
 		(end 11.285714 18.059523)
 		(width 0.238095)
@@ -26431,14 +26447,6 @@
 		(layer "F.Cu")
 		(net "Net-T47")
 		(uuid "f290f831-73c9-5b54-9854-d6f2f9c187b3")
-	)
-	(segment
-		(start 54.309523 13.845238)
-		(end 55.523809 13.821428)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T5")
-		(uuid "f2fa1dd4-e448-59e5-a5a6-2368fe754cd3")
 	)
 	(segment
 		(start 55.011904 19.273809)
@@ -26631,14 +26639,6 @@
 		(layer "B.Cu")
 		(net "Net-T60")
 		(uuid "f9bf843c-46de-54fe-8377-67637e8455c5")
-	)
-	(segment
-		(start 60.404761 14.619047)
-		(end 60.416666 15.142857)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T76")
-		(uuid "fa1d15eb-5864-5610-8ae0-41e8d796242e")
 	)
 	(via
 		(at 9.619047 21.45238)
