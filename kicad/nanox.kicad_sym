@@ -15,9 +15,9 @@
    (symbol "BAT1_0_1"
     (rectangle (start -7.62 3.81) (end 7.62 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "BAT1_1_1"
-    (pin passive line (at -10.16 1.27 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at -10.16 -1.27 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 1.27 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "3" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 1.27 0) (length 2.54) (name "NTC" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 -1.27 0) (length 2.54) (name "-" (effects (font (size 1.0 1.0)))) (number "2" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 10.16 1.27 180) (length 2.54) (name "+" (effects (font (size 1.0 1.0)))) (number "3" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "BTB1" (in_bom yes) (on_board yes)
@@ -1098,7 +1098,7 @@
    (symbol "TP06_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP06_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BAT NTC?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "BAT NTC" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP07" (in_bom yes) (on_board yes)
@@ -1178,7 +1178,7 @@
    (symbol "TP14_0_1"
     (rectangle (start -7.62 2.54) (end 7.62 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "TP14_1_1"
-    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "VBAT?" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -10.16 0.00 0) (length 2.54) (name "VBAT" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "TP15" (in_bom yes) (on_board yes)

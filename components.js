@@ -168,7 +168,7 @@ window.COMPONENTS = [
     {"id":"R","name":"drain? (charger input)","polygon":[[1565,1365],[1620,1365],[1620,1402],[1565,1402]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
-    {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
-    {"id":"2","name":"","notes":"Battery - (the cell's negative terminal): VSS of the BQ29729 protection IC (PWR3), with C2 and R35. The system ground is on the other side of the X2/X3 protection FETs and the X4 sense resistor; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
-    {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the charger (PWR1), PWR2 and X9's unconnected pin; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
+    {"id":"1","name":"NTC","notes":"The battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8)","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
+    {"id":"2","name":"-","notes":"Battery - (the cell's negative terminal): VSS of the BQ29729 protection IC (PWR3), with C2 and R35. The system ground is on the other side of the X2/X3 protection FETs and the X4 sense resistor","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
+    {"id":"3","name":"+","notes":"Battery +, with test pad 14, the charger (PWR1), PWR2 and X9's unconnected pin","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
 ];

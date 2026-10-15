@@ -265,7 +265,7 @@ def specimen_b():
         out.append(dict(t="slab", poly=rect(*rc), z=[zl0, zl1], **leg))
     for (x, y), pid, pol in (((1165, 1820), "2", "-"), ((1165, 950), "3", "+")):
         out.append(dict(t="box", at=xy(x, y), size=[.9, .9], z=[TOP, zl0], color="#d8d8d8",
-                        title=f"Leg tab on battery pad {pid}", notes=f"Solder tab on battery pad {pid}, likely battery {pol}"))
+                        title=f"Leg tab on battery pad {pid}", notes=f"Solder tab on battery pad {pid}, battery {pol}"))
     return out
 
 

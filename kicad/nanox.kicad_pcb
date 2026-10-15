@@ -331,126 +331,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "07d687b3-7989-5c20-a392-528f8ce70820")
-		(at 21.380952 16.523809)
-		(descr "two-terminal SMD")
-		(property "Reference" "C5"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "fde0cb7e-fd8e-5aaa-88b8-a4f49817e3aa")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "C"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "5e33dbce-78bd-5c33-8367-87838c8cbd1e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8000d38f-3b41-50d3-9e70-d940937d986d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7d431ad0-d5bb-56ac-8737-fad1b27e3dc6")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/7291824b-8019-5647-b5d1-561a8bb63514")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.285714 -0.583333)
-			(end -0.285714 0.583333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "87419e2a-6e12-5234-9555-53e72ac08c01")
-		)
-		(fp_line
-			(start -0.285714 0.583333)
-			(end 0.285714 0.583333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "dc9253c9-fb25-51bb-8748-dc56ded99478")
-		)
-		(fp_line
-			(start 0.285714 -0.583333)
-			(end -0.285714 -0.583333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "df278846-cb21-568a-8533-b2eab85481ec")
-		)
-		(fp_line
-			(start 0.285714 0.583333)
-			(end 0.285714 -0.583333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "ef6e9d16-c398-53ad-a953-da8bcd9b0b81")
-		)
-		(pad "1" smd rect
-			(at 0 0.410714)
-			(size 0.571428 0.345238)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "462a3702-8f3d-5925-8d28-426913b30035")
-		)
-		(pad "2" smd rect
-			(at 0 -0.410714)
-			(size 0.571428 0.345238)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "8e9ce258-7ab8-5e86-9737-1500c1563caa")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "09223d1f-915e-552c-a6cd-897da4321385")
 		(at 59.20238 21.392857)
 		(descr "~4.8 mm square metal; Large silver part: the power inductor of the X10 boost converter (TLV61046A) that makes the OLED supply, on its SW pin")
@@ -550,244 +430,6 @@
 			)
 			(rotate
 				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "10113e06-660f-56ec-a7f1-bf2ab111a4fa")
-		(at 20.276785 23.880952)
-		(descr "VFQFPN16, 3 x 3 mm; Single-cell Li-ion charger with an integrated power switch (up to 1 A). Its datasheet pinout matches the traced nets with pin 1 at the first corner outlined: VIN and VINSNS tied (1, 2), VOPRG grounded for 4.2 V (9), VOSNS on battery + (10), R14 on IPRG setting the charge current (15), R8 on IEND setting the end-of-charge current (13), C37 on VREF (12), R11 holding SD low to enable it (7), status output ST2 to the MCU (3), VPRE and IPRE left floating (14, 16). VOUT (11) and VOSNS (10) are joined by copper between the two pads, both on battery +")
-		(property "Reference" "PWR1"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "444a5e44-20d8-563e-a0d2-ee8e0d6b2b02")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "ST L6924D Li-ion battery charger"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "de2204af-a863-59bb-8ed4-eb88d3c37c1e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "00604145-2fdc-5092-888d-acd354035bee")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b31cc2bd-549a-5c48-a544-9eb5334ccd7d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/22a7cd49-051a-5501-8f31-8eba1fbeba92")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -1.407738 -1.416667)
-			(end -1.348214 1.369048)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "43c77962-3339-564d-8aa5-44085a2d00ff")
-		)
-		(fp_line
-			(start -1.348214 1.369048)
-			(end 1.413691 1.380952)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "e54f0ad0-bdeb-58f0-bce0-3c32a4246d39")
-		)
-		(fp_line
-			(start 1.342262 -1.333333)
-			(end -1.407738 -1.416667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "bc7370f6-f0ed-589d-a6a5-9d1099ef4742")
-		)
-		(fp_line
-			(start 1.413691 1.380952)
-			(end 1.342262 -1.333333)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "a7d7e73f-867c-59b7-bba8-3747eeb76231")
-		)
-		(pad "1" smd rect
-			(at 1.401786 0.761905 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger input?")
-			(thermal_bridge_angle 45)
-			(uuid "b75304ef-15ab-5db2-82e5-99028d756f71")
-		)
-		(pad "2" smd rect
-			(at 1.389881 0.273809 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger input?")
-			(thermal_bridge_angle 45)
-			(uuid "606593b1-5248-54af-8fac-c238e725f650")
-		)
-		(pad "3" smd rect
-			(at 1.366072 -0.226191 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger ST2")
-			(thermal_bridge_angle 45)
-			(uuid "eef4ceb3-bea0-5e4a-9511-f0a0bdd86ba4")
-		)
-		(pad "4" smd rect
-			(at 1.354167 -0.714286 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger ST1")
-			(thermal_bridge_angle 45)
-			(uuid "1d75eb82-7e95-5d1d-933f-b4655ea0449f")
-		)
-		(pad "5" smd rect
-			(at 0.723215 -1.357143 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger TPRG")
-			(thermal_bridge_angle 45)
-			(uuid "d9cf177c-50d2-5723-8cc9-efb1483e2bef")
-		)
-		(pad "6" smd rect
-			(at 0.223215 -1.369048 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "e67ae139-e2f8-586b-aee3-a1fb79c3a36f")
-		)
-		(pad "7" smd rect
-			(at -0.276785 -1.380952 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger SD")
-			(thermal_bridge_angle 45)
-			(uuid "c6de5bfe-bacc-5cba-9e65-0dbe4c3288a4")
-		)
-		(pad "8" smd rect
-			(at -0.776785 -1.392857 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger TH")
-			(thermal_bridge_angle 45)
-			(uuid "38392ebf-43ca-5d51-8244-0152688763ab")
-		)
-		(pad "9" smd rect
-			(at -1.395833 -0.785714 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "eb613434-06f3-5a14-8d1d-17c9a887ad64")
-		)
-		(pad "10" smd rect
-			(at -1.383928 -0.27381 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "5c009fd4-c913-5c8b-90cb-d30b640b4b54")
-		)
-		(pad "11" smd rect
-			(at -1.372024 0.22619 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "79549b4f-2f7e-5d27-bf71-d88ba8382805")
-		)
-		(pad "12" smd rect
-			(at -1.360119 0.738095 181.5074358)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger VREF")
-			(thermal_bridge_angle 45)
-			(uuid "868cb34f-1589-5d7b-8064-a71c3a34b087")
-		)
-		(pad "13" smd rect
-			(at -0.717262 1.369048 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger IEND")
-			(thermal_bridge_angle 45)
-			(uuid "5f0510e8-bebe-5c7d-afa5-b83c925b25f9")
-		)
-		(pad "14" smd rect
-			(at -0.217262 1.369048 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "6a8101b1-023c-5e61-8638-4a96f73a6e6d")
-		)
-		(pad "15" smd rect
-			(at 0.282738 1.380952 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger IPRG")
-			(thermal_bridge_angle 45)
-			(uuid "26d97d6f-f364-5b71-a788-cc734148dd2b")
-		)
-		(pad "16" smd rect
-			(at 0.782738 1.380952 91.50743576)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "d712490a-c257-53c4-8c50-f1eae93bbf72")
-		)
-		(pad "EP" smd rect
-			(at -0.002976 0 91.50743576)
-			(size 1.5 1.5)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "6ac751d5-3518-5e60-ac7b-b4b7caf58e28")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Package_DFN_QFN.3dshapes/QFN-16-1EP_3x3mm_P0.5mm_EP1.7x1.7mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 0.9166666667 0.9166666667 1)
-			)
-			(rotate
-				(xyz 0 0 178.4925642)
 			)
 		)
 	)
@@ -1440,6 +1082,126 @@
 			(net "VDDUSB")
 			(thermal_bridge_angle 45)
 			(uuid "2409815f-9a8e-5f6a-9dd1-c82da73ccc98")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "1d116bbb-f1b6-504e-8ffb-fe3bfb428d19")
+		(at 17.428571 22.761904)
+		(descr "two-terminal SMD")
+		(property "Reference" "C3"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "8c5261a8-9fde-52a9-85d8-f352bffff03e")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "59258350-c829-55cd-868e-9be8b78d5c17")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6885b4a5-429e-5a9c-864a-f4295fd2e892")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e587d564-be63-52ec-91a7-47a6971e0cd4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/e5f4a2a8-07a2-5684-84ca-026c3fbc5491")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.27381 -0.464285)
+			(end -0.27381 0.464286)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "83ce12db-4269-5e26-afb1-3400e3a7824e")
+		)
+		(fp_line
+			(start -0.27381 0.464286)
+			(end 0.273809 0.464286)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "159a6599-faa8-54be-a531-16618010424d")
+		)
+		(fp_line
+			(start 0.273809 -0.464285)
+			(end -0.27381 -0.464285)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "789b4602-0785-57e7-a1b9-3f89394c2259")
+		)
+		(fp_line
+			(start 0.273809 0.464286)
+			(end 0.273809 -0.464285)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "0426071e-130a-5a12-a858-eed35545f25f")
+		)
+		(pad "1" smd rect
+			(at 0 0.327381)
+			(size 0.547619 0.273809)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "e240592d-0352-52ca-aab4-9bf220814035")
+		)
+		(pad "2" smd rect
+			(at 0 -0.327381)
+			(size 0.547619 0.273809)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "94b6f4e0-f28f-5908-8a25-faf85582064b")
 		)
 		(embedded_fonts no)
 		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
@@ -3078,13 +2840,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "53314b24-e1d0-522a-bb20-c0028a5b95ec")
-		(at 9.095238 13.22619)
-		(descr "two-terminal SMD")
-		(property "Reference" "R1"
+		(uuid "58adefe5-d398-56ff-bd73-1999e462d89d")
+		(at 12.559523 19.083333)
+		(descr "copper pads")
+		(property "Reference" "BAT1"
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "422e7e5e-f5d9-51ad-864f-5aa94d5ae59a")
+			(uuid "02565b3a-11eb-59a3-91f8-f8f1ffeeff5b")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -3092,11 +2854,11 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "battery contacts"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8d836c7e-41a9-5e31-89e6-54521613a129")
+			(uuid "205d048f-3069-5154-a1dd-d1fb6ef78e28")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3107,7 +2869,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1093ec24-6474-5e12-91cc-72ce5eb92810")
+			(uuid "7c3c2c9f-5c27-5928-b470-8edfc2dbfa14")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3118,83 +2880,80 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b50dcc8e-4d71-560f-8ea3-0b1a6e725dd9")
+			(uuid "51282c55-7795-5cd9-960c-e5dafa93a3f1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(path "/332e5366-d180-58d5-a4e5-0a6d5dc9104e")
+		(path "/0fea7af4-60ee-5193-bbb6-422d97d4eceb")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.214286 -0.511905)
-			(end -0.214286 0.511905)
+			(start -1.952381 -6.27381)
+			(end -1.952381 6.273809)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "881bbf52-1ec2-562b-b8f9-2b8e3a756389")
+			(uuid "12c5535a-ddb8-51db-9c34-f3c6275e7cf5")
 		)
 		(fp_line
-			(start -0.214286 0.511905)
-			(end 0.214285 0.511905)
+			(start -1.952381 6.273809)
+			(end 1.952381 6.273809)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "81968aec-f345-5af5-9a71-9a01ec532f6a")
+			(uuid "9eac1b5b-d3de-5ae4-be6f-179bdc91c58a")
 		)
 		(fp_line
-			(start 0.214285 -0.511905)
-			(end -0.214286 -0.511905)
+			(start 1.952381 -6.27381)
+			(end -1.952381 -6.27381)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "0ac11885-6c72-5685-a305-65a28cb60307")
+			(uuid "5562e5fe-6046-5706-a10f-273f267f12c0")
 		)
 		(fp_line
-			(start 0.214285 0.511905)
-			(end 0.214285 -0.511905)
+			(start 1.952381 6.273809)
+			(end 1.952381 -6.27381)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "cb32d7a7-f55a-5fe2-a284-47ee5960c58f")
+			(uuid "e58f366f-b949-5989-88f1-8d434b14ffb1")
 		)
 		(pad "1" smd rect
-			(at 0 0.357143)
-			(size 0.428571 0.309523)
+			(at -1.244047 -4.785714)
+			(size 1.416666 2.97619)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Battery NTC?")
+			(net "Battery NTC")
 			(thermal_bridge_angle 45)
-			(uuid "aeb5e948-731b-5cb5-9ed8-c472bee95179")
+			(uuid "03eb7446-c322-5dbf-b9d1-bb7b39c02bc5")
 		)
 		(pad "2" smd rect
-			(at 0 -0.357143)
-			(size 0.428571 0.309523)
+			(at 1.279762 -4.785714)
+			(size 1.345238 2.95238)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger TH")
+			(net "Battery cell -")
 			(thermal_bridge_angle 45)
-			(uuid "1f71963d-d6e2-5423-9227-94415817358c")
+			(uuid "d90f9176-7a01-586a-add1-31904786e72a")
+		)
+		(pad "3" smd rect
+			(at 0.434524 5.589286)
+			(size 2.964285 1.369047)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "af30f66a-66b0-5737-92b5-6cab070240d9")
 		)
 		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
-			)
-		)
 	)
 	(footprint ""
 		(layer "F.Cu")
@@ -4901,13 +4660,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "71f2e3ce-d1a6-527d-9b8d-f0c2f057e5f6")
-		(at 12.559523 19.083333)
-		(descr "copper pads")
-		(property "Reference" "BAT1"
+		(uuid "71a528fc-d406-51a1-8119-6a0b83c39d8f")
+		(at 20.845238 19.208333)
+		(descr "SOT-23, 2.9 x 1.3 mm; 16 V Zener diode (Philips/NXP PMBZ52xx series datasheet: 8W is the PMBZ5246B's marking code, the leading p means made in Hong Kong; pin 1 anode, 2 not connected, 3 cathode). Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +")
+		(property "Reference" "X9"
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "6f965525-a743-5e27-9188-dacae954fdd1")
+			(uuid "ff17805e-a5c8-5575-bfb3-e928507e986c")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -4915,11 +4674,11 @@
 				)
 			)
 		)
-		(property "Value" "battery contacts"
+		(property "Value" "NXP PMBZ5246B 16 V Zener diode (marked P8W 26)"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "531ecd08-f5ff-5861-bf7b-9571283e8c53")
+			(uuid "8d6f7662-0be3-5a3f-ac17-e6a6b88709ca")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4930,7 +4689,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b2fe3f5e-2302-5e37-8bf8-32957a9233fb")
+			(uuid "9f7d1485-b02d-5c4e-afe3-2bed74d5d8d7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4941,80 +4700,91 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "79a16098-d39f-5a60-8bee-6f558d5b65aa")
+			(uuid "50aaf3d2-0839-5b9e-bb9a-14703ae98539")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(path "/0fea7af4-60ee-5193-bbb6-422d97d4eceb")
+		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -1.952381 -6.27381)
-			(end -1.952381 6.273809)
+			(start -0.642858 -1.434524)
+			(end -0.642858 1.434524)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "b66cd48c-df00-58ec-841b-9d5e2c003b3b")
+			(uuid "28a386e3-38db-5df9-b349-06f0504750dc")
 		)
 		(fp_line
-			(start -1.952381 6.273809)
-			(end 1.952381 6.273809)
+			(start -0.642858 1.434524)
+			(end 0.642857 1.434524)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "1655567c-ecca-5881-9663-376c34932dc8")
+			(uuid "bc1b7fac-487a-5f2e-8a85-feff0a8ab45d")
 		)
 		(fp_line
-			(start 1.952381 -6.27381)
-			(end -1.952381 -6.27381)
+			(start 0.642857 -1.434524)
+			(end -0.642858 -1.434524)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "e66c9077-bbcd-580c-94e0-d81055a5c62a")
+			(uuid "f8d66877-39c2-5de3-a3cf-c56799c66dcd")
 		)
 		(fp_line
-			(start 1.952381 6.273809)
-			(end 1.952381 -6.27381)
+			(start 0.642857 1.434524)
+			(end 0.642857 -1.434524)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "04b433de-3d54-5851-9b8c-cd675062b058")
+			(uuid "04b8c063-d21c-57e8-9c3d-85955b7b4adb")
 		)
-		(pad "1" smd rect
-			(at -1.244047 -4.785714)
-			(size 1.416666 2.97619)
+		(pad "BL" smd rect
+			(at -0.916667 -0.869048)
+			(size 1.047619 0.892857)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Battery NTC?")
+			(net "Charger input?")
 			(thermal_bridge_angle 45)
-			(uuid "52bd588e-d8d1-5e9f-9643-8569c2d29d46")
+			(uuid "0d1a1aa1-25f5-56da-a11e-1295dba8e989")
 		)
-		(pad "2" smd rect
-			(at 1.279762 -4.785714)
-			(size 1.345238 2.95238)
+		(pad "R" smd rect
+			(at 1.125 0.077381)
+			(size 1.011904 0.857142)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Battery cell -")
+			(net "Left button power (pad 19)")
 			(thermal_bridge_angle 45)
-			(uuid "bc00bc07-3f10-559f-a552-30729425b0a1")
+			(uuid "2a98769d-100e-546b-9a30-688aa805e4bc")
 		)
-		(pad "3" smd rect
-			(at 0.434524 5.589286)
-			(size 2.964285 1.369047)
+		(pad "TL" smd rect
+			(at -0.916667 1.041667)
+			(size 1.047619 0.857142)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
+			(net "Battery +")
 			(thermal_bridge_angle 45)
-			(uuid "547fcf4c-f7c6-5591-ba4d-4632a3709b6e")
+			(uuid "9dff97e2-f018-5210-89df-0d5ea4b3b45d")
 		)
 		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint ""
 		(layer "F.Cu")
@@ -5141,6 +4911,126 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "76cbe058-205a-5258-8194-3080d4e3509a")
+		(at 22.619047 15.238095)
+		(descr "two-terminal SMD")
+		(property "Reference" "R13"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "5821db4b-44b1-5a0c-bf2f-1199a3e0bb64")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a5c88cc1-289a-5dfa-924e-53ec6edf9105")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "609509c1-50f0-58f7-9f49-10cc30506b1a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3264ad44-9edc-5724-9564-8f3bd95b05f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/158ffc07-61cc-54dc-a7da-d1ecd413feea")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.357143 -0.595238)
+			(end -0.357143 0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "d12a4bd2-8529-50cd-b4b8-3f922efd44a8")
+		)
+		(fp_line
+			(start -0.357143 0.595238)
+			(end 0.357143 0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c6019ff1-0a4f-5ae0-a525-cc976b55d352")
+		)
+		(fp_line
+			(start 0.357143 -0.595238)
+			(end -0.357143 -0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "aa062f5a-0e6b-51a0-90d6-8a637e5277fe")
+		)
+		(fp_line
+			(start 0.357143 0.595238)
+			(end 0.357143 -0.595238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "e820e37f-1a0d-5fb4-aba5-14eb1001dd43")
+		)
+		(pad "1" smd rect
+			(at 0 0.416666)
+			(size 0.714285 0.357142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "a4f2b768-eaf5-5476-aa86-1449d485e759")
+		)
+		(pad "2" smd rect
+			(at 0 -0.416667)
+			(size 0.714285 0.357142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T65")
+			(thermal_bridge_angle 45)
+			(uuid "6da2178c-6bb8-5b92-bbea-023483ed7fc0")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -5753,6 +5643,126 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "86cc5d3a-bc74-5cb3-9207-d3179439a292")
+		(at 21.380952 16.523809)
+		(descr "two-terminal SMD")
+		(property "Reference" "C5"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "8692e06d-6733-5986-a1f1-5e430c0ccf92")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "C"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3986dea2-0d5e-5fa1-a70b-49ef21c48c39")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "06eb5de9-8e60-55db-810d-9e1ad5801366")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "917829fb-b11e-5d0e-bde1-774d36db41e2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/7291824b-8019-5647-b5d1-561a8bb63514")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.285714 -0.583333)
+			(end -0.285714 0.583333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "cc47ecb4-a12a-5508-9884-f7956b0b2ed3")
+		)
+		(fp_line
+			(start -0.285714 0.583333)
+			(end 0.285714 0.583333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "ebffae72-6187-5aa5-a439-2e1c657a5137")
+		)
+		(fp_line
+			(start 0.285714 -0.583333)
+			(end -0.285714 -0.583333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "331ed9da-2f7d-5e6a-816c-dc4150482e2c")
+		)
+		(fp_line
+			(start 0.285714 0.583333)
+			(end 0.285714 -0.583333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "ab96b17d-23cd-517d-96d7-abb059ceb2ab")
+		)
+		(pad "1" smd rect
+			(at 0 0.410714)
+			(size 0.571428 0.345238)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "8ff00b33-7266-5000-9e59-75cbd63d0e35")
+		)
+		(pad "2" smd rect
+			(at 0 -0.410714)
+			(size 0.571428 0.345238)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "15243b97-18d4-57f9-bc4a-87c3d16daf47")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "8c167bca-2e1b-5412-a0c3-ddce9f0c7ab8")
 		(at 15.20238 22.755952)
 		(descr "two-terminal SMD")
@@ -5988,187 +5998,6 @@
 			)
 			(rotate
 				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "8f3227e5-8e50-5074-a23a-1d556a181ea0")
-		(at 20.41369 14.130952)
-		(descr "10 pins, ~2.9 x 1.9 mm; Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; pin 9 on battery + and pin 6 on pack -, across X4 (likely a current-sense resistor) from GND, so likely a battery fuel gauge; marked E058 2050; pin 1 not verified, numbered from the first corner outlined")
-		(property "Reference" "PWR2"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "a1060c3b-ad08-5201-99d9-125190a7892b")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "unknown"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9d8ed6d2-07ff-55b7-8584-a23da211f9f3")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "487810d6-5b1e-5d62-b318-271d43157cfe")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "31b72a58-3496-5223-a6d9-2d49a3fc5907")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/f4154ebe-e7ce-5c53-8437-d704df58ab07")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -1.485119 -0.952381)
-			(end -1.425595 0.916667)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "2fc80493-4756-585c-8cbd-e032b5fb263d")
-		)
-		(fp_line
-			(start -1.425595 0.916667)
-			(end 1.479167 0.940476)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "e905c17f-088b-5406-843b-5d4b1a98c9f1")
-		)
-		(fp_line
-			(start 1.431548 -0.904762)
-			(end -1.485119 -0.952381)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "1d289b68-2fd6-5b05-98e8-82e159543e28")
-		)
-		(fp_line
-			(start 1.479167 0.940476)
-			(end 1.431548 -0.904762)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "5170f6ff-76ad-5c0d-95c8-da1d2fc27e28")
-		)
-		(pad "1" smd rect
-			(at 0.979167 -0.916667 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T62")
-			(thermal_bridge_angle 45)
-			(uuid "308b5e40-5c70-5995-8e07-1a73f7c43f28")
-		)
-		(pad "2" smd rect
-			(at 0.479167 -0.916667 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "I2C1 SDA")
-			(thermal_bridge_angle 45)
-			(uuid "6f328a4a-d03c-5e8f-94b5-da9b0565065f")
-		)
-		(pad "3" smd rect
-			(at -0.032738 -0.928572 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "I2C1 SCL")
-			(thermal_bridge_angle 45)
-			(uuid "e55f27b0-4079-5995-8fd6-fbf23fdc5ac8")
-		)
-		(pad "4" smd rect
-			(at -0.532738 -0.940476 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "678b3ca6-7adb-5658-825d-43693f1a1dfc")
-		)
-		(pad "5" smd rect
-			(at -1.032738 -0.940476 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "c89a3e1e-74ca-5081-80b0-8b09aa7f8007")
-		)
-		(pad "6" smd rect
-			(at -0.973214 0.916667 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Pack -?")
-			(thermal_bridge_angle 45)
-			(uuid "edf8c671-e3a4-5e02-ab27-217235c19d87")
-		)
-		(pad "7" smd rect
-			(at -0.473214 0.928571 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "d637603d-b0cf-50fa-b2ee-745077fb750f")
-		)
-		(pad "8" smd rect
-			(at 0.026786 0.928571 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T48")
-			(thermal_bridge_angle 45)
-			(uuid "fddf0cdc-e06d-5cf1-9a0e-6a7420b7b2f3")
-		)
-		(pad "9" smd rect
-			(at 0.526786 0.928571 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "d52bfa88-f68a-55a9-8aeb-4bbc035d9d4b")
-		)
-		(pad "10" smd rect
-			(at 1.026786 0.940476 269.0646418)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T65")
-			(thermal_bridge_angle 45)
-			(uuid "797436eb-8123-59fa-9aa5-bea6e31c3871")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/PWR2.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
 			)
 		)
 	)
@@ -7147,13 +6976,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "aac1ea3b-d030-5d3e-8732-a3002fbd1f99")
-		(at 17.428571 22.761904)
+		(uuid "b017a31a-9ff7-51a3-bb40-e22c09a6537e")
+		(at 18 16.523809)
 		(descr "two-terminal SMD")
-		(property "Reference" "C3"
+		(property "Reference" "R9"
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "ff84b623-b832-5356-b8d5-d0cb5d00724d")
+			(uuid "a0d3a1a7-bf12-5aae-9841-a6863befd179")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -7161,11 +6990,11 @@
 				)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "R"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2f5c6b51-b7a4-51af-8b17-7a7109c95c40")
+			(uuid "8904702d-e8ac-5313-be8a-3835b62774f6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7176,7 +7005,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "335a98ec-0a5d-5d0c-90c4-f0b3694b3748")
+			(uuid "fc5c0db9-d0b7-51f0-be0c-368231b4b539")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7187,73 +7016,193 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "cbeb6f0c-1940-5af1-963b-62bf7507831f")
+			(uuid "a8e71323-bc09-5d57-a510-035378592f6e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(path "/e5f4a2a8-07a2-5684-84ca-026c3fbc5491")
+		(path "/e46d0778-99f8-52c1-b495-61754634242d")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.27381 -0.464285)
-			(end -0.27381 0.464286)
+			(start -0.583334 -0.285714)
+			(end -0.583334 0.285714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "4b312a01-0f43-53ab-90e5-4a54807785fa")
+			(uuid "bcbbf5aa-2ca6-5c67-b679-58c56739fc19")
 		)
 		(fp_line
-			(start -0.27381 0.464286)
-			(end 0.273809 0.464286)
+			(start -0.583334 0.285714)
+			(end 0.583333 0.285714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "c7c2e0ad-0057-5f52-a7ca-749ad7ab4baa")
+			(uuid "2f1473b5-1ed2-58b1-a630-f99fd794a0de")
 		)
 		(fp_line
-			(start 0.273809 -0.464285)
-			(end -0.27381 -0.464285)
+			(start 0.583333 -0.285714)
+			(end -0.583334 -0.285714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "a36d3b56-9400-5f50-bf89-81a8f4bdc228")
+			(uuid "eb62782d-5f6d-525a-aa21-1dce16041fa3")
 		)
 		(fp_line
-			(start 0.273809 0.464286)
-			(end 0.273809 -0.464285)
+			(start 0.583333 0.285714)
+			(end 0.583333 -0.285714)
 			(stroke
 				(width 0.08)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "1e26e21f-cd6d-50bb-8d4d-593c2ef3ccf4")
+			(uuid "e832d111-f6c2-5e81-bcdb-06f1b833a491")
 		)
 		(pad "1" smd rect
-			(at 0 0.327381)
-			(size 0.547619 0.273809)
+			(at -0.410715 0)
+			(size 0.345238 0.571428)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
+			(net "Protection BAT")
 			(thermal_bridge_angle 45)
-			(uuid "7843e541-0bfd-561e-8b9e-006ebf45c3b0")
+			(uuid "52034d76-bdf3-594d-a187-2fba6490f9c3")
 		)
 		(pad "2" smd rect
-			(at 0 -0.327381)
-			(size 0.547619 0.273809)
+			(at 0.410714 0)
+			(size 0.345238 0.571428)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
+			(net "Battery +")
 			(thermal_bridge_angle 45)
-			(uuid "c4fcd128-a084-51ab-9318-f582fc481f12")
+			(uuid "dfd26859-882d-55c2-a667-bf9ee3a6cd3e")
 		)
 		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
+		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "b09325de-26ed-5b09-bf8d-fea84dd8f8ed")
+		(at 9.095238 13.22619)
+		(descr "two-terminal SMD")
+		(property "Reference" "R1"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "01dd28bc-fa22-5aab-8a28-9f85e0600b37")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b74db719-ce36-51d3-8797-62f552140529")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b8f4f527-0a65-5508-9878-130c185bc27e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "1b675a18-05e0-5883-bcff-ab34d6fea559")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/332e5366-d180-58d5-a4e5-0a6d5dc9104e")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.214286 -0.511905)
+			(end -0.214286 0.511905)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2fad66d8-ecdf-5585-8c08-760c00ef96a6")
+		)
+		(fp_line
+			(start -0.214286 0.511905)
+			(end 0.214285 0.511905)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c291b193-8541-500f-a134-ba6257646673")
+		)
+		(fp_line
+			(start 0.214285 -0.511905)
+			(end -0.214286 -0.511905)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8f07be44-2323-532d-816b-b3542a47690a")
+		)
+		(fp_line
+			(start 0.214285 0.511905)
+			(end 0.214285 -0.511905)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "d5f0d720-3d2b-5076-a401-c4a7457cf8bc")
+		)
+		(pad "1" smd rect
+			(at 0 0.357143)
+			(size 0.428571 0.309523)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery NTC")
+			(thermal_bridge_angle 45)
+			(uuid "4a80953d-5f03-5e3d-8f52-2f4fcf0e39ef")
+		)
+		(pad "2" smd rect
+			(at 0 -0.357143)
+			(size 0.428571 0.309523)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger TH")
+			(thermal_bridge_angle 45)
+			(uuid "a7427a1a-b99a-5f88-acc0-a2ddeb36454e")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7781,134 +7730,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "bd545cc2-6ea0-5f38-a4b1-42334ae9f11b")
-		(at 20.845238 19.208333)
-		(descr "SOT-23, 2.9 x 1.3 mm; 16 V Zener diode (Philips/NXP PMBZ52xx series datasheet: 8W is the PMBZ5246B's marking code, the leading p means made in Hong Kong; pin 1 anode, 2 not connected, 3 cathode). Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +")
-		(property "Reference" "X9"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "c66522e9-0342-5b4a-bb94-c1e64c2108a7")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "NXP PMBZ5246B 16 V Zener diode (marked P8W 26)"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "fd2d9e6e-bbc8-507e-8432-8c53608fef17")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e5a091ef-7533-50db-bfe8-da6260380bb7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8e2fd26a-4297-548e-b2be-fe7f01ed9f59")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.642858 -1.434524)
-			(end -0.642858 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "68f58ffb-8a02-5954-9c99-6e5184b9bae3")
-		)
-		(fp_line
-			(start -0.642858 1.434524)
-			(end 0.642857 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "5895566c-f8f5-54da-be58-d14451b88de7")
-		)
-		(fp_line
-			(start 0.642857 -1.434524)
-			(end -0.642858 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "3b4a82c3-8605-5f45-8d9f-3bea8328cd67")
-		)
-		(fp_line
-			(start 0.642857 1.434524)
-			(end 0.642857 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "fd324e96-8002-5635-9779-babe36045b72")
-		)
-		(pad "BL" smd rect
-			(at -0.916667 -0.869048)
-			(size 1.047619 0.892857)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger input?")
-			(thermal_bridge_angle 45)
-			(uuid "dd0cc65e-d427-5a1f-aef3-24ea19065a74")
-		)
-		(pad "R" smd rect
-			(at 1.125 0.077381)
-			(size 1.011904 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Left button power (pad 19)")
-			(thermal_bridge_angle 45)
-			(uuid "94cddde4-7aa6-5d8a-a2d3-4f7a2c786c54")
-		)
-		(pad "TL" smd rect
-			(at -0.916667 1.041667)
-			(size 1.047619 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "0e1a1b6e-1c81-5bc6-8f69-e019c377ef38")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "c0c3712c-3d8a-52cc-85e3-5e0df7ec5bf1")
 		(at 45.07738 12.547619)
 		(descr "ceramic, ~3.6 x 1.6 mm; 2.4 GHz Bluetooth antenna, fed at its left end by Bluetooth RF 3; the copper-free area above it is its keep-out zone")
@@ -8128,126 +7949,6 @@
 			)
 			(rotate
 				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "c2801a2d-f647-5c01-bb92-d3004353371e")
-		(at 22.619047 15.238095)
-		(descr "two-terminal SMD")
-		(property "Reference" "R13"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "a14c7a0a-5355-57b0-9b80-f0ccd1288b99")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "R"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "caa11397-4855-5649-b157-4a69b506117d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "eff8e966-7141-5ab1-9b3e-4d0a38ab09b6")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4c71e8d8-a083-526e-9a22-1a965710cab3")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/158ffc07-61cc-54dc-a7da-d1ecd413feea")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.357143 -0.595238)
-			(end -0.357143 0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "8022e63b-8675-5159-9123-d6ee190bf65b")
-		)
-		(fp_line
-			(start -0.357143 0.595238)
-			(end 0.357143 0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "96cba744-fa1c-562e-8bac-5366a84980bc")
-		)
-		(fp_line
-			(start 0.357143 -0.595238)
-			(end -0.357143 -0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "c4cfc305-e70a-5243-88e0-0e54e7a7b6c0")
-		)
-		(fp_line
-			(start 0.357143 0.595238)
-			(end 0.357143 -0.595238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "eebc016b-3835-5ef9-b077-b2a022fedc2a")
-		)
-		(pad "1" smd rect
-			(at 0 0.416666)
-			(size 0.714285 0.357142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "c56f3500-3920-5a03-82e0-87f2d1f92d7b")
-		)
-		(pad "2" smd rect
-			(at 0 -0.416667)
-			(size 0.714285 0.357142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T65")
-			(thermal_bridge_angle 45)
-			(uuid "8edb84b8-9d12-5766-97da-1c640dd85126")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 90)
 			)
 		)
 	)
@@ -8853,6 +8554,244 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "ce7ff0d1-3ce5-5f34-a3fd-ee8d102e9a3c")
+		(at 20.276785 23.880952)
+		(descr "VFQFPN16, 3 x 3 mm; Single-cell Li-ion charger with an integrated power switch (up to 1 A). Its datasheet pinout matches the traced nets with pin 1 at the first corner outlined: VIN and VINSNS tied (1, 2), VOPRG grounded for 4.2 V (9), VOSNS on battery + (10), R14 on IPRG setting the charge current (15), R8 on IEND setting the end-of-charge current (13), C37 on VREF (12), R11 holding SD low to enable it (7), status output ST2 to the MCU (3), VPRE and IPRE left floating (14, 16). VOUT (11) and VOSNS (10) are joined by copper between the two pads, both on battery +")
+		(property "Reference" "PWR1"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "cf794579-2a67-52b5-baf2-8c2167f1e531")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "ST L6924D Li-ion battery charger"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b73008d1-4931-5db1-8c33-7b313348f5b7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "14b1c238-4ce1-5a67-93ca-638e0cd3011f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "90cf7a44-d503-59be-a8f8-4cc3747f77cf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/22a7cd49-051a-5501-8f31-8eba1fbeba92")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.407738 -1.416667)
+			(end -1.348214 1.369048)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8bc81dfe-f72e-5f8b-a553-2bc38a0ae0a3")
+		)
+		(fp_line
+			(start -1.348214 1.369048)
+			(end 1.413691 1.380952)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8f7fb85b-c55c-55ef-9fe4-960d0d2e7e0a")
+		)
+		(fp_line
+			(start 1.342262 -1.333333)
+			(end -1.407738 -1.416667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "f454c041-3a3e-5dcd-8822-3d11bf1a0aff")
+		)
+		(fp_line
+			(start 1.413691 1.380952)
+			(end 1.342262 -1.333333)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "a4dd2609-b4a0-58bd-9560-3a0af3e026f5")
+		)
+		(pad "1" smd rect
+			(at 1.401786 0.761905 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger input?")
+			(thermal_bridge_angle 45)
+			(uuid "59f679a7-0689-5edf-bb54-93533b1e1cd5")
+		)
+		(pad "2" smd rect
+			(at 1.389881 0.273809 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger input?")
+			(thermal_bridge_angle 45)
+			(uuid "90b16e7d-99a0-52c4-9c63-1172f9109e39")
+		)
+		(pad "3" smd rect
+			(at 1.366072 -0.226191 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger ST2")
+			(thermal_bridge_angle 45)
+			(uuid "e373b22f-edc4-5d65-a37f-a36e5b5a168d")
+		)
+		(pad "4" smd rect
+			(at 1.354167 -0.714286 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger ST1")
+			(thermal_bridge_angle 45)
+			(uuid "fe2edff0-8c90-5328-b8b4-68471015ae56")
+		)
+		(pad "5" smd rect
+			(at 0.723215 -1.357143 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger TPRG")
+			(thermal_bridge_angle 45)
+			(uuid "f28a5063-d908-5ab3-96ef-c2c79eb4bc0e")
+		)
+		(pad "6" smd rect
+			(at 0.223215 -1.369048 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "191a3895-ed98-5051-b222-947bcc5627e0")
+		)
+		(pad "7" smd rect
+			(at -0.276785 -1.380952 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger SD")
+			(thermal_bridge_angle 45)
+			(uuid "da84f90e-7a12-5132-a8b1-502c82690947")
+		)
+		(pad "8" smd rect
+			(at -0.776785 -1.392857 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger TH")
+			(thermal_bridge_angle 45)
+			(uuid "6c8851c7-4848-52eb-877a-02b71e829c73")
+		)
+		(pad "9" smd rect
+			(at -1.395833 -0.785714 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "addef07e-b2d2-5855-92ac-3e099fa69953")
+		)
+		(pad "10" smd rect
+			(at -1.383928 -0.27381 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "c448f0e6-ce1a-58a0-bda7-4d1f8d251cbd")
+		)
+		(pad "11" smd rect
+			(at -1.372024 0.22619 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "59079abc-a010-54f3-9427-1a96284a0941")
+		)
+		(pad "12" smd rect
+			(at -1.360119 0.738095 181.5074358)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger VREF")
+			(thermal_bridge_angle 45)
+			(uuid "d5b08aa7-864f-5af9-905d-dfc0b3694bf1")
+		)
+		(pad "13" smd rect
+			(at -0.717262 1.369048 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger IEND")
+			(thermal_bridge_angle 45)
+			(uuid "5d9270dd-e107-5123-b848-d7e54c8d3e39")
+		)
+		(pad "14" smd rect
+			(at -0.217262 1.369048 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "460894b0-120d-5ee5-8b53-3ece14a1478e")
+		)
+		(pad "15" smd rect
+			(at 0.282738 1.380952 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger IPRG")
+			(thermal_bridge_angle 45)
+			(uuid "6e772d8c-71ff-5899-ba0e-1e4c0522d707")
+		)
+		(pad "16" smd rect
+			(at 0.782738 1.380952 91.50743576)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "e5d7dce6-180e-53ca-9e9e-2d60b96442a0")
+		)
+		(pad "EP" smd rect
+			(at -0.002976 0 91.50743576)
+			(size 1.5 1.5)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "056d7490-97d9-5084-a598-a80e7b66c102")
+		)
+		(embedded_fonts no)
+		(model "/usr/share/kicad/3dmodels/Package_DFN_QFN.3dshapes/QFN-16-1EP_3x3mm_P0.5mm_EP1.7x1.7mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 0.9166666667 0.9166666667 1)
+			)
+			(rotate
+				(xyz 0 0 178.4925642)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "d1925580-1c89-544c-b35b-ff302b9df9f1")
 		(at 23.095238 24.238095)
 		(descr "two-terminal SMD")
@@ -8960,126 +8899,6 @@
 		)
 		(embedded_fonts no)
 		(model "/usr/share/kicad/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "d4ababd4-948f-5eb5-a90e-482c70ce6746")
-		(at 18 16.523809)
-		(descr "two-terminal SMD")
-		(property "Reference" "R9"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "b3336723-54ae-506c-81fb-dd93bce2ea9c")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "R"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "34822cdd-2eaf-5209-9bf1-5115dbe13fd8")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "261697ac-7f29-5192-b6db-029174839a48")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "f03ae3ff-bdf0-50c9-974c-daaeca78702a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/e46d0778-99f8-52c1-b495-61754634242d")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.583334 -0.285714)
-			(end -0.583334 0.285714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "3461a80a-8448-5a79-86f7-b2672e982634")
-		)
-		(fp_line
-			(start -0.583334 0.285714)
-			(end 0.583333 0.285714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "236c1097-a341-5697-b2d6-9f9a4bb01edd")
-		)
-		(fp_line
-			(start 0.583333 -0.285714)
-			(end -0.583334 -0.285714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "092b82a8-8fff-5eba-9fee-2d9e308b014f")
-		)
-		(fp_line
-			(start 0.583333 0.285714)
-			(end 0.583333 -0.285714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "26c3f181-895a-51b6-8488-86ec3cb8590e")
-		)
-		(pad "1" smd rect
-			(at -0.410715 0)
-			(size 0.345238 0.571428)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Protection BAT")
-			(thermal_bridge_angle 45)
-			(uuid "2d176bef-9b92-58d4-8d32-0b03afddb8dc")
-		)
-		(pad "2" smd rect
-			(at 0.410714 0)
-			(size 0.345238 0.571428)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "7df1a8e6-80f1-5be5-93b1-d18eae88a038")
-		)
-		(embedded_fonts no)
-		(model "/usr/share/kicad/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11021,6 +10840,187 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "f8fe7af8-66ac-58bc-a920-af871a2d419a")
+		(at 20.41369 14.130952)
+		(descr "10 pins, ~2.9 x 1.9 mm; Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; pin 9 on battery + and pin 6 on pack -, across X4 (likely a current-sense resistor) from GND, so likely a battery fuel gauge; marked E058 2050; pin 1 not verified, numbered from the first corner outlined")
+		(property "Reference" "PWR2"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "e96949d4-49e1-5347-bc42-af1e89f6d6b6")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "unknown"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "dcb47c8f-fc59-5fbe-9683-903e92ba2207")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d394ff3a-8689-5000-adbe-a304370b5042")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "556f7abb-4515-5c19-b988-f3da3eedd344")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/f4154ebe-e7ce-5c53-8437-d704df58ab07")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.485119 -0.952381)
+			(end -1.425595 0.916667)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "335cc498-2ffa-5e3d-8231-91d58c8e028d")
+		)
+		(fp_line
+			(start -1.425595 0.916667)
+			(end 1.479167 0.940476)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2f615d66-727e-5c52-8eb0-b1786ebe4161")
+		)
+		(fp_line
+			(start 1.431548 -0.904762)
+			(end -1.485119 -0.952381)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "e2eacd0f-c0d8-5eab-b882-a3368486dc22")
+		)
+		(fp_line
+			(start 1.479167 0.940476)
+			(end 1.431548 -0.904762)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "eb206f89-799d-59fe-9087-654b804cb767")
+		)
+		(pad "1" smd rect
+			(at 0.979167 -0.916667 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T62")
+			(thermal_bridge_angle 45)
+			(uuid "3cab9c17-9a7e-521f-95ab-df1f9f65b054")
+		)
+		(pad "2" smd rect
+			(at 0.479167 -0.916667 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "I2C1 SDA")
+			(thermal_bridge_angle 45)
+			(uuid "7e3c2008-4ea5-584c-8bf1-8cd402d0ba0f")
+		)
+		(pad "3" smd rect
+			(at -0.032738 -0.928572 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "I2C1 SCL")
+			(thermal_bridge_angle 45)
+			(uuid "927bdfd3-b477-5b08-9724-1d2a807520dc")
+		)
+		(pad "4" smd rect
+			(at -0.532738 -0.940476 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "badb9b3d-5513-5793-bba8-df2015fb73b8")
+		)
+		(pad "5" smd rect
+			(at -1.032738 -0.940476 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "186e6a00-49ac-5250-854c-b2fedb62006b")
+		)
+		(pad "6" smd rect
+			(at -0.973214 0.916667 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Pack -?")
+			(thermal_bridge_angle 45)
+			(uuid "4504c4a7-85a5-5bf1-99a6-cb4582d98037")
+		)
+		(pad "7" smd rect
+			(at -0.473214 0.928571 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "bfaaf6a1-6014-5bda-b6dd-b41fd14bd1fe")
+		)
+		(pad "8" smd rect
+			(at 0.026786 0.928571 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T48")
+			(thermal_bridge_angle 45)
+			(uuid "22c406dc-f915-5166-9d2c-e030d582af6e")
+		)
+		(pad "9" smd rect
+			(at 0.526786 0.928571 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Battery +")
+			(thermal_bridge_angle 45)
+			(uuid "fae3c885-8f67-5d26-8320-76aec71cc714")
+		)
+		(pad "10" smd rect
+			(at 1.026786 0.940476 269.0646418)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T65")
+			(thermal_bridge_angle 45)
+			(uuid "7ed0f128-9dc9-52b1-a600-5425762545e1")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/PWR2.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "f9dbf2e0-51d1-5fab-ad8b-0e38c0a36a99")
 		(at 37.714285 14.47619)
 		(descr "two-terminal SMD")
@@ -11381,6 +11381,109 @@
 				(xyz 0 0 90)
 			)
 		)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "05f6267e-ccf3-5286-ac8f-c9684794f344")
+		(at 19.190476 21.45238)
+		(property "Reference" "TP14"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "8a2ff102-068a-54e6-acd9-76667978560d")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "VBAT"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d9e4bc48-b8c8-553d-a64d-14f117057b52")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "34f687d6-6aa6-5ee6-86e7-2055a82bced5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "b1ef223c-c996-5b1a-8d0e-be4709967fd1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/7e0128f8-5076-590c-9509-77c8ba5715c9")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.535715 -0.535715)
+			(end -0.535715 0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "e1419a9e-aded-574c-8e67-4201ddf245ba")
+		)
+		(fp_line
+			(start -0.535715 0.535714)
+			(end 0.535714 0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "60fbe7d0-4924-5d33-b2c4-a37c728a2aea")
+		)
+		(fp_line
+			(start 0.535714 -0.535715)
+			(end -0.535715 -0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "28a756ca-b05a-501d-96e5-2682d60f38d8")
+		)
+		(fp_line
+			(start 0.535714 0.535714)
+			(end 0.535714 -0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "2f28793d-a9e3-5889-969f-359f8f7ca0e5")
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.071428 1.071428)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "Battery +")
+			(uuid "b50bf0c5-9442-545c-a9f2-c59194ce1047")
+		)
+		(embedded_fonts no)
 	)
 	(footprint ""
 		(layer "B.Cu")
@@ -13338,6 +13441,109 @@
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net "Net-T58")
 			(uuid "0b3ba8c9-1dab-5617-bbd1-747b38342ed2")
+		)
+		(embedded_fonts no)
+	)
+	(footprint ""
+		(layer "B.Cu")
+		(uuid "52fe8edc-a8a1-594c-9622-b2cf534e1147")
+		(at 12.47619 16.190476)
+		(property "Reference" "TP06"
+			(at 0 0 180)
+			(layer "B.SilkS")
+			(uuid "18730db7-0af3-5cdc-9085-9c47572a9768")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "BAT NTC"
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1bd12c10-0ee3-5f77-8c9c-be0e2aba0885")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2edf78d8-46aa-524a-8f15-73d204b38a9a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "86912b7a-ee7f-5e0c-9784-44e7810cef65")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/ac157967-fffa-5ba3-b0c3-6af60996f49e")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.535714 -0.535714)
+			(end -0.535714 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "602be1c6-b001-5dd9-b378-e88d14374f14")
+		)
+		(fp_line
+			(start -0.535714 0.535715)
+			(end 0.535714 0.535715)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ffacfa6c-c586-5504-ba04-65e4cbc77f12")
+		)
+		(fp_line
+			(start 0.535714 -0.535714)
+			(end -0.535714 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "cefbe32d-3e63-5814-9f3b-8a11fbccc365")
+		)
+		(fp_line
+			(start 0.535714 0.535715)
+			(end 0.535714 -0.535714)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "15761bf5-326a-5c99-8f0d-53edb071bf48")
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.071428 1.071428)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(net "Battery NTC")
+			(uuid "40804ae6-de5e-54b1-a511-faa23ae72baa")
 		)
 		(embedded_fonts no)
 	)
@@ -15766,109 +15972,6 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
-		(uuid "c46336a1-6d38-5b06-a9a0-60bf29e64d14")
-		(at 12.47619 16.190476)
-		(property "Reference" "TP06"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "7d16c398-4a99-5452-9194-1889e4f79f2e")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "BAT NTC?"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "ffcea35b-11c2-5468-b271-7803ee4ae31c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "499877c6-84b2-584f-982f-d0fb4a048139")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "c6cdc127-7bc8-5878-b979-4a13032d1884")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/ac157967-fffa-5ba3-b0c3-6af60996f49e")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.535714 -0.535714)
-			(end -0.535714 0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "c25e6f59-4f5e-532f-ab57-b1cbdcc3b6c0")
-		)
-		(fp_line
-			(start -0.535714 0.535715)
-			(end 0.535714 0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "27bb9f88-5e5b-5e12-8c96-87bcabbd3282")
-		)
-		(fp_line
-			(start 0.535714 -0.535714)
-			(end -0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "31a20781-9af9-54bf-9ceb-d33d3f77eb2f")
-		)
-		(fp_line
-			(start 0.535714 0.535715)
-			(end 0.535714 -0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "7c5209f1-6a4a-5e15-b6fe-e489253e436b")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.071428 1.071428)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Battery NTC?")
-			(uuid "f3eaea52-bfdf-51b4-8427-4670a922e258")
-		)
-		(embedded_fonts no)
-	)
-	(footprint ""
-		(layer "B.Cu")
 		(uuid "c760826c-4e28-56c9-991e-da9db1e514ab")
 		(at 50.47619 24.488095)
 		(descr "two-terminal SMD")
@@ -17226,109 +17329,6 @@
 	)
 	(footprint ""
 		(layer "B.Cu")
-		(uuid "f26d0ee9-c1ac-561e-8776-bfc115c476e4")
-		(at 19.190476 21.45238)
-		(property "Reference" "TP14"
-			(at 0 0 180)
-			(layer "B.SilkS")
-			(uuid "a741abca-4b40-50aa-9b6c-36e4f9ea0cd8")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "VBAT?"
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "26c77514-7dff-58ac-b745-c3c9a04f7e55")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "520ce52a-ca06-5e19-af31-e196147a9cca")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 180)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "a09f0917-626a-50d3-9648-625d242ae99c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/7e0128f8-5076-590c-9509-77c8ba5715c9")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.535715 -0.535715)
-			(end -0.535715 0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "058aa72a-4490-5bd9-ae4d-2133ea198f2e")
-		)
-		(fp_line
-			(start -0.535715 0.535714)
-			(end 0.535714 0.535714)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "9ed7ef65-8555-54fa-a2a0-927669c1916a")
-		)
-		(fp_line
-			(start 0.535714 -0.535715)
-			(end -0.535715 -0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "bb126960-ad36-5ae8-a246-2286d72a7336")
-		)
-		(fp_line
-			(start 0.535714 0.535714)
-			(end 0.535714 -0.535715)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "25927e94-a34b-5d33-a0a5-f9b253a441f7")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.071428 1.071428)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "Net-T41")
-			(uuid "e88a2dcf-ba1b-5df4-a74e-615df985605c")
-		)
-		(embedded_fonts no)
-	)
-	(footprint ""
-		(layer "B.Cu")
 		(uuid "f870ef43-6582-58a0-b477-41ff4ab22c62")
 		(at 29.428571 25.857142)
 		(property "Reference" "TP22"
@@ -18430,6 +18430,14 @@
 		(uuid "002acc94-385f-5750-b33f-921008c064af")
 	)
 	(segment
+		(start 11.178571 14.273809)
+		(end 9.821428 14.273809)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery NTC")
+		(uuid "00f54a08-caf9-53ce-8ba4-8b2b14d6de3e")
+	)
+	(segment
 		(start 9.095238 19.642857)
 		(end 8.45238 19.642857)
 		(width 0.238095)
@@ -18468,14 +18476,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "OLED CLK")
 		(uuid "01fd5873-cadf-5b7d-bb7c-8b71834edcbc")
-	)
-	(segment
-		(start 14.690476 24.642857)
-		(end 15.321428 24.011904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "020a56db-7362-5f0a-b006-bbef4a1b30f2")
 	)
 	(segment
 		(start 34.119047 25.107142)
@@ -18541,14 +18541,6 @@
 		(net "USB CC1")
 		(uuid "03de99c1-2593-5737-800c-e7c0ff068299")
 	)
-	(via
-		(at 11.22619 15.97619)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Battery NTC?")
-		(uuid "03f8e2f3-db04-5bd7-ba77-088b4b2acbd1")
-	)
 	(segment
 		(start 60.119047 17.595238)
 		(end 60.119047 16.095238)
@@ -18572,14 +18564,6 @@
 		(layer "F.Cu")
 		(net "Protection DOUT")
 		(uuid "05284959-da25-5fe4-adce-4a57ffa8a94e")
-	)
-	(via
-		(at 16.880952 21.5)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Net-T41")
-		(uuid "053e5d65-41e0-5dde-a0b3-df140b92e7ed")
 	)
 	(segment
 		(start 44.607142 24.583333)
@@ -18750,14 +18734,6 @@
 		(uuid "0c4137c7-bc47-577c-9268-229e73b5a877")
 	)
 	(segment
-		(start 9.309523 13.761904)
-		(end 9.20238 13.488095)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Battery NTC?")
-		(uuid "0c69683d-d9fd-5059-b9ee-40f4a60c92c1")
-	)
-	(segment
 		(start 54.785714 19.773809)
 		(end 54.119047 19.773809)
 		(width 0.238095)
@@ -18860,6 +18836,14 @@
 		(layer "B.Cu")
 		(net "VBUS")
 		(uuid "0ef8807c-74bb-52ad-9751-1ea263f2dc86")
+	)
+	(segment
+		(start 17.619047 23.119047)
+		(end 18.166666 23.238095)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "0fc6c1dc-5200-5bde-9f8e-4961197d1f18")
 	)
 	(segment
 		(start 33.309523 19.916666)
@@ -19206,20 +19190,20 @@
 		(uuid "1c3c09a6-62ba-5671-94a2-439e320c84ef")
 	)
 	(segment
-		(start 18.166666 23.238095)
-		(end 18.547619 23.607142)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "1c5b6b32-8e24-58fc-85b2-227f5495b1b0")
-	)
-	(segment
 		(start 32.345238 25.797619)
 		(end 30.761904 25.797619)
 		(width 0.238095)
 		(layer "F.Cu")
 		(net "Net-T60")
 		(uuid "1c79b5f5-9406-59ff-9b2a-2806e28f95bc")
+	)
+	(segment
+		(start 21.142857 15.535714)
+		(end 20.940476 15.059523)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "1c8b5ce1-8bc8-584a-9788-ccb90727583b")
 	)
 	(segment
 		(start 37.011904 24.357142)
@@ -19284,6 +19268,22 @@
 		(layers "F.Cu" "B.Cu")
 		(net "USB D+")
 		(uuid "1d538051-8710-5d08-87a7-679608336672")
+	)
+	(segment
+		(start 11.22619 15.97619)
+		(end 12.47619 16.190476)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery NTC")
+		(uuid "1d7e1e3c-f763-5b91-8e03-dce443c63991")
+	)
+	(segment
+		(start 14.690476 24.642857)
+		(end 15.321428 24.011904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "1dbe790c-c01c-5cc3-81dd-7df324f749c1")
 	)
 	(segment
 		(start 25.904761 21.238095)
@@ -19381,6 +19381,14 @@
 		(net "Net-T57")
 		(uuid "2072c6f3-1f09-52ad-a5df-e1d474b7499d")
 	)
+	(via
+		(at 16.880952 21.5)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "Battery +")
+		(uuid "20c2d2b6-31ca-5afb-bc44-66c755ff81db")
+	)
 	(segment
 		(start 27.547619 21.25)
 		(end 27.547619 21.714285)
@@ -19468,6 +19476,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "SE RESET")
 		(uuid "22f7e5c5-c945-59d1-a450-871a1384968a")
+	)
+	(segment
+		(start 19.559523 17.523809)
+		(end 19.130952 17.107142)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "2336c5bf-22af-5e94-9172-dbcb77cc397f")
 	)
 	(via
 		(at 7.70238 25.440476)
@@ -19638,6 +19654,14 @@
 		(uuid "274344ad-41b2-5aba-a59c-779b30cfa171")
 	)
 	(segment
+		(start 15.773809 24.011904)
+		(end 16.773809 23)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "277c8cc6-f311-5141-8ec2-dabdbdb0dee5")
+	)
+	(segment
 		(start 57.797619 19.083333)
 		(end 57.797619 18.369047)
 		(width 0.238095)
@@ -19756,6 +19780,14 @@
 		(layer "B.Cu")
 		(net "OLED D/C")
 		(uuid "2a723323-1b3c-56b0-8144-dd7dedaec671")
+	)
+	(segment
+		(start 11.25 13.321428)
+		(end 11.285714 15.25)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery NTC")
+		(uuid "2a77e1f8-d8c1-532b-8a8f-e84dc729e7e4")
 	)
 	(segment
 		(start 17.821428 14.630952)
@@ -19893,14 +19925,6 @@
 		(net "+3.3V rail")
 		(uuid "2d0ecb88-50ce-5fa5-a4db-bf817449b7bc")
 	)
-	(via
-		(at 20.70238 16.380952)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Net-T41")
-		(uuid "2d455f5a-c7f9-5293-914a-649adcf11ab8")
-	)
 	(segment
 		(start 23.404761 20.95238)
 		(end 23.404761 20.130952)
@@ -19958,22 +19982,6 @@
 		(uuid "2ed7f667-1559-5541-8c8a-c8e3da0179e0")
 	)
 	(segment
-		(start 15.773809 24.011904)
-		(end 16.773809 23)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "2ef06695-1c15-5b6e-989b-b3cf802a0fbc")
-	)
-	(segment
-		(start 16.785714 23)
-		(end 16.880952 21.5)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "2f18bf3d-9f8d-5a7a-b3d4-54c89a9a655f")
-	)
-	(segment
 		(start 6.107142 18.273809)
 		(end 6.107142 14.511904)
 		(width 0.238095)
@@ -20020,14 +20028,6 @@
 		(layer "F.Cu")
 		(net "Charger VREF")
 		(uuid "312319ea-3ef2-54e1-a2d6-8a6974b6599e")
-	)
-	(segment
-		(start 16.880952 21.5)
-		(end 19.190476 21.45238)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "31479608-a87a-563c-a9c9-734eaabc13cc")
 	)
 	(segment
 		(start 28.059523 13.75)
@@ -20246,14 +20246,6 @@
 		(uuid "373ed052-d5d9-5520-8c4b-99ca7bcc9284")
 	)
 	(via
-		(at 19.130952 16.428571)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Net-T41")
-		(uuid "3740c142-6807-5f44-90a4-44b3be73b97c")
-	)
-	(via
 		(at 9.821428 12.297619)
 		(size 0.45)
 		(drill 0.2)
@@ -20470,6 +20462,22 @@
 		(uuid "3d4ed0ac-7367-5879-9c78-40d4fe4a9e50")
 	)
 	(segment
+		(start 23.011904 15.761904)
+		(end 22.607142 15.654761)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "3d5b9f1b-27ab-5123-822c-8dec55248c85")
+	)
+	(segment
+		(start 19.857142 19.357142)
+		(end 20 20.261904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "3d5e55a3-adb3-52ea-b2f5-728f2487d388")
+	)
+	(segment
 		(start 47.97619 19.357142)
 		(end 46.666666 19.357142)
 		(width 0.238095)
@@ -20494,20 +20502,20 @@
 		(uuid "3dca42e9-034c-566f-9d16-3ba0f31d5260")
 	)
 	(segment
+		(start 21.535714 16.083333)
+		(end 22.690476 16.083333)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "3ddac969-f6b8-5da8-9a0d-36c357ef3ccd")
+	)
+	(segment
 		(start 36.690476 24.47619)
 		(end 32.845238 24.47619)
 		(width 0.238095)
 		(layer "B.Cu")
 		(net "Left button")
 		(uuid "3e213177-1979-5ca3-b8bb-04157743102a")
-	)
-	(segment
-		(start 18.547619 23.607142)
-		(end 18.892857 23.607142)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "3e45912b-50d1-595e-b8bc-e76ed9cecea9")
 	)
 	(segment
 		(start 43.535714 13)
@@ -20524,14 +20532,6 @@
 		(layer "B.Cu")
 		(net "USB D+")
 		(uuid "3eaa6d2f-1a94-5aef-8b90-e73ab20da115")
-	)
-	(segment
-		(start 18.892857 23.607142)
-		(end 18.904761 24.107142)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "3ed9bf43-3453-527b-ac2e-4140369ff0c2")
 	)
 	(via
 		(at 16.238095 22.142857)
@@ -20790,14 +20790,6 @@
 		(uuid "48474b4c-2840-506a-9cf3-c265c705fe4f")
 	)
 	(segment
-		(start 19.559523 17.523809)
-		(end 19.130952 17.107142)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "4873480d-0f46-519c-baea-831ad4dd0757")
-	)
-	(segment
 		(start 56.595238 14.488095)
 		(end 56.595238 13.619047)
 		(width 0.321428)
@@ -20894,14 +20886,6 @@
 		(uuid "4b42c510-fa44-548a-8521-8ce65fee33c9")
 	)
 	(segment
-		(start 19.130952 16.428571)
-		(end 20.70238 16.380952)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "4b4f54dd-3326-5f79-9b81-77cccf21fb29")
-	)
-	(segment
 		(start 16.666666 17.333333)
 		(end 17.571428 16.190476)
 		(width 0.238095)
@@ -20974,12 +20958,12 @@
 		(uuid "4dc10213-ca4a-536b-a911-b4f8cde19bb5")
 	)
 	(segment
-		(start 19.559523 19.059523)
-		(end 19.559523 17.523809)
+		(start 21.45238 15.845238)
+		(end 21.142857 15.535714)
 		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "4e346719-2131-5fb1-9aef-60ea83f60a63")
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "4dd9837c-7ed9-51c3-9764-e6cd70e9c48b")
 	)
 	(segment
 		(start 35.47619 14.321428)
@@ -21134,6 +21118,14 @@
 		(uuid "52cbb97b-7733-5052-a8f6-a27f0c34b753")
 	)
 	(segment
+		(start 19.190476 21.45238)
+		(end 19.857142 20.785714)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "5326058a-b766-5510-a4ef-a4aec0ea4c22")
+	)
+	(segment
 		(start 15.154761 13.059523)
 		(end 15.630952 12.595238)
 		(width 0.238095)
@@ -21164,14 +21156,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Net-T57")
 		(uuid "554d8ffa-b622-5627-b0d9-3013855d797d")
-	)
-	(segment
-		(start 19.130952 16.428571)
-		(end 18.70238 16.47619)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "55bd6d19-b810-5794-aca2-c5c3ca85aa7f")
 	)
 	(segment
 		(start 20.797619 25.857142)
@@ -21228,14 +21212,6 @@
 		(layer "B.Cu")
 		(net "Net-T57")
 		(uuid "5759e709-47af-5613-a691-ae16569e6dd2")
-	)
-	(segment
-		(start 19.130952 17.107142)
-		(end 19.130952 16.428571)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "57ef7b60-0262-51af-a66b-1890dcd3f8c6")
 	)
 	(segment
 		(start 5.392857 18.178571)
@@ -21428,6 +21404,14 @@
 		(layer "B.Cu")
 		(net "Left button power (pad 02)")
 		(uuid "5de52dd6-9eee-5b9d-ab4b-2e6a2a762665")
+	)
+	(segment
+		(start 16.773809 23)
+		(end 17.619047 23.119047)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "5e68e8b5-c920-5150-800c-ba2429409e04")
 	)
 	(segment
 		(start 11.904761 19.857142)
@@ -21790,6 +21774,14 @@
 		(uuid "6670affc-3e89-5377-9933-5b9b9fee170a")
 	)
 	(segment
+		(start 11.285714 15.25)
+		(end 11.22619 15.97619)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery NTC")
+		(uuid "667a21d4-8036-5cab-be5a-d80cf3870132")
+	)
+	(segment
 		(start 26.416666 21.70238)
 		(end 26.119047 22.119047)
 		(width 0.321428)
@@ -21812,6 +21804,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Charger TH")
 		(uuid "66ff0da3-93b6-5317-acd5-b650d6d40d55")
+	)
+	(segment
+		(start 22.690476 16.083333)
+		(end 23.011904 15.761904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "67ae03ff-e8ad-5f2a-8e39-4d3d52284dd1")
 	)
 	(segment
 		(start 34.809523 17.380952)
@@ -22037,6 +22037,14 @@
 		(net "Net-T40")
 		(uuid "6e873e6d-a3ed-5049-aad8-9559d537fc59")
 	)
+	(via
+		(at 11.22619 15.97619)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "Battery NTC")
+		(uuid "6eab316d-f940-5f3a-b7e0-4166f764c5ba")
+	)
 	(segment
 		(start 34.404761 16.97619)
 		(end 33.297619 16.97619)
@@ -22254,6 +22262,14 @@
 		(uuid "74a6a224-e0f1-51a3-b9ab-018a4ac47fad")
 	)
 	(segment
+		(start 16.785714 23)
+		(end 16.880952 21.5)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "74c9dd90-4bc7-52e9-979e-878dec032e42")
+	)
+	(segment
 		(start 19 21.892857)
 		(end 18.595238 21.488095)
 		(width 0.166666)
@@ -22389,14 +22405,6 @@
 		(net "+3.3V rail")
 		(uuid "792170cb-7f3e-5fbc-aa57-7f20681db042")
 	)
-	(segment
-		(start 16.773809 23)
-		(end 17.619047 23.119047)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "793e184e-9951-52ca-8d23-672814b50dc0")
-	)
 	(via
 		(at 21.70238 17.845238)
 		(size 0.45)
@@ -22422,12 +22430,28 @@
 		(uuid "79ac1c25-493b-5317-ba9c-2042f86d634b")
 	)
 	(segment
+		(start 18.166666 23.238095)
+		(end 18.547619 23.607142)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "79da2034-4c67-5c20-930a-48c2f91abd9a")
+	)
+	(segment
 		(start 37.190476 23.630952)
 		(end 37.238095 22.333333)
 		(width 0.238095)
 		(layer "B.Cu")
 		(net "SE RESET")
 		(uuid "7a28592a-8757-5556-87cb-c00e28c6d409")
+	)
+	(segment
+		(start 19.130952 16.428571)
+		(end 20.70238 16.380952)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "7a46861c-f58f-5a93-9b56-c4ef927c4c42")
 	)
 	(segment
 		(start 15.738095 13.22619)
@@ -22694,14 +22718,6 @@
 		(uuid "82e87e77-43e5-51e0-bc77-b2ffac0ea5ed")
 	)
 	(segment
-		(start 20.70238 16.380952)
-		(end 21.547619 16.107142)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "833704d3-9c0f-5976-b9d5-0694a27873ed")
-	)
-	(segment
 		(start 12.619047 20.880952)
 		(end 12.797619 22.72619)
 		(width 0.238095)
@@ -22724,14 +22740,6 @@
 		(layer "B.Cu")
 		(net "Net-T60")
 		(uuid "842676d1-024c-59c6-a225-f9c57f934465")
-	)
-	(segment
-		(start 22.690476 16.083333)
-		(end 23.011904 15.761904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "846f2eeb-2af4-5348-8060-2b654ff19df8")
 	)
 	(via
 		(at 48.47619 19.940476)
@@ -22764,6 +22772,14 @@
 		(layer "F.Cu")
 		(net "Pack -?")
 		(uuid "852973ac-46bc-5724-8b07-a8d9461bf51d")
+	)
+	(segment
+		(start 18.892857 23.607142)
+		(end 18.904761 24.107142)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "85552b6e-631f-58c4-a255-0e123e9634dc")
 	)
 	(segment
 		(start 26.119047 22.119047)
@@ -22997,6 +23013,14 @@
 		(net "Charger SD")
 		(uuid "8c3efb57-49be-5ced-8ecb-fa5344bbf819")
 	)
+	(segment
+		(start 19.857142 19.357142)
+		(end 19.559523 19.059523)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "8d093005-1449-5647-964a-f22662177b9e")
+	)
 	(via
 		(at 40.059523 26.45238)
 		(size 0.45)
@@ -23094,14 +23118,6 @@
 		(uuid "8fece3f5-fb76-532e-b35d-421f24c5daeb")
 	)
 	(segment
-		(start 21.142857 15.535714)
-		(end 20.940476 15.059523)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "9019c449-65a8-5685-afb7-57b80108d89c")
-	)
-	(segment
 		(start 23.023809 22.892857)
 		(end 22.45238 23.464285)
 		(width 0.238095)
@@ -23116,6 +23132,14 @@
 		(layer "F.Cu")
 		(net "Charger input?")
 		(uuid "9030646c-8536-5536-9c92-635b6164431a")
+	)
+	(segment
+		(start 16.880952 21.5)
+		(end 19.190476 21.45238)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "9040b2c8-e931-555e-8375-15ee1eb52c9a")
 	)
 	(segment
 		(start 34.297619 17.880952)
@@ -23398,6 +23422,14 @@
 		(uuid "974d0933-9876-503a-b91a-0c10dc591229")
 	)
 	(segment
+		(start 19.130952 16.428571)
+		(end 18.70238 16.47619)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "9788c96f-9503-502e-8e14-9385544737ea")
+	)
+	(segment
 		(start 54.023809 18.261904)
 		(end 53.607142 18.666666)
 		(width 0.321428)
@@ -23428,14 +23460,6 @@
 		(layer "F.Cu")
 		(net "+3.3V rail")
 		(uuid "984df18a-6ba4-5ebf-b975-14514c28f659")
-	)
-	(segment
-		(start 18.70238 16.47619)
-		(end 18.404761 16.488095)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "9852a720-3a8d-5753-be66-421a890b120c")
 	)
 	(segment
 		(start 60.630952 16.011904)
@@ -23517,6 +23541,14 @@
 		(net "PD DISCH")
 		(uuid "9a0ad73c-bbf1-5255-80eb-5510465ab228")
 	)
+	(via
+		(at 19.857142 19.357142)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "Battery +")
+		(uuid "9a0cec7f-6a33-52ed-9de8-ed593eff614e")
+	)
 	(segment
 		(start 18.20238 13.011904)
 		(end 17.988095 13.214285)
@@ -23540,6 +23572,14 @@
 		(layer "F.Cu")
 		(net "OLED D/C")
 		(uuid "9aae663d-7433-5376-ac66-b65846ef7c78")
+	)
+	(segment
+		(start 9.821428 14.273809)
+		(end 9.309523 13.761904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery NTC")
+		(uuid "9ad04897-70fa-5228-a846-072680fd4269")
 	)
 	(segment
 		(start 29.404761 13.380952)
@@ -24005,6 +24045,14 @@
 		(net "Net-T55")
 		(uuid "a8e321ab-8340-542a-b404-d2e32e685a64")
 	)
+	(via
+		(at 19.130952 16.428571)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "Battery +")
+		(uuid "a91b54d5-70bd-54c8-99ff-da1e191ce38c")
+	)
 	(segment
 		(start 26.380952 13.72619)
 		(end 26.107142 14)
@@ -24020,14 +24068,6 @@
 		(layer "F.Cu")
 		(net "Charger IEND")
 		(uuid "a9cb19ec-f679-5ded-b879-03905c727856")
-	)
-	(segment
-		(start 19.857142 19.357142)
-		(end 19.559523 19.059523)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "a9cb8c99-9022-5111-99bd-53ae3b6de6ea")
 	)
 	(segment
 		(start 5.833333 24.761904)
@@ -24150,14 +24190,6 @@
 		(uuid "ac228f6b-422b-5ddd-8e61-269a1426ed10")
 	)
 	(segment
-		(start 11.285714 15.25)
-		(end 11.22619 15.97619)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Battery NTC?")
-		(uuid "ac47292c-c3b6-505b-869f-8a7a89f7e123")
-	)
-	(segment
 		(start 22.738095 25.321428)
 		(end 23.035714 24.666666)
 		(width 0.238095)
@@ -24212,6 +24244,14 @@
 		(layer "F.Cu")
 		(net "Right button")
 		(uuid "adfe0651-b68e-59d1-9906-1eae35cfce02")
+	)
+	(segment
+		(start 20.70238 16.380952)
+		(end 21.547619 16.107142)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "ae037c52-a6c2-5d35-821a-6216e8def890")
 	)
 	(via
 		(at 51.357142 22.523809)
@@ -24309,14 +24349,6 @@
 		(net "VDDUSB")
 		(uuid "af58d3ca-2ba3-5f47-b137-ec569bda415e")
 	)
-	(segment
-		(start 11.22619 15.97619)
-		(end 12.47619 16.190476)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Battery NTC?")
-		(uuid "af620583-1930-5272-afc0-0398a3a61a15")
-	)
 	(via
 		(at 23.797619 12.666666)
 		(size 0.45)
@@ -24350,28 +24382,12 @@
 		(uuid "b0c5d922-10e3-53f4-9165-6986b08ec481")
 	)
 	(segment
-		(start 15.321428 24.011904)
-		(end 15.773809 24.011904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "b0f6e9dd-3fb3-59d8-affd-4523df1f872a")
-	)
-	(segment
 		(start 35.904761 19.714285)
 		(end 35.5 19.119047)
 		(width 0.238095)
 		(layer "B.Cu")
 		(net "SE CLK-IN")
 		(uuid "b1a8633c-2e0f-58e0-800a-82a815250708")
-	)
-	(segment
-		(start 19.857142 20.785714)
-		(end 19.857142 19.357142)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "b1a8eeb6-afad-5f9d-908d-b5bbd2739cec")
 	)
 	(segment
 		(start 37.940476 25.880952)
@@ -24494,14 +24510,6 @@
 		(uuid "b4bab318-4966-5792-9b6e-3927cc4c0b7b")
 	)
 	(segment
-		(start 17.619047 23.119047)
-		(end 18.166666 23.238095)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "b4d32ec5-37d1-5bac-9df0-c24bb4402582")
-	)
-	(segment
 		(start 9.059523 17.261904)
 		(end 9.059523 17.857142)
 		(width 0.238095)
@@ -24580,6 +24588,14 @@
 		(layer "F.Cu")
 		(net "+3.3V rail")
 		(uuid "b69e747d-16cc-5d86-8274-77a9dfd3fe0c")
+	)
+	(via
+		(at 20.70238 16.380952)
+		(size 0.45)
+		(drill 0.2)
+		(layers "F.Cu" "B.Cu")
+		(net "Battery +")
+		(uuid "b6ab5192-ecc9-5937-9085-52c7fe129ccd")
 	)
 	(segment
 		(start 53.595238 20.130952)
@@ -24838,20 +24854,20 @@
 		(uuid "bd361c72-9343-579c-89e4-f96fbfcd4d65")
 	)
 	(segment
+		(start 13.833333 24.642857)
+		(end 14.690476 24.642857)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "bd6f741d-aa49-5f7a-9e4b-80ef1ba7a8d6")
+	)
+	(segment
 		(start 22.154761 14.809523)
 		(end 22.619047 14.809523)
 		(width 0.238095)
 		(layer "F.Cu")
 		(net "Net-T65")
 		(uuid "bdb29bb3-99b4-56d0-a9b1-5caa77b085f8")
-	)
-	(segment
-		(start 19.857142 19.357142)
-		(end 20 20.261904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "bdc90366-a771-5ea2-8ff6-676a35e4cb8b")
 	)
 	(segment
 		(start 42.904761 26.5)
@@ -24876,6 +24892,14 @@
 		(layer "F.Cu")
 		(net "VDDUSB")
 		(uuid "be801234-62af-595c-86bd-644f09908252")
+	)
+	(segment
+		(start 19.559523 19.059523)
+		(end 19.559523 17.523809)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "be9b2005-3fd3-533a-b540-a161ea59a796")
 	)
 	(segment
 		(start 9.464285 25.440476)
@@ -24981,6 +25005,14 @@
 		(net "SE RESET")
 		(uuid "bff84d1f-b224-5433-b1f9-591cd21dbb8f")
 	)
+	(segment
+		(start 19.857142 20.785714)
+		(end 19.857142 19.357142)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "c0047d31-8af3-5e79-a923-3e28a123596a")
+	)
 	(via
 		(at 27.642857 15.440476)
 		(size 0.45)
@@ -25030,14 +25062,6 @@
 		(uuid "c13c4e8d-ff1e-50c2-8ed9-b7d921595767")
 	)
 	(segment
-		(start 9.821428 14.273809)
-		(end 9.309523 13.761904)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Battery NTC?")
-		(uuid "c156b552-69d7-5151-8e0f-b1e7e12432f5")
-	)
-	(segment
 		(start 19.45238 21.892857)
 		(end 19 21.892857)
 		(width 0.166666)
@@ -25068,14 +25092,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "Charger ST2")
 		(uuid "c234c02b-98f6-5879-8f26-3c525abe634e")
-	)
-	(segment
-		(start 19.190476 21.45238)
-		(end 19.857142 20.785714)
-		(width 0.238095)
-		(layer "B.Cu")
-		(net "Net-T41")
-		(uuid "c27c3a2a-4258-5943-a782-975d6dde4fb5")
 	)
 	(via
 		(at 29.892857 18.821428)
@@ -25204,14 +25220,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "c59c9c0a-cf5c-5dfe-880f-5f60bd6ae437")
-	)
-	(segment
-		(start 21.45238 15.845238)
-		(end 21.142857 15.535714)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "c5e65770-c22a-5ba5-a021-8d16b9424593")
 	)
 	(via
 		(at 4.380952 25.821428)
@@ -25526,6 +25534,14 @@
 		(uuid "ce6f3cd7-5170-54d6-8c69-035f2ac3e3b7")
 	)
 	(segment
+		(start 18.70238 16.47619)
+		(end 18.404761 16.488095)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "ce9a595f-0e22-50b7-8f99-4645f04a7de1")
+	)
+	(segment
 		(start 21.630952 23.488095)
 		(end 17.309523 23.488095)
 		(width 0.238095)
@@ -25806,22 +25822,6 @@
 		(uuid "d6553521-04c6-5c8f-a377-aa8a4e76e647")
 	)
 	(segment
-		(start 21.535714 16.083333)
-		(end 22.690476 16.083333)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "d6641573-6ae6-55a3-ae24-91454a804639")
-	)
-	(via
-		(at 19.857142 19.357142)
-		(size 0.45)
-		(drill 0.2)
-		(layers "F.Cu" "B.Cu")
-		(net "Net-T41")
-		(uuid "d6e135b0-e874-5f30-aca5-777058e2b715")
-	)
-	(segment
 		(start 54.333333 14.333333)
 		(end 54.488095 14.642857)
 		(width 0.238095)
@@ -25892,14 +25892,6 @@
 		(layer "F.Cu")
 		(net "SEPROXYHAL")
 		(uuid "d8d38138-50fc-5fda-a621-faba83842e2d")
-	)
-	(segment
-		(start 13.833333 24.642857)
-		(end 14.690476 24.642857)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "d8e7c76a-4645-56a7-8f5d-ecf16b904b37")
 	)
 	(segment
 		(start 38.964285 22.309523)
@@ -25982,14 +25974,6 @@
 		(uuid "dacdaede-c6f8-513f-8bd0-0caf0929ea44")
 	)
 	(segment
-		(start 11.25 13.321428)
-		(end 11.285714 15.25)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Battery NTC?")
-		(uuid "db196bec-19da-53da-be1f-f14ee82493bf")
-	)
-	(segment
 		(start 33.607142 18.940476)
 		(end 33.809523 19.142857)
 		(width 0.238095)
@@ -26004,6 +25988,14 @@
 		(layer "F.Cu")
 		(net "I2C1 SCL")
 		(uuid "db5281d5-0c78-5cca-9822-2c93ab5a59c1")
+	)
+	(segment
+		(start 21.547619 16.107142)
+		(end 21.45238 15.845238)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "db7be66f-2bc7-574d-b7ef-68880ceb610c")
 	)
 	(segment
 		(start 26.20238 16.059523)
@@ -26028,14 +26020,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "dc47c9af-5009-5b7c-ac0d-1478f2328bd0")
-	)
-	(segment
-		(start 11.178571 14.273809)
-		(end 9.821428 14.273809)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Battery NTC?")
-		(uuid "dc8e5cb1-3fd9-5237-adf6-2de9570e99a2")
 	)
 	(segment
 		(start 52.607142 18.857142)
@@ -26084,14 +26068,6 @@
 		(layer "F.Cu")
 		(net "Protection COUT")
 		(uuid "de43e214-ce75-57f7-8904-0467c6190e49")
-	)
-	(segment
-		(start 23.011904 15.761904)
-		(end 22.607142 15.654761)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "de75cfce-e361-581e-b707-a451434eb986")
 	)
 	(via
 		(at 37.678571 20.773809)
@@ -26374,14 +26350,6 @@
 		(uuid "e6b235a1-168e-5a8f-9dd2-ad2320e5de9b")
 	)
 	(segment
-		(start 21.547619 16.107142)
-		(end 21.45238 15.845238)
-		(width 0.238095)
-		(layer "F.Cu")
-		(net "Net-T41")
-		(uuid "e7170d5a-aff7-5fea-990a-d6778b2d9ae8")
-	)
-	(segment
 		(start 19.047619 18.619047)
 		(end 19.047619 19.464285)
 		(width 0.238095)
@@ -26526,6 +26494,14 @@
 		(uuid "ea9ea752-ad52-5fe6-a30a-da8bd678310c")
 	)
 	(segment
+		(start 19.130952 17.107142)
+		(end 19.130952 16.428571)
+		(width 0.238095)
+		(layer "B.Cu")
+		(net "Battery +")
+		(uuid "eac60c25-6625-59ed-a1a9-4f8fbc4989b1")
+	)
+	(segment
 		(start 10.869047 17)
 		(end 9.321428 17)
 		(width 0.238095)
@@ -26572,6 +26548,14 @@
 		(layer "F.Cu")
 		(net "Charger input?")
 		(uuid "ec4b1cc3-3466-5dda-92bf-bb8333f1c7d0")
+	)
+	(segment
+		(start 9.309523 13.761904)
+		(end 9.20238 13.488095)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery NTC")
+		(uuid "ec55ee64-4469-52b1-8fbf-d02e87085659")
 	)
 	(segment
 		(start 18.511904 24.547619)
@@ -26708,6 +26692,14 @@
 		(layer "F.Cu")
 		(net "Charger input?")
 		(uuid "efd5962c-6df7-5844-a93c-9894208147e5")
+	)
+	(segment
+		(start 18.547619 23.607142)
+		(end 18.892857 23.607142)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "f054c7b4-9d59-5940-a9da-54989610c642")
 	)
 	(via
 		(at 31.97619 13.273809)
@@ -27060,6 +27052,14 @@
 		(layer "F.Cu")
 		(net "SEPROXYHAL")
 		(uuid "fae4ccea-0907-5340-a555-d0d7bc83fb4b")
+	)
+	(segment
+		(start 15.321428 24.011904)
+		(end 15.773809 24.011904)
+		(width 0.238095)
+		(layer "F.Cu")
+		(net "Battery +")
+		(uuid "fb11f08a-d7ec-5c2f-826c-dd9165195e33")
 	)
 	(via
 		(at 57.761904 12.571428)
