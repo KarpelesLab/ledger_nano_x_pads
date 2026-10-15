@@ -230,7 +230,7 @@
     const s = side();
     layer.replaceChildren();
     traces.forEach((t, i) => {
-      const g = el('g', { class: 'trace', style: `--w: ${t.width || 20}px` });
+      const g = el('g', { class: 'trace', style: `--w: ${t.width || 13}px` });
       g.item = t;
       const stroke = COLORS[i % COLORS.length];
       let here = false;

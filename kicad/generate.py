@@ -248,7 +248,7 @@ def main():
     # tracks and vias
     for i, t in enumerate(traces):
         net = nets_by_name[trace_net[i]]
-        w = pcbnew.FromMM(t.get("width", 20) / S)
+        w = pcbnew.FromMM(t.get("width", 13) / S)
         for q in t["paths"]:
             # "inner": copper the photos can't show, between two vias; on In2 (In1 is the assumed GND plane)
             layer = {"front": pcbnew.F_Cu, "back": pcbnew.B_Cu, "inner": pcbnew.In2_Cu}[q["side"]]
@@ -275,6 +275,13 @@ def main():
     board.SetCopperLayerCount(4)
     # measured on the real board
     board.GetDesignSettings().SetBoardThickness(pcbnew.FromMM(0.6))
+    # design rules a phone-class board like this is built to: 0.15 mm signal tracks (as measured in the bare photos)
+    # with 0.1 mm spacing
+    ds = board.GetDesignSettings()
+    ds.m_TrackMinWidth = pcbnew.FromMM(0.1)
+    nc = ds.m_NetSettings.GetDefaultNetclass()
+    nc.SetClearance(pcbnew.FromMM(0.1))
+    nc.SetTrackWidth(pcbnew.FromMM(0.15))
 
     def polygon(pts):
         chain = pcbnew.SHAPE_LINE_CHAIN()

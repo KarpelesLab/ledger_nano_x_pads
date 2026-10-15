@@ -88,12 +88,12 @@ window.COMPONENTS = [
   {"id":"RFF","part":"RF filter / matching device","package":"blue ceramic, 8 terminals","side":"front",
    "notes":"In the Bluetooth RF path between MCU pin 21 (RF1) and C27; dot marking near the IN end. Side terminals 1, 3, 4 and 6 go to ground, 2 and 5 are not connected; which side row is 1-3 is not known","pads":[
     {"id":"IN","name":"RF in, from MCU pin 21 (RF1)","polygon":[[2880,1615],[2925,1615],[2925,1660],[2880,1660]]},
-    {"id":"1","name":"GND","polygon":[[2940,1522],[2987,1522],[2987,1600],[2940,1600]]},
-    {"id":"2","name":"not connected","polygon":[[2992,1522],[3042,1522],[3042,1600],[2992,1600]]},
-    {"id":"3","name":"GND","polygon":[[3050,1522],[3105,1522],[3105,1600],[3050,1600]]},
-    {"id":"4","name":"GND","polygon":[[3050,1662],[3100,1662],[3100,1740],[3050,1740]]},
-    {"id":"5","name":"not connected","polygon":[[2995,1662],[3045,1662],[3045,1740],[2995,1740]]},
-    {"id":"6","name":"GND","polygon":[[2940,1662],[2987,1662],[2987,1740],[2940,1740]]},
+    {"id":"1","name":"GND","polygon":[[2942,1522],[2975,1522],[2975,1598],[2942,1598]]},
+    {"id":"2","name":"not connected","polygon":[[2992,1522],[3025,1522],[3025,1598],[2992,1598]]},
+    {"id":"3","name":"GND","polygon":[[3045,1522],[3080,1522],[3080,1598],[3045,1598]]},
+    {"id":"4","name":"GND","polygon":[[3045,1667],[3080,1667],[3080,1740],[3045,1740]]},
+    {"id":"5","name":"not connected","polygon":[[2992,1667],[3025,1667],[3025,1740],[2992,1740]]},
+    {"id":"6","name":"GND","polygon":[[2942,1667],[2975,1667],[2975,1740],[2942,1740]]},
     {"id":"OUT","name":"RF out, toward C27 and the antenna","polygon":[[3090,1615],[3135,1615],[3135,1660],[3090,1660]]}]},
   {"id":"P1","part":"likely an ESD protection diode, marked P","package":"black, ~1.9 x 1.15 mm, 2 terminals","side":"front",
    "notes":"Black part marked P (reads as b in the mirrored front photo) on USB CC1, next to the STUSB4500L; one of several such parts around the USB port, so most likely ESD protection. Pads named by end; cathode side not known","outline":[[852,1333],[940,1333],[940,1493],[852,1493]],"pads":[
@@ -122,8 +122,8 @@ window.COMPONENTS = [
     {"id":"D","name":"drain?","polygon":[[1422,1955],[1462,1955],[1462,2012],[1422,2012]]}]},
   {"id":"X3","part":"likely an N-channel MOSFET: the battery charge FET (marked 6)","package":"3 pins, shiny blue-grey, very small","side":"front",
    "notes":"Very small shiny 3-pin part with a dark dot, next to X2, marked 6. With X2 it forms the back-to-back FET pair the BQ29729 protection IC switches: its gate is on COUT, its source on pack -, its drain joined to X2's. Pads named by role; the exact part is not known","outline":[[1470,1942],[1535,1942],[1535,2007],[1470,2007]],"pads":[
-    {"id":"G","name":"gate? (COUT)","polygon":[[1484,1948],[1508,1948],[1508,1972],[1484,1972]]},
-    {"id":"S","name":"source? (pack -)","polygon":[[1514,1948],[1540,1948],[1540,1975],[1514,1975]]},
+    {"id":"G","name":"gate? (COUT)","polygon":[[1486,1950],[1505,1950],[1505,1969],[1486,1969]]},
+    {"id":"S","name":"source? (pack -)","polygon":[[1517,1948],[1540,1948],[1540,1975],[1517,1975]]},
     {"id":"D","name":"drain?","polygon":[[1484,1987],[1538,1987],[1538,2008],[1484,2008]]}]},
   {"id":"Y1","part":"32 MHz crystal (HSE)","package":"4 corner pads, ~2.0 x 1.6 mm","side":"front",
    "notes":"Marked 32000 K145 Y: a 32.000 MHz crystal, the HSE clock the STM32WB needs for its radio; sits where the HSE crystal traces end. Pads are named by corner (top/bottom left/right in the photo) as their numbers are not known; TL and BR go to ground","pads":[
@@ -166,7 +166,7 @@ window.COMPONENTS = [
    "notes":"Black 3-terminal part across from X9, with two small pads on one side and a large one on the other. Pads named by position in the front photo. Its nets match a P-MOSFET switch between USB power and the charger: TL on VBUS (source), R on the charger input (drain), BL on the gate, which R10 holds at VBUS (off) and the STUSB4500L pulls low through R4 (VBUS_EN_SNK) once USB power is negotiated. Marking not read; not confirmed","outline":[[1476,1340],[1600,1340],[1600,1437],[1476,1437]],"pads":[
     {"id":"TL","name":"source? (VBUS)","polygon":[[1500,1337],[1530,1337],[1530,1366],[1500,1366]]},
     {"id":"BL","name":"gate?","polygon":[[1506,1402],[1540,1402],[1540,1432],[1506,1432]]},
-    {"id":"R","name":"drain? (charger input)","polygon":[[1565,1365],[1620,1365],[1620,1402],[1565,1402]]}]},
+    {"id":"R","name":"drain? (charger input)","polygon":[[1572,1374],[1620,1374],[1620,1402],[1572,1402]]}]},
   {"id":"Y2","part":"not populated: 32.768 kHz crystal (LSE)","package":"2-pad crystal footprint, ~2.4 x 1.5 mm","side":"front","dnp":true,
    "notes":"Empty footprint: bare pads with solder on them but no part, in the photos with components. It would be the MCU's 32.768 kHz low-speed crystal, between LSE crystal IN (left pad) and OUT (right pad); left empty, so the MCU must use its internal low-speed oscillator instead","pads":[
     {"id":"1","name":"LSE IN","polygon":[[2118,875],[2192,875],[2192,1000],[2118,1000]]},

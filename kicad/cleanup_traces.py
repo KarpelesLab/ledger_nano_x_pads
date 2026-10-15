@@ -118,12 +118,12 @@ def seg_dist(a, b, c, e):
 def clearance(traces, net_of, ti, q):
     """How close path q of trace ti comes to copper of other nets on its side: segments, and vias."""
     best = math.inf
-    w = traces[ti].get("width", 20) / 2
+    w = traces[ti].get("width", 13) / 2
     segs = list(zip(q["points"], q["points"][1:]))
     for tj, t in enumerate(traces):
         if net_of[tj] == net_of[ti]:
             continue
-        w2 = t.get("width", 20) / 2
+        w2 = t.get("width", 13) / 2
         for r in t["paths"]:
             if r["side"] != q["side"]:
                 continue
