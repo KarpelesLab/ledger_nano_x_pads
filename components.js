@@ -151,6 +151,12 @@ window.COMPONENTS = [
     {"id":"R1","name":"SW (1)","polygon":[[5046,1484],[5139,1484],[5139,1541],[5046,1541]]},
     {"id":"R2","name":"GND (2)","polygon":[[5046,1566],[5139,1566],[5139,1623],[5046,1623]]},
     {"id":"R3","name":"FB (3)","polygon":[[5046,1648],[5139,1648],[5139,1705],[5046,1705]]}]},
+  {"id":"X11","part":"unknown, marked AF, likely a small LDO regulator","package":"4 pads, ~1.2 mm square","side":"front",
+   "notes":"Small square part with a pad at each corner, between C9 and C8/C10. Pads named by corner in the front photo. Likely roles from its nets: TL input from the supply on the left button (pad 19), TR output to VDDUSB (the MCU's USB supply, pin 40, with C9-C12), BL enable from MCU PB3 (through R16) and the charger input (through R29), BR GND, which also goes to C10's ground pad and carries the dot seen on the part; not confirmed","outline":[[1950,1316],[2050,1316],[2050,1416],[1950,1416]],"pads":[
+    {"id":"TL","name":"VIN?","polygon":[[1951,1318],[1981,1318],[1981,1348],[1951,1348]]},
+    {"id":"TR","name":"VOUT?","polygon":[[2018,1318],[2048,1318],[2048,1348],[2018,1348]]},
+    {"id":"BL","name":"EN?","polygon":[[1951,1384],[1981,1384],[1981,1414],[1951,1414]]},
+    {"id":"BR","name":"GND","polygon":[[2018,1384],[2048,1384],[2048,1414],[2018,1414]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
