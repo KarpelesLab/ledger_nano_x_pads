@@ -31,6 +31,7 @@ LIBRARY_MARKINGS = {
     "MCU": ("STM32WB35\nCCU6A\nGQ239139R\nCHN GQ 132", (0, 1)),
     "SE": ("Ledger\n02MJCH\n13N\n471", (0, 1)),
     "USBPD": ("4500L\nM20700", (0, 3)),
+    "PWR1": ("6924\n8146", (0, 1)),
 }
 LIBRARY_HEIGHT = .78
 

@@ -2343,7 +2343,7 @@
  (label "GND" (at 147.32 226.06 0) (effects (font (size 1.0 1.0)) (justify left bottom)) (uuid "6be278ce-7b26-5578-95d4-04c05bfdbe3b"))
  (symbol (lib_id "nanox:PWR1") (at 137.16 251.46 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "22a7cd49-051a-5501-8f31-8eba1fbeba92")
   (property "Reference" "PWR1" (at 137.16 237.49 0) (effects (font (size 1.27 1.27))))
-  (property "Value" "ST L6924D Li-ion battery charger" (at 137.16 265.43 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "ST L6924D Li-ion battery charger (marked 6924 8146)" (at 137.16 265.43 0) (effects (font (size 1.27 1.27))))
   (property "Footprint" "" (at 137.16 251.46 0) (effects (font (size 1.27 1.27)) hide))
   (property "Description" "VFQFPN16, 3 x 3 mm" (at 137.16 251.46 0) (effects (font (size 1.27 1.27)) hide))
   (pin "1" (uuid "d9672f93-9352-59f4-8a31-995dcb15a200"))
