@@ -15,7 +15,7 @@ window.PASSIVES = [
   {"id":"R8","kind":"R","side":"front","box":[1502,866,36,70],"axis":"v"},
   {"id":"R9","kind":"R","side":"front","box":[1463,1612,98,48],"axis":"h"},
   {"id":"R10","kind":"R","side":"front","box":[1486,1466,60,100],"axis":"v"},
-  {"id":"X4","kind":"X","side":"front","box":[1517,1760,50,97],"axis":"v","notes":"Two-terminal part left of PWR2 with a white body, unlike the brown capacitors on this board; was C4. Between pack - (pad 1) and GND (pad 2), with PWR2 pin 6 on pack -: likely the battery current-sense resistor, which would make PWR2 a fuel gauge; not confirmed"},
+  {"id":"X4","kind":"X","side":"front","box":[1517,1760,50,97],"axis":"v","notes":"Two-terminal part left of PWR2 with a white body, unlike the brown capacitors on this board; was C4. Between pack - (pad 1) and GND (pad 2), with PWR2 pin 6 on pack -: the battery current-sense resistor that the STC3115 fuel gauge (PWR2) measures across"},
   {"id":"R11","kind":"R","side":"front","box":[1584,1213,86,32],"axis":"h"},
   {"id":"R12","kind":"R","side":"front","box":[1634,1557,38,110],"axis":"v"},
   {"id":"C5","kind":"C","side":"front","box":[1772,1587,48,98],"axis":"v"},

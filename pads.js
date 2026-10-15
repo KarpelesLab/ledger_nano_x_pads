@@ -14,7 +14,7 @@ window.PADS = [
   {"id":"11","name":"PD VBUS_EN_SNK","notes":"","side":"back","x":1478,"y":1406,"r":45},
   {"id":"12","name":"VBUS","notes":"","side":"back","x":1476,"y":1664,"r":45},
   {"id":"13","name":"Charger VREF","notes":"1.8 V reference of the L6924D charger (PWR1 pin 12), decoupled by C37","side":"back","x":1570,"y":981,"r":45},
-  {"id":"14","name":"VBAT","notes":"Battery +: battery pad 3, the charger's battery sense (PWR1 VOSNS, pin 10), PWR2 pin 9 and X9's unconnected pin","side":"back","x":1612,"y":1222,"r":45},
+  {"id":"14","name":"VBAT","notes":"Battery +: battery pad 3, the charger's battery sense (PWR1 VOSNS, pin 10), the fuel gauge (PWR2 pin 9) and X9's unconnected pin","side":"back","x":1612,"y":1222,"r":45},
   {"id":"15","name":"Charger ST2","notes":"Status output ST2 of the L6924D charger (PWR1 pin 3) to MCU PA2, a wake-up input","side":"back","x":1786,"y":978,"r":45},
   {"id":"16","name":"MCU PB3","notes":"MCU PB3 through R16, with R28 and R29 (to TP07's net); role not known","side":"back","x":1786,"y":1440,"r":45},
   {"id":"17","name":"I2C1 SDA","notes":"","side":"back","x":1784,"y":1970,"r":45},
