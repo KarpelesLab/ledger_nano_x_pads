@@ -4257,157 +4257,6 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "669e346d-e80f-5804-b5c9-92612540f109")
-		(at 16.160714 14.684523)
-		(descr "6 pins, ~1.5 mm square; Very likely power related; marked TC; pin 1 not verified, numbered from the first corner outlined")
-		(property "Reference" "PWR3"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "465292dd-3bfa-52bf-bc9c-91005a1c7d3e")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "unknown"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1a1417a2-a78f-53e2-bb99-a66ea474c38e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4eea0319-765b-5a5c-aaf9-42f083688464")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "6537f3e5-b735-5a76-a81f-061bac25f03b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/8e37e2b4-9919-5982-958a-5fc0a4196f49")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.767857 -0.744047)
-			(end -0.720238 0.708334)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "b13477f9-9428-51a0-8d9f-c1cc192ed596")
-		)
-		(fp_line
-			(start -0.720238 0.708334)
-			(end 0.732143 0.720238)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "00480d63-3e02-5dd0-bf36-439d52e960e3")
-		)
-		(fp_line
-			(start 0.732143 0.720238)
-			(end 0.755952 -0.684523)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "7778590e-0570-51e1-96f0-7537aa29d19e")
-		)
-		(fp_line
-			(start 0.755952 -0.684523)
-			(end -0.767857 -0.744047)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "e87cc65b-f685-53ae-87c8-c157f2fb0026")
-		)
-		(pad "1" smd rect
-			(at 0.505952 -0.696428 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(thermal_bridge_angle 45)
-			(uuid "60af67b9-b7b4-589a-b21f-c693957da17b")
-		)
-		(pad "2" smd rect
-			(at -0.005953 -0.708333 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T46")
-			(thermal_bridge_angle 45)
-			(uuid "38919752-5fca-5174-9aec-b4b043e9cf52")
-		)
-		(pad "3" smd rect
-			(at -0.517857 -0.732143 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T45")
-			(thermal_bridge_angle 45)
-			(uuid "33a0369c-819f-5c47-8ff8-e2ff0e498bd9")
-		)
-		(pad "4" smd rect
-			(at -0.482143 0.708334 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T42")
-			(thermal_bridge_angle 45)
-			(uuid "18860822-c7e8-5766-a63f-16414543d4f1")
-		)
-		(pad "5" smd rect
-			(at 0.005952 0.720238 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T72")
-			(thermal_bridge_angle 45)
-			(uuid "6b2d154e-df5e-5920-8e9d-f3817cd8dbe1")
-		)
-		(pad "6" smd rect
-			(at 0.494047 0.720238 267.7630209)
-			(size 0.6 0.25)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T73")
-			(thermal_bridge_angle 45)
-			(uuid "60ba2a69-073f-5431-a0ce-93e54a4af9e5")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/PWR3.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
 		(uuid "6c5667bb-512d-502b-8da1-3dc51fd0dd11")
 		(at 36 26.047619)
 		(descr "two-terminal SMD")
@@ -8559,6 +8408,157 @@
 			)
 			(rotate
 				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "dbaadd94-5865-5ded-a938-fbd0942b4811")
+		(at 16.160714 14.684523)
+		(descr "6 pins, ~1.5 mm square; Very likely power related; marked 3T; pin 1 not verified, numbered from the first corner outlined")
+		(property "Reference" "PWR3"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "1d67e542-d68e-513c-b6cc-8188c799367d")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "unknown"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "dd23a296-4b7a-52c5-9686-097fba0187f7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6999be6f-883b-5f60-93af-5772ab85fe61")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "805f7632-5d55-5a05-af6e-584a426e0a36")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/8e37e2b4-9919-5982-958a-5fc0a4196f49")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.767857 -0.744047)
+			(end -0.720238 0.708334)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "37633e9d-0662-5f05-8e46-8790c91ee0cb")
+		)
+		(fp_line
+			(start -0.720238 0.708334)
+			(end 0.732143 0.720238)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "ff671236-076c-5f74-9eb8-354a77c69b09")
+		)
+		(fp_line
+			(start 0.732143 0.720238)
+			(end 0.755952 -0.684523)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c3f231c6-4451-593d-b12d-64969e710bf7")
+		)
+		(fp_line
+			(start 0.755952 -0.684523)
+			(end -0.767857 -0.744047)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "454f1a6e-c05a-537d-913b-a1a2e43d8cd4")
+		)
+		(pad "1" smd rect
+			(at 0.505952 -0.696428 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(thermal_bridge_angle 45)
+			(uuid "9a0ab842-5353-5362-977d-c416d43acbc2")
+		)
+		(pad "2" smd rect
+			(at -0.005953 -0.708333 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T46")
+			(thermal_bridge_angle 45)
+			(uuid "20be885a-55f0-57d2-af04-b3ae6fd431e2")
+		)
+		(pad "3" smd rect
+			(at -0.517857 -0.732143 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T45")
+			(thermal_bridge_angle 45)
+			(uuid "7b2e4745-2be3-5123-abca-3a8d17bcb85f")
+		)
+		(pad "4" smd rect
+			(at -0.482143 0.708334 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T42")
+			(thermal_bridge_angle 45)
+			(uuid "a9e18ef6-15c4-5739-9da7-44999cc8d42c")
+		)
+		(pad "5" smd rect
+			(at 0.005952 0.720238 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T72")
+			(thermal_bridge_angle 45)
+			(uuid "f7174e1b-c573-5a3f-9b80-f58094fd9997")
+		)
+		(pad "6" smd rect
+			(at 0.494047 0.720238 267.7630209)
+			(size 0.6 0.25)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T73")
+			(thermal_bridge_angle 45)
+			(uuid "f5572186-04bb-555b-a8eb-41a2443602b1")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/PWR3.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -28184,7 +28184,7 @@
 				(xy 4.983156 14.329266) (xy 4.996291 14.378289) (xy 4.996354 14.378522) (xy 5.052372 14.475548)
 				(xy 5.056026 14.479202) (xy 5.07331 14.520919) (xy 5.07331 18.136502) (xy 5.07331 18.22064) (xy 5.08326 18.257775)
 				(xy 5.093638 18.296507) (xy 5.095087 18.301912) (xy 5.130556 18.363347) (xy 5.137158 18.374781)
-				(xy 6.363346 19.600967) (xy 6.422841 19.660462) (xy 6.495707 19.702531) (xy 6.500946 19.703934)
+				(xy 6.422837 19.660459) (xy 6.422839 19.66046) (xy 6.422841 19.660462) (xy 6.495707 19.702531) (xy 6.500946 19.703934)
 				(xy 6.536773 19.731422) (xy 6.54267 19.776191) (xy 6.525474 19.804484) (xy 5.748824 20.514016) (xy 5.748814 20.514027)
 				(xy 5.718206 20.541854) (xy 5.717992 20.542185) (xy 5.717696 20.542457) (xy 5.695205 20.577641)
 				(xy 5.694957 20.578028) (xy 5.672719 20.612636) (xy 5.672597 20.613014) (xy 5.672383 20.613351)
@@ -28567,7 +28567,7 @@
 				(xy 32.806415 18.805064) (xy 32.811802 19.094508) (xy 32.811803 19.094514) (xy 32.812795 19.099055)
 				(xy 32.824523 19.152769) (xy 32.825345 19.153951) (xy 32.825652 19.155356) (xy 32.826847 19.158096)
 				(xy 32.826302 19.158333) (xy 32.834979 19.198067) (xy 32.826567 19.219497) (xy 32.816958 19.234474)
-				(xy 32.806415 19.293159) (xy 32.811802 19.582603) (xy 32.811803 19.582609) (xy 32.815812 19.600967)
+				(xy 32.806415 19.293159) (xy 32.811802 19.582603) (xy 32.811803 19.582609) (xy 32.816472 19.603993)
 				(xy 32.824523 19.640864) (xy 32.825345 19.642046) (xy 32.825652 19.643451) (xy 32.826847 19.646191)
 				(xy 32.826302 19.646428) (xy 32.834979 19.686162) (xy 32.826567 19.707592) (xy 32.816958 19.722569)
 				(xy 32.806415 19.781254) (xy 32.811802 20.070698) (xy 32.811803 20.070704) (xy 32.824523 20.128958)
@@ -28610,7 +28610,7 @@
 				(xy 26.754468 20.229812) (xy 26.762062 20.187539) (xy 26.765011 20.171125) (xy 26.764607 20.14943)
 				(xy 26.759624 19.881677) (xy 26.746904 19.823421) (xy 26.742107 19.816524) (xy 26.732475 19.772408)
 				(xy 26.740889 19.750977) (xy 26.754466 19.729815) (xy 26.754465 19.729815) (xy 26.754468 19.729812)
-				(xy 26.760567 19.69586) (xy 26.765011 19.671125) (xy 26.764668 19.652695) (xy 26.759624 19.381677)
+				(xy 26.760567 19.69586) (xy 26.765011 19.671125) (xy 26.764813 19.660462) (xy 26.759624 19.381677)
 				(xy 26.746904 19.323421) (xy 26.746902 19.323418) (xy 26.746901 19.323415) (xy 26.735917 19.307622)
 				(xy 26.726283 19.263505) (xy 26.734697 19.242073) (xy 26.738693 19.235845) (xy 26.742564 19.229812)
 				(xy 26.749194 19.192905) (xy 26.753107 19.171125) (xy 26.752073 19.115542) (xy 26.74772 18.881677)
