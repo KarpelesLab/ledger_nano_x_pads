@@ -157,6 +157,11 @@ window.COMPONENTS = [
     {"id":"TR","name":"VOUT?","polygon":[[2018,1318],[2048,1318],[2048,1348],[2018,1348]]},
     {"id":"BL","name":"EN?","polygon":[[1951,1384],[1981,1384],[1981,1414],[1951,1414]]},
     {"id":"BR","name":"GND","polygon":[[2018,1384],[2048,1384],[2048,1414],[2018,1414]]}]},
+  {"id":"X12","part":"unknown, likely a P-channel MOSFET: the USB power switch","package":"3 terminals, SOT-23 style, ~1.5 x 1.2 mm body","side":"front",
+   "notes":"Black 3-terminal part across from X9, with two small pads on one side and a large one on the other. Pads named by position in the front photo. Its nets match a P-MOSFET switch between USB power and the charger: TL on VBUS (source), R on the charger input (drain), BL on the gate, which R10 holds at VBUS (off) and the STUSB4500L pulls low through R4 (VBUS_EN_SNK) once USB power is negotiated. Marking not read; not confirmed","outline":[[1476,1340],[1600,1340],[1600,1437],[1476,1437]],"pads":[
+    {"id":"TL","name":"source? (VBUS)","polygon":[[1500,1337],[1530,1337],[1530,1366],[1500,1366]]},
+    {"id":"BL","name":"gate?","polygon":[[1506,1402],[1540,1402],[1540,1432],[1506,1432]]},
+    {"id":"R","name":"drain? (charger input)","polygon":[[1565,1365],[1620,1365],[1620,1402],[1565,1402]]}]},
   // large copper pads, drawn as outlines instead of computed from a package
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},

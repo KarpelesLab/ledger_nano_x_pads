@@ -7,7 +7,7 @@ window.PADS = [
   {"id":"04","name":"MCU PB7","notes":"MCU PB7 through R30; role not known","side":"back","x":971,"y":1971,"r":45},
   {"id":"05","name":"PD SCL","notes":"STUSB4500L pin 7, I2C clock (not to the MCU, likely for configuration), as TP09 is its SDA","side":"back","x":1060,"y":1270,"r":45},
   {"id":"06","name":"BAT NTC?","notes":"Likely the battery's temperature sensor (NTC): battery pad 1, and through R1 the charger's TH pin (PWR1 pin 8); not measured","side":"back","x":1048,"y":1664,"r":45},
-  {"id":"07","name":"Charger input?","notes":"Input supply of the L6924D charger (PWR1 pins 1, 2), also the anode of the X9 Zener; R31 feeds it to the MCU PA1 voltage sense; not measured","side":"back","x":1116,"y":932,"r":45},
+  {"id":"07","name":"Charger input?","notes":"Input supply of the L6924D charger (PWR1 pins 1, 2), fed from VBUS by the X12 power switch, also the anode of the X9 Zener; R31 feeds it to the MCU PA1 voltage sense; not measured","side":"back","x":1116,"y":932,"r":45},
   {"id":"08","name":"","notes":"","side":"back","x":1190,"y":1968,"r":45},
   {"id":"09","name":"PD SDA","notes":"STUSB4500L pin 8, I2C data (not to the MCU, likely for configuration), as TP05 is its SCL","side":"back","x":1280,"y":1224,"r":45},
   {"id":"10","name":"I2C1 SCL","notes":"","side":"back","x":1432,"y":1970,"r":45},

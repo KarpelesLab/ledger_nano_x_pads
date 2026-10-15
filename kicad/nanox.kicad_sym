@@ -1540,6 +1540,18 @@
     (pin passive line (at 10.16 -1.27 180) (length 2.54) (name "GND" (effects (font (size 1.0 1.0)))) (number "BR" (effects (font (size 1.0 1.0)))))
    )
   )
+  (symbol "X12" (in_bom yes) (on_board yes)
+   (property "Reference" "X" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Value" "nanox:X12" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+   (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+   (symbol "X12_0_1"
+    (rectangle (start -17.78 3.81) (end 17.78 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
+   (symbol "X12_1_1"
+    (pin passive line (at -20.32 1.27 0) (length 2.54) (name "source? (VBUS)" (effects (font (size 1.0 1.0)))) (number "TL" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -20.32 -1.27 0) (length 2.54) (name "gate?" (effects (font (size 1.0 1.0)))) (number "BL" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 20.32 1.27 180) (length 2.54) (name "drain? (charger input)" (effects (font (size 1.0 1.0)))) (number "R" (effects (font (size 1.0 1.0)))))
+   )
+  )
   (symbol "X9" (in_bom yes) (on_board yes)
    (property "Reference" "X" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
    (property "Value" "nanox:X9" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
