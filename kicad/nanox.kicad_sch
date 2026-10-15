@@ -2258,7 +2258,7 @@
  (no_connect (at 128.27 134.62) (uuid "5d4e86f6-c290-5920-a3aa-23d10b299acc"))
  (label "+3.3V rail" (at 128.27 137.16 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "13fbb0fa-668e-5f72-8ea6-c982dc55f98c"))
  (label "Bluetooth RF 1" (at 128.27 139.70 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "9ce40ebe-4009-5dc7-acd9-225f282e2c86"))
- (no_connect (at 128.27 142.24) (uuid "c362e59e-66ba-56fb-8e85-1a2fd8ecc737"))
+ (label "GND" (at 128.27 142.24 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "bfd362a9-6948-57fd-b261-a381320ca045"))
  (label "+3.3V rail" (at 128.27 144.78 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "f3d91127-ec63-587b-8971-a9a407c78c5c"))
  (label "HSE crystal OUT" (at 128.27 147.32 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "ecbb513b-6ab1-5c21-9ca2-8b28a09a0798"))
  (label "HSE crystal IN" (at 128.27 149.86 180) (effects (font (size 1.0 1.0)) (justify right bottom)) (uuid "24862c92-7a66-5d46-ba7d-319f16ecfa7f"))
