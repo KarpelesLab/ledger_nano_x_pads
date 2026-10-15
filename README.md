@@ -28,7 +28,8 @@ approximate, and names ending in "?" are likely but not confirmed.
 ## Working on it
 
 Open `flip.html` in a browser; no server is needed. The traces are edited directly in `traces.js`, one trace
-per line with its points in pixel coordinates of the photos.
+per line with its points in pixel coordinates of the photos. After drawing, `kicad/cleanup_traces.py` then
+`kicad/octilinear.py` square the segments to 0/45/90 degrees without changing any connection.
 
 After changing the data, rebuild the KiCad reconstruction and the viewer data (needs KiCad 10 and its Python
 module):
