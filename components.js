@@ -16,9 +16,9 @@ window.COMPONENTS = [
    // from the STUSB4500L datasheet (DS13102), QFN24 pin function list
    "pinNames":{"1":"CC1DB","2":"CC1","3":"NU (to ground)","4":"CC2","5":"CC2DB","6":"RESET","7":"SCL","8":"SDA","9":"DISCH","10":"GND","11":"ATTACH","12":"ADDR0","13":"ADDR1","14":"RP_1A5","15":"GPIO","16":"VBUS_EN_SNK","17":"A_B_SIDE","18":"VBUS_VS_DISCH","19":"ALERT","20":"RP_3A","21":"VREG_1V2","22":"VSYS","23":"VREG_2V7","24":"VDD","EP":"GND"}},
   // parts not identified yet
-  {"id":"PWR1","part":"unknown","package":"16 pins, ~2.75 mm square","side":"front","size":2.75,"pitch":0.5,"pinsPerSide":4,"exposedPad":1.5,
-   "notes":"Very likely power related; pin 1 not verified, numbered from the first corner outlined",
-   "corners":[[1822,902],[1816,1130],[1585,1137],[1590,903]],"pinNames":{}},
+  {"id":"PWR1","part":"ST L6924D Li-ion battery charger","package":"VFQFPN16, 3 x 3 mm","side":"front","size":2.75,"pitch":0.5,"pinsPerSide":4,"exposedPad":1.5,
+   "notes":"Single-cell Li-ion charger with an integrated power switch (up to 1 A). Its datasheet pinout matches the traced nets with pin 1 at the first corner outlined: VIN and VINSNS tied (1, 2), VOPRG grounded for 4.2 V (9), VOSNS on battery + (10), R14 on IPRG setting the charge current (15), R8 on IEND setting the end-of-charge current (13), C37 on VREF (12), R11 holding SD low to enable it (7), status output ST2 to the MCU (3), VPRE and IPRE left floating (14, 16). VOUT (11), which goes to the battery, has no traced connection",
+   "corners":[[1822,902],[1816,1130],[1585,1137],[1590,903]],"pinNames":{"1":"VIN","2":"VINSNS","3":"ST2","4":"ST1","5":"TPRG","6":"GND","7":"SD","8":"TH","9":"VOPRG","10":"VOSNS","11":"VOUT","12":"VREF","13":"IEND","14":"VPRE","15":"IPRG","16":"IPRE","EP":"GND"}},
   {"id":"PWR2","part":"unknown","package":"10 pins, ~2.9 x 1.9 mm","side":"front","size":[2.9,1.9],"pitch":0.5,"pinCounts":[5,0,5,0],
    "notes":"Very likely power related, on the MCU's I2C1 bus (pins 2 SDA, 3 SCL), so probably an I2C power chip; marked E058 2050; pin 1 not verified, numbered from the first corner outlined",
    "corners":[[1835,1913],[1590,1917],[1595,1760],[1839,1758]],"pinNames":{}},
@@ -139,7 +139,7 @@ window.COMPONENTS = [
     {"id":"BL","name":"","polygon":[[5015,1518],[5085,1518],[5085,1572],[5015,1572]]},
     {"id":"BR","name":"","polygon":[[5175,1518],[5245,1518],[5245,1572],[5175,1572]]}]},
   {"id":"X9","part":"unknown, marked P8W 26","package":"3 terminals, SOT-23 style, ~1.3 x 2.9 mm body","side":"front",
-   "notes":"Wide black 3-terminal part marked P8W 26: two pads on its left side, one on its right (in the front photo). Pads named by position as pin numbering is not known","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
+   "notes":"Wide black 3-terminal part marked P8W 26: two pads on its left side, one on its right (in the front photo). Pads named by position as pin numbering is not known. TL is on battery +, BL on the charger's input supply (L6924D VIN) and R on the supply that feeds the OLED boost converter: likely a power-path part (a dual diode or a switch) choosing between the battery and USB power; not confirmed","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
     {"id":"TL","name":"","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
     {"id":"BL","name":"","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
     {"id":"R","name":"","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
