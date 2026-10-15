@@ -81,9 +81,10 @@ window.COMPONENTS = [
     {"id":"MP2","name":"mounting","polygon":[[4591,1180],[4661,1180],[4661,1214],[4591,1214]]},
     {"id":"MP3","name":"mounting","polygon":[[4428,1627],[4498,1627],[4498,1661],[4428,1661]]},
     {"id":"MP4","name":"mounting","polygon":[[4591,1627],[4661,1627],[4661,1661],[4591,1661]]}]},
-  {"id":"L1","part":"unknown, likely a shielded power inductor","package":"~4.8 mm square metal","side":"front",
-   "notes":"Large silver part: the power inductor of the X10 boost converter (TLV61046A) that makes the OLED supply, on its SW pin",
-   "corners":[[4773,1045],[5173,1045],[5173,1409],[4773,1409]]},
+  {"id":"L1","part":"power inductor of the OLED boost converter","package":"~4.8 mm square metal, 2 pads","side":"front",
+   "notes":"Large silver inductor of the X10 TLV61046A boost converter, as in its datasheet: from VIN (the supply on the left button, pad 19) on its left pad to the converter's SW pin on its right pad","outline":[[4773,1045],[5173,1045],[5173,1409],[4773,1409]],"pads":[
+    {"id":"1","name":"VIN","polygon":[[4785,1045],[4930,1045],[4930,1410],[4785,1410]]},
+    {"id":"2","name":"SW","polygon":[[5030,1045],[5175,1045],[5175,1410],[5030,1410]]}]},
   {"id":"RFF","part":"RF filter / matching device","package":"blue ceramic, 8 terminals","side":"front",
    "notes":"In the Bluetooth RF path between MCU pin 21 (RF1) and C27; dot marking near the IN end. Side terminals 1, 3, 4 and 6 go to ground, 2 and 5 are not connected; which side row is 1-3 is not known","pads":[
     {"id":"IN","name":"RF in, from MCU pin 21 (RF1)","polygon":[[2880,1615],[2925,1615],[2925,1660],[2880,1660]]},
