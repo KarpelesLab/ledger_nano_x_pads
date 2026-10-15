@@ -65,7 +65,7 @@ def main():
         if t.GetClass() == "PCB_VIA":
             scene["vias"].append({"at": P(t.GetPosition()), "d": round(pcbnew.ToMM(t.GetWidth(pcbnew.F_Cu)), 3),
                                   "drill": round(pcbnew.ToMM(t.GetDrillValue()), 3), "net": t.GetNetname()})
-        else:
+        elif t.GetLayer() in (pcbnew.F_Cu, pcbnew.B_Cu):    # inner-layer tracks are hidden inside the board
             scene["tracks"].append({"a": P(t.GetStart()), "b": P(t.GetEnd()), "w": round(pcbnew.ToMM(t.GetWidth()), 3),
                                     "side": "front" if t.GetLayer() == pcbnew.F_Cu else "back", "net": t.GetNetname()})
 

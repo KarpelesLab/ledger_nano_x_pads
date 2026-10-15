@@ -246,7 +246,8 @@ def main():
         net = nets_by_name[trace_net[i]]
         w = pcbnew.FromMM(t.get("width", 20) / S)
         for q in t["paths"]:
-            layer = pcbnew.F_Cu if q["side"] == "front" else pcbnew.B_Cu
+            # "inner": copper the photos can't show, between two vias; on In2 (In1 is the assumed GND plane)
+            layer = {"front": pcbnew.F_Cu, "back": pcbnew.B_Cu, "inner": pcbnew.In2_Cu}[q["side"]]
             for a, b in zip(q["points"], q["points"][1:]):
                 if a == b:
                     continue
