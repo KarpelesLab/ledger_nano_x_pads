@@ -1532,11 +1532,11 @@
    (property "Value" "nanox:X9" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
    (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
    (symbol "X9_0_1"
-    (rectangle (start -7.62 3.81) (end 7.62 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
+    (rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background))))
    (symbol "X9_1_1"
-    (pin passive line (at -10.16 1.27 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "TL" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at -10.16 -1.27 0) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "BL" (effects (font (size 1.0 1.0)))))
-    (pin passive line (at 10.16 1.27 180) (length 2.54) (name "~" (effects (font (size 1.0 1.0)))) (number "R" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -12.70 1.27 0) (length 2.54) (name "n.c. (2)" (effects (font (size 1.0 1.0)))) (number "TL" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at -12.70 -1.27 0) (length 2.54) (name "anode (1)" (effects (font (size 1.0 1.0)))) (number "BL" (effects (font (size 1.0 1.0)))))
+    (pin passive line (at 12.70 1.27 180) (length 2.54) (name "cathode (3)" (effects (font (size 1.0 1.0)))) (number "R" (effects (font (size 1.0 1.0)))))
    )
   )
   (symbol "X1" (in_bom yes) (on_board yes)

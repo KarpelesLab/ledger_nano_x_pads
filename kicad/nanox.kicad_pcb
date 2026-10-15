@@ -5695,6 +5695,158 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
+		(uuid "938a1e95-0ad7-5703-b096-90955e01f137")
+		(at 59.20238 16.97619)
+		(descr "SOT23-6 (DBV), 2.9 x 1.6 mm; Boost converter that makes the OLED panel's drive supply: identified by its 1C4F marking (TI's marking for the TLV61046A, a 28 V boost converter for PMOLED panels). Pads named by side and row from the top in the front photo; GND and the feedback divider fix the orientation: R1-R3 are pins 1-3 (SW, GND, FB), L3-L1 pins 4-6 (EN, VOUT, VIN). VIN the supply on the left button (pad 19), EN the +3.3V rail, VOUT the OLED VCC to BTB pin 12, FB the R25/R26 divider, SW the L1 inductor")
+		(property "Reference" "X10"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "c108b2a2-3831-5646-a037-29682caed5d7")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "TI TLV61046A boost converter (marked 1C4F)"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6cc59327-70d6-549e-9a2f-861c71d191ee")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c4ac0d8e-a909-597c-b895-8cce2cd86af4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ec930329-c443-5a58-8ed6-3a8174d65289")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/148564cd-ad7c-5376-ad36-da9ccbc4b2ef")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.75 -1.357143)
+			(end -0.75 1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "223066fa-6382-59b1-9479-90425e33a14d")
+		)
+		(fp_line
+			(start -0.75 1.357143)
+			(end 0.75 1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "fd76751e-7d42-5d46-93a9-2c33508d675b")
+		)
+		(fp_line
+			(start 0.75 -1.357143)
+			(end -0.75 -1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "cad2aee9-8917-55cd-98d8-9794f362e697")
+		)
+		(fp_line
+			(start 0.75 1.357143)
+			(end 0.75 -1.357143)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "081f5d1a-3a2f-5d7e-b378-e705267435dc")
+		)
+		(pad "L1" smd rect
+			(at -1.410714 1.017857)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Left button power (pad 19)")
+			(thermal_bridge_angle 45)
+			(uuid "38f6ddee-dad9-5e0c-8b2d-ab9d88cc7e4c")
+		)
+		(pad "L2" smd rect
+			(at -1.410714 0.041667)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC")
+			(thermal_bridge_angle 45)
+			(uuid "e6c8422a-31fa-5f2c-8b4b-5aff0e256b15")
+		)
+		(pad "L3" smd rect
+			(at -1.410714 -0.934524)
+			(size 1.154761 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "+3.3V rail")
+			(thermal_bridge_angle 45)
+			(uuid "646a0bce-72ca-5600-80fb-6ffe8500af31")
+		)
+		(pad "R1" smd rect
+			(at 1.42262 1.017857)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED boost SW")
+			(thermal_bridge_angle 45)
+			(uuid "b1f8f0df-f52a-599d-8bd8-bb62e10b4fa0")
+		)
+		(pad "R2" smd rect
+			(at 1.42262 0.041667)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "8e94973c-0981-5e14-bce8-fcba59a044e7")
+		)
+		(pad "R3" smd rect
+			(at 1.42262 -0.934524)
+			(size 1.107142 0.678571)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "OLED VCC feedback")
+			(thermal_bridge_angle 45)
+			(uuid "bbbb53a4-67e8-50ea-b8b3-1baf40b6c55d")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X10.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
 		(uuid "993b3119-47e3-57dd-a757-cb89214eafeb")
 		(at 30 23.714285)
 		(descr "two-terminal SMD")
@@ -5930,6 +6082,134 @@
 			)
 			(rotate
 				(xyz 0 0 90)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "99793622-9378-55f0-b075-8612e5cbaa35")
+		(at 20.845238 19.208333)
+		(descr "SOT-23, 2.9 x 1.3 mm; 16 V Zener diode. Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +")
+		(property "Reference" "X9"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "918b5c29-31fd-5ff6-bb6a-4e4b81bc186f")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(property "Value" "NXP PMBZ5246B 16 V Zener diode (marked P8W 26)"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b1a2cd2a-be77-529e-83a3-376d699112b7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c3be43ac-c186-5430-ac7b-cc008d5087da")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c3b8e8f7-62c3-5756-b539-b1e4b9d0a070")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.642858 -1.434524)
+			(end -0.642858 1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8e1a3f01-452d-5c97-b815-903e2ca91e9e")
+		)
+		(fp_line
+			(start -0.642858 1.434524)
+			(end 0.642857 1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "dd406c7c-5e67-5319-b45d-b1b5f02ec87e")
+		)
+		(fp_line
+			(start 0.642857 -1.434524)
+			(end -0.642858 -1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "cba56272-41aa-5bc7-a4ee-f64edf67b752")
+		)
+		(fp_line
+			(start 0.642857 1.434524)
+			(end 0.642857 -1.434524)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2a86c1b8-a53e-5c43-9a46-76778d0b74bb")
+		)
+		(pad "BL" smd rect
+			(at -0.916667 -0.869048)
+			(size 1.047619 0.892857)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Charger input?")
+			(thermal_bridge_angle 45)
+			(uuid "031dc3cc-f1e0-56da-b51f-269aae3a44c1")
+		)
+		(pad "R" smd rect
+			(at 1.125 0.077381)
+			(size 1.011904 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Left button power (pad 19)")
+			(thermal_bridge_angle 45)
+			(uuid "6461ac42-b20b-5ced-8ac9-d3970f77f67b")
+		)
+		(pad "TL" smd rect
+			(at -0.916667 1.041667)
+			(size 1.047619 0.857142)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net "Net-T41")
+			(thermal_bridge_angle 45)
+			(uuid "fc14556c-b74c-512e-a387-23c6a3a951b2")
+		)
+		(embedded_fonts no)
+		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -6479,134 +6759,6 @@
 			)
 			(rotate
 				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "acf9ba1a-e5b7-5d17-b9ee-ad7aed973ae7")
-		(at 20.845238 19.208333)
-		(descr "3 terminals, SOT-23 style, ~1.3 x 2.9 mm body; Wide black 3-terminal part marked P8W 26: two pads on its left side, one on its right (in the front photo). Pads named by position as pin numbering is not known. TL is on battery +, BL on the charger's input supply (L6924D VIN) and R on the supply that feeds the OLED boost converter: likely a power-path part (a dual diode or a switch) choosing between the battery and USB power; not confirmed")
-		(property "Reference" "X9"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "cd4477d3-24d0-5fe3-accb-cbe64de5295e")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "unknown, marked P8W 26"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1afddec9-5bb7-54f9-98bc-7978dcf3ef98")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0e1573d2-ef7b-574b-baaf-783506d07a52")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "72f78a0d-3400-5b75-bcff-eac393877ad7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/98cd6c32-b7dd-5e0e-b651-991c47c84815")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.642858 -1.434524)
-			(end -0.642858 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "06ececb1-4951-5e5c-8ff1-67eb8e588e43")
-		)
-		(fp_line
-			(start -0.642858 1.434524)
-			(end 0.642857 1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "6f1d830d-6c64-576e-ae90-4d059f3d156d")
-		)
-		(fp_line
-			(start 0.642857 -1.434524)
-			(end -0.642858 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "520ae121-2907-5ef5-87f0-c99caaedc9f4")
-		)
-		(fp_line
-			(start 0.642857 1.434524)
-			(end 0.642857 -1.434524)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "b346ab72-170f-5cf9-afa3-9f7c05631358")
-		)
-		(pad "BL" smd rect
-			(at -0.916667 -0.869048)
-			(size 1.047619 0.892857)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Charger input?")
-			(thermal_bridge_angle 45)
-			(uuid "6935d21f-b696-5347-ae2a-3dea1a0637b5")
-		)
-		(pad "R" smd rect
-			(at 1.125 0.077381)
-			(size 1.011904 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Left button power (pad 19)")
-			(thermal_bridge_angle 45)
-			(uuid "fdbb5af4-f651-5ccf-a2ba-5dc689753ef9")
-		)
-		(pad "TL" smd rect
-			(at -0.916667 1.041667)
-			(size 1.047619 0.857142)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Net-T41")
-			(thermal_bridge_angle 45)
-			(uuid "3c97f8ef-8e25-5824-902d-02fa7bdb3407")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X9.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
 			)
 		)
 	)
@@ -10787,158 +10939,6 @@
 			)
 			(rotate
 				(xyz 0 0 90)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "ff1c3794-ebce-5cab-987c-1b93a5062af4")
-		(at 59.20238 16.97619)
-		(descr "SOT23-6 (DBV), 2.9 x 1.6 mm; Boost converter that makes the OLED panel's drive supply: identified by its 1C4F marking (TI's marking for the TLV61046A, a 28 V boost converter for PMOLED panels). Pads named by side and row from the top in the front photo; GND and the feedback divider fix the orientation: R1-R3 are pins 1-3 (SW, GND, FB), L3-L1 pins 4-6 (EN, VOUT, VIN). VIN is the switched battery supply from X9, EN the +3.3V rail, VOUT the OLED VCC to BTB pin 12, FB the R25/R26 divider, SW the L1 inductor")
-		(property "Reference" "X10"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(uuid "53fefaec-6471-59df-82ad-44926b566d43")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(property "Value" "TI TLV61046A boost converter (marked 1C4F)"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "25a0a7e2-3de8-531e-8a00-6b4e794f8f01")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "be466ccb-41cc-5f2d-869c-4d4c0575b858")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "bb100888-6475-5d4a-8d3e-d769ffb28f67")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/148564cd-ad7c-5376-ad36-da9ccbc4b2ef")
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.75 -1.357143)
-			(end -0.75 1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "9782f3ec-a3b3-5a89-a804-553f2e6cacb3")
-		)
-		(fp_line
-			(start -0.75 1.357143)
-			(end 0.75 1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "85639509-9e33-56e2-9aeb-14fe234a6f1c")
-		)
-		(fp_line
-			(start 0.75 -1.357143)
-			(end -0.75 -1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "4b24ecde-50de-5250-8147-4c89c511b1e9")
-		)
-		(fp_line
-			(start 0.75 1.357143)
-			(end 0.75 -1.357143)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "6d5f6b5d-74c9-57e6-8dc1-0d73b0ade7b3")
-		)
-		(pad "L1" smd rect
-			(at -1.410714 1.017857)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "Left button power (pad 19)")
-			(thermal_bridge_angle 45)
-			(uuid "28758fee-714d-5f42-85c0-96267182dd86")
-		)
-		(pad "L2" smd rect
-			(at -1.410714 0.041667)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "OLED VCC")
-			(thermal_bridge_angle 45)
-			(uuid "12825753-6023-5086-aa2d-d20a62aacf71")
-		)
-		(pad "L3" smd rect
-			(at -1.410714 -0.934524)
-			(size 1.154761 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "+3.3V rail")
-			(thermal_bridge_angle 45)
-			(uuid "9954ccef-4aae-5bf5-aeab-db60347259df")
-		)
-		(pad "R1" smd rect
-			(at 1.42262 1.017857)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "OLED boost SW")
-			(thermal_bridge_angle 45)
-			(uuid "601f5398-c015-5346-8434-b8518b6b964e")
-		)
-		(pad "R2" smd rect
-			(at 1.42262 0.041667)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "7c96df29-bce9-5ed9-b8c1-cc23eeb9bd0c")
-		)
-		(pad "R3" smd rect
-			(at 1.42262 -0.934524)
-			(size 1.107142 0.678571)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "OLED VCC feedback")
-			(thermal_bridge_angle 45)
-			(uuid "681a87d7-a96f-56c1-a2e9-35124d436c75")
-		)
-		(embedded_fonts no)
-		(model "/home/magicaltux/projects/ledger_nano_x_pads/kicad/3d/X10.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
 			)
 		)
 	)

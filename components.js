@@ -138,13 +138,13 @@ window.COMPONENTS = [
     {"id":"TR","name":"","polygon":[[5175,1268],[5245,1268],[5245,1322],[5175,1322]]},
     {"id":"BL","name":"","polygon":[[5015,1518],[5085,1518],[5085,1572],[5015,1572]]},
     {"id":"BR","name":"","polygon":[[5175,1518],[5245,1518],[5245,1572],[5175,1572]]}]},
-  {"id":"X9","part":"unknown, marked P8W 26","package":"3 terminals, SOT-23 style, ~1.3 x 2.9 mm body","side":"front",
-   "notes":"Wide black 3-terminal part marked P8W 26: two pads on its left side, one on its right (in the front photo). Pads named by position as pin numbering is not known. TL is on battery +, BL on the charger's input supply (L6924D VIN) and R on the supply that feeds the OLED boost converter: likely a power-path part (a dual diode or a switch) choosing between the battery and USB power; not confirmed","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
-    {"id":"TL","name":"","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
-    {"id":"BL","name":"","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
-    {"id":"R","name":"","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
+  {"id":"X9","part":"NXP PMBZ5246B 16 V Zener diode (marked P8W 26)","package":"SOT-23, 2.9 x 1.3 mm","side":"front",
+   "notes":"16 V Zener diode. Pads named by position in the front photo (which is mirrored): with the marking upright, pin 3 (cathode) is R, pin 1 (anode) BL and pin 2 (not connected) TL. The anode is on the charger's input supply and the cathode on the supply that feeds the OLED boost converter; TL, though unconnected inside, sits on battery +","outline":[[1697,1290],[1805,1290],[1805,1531],[1697,1531]],"pads":[
+    {"id":"TL","name":"n.c. (2)","polygon":[[1630,1287],[1718,1287],[1718,1359],[1630,1359]]},
+    {"id":"BL","name":"anode (1)","polygon":[[1630,1446],[1718,1446],[1718,1521],[1630,1521]]},
+    {"id":"R","name":"cathode (3)","polygon":[[1803,1368],[1888,1368],[1888,1440],[1803,1440]]}]},
   {"id":"X10","part":"TI TLV61046A boost converter (marked 1C4F)","package":"SOT23-6 (DBV), 2.9 x 1.6 mm","side":"front",
-   "notes":"Boost converter that makes the OLED panel's drive supply: identified by its 1C4F marking (TI's marking for the TLV61046A, a 28 V boost converter for PMOLED panels). Pads named by side and row from the top in the front photo; GND and the feedback divider fix the orientation: R1-R3 are pins 1-3 (SW, GND, FB), L3-L1 pins 4-6 (EN, VOUT, VIN). VIN is the switched battery supply from X9, EN the +3.3V rail, VOUT the OLED VCC to BTB pin 12, FB the R25/R26 divider, SW the L1 inductor","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
+   "notes":"Boost converter that makes the OLED panel's drive supply: identified by its 1C4F marking (TI's marking for the TLV61046A, a 28 V boost converter for PMOLED panels). Pads named by side and row from the top in the front photo; GND and the feedback divider fix the orientation: R1-R3 are pins 1-3 (SW, GND, FB), L3-L1 pins 4-6 (EN, VOUT, VIN). VIN the supply on the left button (pad 19), EN the +3.3V rail, VOUT the OLED VCC to BTB pin 12, FB the R25/R26 divider, SW the L1 inductor","outline":[[4910,1484],[5036,1484],[5036,1712],[4910,1712]],"pads":[
     {"id":"L1","name":"VIN (6)","polygon":[[4806,1484],[4903,1484],[4903,1541],[4806,1541]]},
     {"id":"L2","name":"VOUT (5)","polygon":[[4806,1566],[4903,1566],[4903,1623],[4806,1623]]},
     {"id":"L3","name":"EN (4)","polygon":[[4806,1648],[4903,1648],[4903,1705],[4806,1705]]},
@@ -155,5 +155,5 @@ window.COMPONENTS = [
   {"id":"BAT","part":"battery contacts","package":"copper pads","side":"front","pads":[
     {"id":"1","name":"","notes":"Likely the battery's temperature sensor (NTC), with test pad 06, and through R1 to the charger's TH pin (PWR1 pin 8); not measured","polygon":[[891,1948],[894,1699],[1010,1698],[1007,1946]]},
     {"id":"2","name":"","notes":"Likely battery -, to PWR3 (a likely battery protection IC), R35 and C2; not measured","polygon":[[1106,1947],[1111,1699],[1219,1699],[1217,1946]]},
-    {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the X9 power switch, PWR1 and PWR2; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
+    {"id":"3","name":"","notes":"Likely battery +, with test pad 14, the charger (PWR1), PWR2 and X9's unconnected pin; not measured","polygon":[[967,1009],[971,898],[1216,894],[1216,1006]]}]}
 ];
