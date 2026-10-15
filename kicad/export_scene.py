@@ -152,6 +152,8 @@ def main():
                 ang = math.atan2(e[k][1], e[k][0])
                 if math.cos(ang) < -1e-6 or (abs(math.cos(ang)) < 1e-6 and math.sin(ang) < 0):
                     ang += math.pi
+                if cid in m3d.UPSIDE_DOWN:
+                    ang += math.pi
                 part["marking"] = {"text": text, "angle": ang}
         else:
             continue

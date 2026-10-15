@@ -35,9 +35,12 @@ LIBRARY_MARKINGS = {
 }
 LIBRARY_HEIGHT = .78
 
+# generated bodies whose marking reads the other way up from the default (left to right in the top view)
+UPSIDE_DOWN = {"PWR2"}
+
 # generated bodies: colour (r, g, b), height in mm, marking
 CUSTOM = {
-    "PWR2": ((.08, .08, .08), .55, "8128\n0205"),
+    "PWR2": ((.08, .08, .08), .55, "8128\nO205"),
     "PWR3": ((.08, .08, .08), .5, "3T"),
     "X2": ((.55, .55, .58), .5, "2GC"),
     "X3": ((.45, .5, .6), .4, "6"),
@@ -234,6 +237,8 @@ def write_custom(ref, cid, outline_mm, color, height, text):
     k = max(range(len(e)), key=lambda i: lens[i])
     ang = math.atan2(e[k][1], e[k][0])
     if math.cos(ang) < -1e-6 or (abs(math.cos(ang)) < 1e-6 and math.sin(ang) < 0):
+        ang += math.pi
+    if ref in UPSIDE_DOWN:
         ang += math.pi
     width = min(lens)
     cx = sum(p[0] for p in poly) / len(poly)
