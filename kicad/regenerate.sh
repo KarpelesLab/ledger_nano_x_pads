@@ -15,5 +15,6 @@ python3 check.py
 python3 export_overlay.py
 python3 export_scene.py
 python3 implants.py
+python3 readme_pads.py
 # 3D renders and STEP export, so they never fall behind the board
 ./render.sh
