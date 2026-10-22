@@ -59,7 +59,7 @@
     <button id="top">Top</button><button id="bottom">Bottom</button><button id="angle">Angle</button>
   </div>
   <div class="hint" id="help">Drag to rotate, right-drag to pan, scroll to zoom. Hover a track, via, pad or part for details;
-    nets light up on both sides.</div>
+    nets light up on both sides. Zoom in on the secure element (SE1) to see inside it.</div>
 </details>
 <div id="tip" hidden></div>
 <script src="scene.js"></script>
@@ -374,7 +374,8 @@ let lit = [];
 function light(meshes) {
   for (const m of lit) m.material = m.userData.base;
   lit = meshes;
-  for (const m of lit) m.material = M.hi;
+  // a see-through part brings its own highlight, so what is inside it stays visible
+  for (const m of lit) m.material = m.userData.hi || M.hi;
 }
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
 function netPads(net) {
@@ -396,19 +397,24 @@ function describe(u) {
   if (u.kind === 'part') {
     const p = u.part, pads = S.pads.filter(q => q.ref === p.ref && q.net);
     return `<b>${esc(p.ref)}</b> <span class="meta">${esc(p.title)}${p.package ? ' · ' + esc(p.package) : ''} · ${p.side}</span>` +
-      (p.notes ? `<p>${esc(p.notes)}</p>` : '') +
+      (p.notes ? `<p>${esc(p.notes)}</p>` : '') + (u.ct ? `<p>${esc(u.ct)}</p>` : '') +
       (pads.length ? `<ul>${pads.slice(0, 16).map(q => `<li>${esc(q.num)}${q.pin ? ' ' + esc(q.pin) : ''}: ${esc(q.net)}</li>`).join('')}</ul>` : '');
   }
   const head = u.kind === 'pad' ? `${u.ref} pad ${u.num}${u.pin ? ' · ' + u.pin : ''}` : u.kind;
-  if (!u.net) return `<b>${esc(head)}</b> <span class="meta">no net</span>`;
-  return `<b>${esc(u.net)}</b> <span class="meta">${esc(head)}${u.side ? ' · ' + u.side : ''}</span>` + netHtml(u.net);
+  const ct = u.ct ? `<p>${esc(u.ct)}</p>` : '';
+  if (!u.net) return `<b>${esc(head)}</b> <span class="meta">no net</span>` + ct;
+  return `<b>${esc(u.net)}</b> <span class="meta">${esc(head)}${u.side ? ' · ' + u.side : ''}</span>` + ct + netHtml(u.net);
 }
 function pick(x, y) {
   mouse.set(x / innerWidth * 2 - 1, -y / innerHeight * 2 + 1);
   ray.setFromCamera(mouse, camera);
   return ray.intersectObjects(pickable.filter(m => m.parent.visible && m.visible), false)
-    // pours sit under everything else, so prefer anything on top of them
-    .sort((a, b) => (a.object.userData.kind === 'pour') - (b.object.userData.kind === 'pour') || a.distance - b.distance)[0];
+    // pours sit under everything else, so prefer anything on top of them, and a see-through package
+    // encloses its pins, so prefer those over it
+    .sort((a, b) => rank(a.object) - rank(b.object) || a.distance - b.distance)[0];
+}
+function rank(m) {
+  return m.userData.kind === 'pour' ? 2 : m.userData.shell ? 1 : 0;
 }
 function inspect(x, y) {
   const hit = pick(x, y), tip = $('tip');
@@ -437,7 +443,7 @@ el.addEventListener('pointercancel', () => { press = null; });
 
 const touch = matchMedia('(pointer: coarse)').matches;
 if (touch) $('help').textContent = 'Drag to rotate, pinch to zoom, drag with two fingers to pan. Tap a track, via, pad or part ' +
-  'for details; nets light up on both sides.';
+  'for details; nets light up on both sides. Zoom in on the secure element (SE1) to see inside it.';
 // on a phone the panel would cover much of the board: start it folded
 if (innerWidth < 600) $('panel').open = false;
 
@@ -446,9 +452,136 @@ addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(innerWidth, innerHeight);
 });
+// ---- SE1 from its CT scan: se1_ct.js is large, so it is only loaded once the camera gets close to the chip,
+// then blended in over the plain box, which it fully replaces closer in ----
+const seMesh = byRef.get('SE1')?.find(m => m.userData.kind === 'part');
+const ct = seMesh && { box: seMesh.parent, part: seMesh.userData.part, state: 'idle', t: 0, boxMats: [], ctMats: [] };
+// the chip's size on screen, as a fraction of the screen's shorter side: start loading, then blend between
+const CT_LOAD = .12, CT_BLEND = [.22, .4];
+M.hiGhost = M.hi.clone();
+// remember each material's own opacity, so the blend can scale it
+function fadeable(m) {
+  m.userData.fade = { opacity: m.opacity, transparent: m.transparent, depthWrite: m.depthWrite };
+  return m;
+}
+function setFade(mats, k) {
+  for (const m of mats) {
+    const f = m.userData.fade, o = f.opacity * k, tr = f.transparent || o < 1;
+    m.opacity = o;
+    m.depthWrite = o < 1 ? false : f.depthWrite;
+    if (m.transparent !== tr) { m.transparent = tr; m.needsUpdate = true; }
+  }
+}
+if (ct) {
+  const o = ct.part.outline;
+  ct.at = new THREE.Vector3(o.reduce((s, q) => s + q[0], 0) / o.length, o.reduce((s, q) => s + q[1], 0) / o.length, top);
+  ct.centre = ct.at.clone().add(root.position).setZ(top + ct.part.height / 2);
+  ct.box.traverse(m => { if (m.material) ct.boxMats.push(fadeable(m.material)); });
+  fadeable(M.hiGhost);
+  seMesh.userData.hi = M.hiGhost;
+}
+function decodeMesh(m) {
+  const bytes = s => Uint8Array.from(atob(s), c => c.charCodeAt(0)).buffer;
+  const q = new Uint16Array(bytes(m.v)), p = new Float32Array(q.length);
+  for (let i = 0; i < q.length; i++) { const k = i % 3; p[i] = m.lo[k] + q[i] / 65535 * (m.hi[k] - m.lo[k]); }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(p, 3));
+  g.setIndex(new THREE.BufferAttribute(new Uint32Array(bytes(m.f)), 1));
+  g.computeVertexNormals();
+  return g;
+}
+const nextFrame = () => new Promise(r => requestAnimationFrame(r));
+async function buildCt(C) {
+  const g = new THREE.Group(), mats = [];
+  g.position.copy(ct.at);
+  g.visible = false;
+  const fade = m => (mats.push(fadeable(m)), m);
+  // see-through mold with its edges and pin 1 dot
+  const H = C.body.h, moldG = new THREE.BoxGeometry(C.body.w, C.body.w, H);
+  moldG.translate(0, 0, H / 2);
+  const mold = new THREE.Mesh(moldG, fade(new THREE.MeshStandardMaterial({ color: '#2b2f36', roughness: .6, transparent: true,
+    opacity: .14, depthWrite: false, side: THREE.DoubleSide })));
+  g.add(mold);
+  g.add(new THREE.LineSegments(new THREE.EdgesGeometry(moldG),
+    fade(new THREE.LineBasicMaterial({ color: '#8b96a3', transparent: true, opacity: .6 }))));
+  const dot = new THREE.Mesh(new THREE.CircleGeometry(.12, 24),
+    fade(new THREE.MeshBasicMaterial({ color: '#d8dee6', transparent: true, opacity: .7 })));
+  dot.position.set(-1.55, 1.55, H + .006);
+  g.add(dot);
+  const ctNote = 'Seen through the package, from an X-ray CT scan: the leadframe, the bond wires and an estimated outline of the die.';
+  register(mold, { kind: 'part', ref: ct.part.ref, part: ct.part, ct: ctNote, shell: true });
+  mold.userData.hi = M.hiGhost;
+  // die, estimated
+  const D = C.die, dieG = new THREE.BoxGeometry(D.x1 - D.x0, D.y1 - D.y0, D.z1 - D.z0);
+  dieG.translate((D.x0 + D.x1) / 2, (D.y0 + D.y1) / 2, (D.z0 + D.z1) / 2);
+  const die = new THREE.Mesh(dieG, fade(new THREE.MeshStandardMaterial({ color: '#3a4a6a', metalness: .3, roughness: .35,
+    transparent: true, opacity: .55, depthWrite: false })));
+  g.add(die);
+  // the die sits over the paddle, so pointing at the middle of the chip names the chip
+  register(die, { kind: 'part', ref: ct.part.ref, part: ct.part, ct: ctNote });
+  die.userData.hi = M.hiGhost;
+  g.add(new THREE.LineSegments(new THREE.EdgesGeometry(dieG), fade(new THREE.LineBasicMaterial({ color: '#8aa4d6' }))));
+  // bond wires
+  const wireMat = fade(new THREE.MeshStandardMaterial({ color: '#f2d27a', metalness: .9, roughness: .25 }));
+  for (const w of C.wires) {
+    const pts = w.pts.map(p => new THREE.Vector3(...p));
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, 'centripetal'), 160, .014, 8), wireMat));
+    const ball = new THREE.Mesh(new THREE.SphereGeometry(.03, 16, 12), wireMat);
+    ball.position.copy(pts[0]);
+    ball.scale.z = .6;
+    g.add(ball);
+  }
+  // leadframe: the paddle and the pins, which take the hover as the chip's pads; one mesh per frame, as each
+  // takes a moment to decode
+  const cu = { metalness: .75, roughness: .35, side: THREE.DoubleSide };
+  const pads = new Map(S.pads.filter(q => q.ref === ct.part.ref).map(q => [q.num, q]));
+  for (const [num, mesh, wired] of [['EP', C.paddle, true], ...C.pads.map(p => [String(p.pin), p.mesh, p.wired])]) {
+    await nextFrame();
+    const m = new THREE.Mesh(decodeMesh(mesh), fade(new THREE.MeshStandardMaterial({ ...cu, color: wired ? '#d9964f' : '#7b6a58' })));
+    g.add(m);
+    const pad = pads.get(num) || {};
+    register(m, { kind: 'pad', net: pad.net, ref: ct.part.ref, num, pin: pad.pin, side: 'front',
+      ct: num === 'EP' ? 'Die paddle (CT scan)' : wired ? 'Bonded to the die (CT scan)' : 'No bond wire (CT scan)' });
+  }
+  ct.ctMats = mats;
+  ct.group = g;
+  groups.parts.add(g);
+  ct.state = 'ready';
+}
+function loadCt() {
+  ct.state = 'loading';
+  const s = document.createElement('script');
+  s.src = 'se1_ct.js';
+  s.onload = () => buildCt(window.CHIP_MODEL).catch(e => { ct.state = 'failed'; console.error(e); });
+  s.onerror = () => { ct.state = 'failed'; };
+  document.head.append(s);
+}
+const ndc = new THREE.Vector3();
+function updateCt() {
+  if (!ct) return;
+  const d = camera.position.distanceTo(ct.centre);
+  const size = 4 / (2 * d * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * Math.min(1, camera.aspect));
+  if (ct.state === 'idle' && size > CT_LOAD && groups.parts.visible) {
+    ndc.copy(ct.centre).project(camera);
+    if (Math.abs(ndc.x) < 1.2 && Math.abs(ndc.y) < 1.2 && ndc.z < 1) loadCt();
+  }
+  if (ct.state !== 'ready') return;
+  // ease towards the target, so the model fades in even when it arrives after the camera is already close
+  const target = THREE.MathUtils.smoothstep(size, ...CT_BLEND);
+  const t = Math.abs(target - ct.t) < .001 ? target : ct.t + THREE.MathUtils.clamp(target - ct.t, -.06, .06);
+  if (t === ct.t) return;
+  ct.t = t;
+  // the box fades out as the scan fades in, and the highlight goes from solid to see-through with them
+  setFade(ct.boxMats, 1 - t);
+  setFade(ct.ctMats, t);
+  setFade([M.hiGhost], 1 - .75 * t);
+  ct.box.visible = t < 1;
+  ct.group.visible = t > 0;
+}
+
 $('loading').remove();
-renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
-window.__viewer = { camera, controls, view, pickable, implantGroups };
+renderer.setAnimationLoop(() => { controls.update(); updateCt(); renderer.render(scene, camera); });
+window.__viewer = { camera, controls, view, pickable, implantGroups, ct };
 </script>
 </body>
 </html>

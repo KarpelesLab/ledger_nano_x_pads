@@ -73,6 +73,7 @@ not confirmed; the others were measured or follow from what the pad connects to.
 | `pads.js` | The 40 test pads and their signal names |
 | `components.js`, `passives.js` | Chips, connectors and other parts; resistors and capacitors |
 | `kicad/` | KiCad project generated from the data above, plus the 3D viewer and the scripts that build them |
+| `kicad/se1_ct.js` | Model of the secure element from an X-ray CT scan, which the 3D viewer loads when zoomed in on it |
 | `index.html` | Landing page of the published site |
 
 ## Working on it

@@ -29,7 +29,7 @@ jobs:
           mkdir -p _site/kicad
           cp index.html flip.html pads.js traces.js components.js passives.js _site/
           cp -r img _site/
-          cp kicad/viewer3d.html kicad/scene.js kicad/implants.js kicad/overlay.js _site/kicad/
+          cp kicad/viewer3d.html kicad/scene.js kicad/implants.js kicad/overlay.js kicad/se1_ct.js _site/kicad/
           # fail early if a viewer refers to a file that was not copied
           for page in _site/flip.html _site/kicad/viewer3d.html; do
             dir=$(dirname "$page")
