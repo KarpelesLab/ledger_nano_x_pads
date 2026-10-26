@@ -68,7 +68,7 @@ not confirmed; the others were measured or follow from what the pad connects to.
 | Path | Contents |
 |---|---|
 | `flip.html` | Photo viewer |
-| `img/` | Photos of both sides, with and without components, aligned to the same pixel grid |
+| `img/` | Photos of both sides, with and without components, aligned to the same pixel grid; `xray.png`, an X-ray mosaic of the whole board, seen from the back like the photos |
 | `traces.js` | Traced nets: segments per side, vias, ground connection points, names and purposes |
 | `pads.js` | The 40 test pads and their signal names |
 | `components.js`, `passives.js` | Chips, connectors and other parts; resistors and capacitors |
