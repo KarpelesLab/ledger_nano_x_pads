@@ -47,7 +47,7 @@ not confirmed; the others were measured or follow from what the pad connects to.
 | 24 | +3.3V rail |  |
 | 25 | MCU PA5 | MCU PA5, with R19 and R37; role not known |
 | 26 | MCU NRST |  |
-| 27 | MCU PA7 | MCU PA7 (pin 16); role not known |
+| 27 | Charger SD | MCU PA7 (pin 16), joined on an inner layer to the shutdown pin (SD, pin 7) of the L6924D charger, which R11 holds low to enable it: PA7 can likely switch charging off |
 | 28 | Left button |  |
 | 29 | SE RESET |  |
 | 30 | SE CLK-IN |  |

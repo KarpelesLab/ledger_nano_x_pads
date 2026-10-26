@@ -27,7 +27,7 @@ window.PADS = [
   {"id":"24","name":"+3.3V rail","notes":"","side":"back","x":2470,"y":1900,"r":45},
   {"id":"25","name":"MCU PA5","notes":"MCU PA5, with R19 and R37; role not known","side":"back","x":2690,"y":849,"r":45},
   {"id":"26","name":"MCU NRST","notes":"","side":"back","x":2690,"y":1228,"r":45},
-  {"id":"27","name":"MCU PA7","notes":"MCU PA7 (pin 16); role not known","side":"back","x":2854,"y":1370,"r":45},
+  {"id":"27","name":"Charger SD","notes":"MCU PA7 (pin 16), joined on an inner layer to the shutdown pin (SD, pin 7) of the L6924D charger, which R11 holds low to enable it: PA7 can likely switch charging off","side":"back","x":2854,"y":1370,"r":45},
   {"id":"28","name":"Left button","notes":"","side":"back","x":3124,"y":850,"r":45},
   {"id":"29","name":"SE RESET","notes":"","side":"back","x":3128,"y":1148,"r":45},
   {"id":"30","name":"SE CLK-IN","notes":"","side":"back","x":3129,"y":1368,"r":45},
