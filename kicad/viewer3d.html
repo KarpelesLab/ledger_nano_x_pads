@@ -512,33 +512,33 @@ async function buildCt(C) {
     'photo of its top metal layer.';
   register(mold, { kind: 'part', ref: ct.part.ref, part: ct.part, ct: ctNote, shell: true });
   mold.userData.hi = M.hiGhost;
-  // die: its height from the scan, its outline from se1_die.jpg, a photo of the top metal layer cropped to the die
-  // edge, placed by fitting its 11 bonded pads to the scanned bond balls (all within 25 um); it sits turned by
-  // about 180 degrees
-  const D = C.die, P = { x: .0006, y: .0164, w: 2.2623, h: 2.4798, rot: -179.46 };
-  const dieG = new THREE.BoxGeometry(P.w, P.h, D.z1 - D.z0);
+  // die: its height from the scan, its outline from the die edge in se1_die.jpg; the photo of its top metal layer is
+  // laid on top, placed by fitting its 11 bonded pads to the scanned bond balls (all within 3 um)
+  const D = C.die, P = { x: .0002, y: -.0005, w: 2.2659, h: 2.4901, rot: -.0006 };
+  const dieG = new THREE.BoxGeometry(D.x1 - D.x0, D.y1 - D.y0, D.z1 - D.z0);
+  dieG.translate((D.x0 + D.x1) / 2, (D.y0 + D.y1) / 2, (D.z0 + D.z1) / 2);
+  const die = new THREE.Mesh(dieG, fade(new THREE.MeshStandardMaterial({ color: '#3a4a6a', metalness: .3, roughness: .35,
+    transparent: true, opacity: .55, depthWrite: false })));
+  g.add(die);
+  g.add(new THREE.LineSegments(new THREE.EdgesGeometry(dieG), fade(new THREE.LineBasicMaterial({ color: '#8aa4d6' }))));
   const photo = new THREE.TextureLoader().load('se1_die.jpg');
   photo.colorSpace = THREE.SRGBColorSpace;
   photo.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  const dieSide = fade(new THREE.MeshStandardMaterial({ color: '#3a4a6a', metalness: .3, roughness: .35,
-    transparent: true, opacity: .55, depthWrite: false }));
-  const dieTop = fade(new THREE.MeshStandardMaterial({ map: photo, metalness: .2, roughness: .5 }));
-  const die = new THREE.Mesh(dieG, [dieSide, dieSide, dieSide, dieSide, dieTop, dieSide]);
-  const dieEdges = new THREE.LineSegments(new THREE.EdgesGeometry(dieG), fade(new THREE.LineBasicMaterial({ color: '#8aa4d6' })));
-  for (const m of [die, dieEdges]) {
-    m.position.set(P.x, P.y, (D.z0 + D.z1) / 2);
-    m.rotation.z = THREE.MathUtils.degToRad(P.rot);
-    g.add(m);
-  }
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(P.w, P.h), fade(new THREE.MeshBasicMaterial({ map: photo })));
+  top.position.set(P.x, P.y, D.z1 + .002);
+  top.rotation.z = P.rot;
+  g.add(top);
   // the die sits over the paddle, so pointing at the middle of the chip names the chip
-  register(die, { kind: 'part', ref: ct.part.ref, part: ct.part, ct: ctNote });
+  for (const m of [die, top]) register(m, { kind: 'part', ref: ct.part.ref, part: ct.part, ct: ctNote });
+  // highlighted, the photo stays as it is so it can still be seen through the rest of the chip
   die.userData.hi = M.hiGhost;
+  top.userData.hi = top.material;
   // bond wires
   const wireMat = fade(new THREE.MeshStandardMaterial({ color: '#f2d27a', metalness: .9, roughness: .25 }));
   for (const w of C.wires) {
     const pts = w.pts.map(p => new THREE.Vector3(...p));
-    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, 'centripetal'), 160, .014, 8), wireMat));
-    const ball = new THREE.Mesh(new THREE.SphereGeometry(.03, 16, 12), wireMat);
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, 'centripetal'), pts.length * 2, .014, 8), wireMat));
+    const ball = new THREE.Mesh(new THREE.SphereGeometry(.02, 16, 12), wireMat);
     ball.position.copy(pts[0]);
     ball.scale.z = .6;
     g.add(ball);
