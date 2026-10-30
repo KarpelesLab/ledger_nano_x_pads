@@ -68,13 +68,13 @@ not confirmed; the others were measured or follow from what the pad connects to.
 | Path | Contents |
 |---|---|
 | `flip.html` | Photo viewer |
-| `img/` | Photos of both sides, with and without components, aligned to the same pixel grid; `xray.png`, an X-ray mosaic of the whole board, seen from the back like the photos |
+| `img/` | Photos of both sides, with and without components, aligned to the same pixel grid; `xray.png`, an X-ray mosaic of the whole board, seen from the back like the photos; `se1_die/`, microscope photos of the decapped secure element die, a 50x overview and four 100x quarters, in the die's own orientation (ST logo top left) |
 | `traces.js` | Traced nets: segments per side, vias, ground connection points, names and purposes |
 | `pads.js` | The 40 test pads and their signal names |
 | `components.js`, `passives.js` | Chips, connectors and other parts; resistors and capacitors |
 | `kicad/` | KiCad project generated from the data above, plus the 3D viewer and the scripts that build them |
 | `kicad/se1_ct.js` | Model of the secure element from an X-ray CT scan, which the 3D viewer loads when zoomed in on it |
-| `kicad/se1_die.jpg` | Photo of the secure element die's top metal layer (an ST33J2M0, the same K500A die as in this Nano X; image by [TechInsights](https://www.techinsights.com/blog/google-pixel-3-xl-teardown), from its Google Pixel 3 XL teardown), cropped to the die edge; the 3D viewer lays it on the die of the CT model |
+| `kicad/se1_die.jpg` | Photo of the secure element die's top metal layer (the ST K500A die), stitched from the four 100x shots in `img/se1_die/`, cropped to the die edge and turned to match the CT model; the 3D viewer lays it on the die of the CT model |
 | `index.html` | Landing page of the published site |
 
 ## Working on it
@@ -103,8 +103,5 @@ Original reverse engineering work by Karpeles Lab Inc., made available for the p
 - **Code** (the viewers, the scripts under `kicad/` and the workflow): [MIT](LICENSE).
 - **Content** (photos, board data, the KiCad project and its 3D models, and this documentation):
   [CC BY 4.0](LICENSE-CC-BY-4.0). Reuse it freely, including commercially, crediting "Karpeles Lab Inc.".
-- **Exception:** `kicad/se1_die.jpg`, the die photo of the secure element, is © TechInsights, from their
-  [Google Pixel 3 XL teardown](https://www.techinsights.com/blog/google-pixel-3-xl-teardown). It is not covered by
-  the licences above; ask TechInsights for permission to reuse it.
 
 Ledger and Nano X are trademarks of Ledger SAS; this project is not affiliated with or endorsed by Ledger.
